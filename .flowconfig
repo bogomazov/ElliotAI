@@ -45,3 +45,7 @@
 ;
 ; [version]
 ; ^0.42.0
+[ignore]
+.*node_modules.*
+[libs]
+flow-typed/ignore-libs/

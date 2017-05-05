@@ -6,48 +6,46 @@
 
 import React, { Component } from 'react';
 import {
+  AsyncStorage,
   AppRegistry,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
-export default class Elliot extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
+import { connect, Provider } from 'react-redux'
+import { applyMiddleware, compose, createStore, bindActionCreators } from 'redux'
+import {createLogger}  from 'redux-logger'
+import thunk  from 'redux-thunk'
+import rootReducer  from './state/reducers/index'
+// import * as storage from 'redux-storage'
+import {persistStore, autoRehydrate} from 'redux-persist'
+import MainScene from './scenes/MainScene'
+
+import {getAPI} from './network/networkManager'
+// console.log(API)
+export const Store = createStore(
+  rootReducer,
+  {},
+  compose(
+    applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
+    autoRehydrate()
+  ))
+
+export const persistor = persistStore(Store, {}, () => {
+  console.log('rehydration complete')
+})
+
+class App extends Component {
+    render() {
+        return (
+          <Provider store={Store}>
+            <MainScene/>
+           </Provider>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+AppRegistry.registerComponent('Elliot', () => App);
 
-AppRegistry.registerComponent('Elliot', () => Elliot);
+export default App;
