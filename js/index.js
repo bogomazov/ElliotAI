@@ -23,18 +23,29 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import MainScene from './scenes/MainScene'
 
 import {getAPI} from './network/networkManager'
-// console.log(API)
+
+import { StackNavigator } from 'react-navigation';
+
 export const Store = createStore(
   rootReducer,
   {},
   compose(
+    autoRehydrate(),
     applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
-    autoRehydrate()
   ))
 
-export const persistor = persistStore(Store, {}, () => {
-  console.log('rehydration complete')
-})
+// export const Store = createStore(
+//   rootReducer,
+//   applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
+//   autoRehydrate())
+
+persistStore(Store, { storage: AsyncStorage })
+
+// export const saveState = () => {
+//   persistStore(Store, { storage: AsyncStorage })
+// }
+
+// saveState()
 
 class App extends Component {
     render() {

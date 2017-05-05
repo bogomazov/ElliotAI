@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
 import * as appActions from '../state/actions/app';
+import IntroScene from './IntroScene'
 
 
 const mapStateToProps = (state) => {
@@ -32,8 +33,12 @@ export default class MainScene extends Component {
 				return <LoginScene/>
 			}
 
+			if (!this.props.app.isSeenIntro) {
+				return <IntroScene/>
+			}
+
 			return (<View style={styles.container}>
-				<Text>Hello1</Text>
+				<Text>MainScene</Text>
       </View>);
 
   }

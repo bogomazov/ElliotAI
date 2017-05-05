@@ -1,9 +1,10 @@
-import {NEW_ACCESS_TOKEN} from '../actions/app'
-import { REHYDRATE } from 'redux-persist/constants'
+import {NEW_ACCESS_TOKEN, FINISH_INTRO} from '../actions/app'
+// import { REHYDRATE } from 'redux-persist/constants'
 
 const defaultState = {
   accessToken: null,
-  isLoggedIn: false
+  isLoggedIn: false,
+  isSeenIntro: false
 }
 
 const app = (state = defaultState, action) => {
@@ -21,10 +22,11 @@ const app = (state = defaultState, action) => {
         accessToken: action.accessToken,
         isLoggedIn: true
       }
-    case REHYDRATE:
-      console.log(action.payload)
-      return {...state, ...action.payload}
-
+    case FINISH_INTRO:
+      return {
+        ...state,
+        isSeenIntro: true
+      }
     default:
       return state
   }

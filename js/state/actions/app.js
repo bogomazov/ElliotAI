@@ -1,6 +1,7 @@
 // import {API} from '../../network'
 import {persistor} from '../../index'
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
+export const FINISH_INTRO = "FINISH_INTRO"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -8,6 +9,11 @@ export const newAccessToken = (accessToken) => {
   return {
     type: NEW_ACCESS_TOKEN,
     accessToken
+  }
+}
+export const finishIntro = () => {
+  return {
+    type: FINISH_INTRO,
   }
 }
 
