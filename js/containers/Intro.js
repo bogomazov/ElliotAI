@@ -5,53 +5,65 @@ import {
   Image
 } from 'react-native'
 import Swiper from 'react-native-swiper'
+import strings from '../res/values/strings'
 
 var styles = {
   wrapper: {
-    flex: 1,
+    // flex: 1,
+    // height: 300
+    // paddingBottom: 200
   },
-  slide1: {
+  slide: {
+    // backgroundColor: 'red',
+
     flex: 1,
-    justifyContent: 'center',
+    // height: 300,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     alignItems: 'center',
+    // marginBottom: 30
+    paddingBottom: 60
     // backgroundColor: '#9DD6EB'
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: '#97CAE5'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: '#92BBD9'
   },
   text: {
     color: '#000',
-    fontSize: 16,
+    fontSize: 14,
+    marginBottom: 30,
+    textAlign: 'center',
+    width: 300,
+    fontFamily: 'OpenSans-Light'
     // fontWeighset: 'bold'
+  },
+  image: {
+    width: 200,
+    height: 250
+  },
+  logoText: {
+    flex: 1
   }
 }
 
-export default () => <Swiper style={styles.wrapper} showsButtons>
-  <View style={styles.slide1}>
-    <Text style={styles.text}>Elliot suggests people and time for you to meet</Text>
-    <Image
-      style={{width: 100, height: 100}}
-      source={require('../assets/images/Icon-40@3x.png')}/>
-  </View>
-  <View style={styles.slide2}>
-    <Text style={styles.text}>Beautiful</Text>
-    <Image
-      style={{width: 100, height: 100}}
-      source={require('../assets/images/Icon-40@3x.png')}/>
-  </View>
-  <View style={styles.slide3}>
-    <Text style={styles.text}>And simple</Text>
-    <Image
-      style={{width: 100, height: 100}}
-      source={require('../assets/images/Icon-40@3x.png')}/>
-  </View>
+// export default class LoginScene extends Component {
+//   render() {
+//     let introTexts =
+//     let
+//     return ();
+//   }
+// }
+
+// images need to be statically included in RN
+export default () =>
+<View style={styles.wrapper}>
+  <Text style={styles.logoText}>Elliot</Text>
+  <Swiper  activeDotColor={'#808080'} loop autoplay autoplayDirection>
+  {[[strings.login1, require('../res/images/login1.png')],
+    [strings.login2, require('../res/images/login2.png')],
+    [strings.login3, require('../res/images/login3.png')]].map((slide, i: number) =>
+    <View key={i} style={styles.slide}>
+      <Text style={styles.text}>{slide[0]}</Text>
+      <Image
+        style={styles.image}
+        source={slide[1]}/>
+    </View>)}
 </Swiper>
+</View>

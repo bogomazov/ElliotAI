@@ -3,7 +3,7 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { AppRegistry, Image, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import IntroSwipe from '../containers/Intro'
@@ -17,29 +17,17 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		appActions: bindActionCreators(appActions, dispatch),
-
-		// projectActions: bindActionCreators(projectActions, dispatch),
 	}
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class IntroScene extends Component {
-
-  onPressNext = () => {
-    this.props.appActions.finishIntro()
-  }
-
+export default class SplashScene extends Component {
+  
   render() {
 			return (<View style={styles.container}>
-				<IntroSwipe style={styles.swiper}/>
-        <View style={styles.button}>
-        <Button
-          onPress={this.onPressNext}
-          title="Next"
-          color="#841584"
-          style={{flex: 3}}
-        />
-        </View>
+        <Image
+          style={{width: 100, height: 100}}
+          source={require('../res/images/Icon-40@3x.png')}/>
       </View>);
   }
 }

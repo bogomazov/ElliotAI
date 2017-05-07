@@ -23,21 +23,16 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import MainScene from './scenes/MainScene'
 
 import {getAPI} from './network/networkManager'
-
 import { StackNavigator } from 'react-navigation';
+
 
 export const Store = createStore(
   rootReducer,
-  {},
+  undefined,
   compose(
     autoRehydrate(),
     applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
   ))
-
-// export const Store = createStore(
-//   rootReducer,
-//   applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
-//   autoRehydrate())
 
 persistStore(Store, { storage: AsyncStorage })
 
@@ -46,6 +41,8 @@ persistStore(Store, { storage: AsyncStorage })
 // }
 
 // saveState()
+
+
 
 class App extends Component {
     render() {

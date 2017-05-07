@@ -2,6 +2,9 @@
 import {persistor} from '../../index'
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
+export const TOGGLE_PERMISSIONS = "TOGGLE_PERMISSIONS"
+export const NEW_LOCATION = "NEW_LOCATION"
+export const LOG_OUT = "LOG_OUT"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -16,6 +19,16 @@ export const finishIntro = () => {
     type: FINISH_INTRO,
   }
 }
+export const togglePermissions = () => {
+  return {
+    type: TOGGLE_PERMISSIONS,
+  }
+}
+export const logOut = () => {
+  return {
+    type: LOG_OUT,
+  }
+}
 
 
 // export const saveState = () => {
@@ -23,6 +36,7 @@ export const finishIntro = () => {
 //     type: REHYDRATE
 //   }
 // }
+
 
 export const sendSocialMediaAccessToken = (accessToken, type) => {
     if (type == SOCIAL_MEDIA_FB) {

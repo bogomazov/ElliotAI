@@ -1,10 +1,13 @@
-import {NEW_ACCESS_TOKEN, FINISH_INTRO} from '../actions/app'
-// import { REHYDRATE } from 'redux-persist/constants'
+import {NEW_ACCESS_TOKEN, FINISH_INTRO, NEW_LOCATION, LOG_OUT} from '../actions/app'
+import { REHYDRATE } from 'redux-persist/constants'
 
 const defaultState = {
   accessToken: null,
   isLoggedIn: false,
-  isSeenIntro: false
+  isPermissionsGiven: false,
+  isLocationGiven: false,
+  location: {lat: 0.0, lng: 0.0, updatedAt: 0},
+  isRehydrated: false
 }
 
 const app = (state = defaultState, action) => {
@@ -26,6 +29,23 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         isSeenIntro: true
+      }
+    case REHYDRATE:
+      const incoming = action.payload.app
+      return {...state, ...incoming,
+          isRehydrated: true,
+          isLocationGiven: false,
+        }
+    case NEW_LOCATION:
+      return {
+        ...state,
+        location: {lat: action.lat, lng: action.lng, updatedAt: action.updatedAt},
+      }
+    case LOG_OUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        accessToken: null
       }
     default:
       return state
