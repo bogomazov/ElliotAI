@@ -2,7 +2,7 @@
 import {persistor} from '../../index'
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
-export const TOGGLE_PERMISSIONS = "TOGGLE_PERMISSIONS"
+export const PERMISSIONS_SWITCH = "PERMISSIONS_SWITCH"
 export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
 
@@ -19,9 +19,9 @@ export const finishIntro = () => {
     type: FINISH_INTRO,
   }
 }
-export const togglePermissions = () => {
+export const switchPermissions = () => {
   return {
-    type: TOGGLE_PERMISSIONS,
+    type: PERMISSIONS_SWITCH,
   }
 }
 export const logOut = () => {

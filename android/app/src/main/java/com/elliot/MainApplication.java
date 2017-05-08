@@ -13,7 +13,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.soloader.SoLoader;
+import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +41,9 @@ public class MainApplication extends Application implements ReactApplication {
           new ReactNativeContacts(),
           new FBSDKPackage(mCallbackManager),
           new CalendarEventsPackage(),
-          new ReactNativeLocalizationPackage()
+          new ReactNativeLocalizationPackage(),
+          new LocationServicesDialogBoxPackage(),
+          new ReactNativePermissionsPackage()
 
       );
     }

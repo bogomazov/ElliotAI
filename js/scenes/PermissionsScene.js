@@ -6,10 +6,12 @@ import React, { Component } from 'react'
 import { AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import strings from '../res/values/strings'
+import Permissions from 'react-native-permissions'
 
 
 const mapStateToProps = (state) => {
@@ -45,70 +47,149 @@ export const checkContactPermission = new Promise((resolve, reject) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class PermissionsScene extends Component {
 
+  state = {
+    isLocationGranted: false,
+    isCalendarGranted: false,
+    isContactsGranted: false
+  }
   onPressNext = () => {
     this.props.appActions.finishIntro()
   }
 
+  checkPermissions = () => {
+    Permissions.checkMultiplePermissions(['location', 'contacts', 'event'])
+      .then(response => {
+        //response is an object mapping type to permission
+        console.log(response)
+        this.setState({
+          isLocationGranted: response.location == 'authorized',
+          isCalendarGranted: response.event == 'authorized',
+          isContactsGranted: response.contacts == 'authorized',
+        })
+      });
+  }
+
+
+  requestLocationPermissions = () => {
+    Permissions.requestPermission('location', 'whenInUse')
+      .then(response => {
+        if (response == 'denied') {
+          Permissions.openSettings()
+        }
+        this.setState({isLocationGranted: response == 'authorized'})
+      })
+  }
+  requestContactPermissions = () => {
+    Permissions.requestPermission('contacts')
+      .then(response => {
+        if (response == 'denied') {
+          Permissions.openSettings()
+        }
+        this.setState({isContactsGranted: response == 'authorized'})
+      })
+  }
+  requestCalendarPermissions = () => {
+    Permissions.requestPermission('event')
+      .then(response => {
+        console.log(response)
+        if (response == 'denied') {
+          Permissions.openSettings()
+        }
+        this.setState({isCalendarGranted: response == 'authorized'})
+      })
+  }
+
+  componentDidUpdate = () => {
+    console.log('componentWillUpdate')
+    console.log(this.state)
+    if (this.state.isCalendarGranted
+      && this.state.isContactsGranted
+      && this.state.isLocationGranted) {
+      this.props.appActions.switchPermissions()
+    }
+  }
+
   componentDidMount = () => {
-		Contacts.getAll((err, contacts) => {
-			console.log(err)
-		  if(err === 'denied'){
-		    // x.x
-        console.log('Contacts denied')
+    this.checkPermissions()
 
-		  } else {
-        console.log('Contacts')
 
-		    console.log(contacts)
-		  }
-		})
-
-		RNCalendarEvents.authorizeEventStore().then(status => {
-			RNCalendarEvents.fetchAllEvents('2016-08-19T19:26:00.000Z', '2017-08-19T19:26:00.000Z')
-			  .then(events => {
-			    // handle events
-
-					console.log('Calendar fetchAllEvents')
-					console.log(events)
-			  })
-			  .catch(error => {
-          console.log(error)
-
-			   // handle error
-			  });
-	  })
-	  .catch(error => {
-	   // handle error
-	  });
-		RNCalendarEvents.authorizationStatus()
-		  .then(status => {
-        console.log('Calendar authorizationStatus')
-
-				console.log(status)
-		    // handle status
-		  })
-		  .catch(error => {
-				console.log(error)
-
-		   // handle error
-		  });
+		// Contacts.getAll((err, contacts) => {
+		// 	console.log(err)
+		//   if(err === 'denied'){
+		//     // x.x
+    //     console.log('Contacts denied')
+    //
+		//   } else {
+    //     console.log('Contacts')
+    //
+		//     console.log(contacts)
+		//   }
+		// })
+    //
+		// RNCalendarEvents.authorizeEventStore().then(status => {
+		// 	RNCalendarEvents.fetchAllEvents('2016-08-19T19:26:00.000Z', '2017-08-19T19:26:00.000Z')
+		// 	  .then(events => {
+		// 	    // handle events
+    //
+		// 			console.log('Calendar fetchAllEvents')
+		// 			console.log(events)
+		// 	  })
+		// 	  .catch(error => {
+    //       console.log(error)
+    //
+		// 	   // handle error
+		// 	  });
+	  // })
+	  // .catch(error => {
+	  //  // handle error
+	  // });
+		// RNCalendarEvents.authorizationStatus()
+		//   .then(status => {
+    //     console.log('Calendar authorizationStatus')
+    //
+		// 		console.log(status)
+		//     // handle status
+		//   })
+		//   .catch(error => {
+		// 		console.log(error)
+    //
+		//    // handle error
+		//   });
 
 
 	}
 
   render() {
+    console.log(this.state)
+
 			return (<View style={styles.container}>
         <View style={styles.topWrapper}>
           <Text style={styles.logoText}>Elliot</Text>
           <Text style={styles.description}> Elliot needs permissions</Text>
         </View>
         <View style={styles.middleWrapper}>
-          <Button
-            onPress={this.onPressNext}
-            title="Enable Contacts"
+          {!this.state.isLocationGranted && <CustomButton
+            onPress={this.requestLocationPermissions}
+            title={strings.enableLocation}
             color="#817550"
-            style={{flex: 3}}
-          />
+            styleContainer={styles.button}
+            native
+          />}
+          {!this.state.isCalendarGranted && <CustomButton
+            onPress={this.requestCalendarPermissions}
+            title={strings.enableCalendar}
+            color="#817550"
+            styleContainer={styles.button}
+            native
+          />}
+          {!this.state.isLocationGranted && <CustomButton
+            onPress={this.requestContactPermissions}
+            title={strings.enableContacts}
+            color="#817550"
+            styleContainer={styles.button}
+            native
+          />}
+
 
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
@@ -141,7 +222,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    height: 200
+    margin: 10,
+    // flex: 3
     // flex: 1,
   }
 });

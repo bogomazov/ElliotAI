@@ -43,20 +43,10 @@ export default class MainScene extends Component {
 		this.props.appActions.logOut()
 	}
 
-	requestCurrentLocation = () => {
-		console.log('request Location')
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position)
-        var initialPosition = JSON.stringify(position);
-				console.log(initialPosition)
+	isLocationUpdated = () => {
 
-        // this.setState({initialPosition});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: false, timeout: 20000, maximumAge: 25000}
-    );
 	}
+
 
 
   render() {
@@ -64,8 +54,12 @@ export default class MainScene extends Component {
 		// this.props.appActions.newAccessToken('new one')
 
 
+			// if (!this.props.app.isRehydrated || (this.props.app.isLoggedIn && !this.props.app.isLocationGiven)) {
+			// 	return <SplashScene isRehydrated={this.props.app.isRehydrated} />
+			// }
+
 			if (!this.props.app.isRehydrated) {
-				return <SplashScene/>
+				return <SplashScene />
 			}
 
 			if (!this.props.app.isLoggedIn) {
@@ -77,8 +71,8 @@ export default class MainScene extends Component {
 			// if (!this.props.app.isLocationGiven) {
 			// 	this.requestCurrentLocation()
 			// }
-			if (!this.props.app.isPermissionsGiven || !this.props.app.isLocationGiven) {
-				this.requestCurrentLocation()
+
+			if (!this.props.app.isPermissionsGranted) {
 				return <PermissionsScene/>
 			}
 
