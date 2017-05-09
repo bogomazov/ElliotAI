@@ -1,8 +1,11 @@
 // import {API} from '../../network'
 import {persistor} from '../../index'
+import {prepareDateForRequest} from '../../utils/DateTime'
+
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
-export const PERMISSIONS_SWITCH = "PERMISSIONS_SWITCH"
+export const PERMISSIONS_SWITCH_ON = "PERMISSIONS_SWITCH_ON"
+export const PERMISSIONS_SWITCH_OFF = "PERMISSIONS_SWITCH_OFF"
 export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
 
@@ -19,9 +22,15 @@ export const finishIntro = () => {
     type: FINISH_INTRO,
   }
 }
-export const switchPermissions = () => {
+export const switchPermissionsOn = () => {
   return {
-    type: PERMISSIONS_SWITCH,
+    type: PERMISSIONS_SWITCH_ON,
+  }
+}
+
+export const switchPermissionsOff = () => {
+  return {
+    type: PERMISSIONS_SWITCH_OFF,
   }
 }
 export const logOut = () => {
@@ -29,7 +38,14 @@ export const logOut = () => {
     type: LOG_OUT,
   }
 }
-
+export const newLocation = (lon, lat, timestamp) => {
+  return {
+    type: NEW_LOCATION,
+    lon: lon,
+    lat: lat,
+    timestamp: timestamp
+  }
+}
 
 // export const saveState = () => {
 //   return {
@@ -37,6 +53,29 @@ export const logOut = () => {
 //   }
 // }
 
+export const sendLocation = (lon, lat, timestamp) => {
+  return (dispatch, getState, getAPI) => {
+      getAPI(getState).sendLocation(lon, lat, timestamp).then((data) => {
+          dispatch(newLocation(lon, lat, timestamp))
+      })
+    }
+  }
+
+export const sendEvents = (events) => {
+  events = events.map((event) => {
+    return {
+      "begin": prepareDateForRequest(event.startDate), 
+      "end": prepareDateForRequest(event.endDate)
+  }})
+
+  console.log(events)
+
+  return (dispatch, getState, getAPI) => {
+      getAPI(getState).sendEvents(events).then((data) => {
+          console.log(data)
+      })
+    }
+  }
 
 export const sendSocialMediaAccessToken = (accessToken, type) => {
     if (type == SOCIAL_MEDIA_FB) {

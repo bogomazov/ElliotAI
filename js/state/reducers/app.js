@@ -1,4 +1,4 @@
-import {NEW_ACCESS_TOKEN, FINISH_INTRO, NEW_LOCATION, LOG_OUT, PERMISSIONS_SWITCH} from '../actions/app'
+import {NEW_ACCESS_TOKEN, FINISH_INTRO, NEW_LOCATION, LOG_OUT, PERMISSIONS_SWITCH_OFF, PERMISSIONS_SWITCH_ON} from '../actions/app'
 import { REHYDRATE } from 'redux-persist/constants'
 
 const defaultState = {
@@ -49,10 +49,15 @@ const app = (state = defaultState, action) => {
         accessToken: null,
         isPermissionsGranted: false
       }
-    case PERMISSIONS_SWITCH:
+    case PERMISSIONS_SWITCH_ON:
       return {
         ...state,
-        isPermissionsGranted: !state.isPermissionsGranted
+        isPermissionsGranted: true
+      }
+    case PERMISSIONS_SWITCH_OFF:
+      return {
+        ...state,
+        isPermissionsGranted: false
       }
     default:
       return state

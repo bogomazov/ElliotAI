@@ -54,13 +54,13 @@ export default class MainScene extends Component {
 		// this.props.appActions.newAccessToken('new one')
 
 
-			// if (!this.props.app.isRehydrated || (this.props.app.isLoggedIn && !this.props.app.isLocationGiven)) {
-			// 	return <SplashScene isRehydrated={this.props.app.isRehydrated} />
-			// }
-
-			if (!this.props.app.isRehydrated) {
+			if (!this.props.app.isRehydrated || (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && !this.props.app.isLocationGiven)) {
 				return <SplashScene />
 			}
+
+			// if (!this.props.app.isRehydrated) {
+			// 	return <SplashScene />
+			// }
 
 			if (!this.props.app.isLoggedIn) {
 				return <LoginScene/>

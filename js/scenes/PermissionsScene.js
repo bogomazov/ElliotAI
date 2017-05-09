@@ -8,8 +8,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
-import RNCalendarEvents from 'react-native-calendar-events';
-import Contacts from 'react-native-contacts'
 import strings from '../res/values/strings'
 import Permissions from 'react-native-permissions'
 
@@ -105,58 +103,12 @@ export default class PermissionsScene extends Component {
     if (this.state.isCalendarGranted
       && this.state.isContactsGranted
       && this.state.isLocationGranted) {
-      this.props.appActions.switchPermissions()
+      this.props.appActions.switchPermissionsOn()
     }
   }
 
   componentDidMount = () => {
     this.checkPermissions()
-
-
-		// Contacts.getAll((err, contacts) => {
-		// 	console.log(err)
-		//   if(err === 'denied'){
-		//     // x.x
-    //     console.log('Contacts denied')
-    //
-		//   } else {
-    //     console.log('Contacts')
-    //
-		//     console.log(contacts)
-		//   }
-		// })
-    //
-		// RNCalendarEvents.authorizeEventStore().then(status => {
-		// 	RNCalendarEvents.fetchAllEvents('2016-08-19T19:26:00.000Z', '2017-08-19T19:26:00.000Z')
-		// 	  .then(events => {
-		// 	    // handle events
-    //
-		// 			console.log('Calendar fetchAllEvents')
-		// 			console.log(events)
-		// 	  })
-		// 	  .catch(error => {
-    //       console.log(error)
-    //
-		// 	   // handle error
-		// 	  });
-	  // })
-	  // .catch(error => {
-	  //  // handle error
-	  // });
-		// RNCalendarEvents.authorizationStatus()
-		//   .then(status => {
-    //     console.log('Calendar authorizationStatus')
-    //
-		// 		console.log(status)
-		//     // handle status
-		//   })
-		//   .catch(error => {
-		// 		console.log(error)
-    //
-		//    // handle error
-		//   });
-
-
 	}
 
   render() {

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.calendarevents.CalendarEventsPackage;
+import com.elliot.location.LocationReactPackage;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -43,8 +44,8 @@ public class MainApplication extends Application implements ReactApplication {
           new CalendarEventsPackage(),
           new ReactNativeLocalizationPackage(),
           new LocationServicesDialogBoxPackage(),
-          new ReactNativePermissionsPackage()
-
+          new ReactNativePermissionsPackage(),
+          new LocationReactPackage()
       );
     }
   };

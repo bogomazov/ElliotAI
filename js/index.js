@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import { connect, Provider } from 'react-redux'
+// import { connect, Provider } from 'react-redux'
 import { applyMiddleware, compose, createStore, bindActionCreators } from 'redux'
 import {createLogger}  from 'redux-logger'
 import thunk  from 'redux-thunk'
@@ -25,7 +26,6 @@ import MainScene from './scenes/MainScene'
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 
-
 export const Store = createStore(
   rootReducer,
   undefined,
@@ -34,13 +34,9 @@ export const Store = createStore(
     applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
   ))
 
+
+// use .purge() to clean storage
 persistStore(Store, { storage: AsyncStorage })
-
-// export const saveState = () => {
-//   persistStore(Store, { storage: AsyncStorage })
-// }
-
-// saveState()
 
 
 
