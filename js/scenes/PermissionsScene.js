@@ -71,7 +71,7 @@ export default class PermissionsScene extends Component {
   requestLocationPermissions = () => {
     Permissions.requestPermission('location', 'whenInUse')
       .then(response => {
-        if (response == 'denied') {
+        if (response != 'authorized') {
           Permissions.openSettings()
         }
         this.setState({isLocationGranted: response == 'authorized'})
@@ -80,7 +80,7 @@ export default class PermissionsScene extends Component {
   requestContactPermissions = () => {
     Permissions.requestPermission('contacts')
       .then(response => {
-        if (response == 'denied') {
+        if (response != 'authorized') {
           Permissions.openSettings()
         }
         this.setState({isContactsGranted: response == 'authorized'})
@@ -90,7 +90,7 @@ export default class PermissionsScene extends Component {
     Permissions.requestPermission('event')
       .then(response => {
         console.log(response)
-        if (response == 'denied') {
+        if (response != 'authorized') {
           Permissions.openSettings()
         }
         this.setState({isCalendarGranted: response == 'authorized'})

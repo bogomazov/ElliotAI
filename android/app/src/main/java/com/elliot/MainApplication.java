@@ -3,7 +3,7 @@ package com.elliot;
 import android.app.Application;
 
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
-import com.calendarevents.CalendarEventsPackage;
+import com.elliot.calendarevents.CalendarEventsPackage;
 import com.elliot.location.LocationReactPackage;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;

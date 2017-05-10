@@ -46,9 +46,6 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
     public LocationAccessModule(ReactApplicationContext reactContext) {
         super(reactContext);
         reactContext.addActivityEventListener(this);
-
-
-
     }
 
 

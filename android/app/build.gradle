@@ -128,7 +128,7 @@ android {
 dependencies {
     compile project(':react-native-contacts')
     compile project(':react-native-fbsdk')
-    compile project(':react-native-calendar-events')
+//    compile project(':react-native-calendar-events')
     compile project(':react-native-localization')
     compile project(':react-native-permissions')
     compile project(':react-native-android-location-services-dialog-box')

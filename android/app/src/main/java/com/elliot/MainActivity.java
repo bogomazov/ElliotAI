@@ -2,7 +2,7 @@ package com.elliot;
 
 import android.content.Intent;
 
-import com.calendarevents.CalendarEventsPackage;
+import com.elliot.calendarevents.CalendarEventsPackage;
 import com.facebook.react.ReactActivity;
 
 public class MainActivity extends ReactActivity {
