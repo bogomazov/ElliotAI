@@ -13,15 +13,19 @@ import SplashScene from './SplashScene'
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import { LoginManager } from 'react-native-fbsdk'
+import BottomNav from '../containers/BottomNavigation'
+import SuggestionsScene from '../scenes/SuggestionsScene'
+import InviteFriendsScene from '../scenes/InviteFriendsScene'
 
 import { setCustomText } from 'react-native-global-props';
+
+export const INVITE_FRIENDS_TAB = 2
 
 const customTextProps = {
   style: {
     fontFamily: 'OpenSans-Regular'
   }
 }
-
 setCustomText(customTextProps);
 
 
@@ -38,52 +42,49 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
 
+
+
 	logUserOut = () => {
 		LoginManager.logOut()
 		this.props.appActions.logOut()
 	}
-
-	isLocationUpdated = () => {
-
-	}
-
-
 
   render() {
 		console.log(this.props)
 		// this.props.appActions.newAccessToken('new one')
 
 
-			if (!this.props.app.isRehydrated || (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && !this.props.app.isLocationGiven)) {
+			if (!this.props.app.isRehydrated ||
+        (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && !this.props.app.isLocationGiven)) {
 				return <SplashScene />
 			}
-
-			// if (!this.props.app.isRehydrated) {
-			// 	return <SplashScene />
-			// }
 
 			if (!this.props.app.isLoggedIn) {
 				return <LoginScene/>
 			}
-
-			// requestLocation?
-			// check permissions in the background
-			// if (!this.props.app.isLocationGiven) {
-			// 	this.requestCurrentLocation()
-			// }
 
 			if (!this.props.app.isPermissionsGranted) {
 				return <PermissionsScene/>
 			}
 
 			return (<View style={styles.container}>
-				<Text>MainScene</Text>
 				<Button
           onPress={this.logUserOut}
           title="Log out"
           color="#841584"
-          style={{flex: 3}}
         />
+        <BottomNav>
+          <SuggestionsScene
+            iconActive={require('../res/images/home_active_1.5-66px.png')}
+            icon={require('../res/images/home_gray-66px.png')}/>
+          <SuggestionsScene
+            iconActive={require('../res/images/calendar_active_1.5-66px.png')}
+            icon={require('../res/images/calenar_grey-66px.png')}/>
+          <InviteFriendsScene
+            iconActive={require('../res/images/invite_active.png')}
+            icon={require('../res/images/invite_grey.png')}/>
+
+        </BottomNav>
       </View>);
 
   }
@@ -96,22 +97,5 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  bottom_bar: {
-    // width: 100%,
-    position: 'absolute',
-    alignSelf: 'flex-end',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    borderColor: 'gray',
-    borderWidth: 1
-  },
-  input: {
-    borderBottomColor: '#bbb',
-    borderBottomWidth: 2,
-    margin: 10
-  },
-	modal: {
-		width: 50,
-	}
+
 });

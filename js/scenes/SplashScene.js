@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux'
 import IntroSwipe from '../containers/Intro'
 import * as appActions from '../state/actions/app';
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
-import LocationAccess from '../modules/LocationAccessModule'
+import LocationAccess from '../utils/LocationAccessModule'
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import { fromDateToIsoStr } from '../utils/DateTime'
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
-  updateData = () => {
+  _updateData = () => {
     console.log('did mount')
     console.log(this.props.app.isRehydrated)
     console.log(this.props.app.isLoggedIn)
@@ -67,7 +67,7 @@ export default class SplashScene extends Component {
         endDate = new Date()
         endDate.setMonth(endDate.getMonth() + 1)
         startDate = new Date()
-        
+
         startDateStr = (fromDateToIsoStr(startDate)).replace("Z", ".000Z")
         endDateStr = (fromDateToIsoStr(endDate)).replace("Z", ".000Z")
         RNCalendarEvents.fetchAllEvents(startDateStr, endDateStr, calendarIds)
@@ -92,18 +92,6 @@ export default class SplashScene extends Component {
         console.log(error)
         this.props.appActions.switchPermissionsOff()
       });
-
-  		// RNCalendarEvents.authorizeEventStore().then(status => {
-        
-    //     console.log(startDateStr)
-    //     // RNCalendarEvents.fetchAllEvents(fromDateToStr(startDate), fromDateToStr(endDate), ['4', '7'])
-  			
-  	 //  })
-  	 //  .catch(error => {
-    //     console.log(error)
-
-  	 //   // handle error
-  	 //  });
   }
 
   requestCurrentLocation = () => {
@@ -111,25 +99,21 @@ export default class SplashScene extends Component {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         console.log(position)
-        var initialPosition = JSON.stringify(position);
-				console.log(initialPosition)
-
-        // this.setState({initialPosition});
+        this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
       },
       (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: false, timeout: 3000, maximumAge: 25000}
+      {enableHighAccuracy: true, timeout: 5000, maximumAge: 25000}
     );
 	}
 
   render() {
       if (this.props.app.isRehydrated && this.props.app.isLoggedIn) {
-
-        this.updateData()
+        this._updateData()
       }
 			return (<View style={styles.container}>
         <Image
-          style={{width: 100, height: 100}}
-          source={require('../res/images/Icon-40@3x.png')}/>
+          style={styles.image}
+          source={require('../res/images/launch_logo.png')}/>
       </View>);
   }
 }
@@ -143,10 +127,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   swiper: {
-    // flex: 1,
   },
   button: {
     height: 200
-    // flex: 1,
-  }
+  },
+	image: {
+		width: 200,
+		height: 300
+	}
 });

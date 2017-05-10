@@ -7,6 +7,7 @@ import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import IntroSwipe from '../containers/Intro'
+import { themeColor } from '../res/values/styles'
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -39,20 +40,16 @@ export default class LoginScene extends Component {
     }
   }
 
-  skipLogin = () => {
+  _skipLogin = () => {
     this.props.appActions.newAccessToken('skip')
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <View style={styles.logoTextWrapper}>
+        <View style={styles.logoTextWrapper}>
           <Text style={styles.logoText}>Elliot</Text>
         </View>
-        <View style={styles.introWrapper}>
-
-          <Text style={styles.textStyle}>Elliot</Text>
-        </View> */}
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
           <LoginButton
@@ -60,12 +57,12 @@ export default class LoginScene extends Component {
             readPermissions={["email","public_profile","user_friends"]}
             onLoginFinished={this.onLoginFinished}
             onLogoutFinished={() => alert("User logged out")}/>
-            <Button
-              onPress={this.skipLogin}
+            {/* <Button
+              onPress={this._skipLogin}
               title="Skip Login"
               color="#841584"
               style={{flex: 3}}
-            />
+            /> */}
             {/* <Text style={styles.logoText}>Elliot</Text> */}
         </View>
       </View>
@@ -86,46 +83,42 @@ const styles = StyleSheet.create({
     color: 'red',
     backgroundColor: 'red',
   },
-  logoText: {
-    flex: 1,
-    color: '#000',
-  },
+
 
   logoTextWrapper: {
-    // flexDirection: 'column',
-    // justifyContent: 'flex-end',
-    // alignItems: 'center',
-    flex: 0.2,
-    // flex: 1,
-
-    marginBottom: 40
+		position: 'absolute',
+		left: 0,
+    right: 0,
+		top: 0,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+    // alignSelf: 'flex-start',
   },
 
-  textStyle: {
-    flex: 1
+	logoText: {
+    // flex: 1,
+		marginTop: 40,
+		fontSize: 44,
+    color: themeColor,
   },
 
   introWrapper: {
-    // flex: 0.2,
 
-    // flex: 1,
-    // height: 400
-    // flexDirection: 'column',
-    // justifyContent: 'flex-end',
   },
 
   loginButtonWrapper: {
-    // paddingTop: 70,
-    // flex: 0.2,
-
     height: 200
-    // flex: 0.2,
-    // flex: 1
   },
 
-  // loginButton: {
-  //   height: 20,
-  //   width: 100
+	// bottom_bar: {
+  //   // width: 100%,
+  //
+  //   bottom: 0,
+  //   left: 0,
+  //   right: 0,
+  //   borderColor: 'gray',
+  //   borderWidth: 1
   // },
 
 });

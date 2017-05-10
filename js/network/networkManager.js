@@ -12,15 +12,14 @@ class API {
     this.post('/location', {
       'longitude': lon,
       'latitude': lat,
-      'timestamp': timestamp,
-      'time_zone': 130,
+      'time_zone': new Date().getTimezoneOffset(),
   })
 
 
   // "begin": "2010-01-15 17:25:49", // Date and times in this format:
   // "end": "2010-01-15 19:30:00"    // "yyyy-MM-dd HH:mm:ss"
   sendEvents = (events) =>
-    this.post('/calendar_events', events)
+    this.post('/calendar_events', {'data': events})
 
   reject = (suggestionId, responseType) =>
     this.post('/reject', {
@@ -76,7 +75,6 @@ class API {
   post = (path, data) => {
     console.log(path)
     console.log(data)
-    // data = {'json': data}
     console.log(JSON.stringify(data))
     return fetch(rootURL + path, {
       method: 'POST',

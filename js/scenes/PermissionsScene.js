@@ -123,23 +123,20 @@ export default class PermissionsScene extends Component {
           {!this.state.isLocationGranted && <CustomButton
             onPress={this.requestLocationPermissions}
             title={strings.enableLocation}
-            color="#817550"
-            styleContainer={styles.button}
-            native
+            style={styles.button}
+            isWhite
           />}
           {!this.state.isCalendarGranted && <CustomButton
             onPress={this.requestCalendarPermissions}
             title={strings.enableCalendar}
-            color="#817550"
-            styleContainer={styles.button}
-            native
+            style={styles.button}
+            isWhite
           />}
           {!this.state.isLocationGranted && <CustomButton
             onPress={this.requestContactPermissions}
             title={strings.enableContacts}
-            color="#817550"
-            styleContainer={styles.button}
-            native
+            style={styles.button}
+            isWhite
           />}
 
 

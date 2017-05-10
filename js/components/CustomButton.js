@@ -1,9 +1,10 @@
 //
-// Copyright (c) 2016 by Simplist Team. All Rights Reserved. @flow
+// Copyright (c) 2016 by Elliot Team. All Rights Reserved. @flow
 //
 import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
+import { themeColor } from '../res/values/styles'
 
 // export type Prop = {
 //   isHeader: bool,
@@ -12,15 +13,26 @@ import { bindActionCreators } from 'redux';
 //   onToggleCheckbox: (task: Task) => void,
 // }
 
-const CustomButton = ({onPress, title, styleContainer, native, color}) => {
-      const style = [styles.container, styleContainer]
+// {native && <Button
+//   onPress={onPress}
+//   title={title}
+//   color={color}
+// />}
+
+const CustomButton = ({onPress, title, style, isWhite}) => {
+      let textStyle = [styles.buttonWrapper]
+      if (isWhite) {
+          textStyle.push(styles.white)
+      }
+      console.log(textStyle)
       return (
         <View style={style}>
-          {native && <Button
-            onPress={onPress}
-            title={title}
-            color={color}
-          />}
+            <TouchableHighlight onPress={onPress} underlayColor={themeColor}>
+              <Text style={styles.text}>{title}</Text>
+            </TouchableHighlight>
+            {/* <View style={styles.buttonWrapper}>
+
+          </View> */}
         </View>
       );
 }
@@ -29,6 +41,32 @@ const styles = StyleSheet.create({
     container: {
 
     },
+
+    buttonWrapper: {
+      borderRadius: 10,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: themeColor,
+    },
+
+    text: {
+      borderRadius: 12,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: themeColor,
+      color: themeColor,
+      fontSize: 14,
+      padding: 7
+    },
+
+    white: {
+      color: 'white',
+      borderColor: 'white',
+    }
+
+
+
+
 });
 
 export default CustomButton;
