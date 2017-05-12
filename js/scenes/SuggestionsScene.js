@@ -8,9 +8,11 @@ import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
+import TopBar from '../components/TopBar'
+import SuggestionCard from '../components/SuggestionCard'
 
 const mapStateToProps = (state) => {
-	return {state}
+	return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -21,15 +23,37 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
+  
+	_onSuggestionPress = (suggestion) => {
+      this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion})
+	}
+
+	_moreOptionsPress = (suggestion) => {
+
+	}
+
+	_showLessPress = (suggestion) => {
+
+	}
+
+	componentWillMount = () => {
+		console.log(this.props)
+		if (!this.props.app.isSuggestionsLoaded) {
+			this.props.appActions.loadSuggestions()
+		}
+	}
 
   render() {
+		console.log(this.props)
+
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
+        <TopBar>
           <Image
             style={styles.topBarIcon}
             source={require('../res/images/Icon-50.png')}/>
-        </View>
+        </TopBar>
+		{this.props.app.suggestions.map((item, i) => <SuggestionCard key={i} suggestion={item} onPress={this._onSuggestionPress} onMoreOptionsPress={this._moreOptionsPress} OnShowLessPress={this._showLessPress} withOptions/>)}
         <TellFriendsCard onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
       </View>
     );
@@ -42,23 +66,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    // backgroundColor: 'grey',
   },
-
-  topBar: {
-    height: 45,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F9F9F9',
-    borderBottomColor: '#CBCBCF',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-  },
-
   topBarIcon: {
     height: 40,
     width: 40
   }
-
 });

@@ -6,19 +6,6 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { themeColor } from '../res/values/styles'
 
-// export type Prop = {
-//   isHeader: bool,
-//   task: Task,
-//   onTextChange: (task: Task, text: string) => void,
-//   onToggleCheckbox: (task: Task) => void,
-// }
-
-// {native && <Button
-//   onPress={onPress}
-//   title={title}
-//   color={color}
-// />}
-
 const CustomButton = ({onPress, title, style, isWhite}) => {
       let textStyle = [styles.buttonWrapper]
       if (isWhite) {
@@ -30,9 +17,6 @@ const CustomButton = ({onPress, title, style, isWhite}) => {
             <TouchableHighlight onPress={onPress} underlayColor={themeColor}>
               <Text style={styles.text}>{title}</Text>
             </TouchableHighlight>
-            {/* <View style={styles.buttonWrapper}>
-
-          </View> */}
         </View>
       );
 }

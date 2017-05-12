@@ -16,6 +16,7 @@ import { LoginManager } from 'react-native-fbsdk'
 import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
+import { mainBackgroundColor } from '../res/values/styles'
 
 import { setCustomText } from 'react-native-global-props';
 
@@ -41,9 +42,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
-
-
-
 	logUserOut = () => {
 		LoginManager.logOut()
 		this.props.appActions.logOut()
@@ -73,7 +71,7 @@ export default class MainScene extends Component {
           title="Log out"
           color="#841584"
         />
-        <BottomNav>
+        <BottomNav navigation={this.props.navigation}>
           <SuggestionsScene
             iconActive={require('../res/images/home_active_1.5-66px.png')}
             icon={require('../res/images/home_gray-66px.png')}/>
@@ -90,12 +88,9 @@ export default class MainScene extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: mainBackgroundColor
   },
-
 });

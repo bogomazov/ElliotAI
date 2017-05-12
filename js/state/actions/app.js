@@ -8,6 +8,7 @@ export const PERMISSIONS_SWITCH_ON = "PERMISSIONS_SWITCH_ON"
 export const PERMISSIONS_SWITCH_OFF = "PERMISSIONS_SWITCH_OFF"
 export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
+export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -38,6 +39,12 @@ export const logOut = () => {
     type: LOG_OUT,
   }
 }
+export const newSuggestions = (suggestions) => {
+  return {
+    type: NEW_SUGGESTIONS,
+    suggestions
+  }
+}
 export const newLocation = (lon, lat, timestamp) => {
   return {
     type: NEW_LOCATION,
@@ -47,31 +54,42 @@ export const newLocation = (lon, lat, timestamp) => {
   }
 }
 
-// export const saveState = () => {
-//   return {
-//     type: REHYDRATE
-//   }
-// }
-
 export const sendLocation = (lon, lat, timestamp) => {
   return (dispatch, getState, getAPI) => {
-      getAPI(getState).sendLocation(lon, lat, timestamp).then((data) => {
+      getAPI(getState, dispatch).sendLocation(lon, lat, timestamp).then((data) => {
           dispatch(newLocation(lon, lat, timestamp))
       })
+    }
+  }
+
+export const loadUserSuggestions = (userId) => {
+  return (dispatch, getState, getAPI) => getAPI(getState, dispatch).suggestionsWithUser(userId)
+    
+  }
+
+
+export const loadSuggestions = () => {
+  return (dispatch, getState, getAPI) => {
+      getAPI(getState, dispatch).suggestions().then((data) => {
+          data = data.map((item) => {return {...item, meeting_time: new Date(item.meeting_time)}})
+          dispatch(newSuggestions(data))
+      }).catch((error) => {
+          console.error(error);
+        });
     }
   }
 
 export const sendEvents = (events) => {
   events = events.map((event) => {
     return {
-      "begin": prepareDateForRequest(event.startDate), 
+      "begin": prepareDateForRequest(event.startDate),
       "end": prepareDateForRequest(event.endDate)
   }})
 
   console.log(events)
 
   return (dispatch, getState, getAPI) => {
-      getAPI(getState).sendEvents(events).then((data) => {
+      getAPI(getState, dispatch).sendEvents(events).then((data) => {
           console.log(data)
       })
     }
@@ -82,8 +100,7 @@ export const sendSocialMediaAccessToken = (accessToken, type) => {
       return (dispatch, getState, getAPI) => {
         console.log(getState)
         // console.log(API)
-
-        getAPI(getState).loadUser(accessToken)
+        getAPI(getState, dispatch).loadUser(accessToken)
         .then((data) => {
           console.log('json received')
           dispatch(newAccessToken(data.auth_token))

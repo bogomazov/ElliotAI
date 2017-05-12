@@ -17,7 +17,8 @@ export default string = new LocalizedStrings({
    enableLocation:"Enable Location",
    enableContacts:"Enable Contacts",
    enableCalendar:"Enable Calendar",
-   tellFriends: "Tell Your friends about Elliot",
+   tellFriendsTop: "Tell Friends About Elliot",
+   tellFriends: "Tell your friends about Elliot",
    disclaimer:"* Elliot needs to know who your friends are and what times and locations are convenient for you. This information will never be shared with anyone."
  }
 });

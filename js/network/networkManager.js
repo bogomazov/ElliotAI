@@ -1,10 +1,12 @@
 import {Store} from '../index'
+import { logOut } from '../state/reducers/app'
 
 const rootURL = 'https://staging.elliot.ai/control'
 
 class API {
-  constructor(accessToken) {
+  constructor(accessToken, dispatch) {
     this.accessToken = accessToken;
+    this.dispatch = dispatch;
   }
 
   loadUser = (accessToken) => this.post('/load_user', {'fb_auth_token': accessToken})
@@ -69,7 +71,7 @@ class API {
     suggestions = () =>
         this.get('/suggestions')
     suggestionsWithUser = (userId) =>
-        this.get('/suggestions?friend=${userId}')
+        this.get('/suggestions?friend=' + userId)
 
 
   post = (path, data) => {
@@ -86,6 +88,9 @@ class API {
       body: JSON.stringify(data)
     }).then((response) => {
       console.log(response)
+        if (response.status == 401) {
+          dispatch(logOut())
+        }
         return response.json()
       }).catch((error) => {
       console.log(error)
@@ -103,13 +108,17 @@ class API {
       }
     }).then((response) => {
       console.log(response)
+        if (response.status == 401) {
+          dispatch(logOut())
+        }
         return response.json()
       })
   }
 }
 
-export const getAPI = (getState) => {
+export const getAPI = (getState, dispatch) => {
   const state = getState()
   console.log(state)
-  return new API(state.app.accessToken)
+  return new API(state.app.accessToken, dispatch)
 }
+

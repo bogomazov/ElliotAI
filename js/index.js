@@ -22,6 +22,7 @@ import rootReducer  from './state/reducers/index'
 // import * as storage from 'redux-storage'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import MainScene from './scenes/MainScene'
+import ScheduleScene from './scenes/ScheduleScene'
 
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
@@ -39,16 +40,21 @@ export const Store = createStore(
 persistStore(Store, { storage: AsyncStorage })
 
 
-
+const Navigation = StackNavigator({
+              MainScene: {screen: MainScene},
+              ScheduleScene: {screen: ScheduleScene},
+            }, {headerMode: 'none'})
 class App extends Component {
     render() {
         return (
           <Provider store={Store}>
-            <MainScene/>
+            <Navigation/>
            </Provider>
         );
     }
 }
+
+
 
 AppRegistry.registerComponent('Elliot', () => App);
 

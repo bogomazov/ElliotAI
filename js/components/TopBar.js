@@ -2,7 +2,7 @@ import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'r
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 
-export default Card = ({children}) => {
+export default TopBar = ({children}) => {
       return (
         <View style={styles.container}>
           {children}
@@ -12,16 +12,13 @@ export default Card = ({children}) => {
 
 const styles = StyleSheet.create({
     container: {
-      borderRadius: 10,
-      backgroundColor: 'white',
-      // margin: 10,
-      // width: '92%',
-      // marginTop: '8%'
-      alignSelf: 'stretch',
-      marginTop: 10,
-      marginRight: 10,
-      marginLeft: 10
-      // left: 10,
-      // right: 10
-    },
+      height: 45,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#F9F9F9',
+      borderBottomColor: '#CBCBCF',
+      borderBottomWidth: 1,
+      borderStyle: 'solid',
+  }
 });

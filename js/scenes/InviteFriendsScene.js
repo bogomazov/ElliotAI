@@ -8,6 +8,11 @@ import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
+import TopBar from '../components/TopBar'
+import InviteTabs from '../containers/InviteTabs'
+import strings from '../res/values/strings'
+import {themeColor} from '../res/values/styles'
+
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -21,15 +26,32 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class InviteFriendsScene extends Component {
+	state = {
+		activeTab: 0
+	}
+	_onTabPress = (i) => {
+
+	}
 
   render() {
+		const icons = [
+			require('../res/images/call-66px.png'),
+			require('../res/images/messageicon.png'),
+			require('../res/images/message_black-66px.png'),
+		]
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <Image
-            style={styles.topBarIcon}
-            source={require('../res/images/Icon-50.png')}/>
-        </View>
+        <TopBar>
+          <Text
+            style={styles.topBarText}>
+            {strings.tellFriendsTop}
+            </Text>
+        </TopBar>
+        <InviteTabs
+					activeTab={this.state.activeTab}
+					onTabPress={this._onTabPress}
+					icons={icons}/>
+
         <Text>Invite Friends
         </Text>
       </View>
@@ -57,9 +79,9 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
 
-  topBarIcon: {
-    height: 30,
-    width: 30
+  topBarText: {
+    color: themeColor,
+    fontFamily: 'OpenSans-Bold'
   }
 
 });

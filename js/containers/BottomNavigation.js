@@ -16,7 +16,7 @@ export default class BottomNav extends Component {
   render = () =>
       <View style={styles.container}>
         <View style={styles.sceneWrapper}>
-          {React.cloneElement(this.props.children[this.state.activeTab], { switchTab: this._switchTab })}
+          {React.cloneElement(this.props.children[this.state.activeTab], { switchTab: this._switchTab, navigation: this.props.navigation})}
         </View>
         <View style={styles.bottomNav}>
         {React.Children.map(this.props.children,

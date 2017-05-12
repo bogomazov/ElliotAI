@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-    // alignSelf: 'flex-start',
   },
 
 	logoText: {
@@ -110,15 +109,4 @@ const styles = StyleSheet.create({
   loginButtonWrapper: {
     height: 200
   },
-
-	// bottom_bar: {
-  //   // width: 100%,
-  //
-  //   bottom: 0,
-  //   left: 0,
-  //   right: 0,
-  //   borderColor: 'gray',
-  //   borderWidth: 1
-  // },
-
 });
