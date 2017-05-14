@@ -13,6 +13,8 @@ import LocationAccess from '../utils/LocationAccessModule'
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import { fromDateToIsoStr } from '../utils/DateTime'
+import { getEvents } from '../utils/Calendar'
+import moment from 'moment'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -57,21 +59,8 @@ export default class SplashScene extends Component {
   		    console.log(contacts)
   		  }
   		})
-
-      RNCalendarEvents.findCalendars()
-      .then(calendars => {
-        console.log(calendars)
-        calendars = calendars.filter((calendar) => calendar.allowsModifications)
-        calendarIds = calendars.map(i => i.id);
-
-        endDate = new Date()
-        endDate.setMonth(endDate.getMonth() + 1)
-        startDate = new Date()
-
-        startDateStr = (fromDateToIsoStr(startDate)).replace("Z", ".000Z")
-        endDateStr = (fromDateToIsoStr(endDate)).replace("Z", ".000Z")
-        RNCalendarEvents.fetchAllEvents(startDateStr, endDateStr, calendarIds)
-          .then(events => {
+      
+      getEvents(moment(), moment().add(1, 'months')).then(events => {
             // handle events
 
             console.log('Calendar fetchAllEvents')
@@ -82,28 +71,21 @@ export default class SplashScene extends Component {
           })
           .catch(error => {
             console.log(error)
-
+            this.props.appActions.switchPermissionsOff()
            // handle error
           });
-        // handle calendars
-      })
-      .catch(error => {
-        // handle error
-        console.log(error)
-        this.props.appActions.switchPermissionsOff()
-      });
   }
 
   requestCurrentLocation = () => {
 		console.log('request Location')
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position)
-        this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 5000, maximumAge: 25000}
-    );
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position)
+          this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
+        },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 5000, maximumAge: 25000}
+      );
 	}
 
   render() {

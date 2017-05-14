@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -24,8 +24,11 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
+const UPCOMING = 0
+const PAST = 1
+
 @connect(mapStateToProps, mapDispatchToProps)
-export default class InviteFriendsScene extends Component {
+export default class CalendarScene extends Component {
 	state = {
 		activeTab: 0
 	}
@@ -34,25 +37,30 @@ export default class InviteFriendsScene extends Component {
 	}
 
   render() {
-		const icons = [
-			require('../res/images/call-66px.png'),
-			require('../res/images/messageicon.png'),
-			require('../res/images/message_black-66px.png'),
-		]
+    
+    tabs = ["Upcoming", "Past"]
+    
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
-          <Text
-            style={styles.topBarText}>
-            {strings.tellFriendsTop}
-            </Text>
+          {tabs.map((title, i) => {
+            
+            let style = [styles.tab]
+            
+            if (i == this.state.activeTab) {
+              style.push(styles.selectedTab)
+            }
+            console.log(style)
+            return <TouchableWithoutFeedback>
+              <Text
+                  style={style}>
+                  {title}
+                </Text>
+              </TouchableWithoutFeedback>            
+          })}
         </TopBar>
-        <InviteTabs
-					activeTab={this.state.activeTab}
-					onTabPress={this._onTabPress}
-					icons={icons}/>
-
-        <Text>Invite Friends
+       
+        <Text>calendar
         </Text>
       </View>
     );
@@ -67,21 +75,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'grey',
   },
-
-  topBar: {
-    height: 40,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#F9F9F9',
-    borderBottomColor: '#CBCBCF',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
+  
+  tab: {
+    fontFamily: 'OpenSans-Bold',
+//     margin: 5
   },
-
-  topBarText: {
-    color: themeColor,
-    fontFamily: 'OpenSans-Bold'
-  }
+  
+  selectedTab: {
+      color: themeColor,
+  },
 
 });

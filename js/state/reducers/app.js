@@ -64,6 +64,11 @@ const app = (state = defaultState, action) => {
         isSuggestionsLoaded: true,
         suggestions: action.suggestions
       }
+    case actionType.REMOVE_SUGGESTION:
+        return {
+          ...state,
+          suggestions: action.suggestion.filter((item) => item.id != action.suggestion.id)
+        }
     default:
       return state
   }

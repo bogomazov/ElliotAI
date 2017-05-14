@@ -9,7 +9,9 @@
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "dateformat": "^2.0.0",
+    "immutable": "^3.8.1",
     "install": "^0.9.6",
+    "moment": "^2.18.1",
     "npm": "^4.5.0",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
@@ -21,6 +23,7 @@
     "react-native-localization": "^0.1.30",
     "react-native-permissions": "^0.2.7",
     "react-native-swiper": "^1.5.4",
+    "react-native-vector-icons": "^4.1.1",
     "react-navigation": "^1.0.0-beta.9",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",

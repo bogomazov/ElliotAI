@@ -1,6 +1,7 @@
 // import {API} from '../../network'
 import {persistor} from '../../index'
 import {prepareDateForRequest} from '../../utils/DateTime'
+import Suggestion from '../models/suggestion'
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
@@ -9,6 +10,7 @@ export const PERMISSIONS_SWITCH_OFF = "PERMISSIONS_SWITCH_OFF"
 export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
 export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
+export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -45,6 +47,13 @@ export const newSuggestions = (suggestions) => {
     suggestions
   }
 }
+
+export const removeSuggestion = (suggestion) => {
+  return {
+    type: REMOVE_SUGGESTION,
+    suggestion
+  }
+}
 export const newLocation = (lon, lat, timestamp) => {
   return {
     type: NEW_LOCATION,
@@ -67,12 +76,11 @@ export const loadUserSuggestions = (userId) => {
     
   }
 
-
 export const loadSuggestions = () => {
   return (dispatch, getState, getAPI) => {
       getAPI(getState, dispatch).suggestions().then((data) => {
-          data = data.map((item) => {return {...item, meeting_time: new Date(item.meeting_time)}})
-          dispatch(newSuggestions(data))
+          suggestions = data.map((item) => {return new Suggestion(item)})
+          dispatch(newSuggestions(suggestions))
       }).catch((error) => {
           console.error(error);
         });
@@ -93,6 +101,17 @@ export const sendEvents = (events) => {
           console.log(data)
       })
     }
+  }
+
+export const acceptSuggestion = (suggestion, times) => {
+  return (dispatch, getState, getAPI) =>
+      getAPI(getState, dispatch).accept(suggestion.id, times)
+  }
+export const rejectSuggestion = (suggestion, responseType) => {
+  return (dispatch, getState, getAPI) =>
+      getAPI(getState, dispatch).reject(suggestion.id, responseType).then((data) => {
+        dispatch(removeSuggestion(suggestion))
+  })
   }
 
 export const sendSocialMediaAccessToken = (accessToken, type) => {

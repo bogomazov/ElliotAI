@@ -16,6 +16,7 @@ import { LoginManager } from 'react-native-fbsdk'
 import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
+import CalendarScene from '../scenes/CalendarScene'
 import { mainBackgroundColor } from '../res/values/styles'
 
 import { setCustomText } from 'react-native-global-props';
@@ -75,7 +76,7 @@ export default class MainScene extends Component {
           <SuggestionsScene
             iconActive={require('../res/images/home_active_1.5-66px.png')}
             icon={require('../res/images/home_gray-66px.png')}/>
-          <SuggestionsScene
+          <CalendarScene
             iconActive={require('../res/images/calendar_active_1.5-66px.png')}
             icon={require('../res/images/calenar_grey-66px.png')}/>
           <InviteFriendsScene

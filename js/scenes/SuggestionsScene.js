@@ -1,8 +1,7 @@
-import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -25,15 +24,15 @@ const mapDispatchToProps = (dispatch) => {
 export default class SuggestionsScene extends Component {
   
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion})
+      this.props.navigation.navigate('ScheduleScene', {suggestion})
 	}
 
-	_moreOptionsPress = (suggestion) => {
-
+	_onMoreOptionsPress = (suggestion) => {
+      
 	}
 
-	_showLessPress = (suggestion) => {
-
+	_onShowLessPress = (suggestion) => {
+      this.props.appActions.rejectSuggestion(suggestion, 'neither')
 	}
 
 	componentWillMount = () => {
@@ -42,19 +41,32 @@ export default class SuggestionsScene extends Component {
 			this.props.appActions.loadSuggestions()
 		}
 	}
+    
+    _keyExtractor = (item, index) => item.id;
 
   render() {
 		console.log(this.props)
 
     return (
       <View style={styles.container}>
-        <TopBar>
+        <TopBar isMainScene>
           <Image
             style={styles.topBarIcon}
             source={require('../res/images/Icon-50.png')}/>
         </TopBar>
-		{this.props.app.suggestions.map((item, i) => <SuggestionCard key={i} suggestion={item} onPress={this._onSuggestionPress} onMoreOptionsPress={this._moreOptionsPress} OnShowLessPress={this._showLessPress} withOptions/>)}
-        <TellFriendsCard onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
+        <FlatList
+          data={[...this.props.app.suggestions, {isTellFriends: true}]}
+          keyExtractor={this._keyExtractor}
+          renderItem={({item}) => {
+            if (item.isTellFriends) {
+              return <TellFriendsCard onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
+            }
+            return <SuggestionCard
+                      suggestion={item} 
+                      onPress={this._onSuggestionPress} 
+                      onMoreOptionsPress={this._onMoreOptionsPress} 
+                      onShowLessPress={this._onShowLessPress} withOptions/>}}
+            /> 
       </View>
     );
   }

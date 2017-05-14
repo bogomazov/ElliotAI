@@ -5,24 +5,17 @@ import Card from './Card'
 import CustomButton from './CustomButton'
 import strings from '../res/values/strings'
 import { themeColor, mainBackgroundColor } from '../res/values/styles'
-import {getDay, getMonth} from '../utils/DateTime'
-TYPE_CALL = "Call"
 
-const _getIcon = (suggestion) => {
-  switch(suggestion.meeting_type) {
-    case TYPE_CALL:
-      return require('../res/images/call-66px.png')
-  }
-}
 
 const borderWidth = 1
 
-export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, OnShowLessPress, withOptions}) => {
+export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onShowLessPress, withOptions}) => {
   console.log(suggestion)
+    
       return (
         <Card>
           <View style={styles.container}>
-            <TouchableWithoutFeedback onPress={() => onPress(suggestion)}>
+              <TouchableWithoutFeedback onPress={() => onPress(suggestion)}>
               <View>
                 <View style={styles.row}>
                   <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
@@ -33,8 +26,8 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, OnSho
                 <View style={styles.row}>
                   <Image
                     style={styles.type}
-                    source={_getIcon(suggestion)}/>
-                  <Text>{getDay(suggestion.meeting_time)}, {getMonth(suggestion.meeting_time)} {suggestion.meeting_time.getDate()}</Text>
+                    source={suggestion.getIcon()}/>
+                  <Text>{suggestion.getDateStr()}</Text>
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -44,22 +37,22 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, OnSho
                 source={require('../res/images/back-44px.png')}/>
             </View>
           </View>
-          {withOptions && <View style={styles.row}>
-            <TouchableWithoutFeedback onPress={() => onMoreOptionsPress(suggestion)}>
-              <View style={styles.buttonWrapper}>
-                <Text style={styles.optionButton}>
-                  More Options
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          <View style={styles.verticalBorder} ></View>
-            <TouchableWithoutFeedback onPress={() => OnShowLessPress(suggestion)}>
-              <View style={styles.buttonWrapper}>
-                <Text style={styles.optionButton}>
-                  Show Less of {suggestion.friend.first_name}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
+          {withOptions && <View style={[styles.row, styles.buttonOptionsWrapper]}>
+              <TouchableWithoutFeedback onPress={() => onMoreOptionsPress(suggestion)}>
+                <View style={styles.buttonWrapper}>
+                  <Text style={styles.optionButton}>
+                    More Options
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            <View style={styles.verticalBorder} ></View>
+              <TouchableWithoutFeedback onPress={() => onShowLessPress(suggestion)}>
+                <View style={styles.buttonWrapper}>
+                  <Text style={styles.optionButton}>
+                    Show Less of {suggestion.friend.first_name}
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
           </View>}
         </Card>
       );
@@ -110,14 +103,14 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      borderTopColor: mainBackgroundColor,
-      borderTopWidth: borderWidth,
-      borderStyle: 'solid',
+      
     },
     optionButton: {
-      flexDirection: 'row',
+//       flexDirection: 'row',
       color: themeColor,
-      padding: 10
+      textAlign: 'center',
+      padding: 10,
+      
     },
     verticalBorder: {
       width: borderWidth,
@@ -126,5 +119,12 @@ const styles = StyleSheet.create({
 //       borderRightColor: mainBackgroundColor,
 //       borderRightWidth: 1,
 //       borderStyle: 'solid',
+    },
+  
+    buttonOptionsWrapper: {
+      borderTopColor: mainBackgroundColor,
+      borderTopWidth: borderWidth,
+      borderStyle: 'solid',
+      
     }
 });
