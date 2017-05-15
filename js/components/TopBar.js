@@ -4,15 +4,14 @@ import { bindActionCreators } from 'redux';
 
 export default TopBar = ({isMainScene, isNavBar, children}) => {
     const container = [styles.container]
-    console.log(isMainScene)
     if (isMainScene) {
       container.push(styles.mainScene)
-    }
-  console.log(container)
-  
+    }  
     if (isNavBar) {
-      container.push(styles.isNavBar)
+      container.push(styles.navBar)
     }
+    console.log(container)
+
       return (
         <View style={container}>
           {children}
@@ -36,5 +35,6 @@ const styles = StyleSheet.create({
   },
   navBar: {
     backgroundColor: 'white',
+//     alignSelf: 'stretch',
   }
 });

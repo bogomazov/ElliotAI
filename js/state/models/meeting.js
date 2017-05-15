@@ -1,4 +1,7 @@
 import Immutable, {Map, OrderedMap}  from 'immutable'
+import User from './user'
+import moment from 'moment'
+
 // import User from './user'
 
 TYPE_CALL = "Call"
@@ -27,7 +30,13 @@ const MeetingRecord = Immutable.Record({
 }, 'SuggestionRecord')
 
 class Meeting extends MeetingRecord {
+  constructor(args) {
+    super({...args, 
+           friend: new User(args.friend), 
+           meeting_time: moment(args.meeting_time)})
+          }
   
+    getDateStr = () => this.meeting_time.format('dddd, MMM Do')
 }
 
 export default Meeting

@@ -19,16 +19,10 @@ import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import { mainBackgroundColor } from '../res/values/styles'
 
-import { setCustomText } from 'react-native-global-props';
 
 export const INVITE_FRIENDS_TAB = 2
 
-const customTextProps = {
-  style: {
-    fontFamily: 'OpenSans-Regular'
-  }
-}
-setCustomText(customTextProps);
+
 
 
 const mapStateToProps = (state) => {

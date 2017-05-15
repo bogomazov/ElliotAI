@@ -11,6 +11,8 @@ import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import strings from '../res/values/strings'
+import NavigationTopBar from '../components/NavigationTopBar';
+import Suggestion from '../state/models/suggestion';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -23,55 +25,39 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SuggestionsScene extends Component {
-  
+export default class UserSuggestionsScene extends Component {
+    state = {
+      userSuggestions: [],
+      isUserSuggestionsLoaded: false
+    }
+    
 	_onSuggestionPress = (suggestion) => {
       this.props.navigation.navigate('ScheduleScene', {suggestion})
 	}
 
-	_onMoreOptionsPress = (suggestion) => {
-      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend})
-	}
-
-	_onShowLessPress = (suggestion) => {
-      this.props.appActions.rejectSuggestion(suggestion, 'neither')
-	}
-
 	componentWillMount = () => {
-		console.log(this.props)
-		if (!this.props.app.isSuggestionsLoaded) {
-			this.props.appActions.loadSuggestions()
-		}
+        this.props = {...this.props, ...this.props.navigation.state.params}
+        this.props.appActions.loadUserSuggestions(this.props.user.fb_id).then((data) => {
+        data = data.map((item) => {return new Suggestion(item)})
+          this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
+        }).catch((err) => console.log(err))
 	}
     
     _keyExtractor = (item, index) => item.id;
 
   render() {
-		console.log(this.props)
-
+    console.log(this.props)
     return (
       <View style={styles.container}>
-        <TopBar isMainScene>
-          <Image
-            style={styles.topBarIcon}
-            source={require('../res/images/Icon-50.png')}/>
-        </TopBar>
-        {!this.props.app.isIntroSuggestionsSeen && <IntroLabel 
-                                                    text={string.introSuggestions}
-                                                    onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
+        <NavigationTopBar navigation={this.props.navigation} />
         <FlatList
-          data={[...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
+          data={[...this.state.userSuggestions]}
           keyExtractor={this._keyExtractor}
           renderItem={({item}, i) => {
-            if (item.isTellFriends) {
-              return <TellFriendsCard key={i} onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
-            }
             return <SuggestionCard
                       key={i}
                       suggestion={item} 
-                      onPress={this._onSuggestionPress} 
-                      onMoreOptionsPress={this._onMoreOptionsPress} 
-                      onShowLessPress={this._onShowLessPress} withOptions/>}}
+                      onPress={this._onSuggestionPress}/>}}
             /> 
       </View>
     );
@@ -83,7 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+//     alignItems: 'stretched',
   },
   topBarIcon: {
     height: 40,

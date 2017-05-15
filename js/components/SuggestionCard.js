@@ -116,9 +116,6 @@ const styles = StyleSheet.create({
       width: borderWidth,
       height: '100%',
       backgroundColor: mainBackgroundColor,
-//       borderRightColor: mainBackgroundColor,
-//       borderRightWidth: 1,
-//       borderStyle: 'solid',
     },
   
     buttonOptionsWrapper: {

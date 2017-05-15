@@ -11,6 +11,8 @@ export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
 export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
 export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
+export const INTRO_SUGGESTIONS_SEEN = "INTRO_SUGGESTIONS_SEEN"
+export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -54,6 +56,16 @@ export const removeSuggestion = (suggestion) => {
     suggestion
   }
 }
+export const introSuggestionsSeen = () => {
+  return {
+    type: INTRO_SUGGESTIONS_SEEN
+  }
+}
+export const introCalendarSeen = () => {
+  return {
+    type: INTRO_CALENDAR_SEEN,
+  }
+}
 export const newLocation = (lon, lat, timestamp) => {
   return {
     type: NEW_LOCATION,
@@ -76,9 +88,13 @@ export const loadUserSuggestions = (userId) => {
     
   }
 
+export const loadScheduledMeetings = () => {
+  return (dispatch, getState, getAPI) => getAPI(getState, dispatch).getConfirmedMeetings()}
+
 export const loadSuggestions = () => {
   return (dispatch, getState, getAPI) => {
       getAPI(getState, dispatch).suggestions().then((data) => {
+          console.log(data)
           suggestions = data.map((item) => {return new Suggestion(item)})
           dispatch(newSuggestions(suggestions))
       }).catch((error) => {
@@ -128,15 +144,6 @@ export const sendSocialMediaAccessToken = (accessToken, type) => {
         .catch((error) => {
           console.error(error);
         });
-
-          // setTimeout(() => {
-          //     // This function is able to dispatch other action creators
-          //     dispatch(itemsHasErrored(true));
-          // }, 5000);
-
       };
     }
-
-    // We return a function instead of an action object
-
 }

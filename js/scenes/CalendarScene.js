@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -12,10 +12,13 @@ import TopBar from '../components/TopBar'
 import InviteTabs from '../containers/InviteTabs'
 import strings from '../res/values/strings'
 import {themeColor} from '../res/values/styles'
-
+import IntroLabel from '../components/IntroLabel'
+import MeetingCard from '../components/MeetingCard'
+import Meeting from '../state/models/meeting'
+import moment from 'moment'
 
 const mapStateToProps = (state) => {
-	return {state}
+    return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -26,24 +29,45 @@ const mapDispatchToProps = (dispatch) => {
 
 const UPCOMING = 0
 const PAST = 1
+const TABS = ["Upcoming", "Past"]
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarScene extends Component {
 	state = {
-		activeTab: 0
+		activeTab: 0,
+        upcomingMeetings: [],
+        pastMeetings: [],
+        selectedMeeting: null
 	}
 	_onTabPress = (i) => {
 
 	}
+    
+    _onMeetingPress = (selectedMeeting) => {
+      this.setState({selectedMeeting})
+	}
+    
+    _onMeetingClose = () => {
+      this.setState({selectedMeeting: null})
+    }
+  
+    
+  componentWillMount = () => {
+    console.log('onComponentWillMount')
+    this.props.appActions.loadScheduledMeetings().then((data) => {      
+      data = data.data.map((item) => new Meeting(item))
+      this.setState({upcomingMeetings: data.filter((event) => moment() <= event.meeting_time),
+                     pastMeetings: data.filter((event) => moment() > event.meeting_time)})
+    })
+  }
 
   render() {
-    
-    tabs = ["Upcoming", "Past"]
+    let meetings = this.state.activeTab == UPCOMING? this.state.upcomingMeetings: this.state.pastMeetings
     
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
-          {tabs.map((title, i) => {
+          {TABS.map((title, i) => {
             
             let style = [styles.tab]
             
@@ -51,17 +75,26 @@ export default class CalendarScene extends Component {
               style.push(styles.selectedTab)
             }
             console.log(style)
-            return <TouchableWithoutFeedback>
-              <Text
+            return <TouchableWithoutFeedback key={i}>
+              <View><Text
                   style={style}>
                   {title}
                 </Text>
+                </View>
               </TouchableWithoutFeedback>            
           })}
         </TopBar>
-       
-        <Text>calendar
-        </Text>
+        {!this.props.app.isIntroCalendarSeen && <IntroLabel 
+                                                    text={string.introCalendar}
+                                                    onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
+        <FlatList
+          data={meetings}
+          keyExtractor={this._keyExtractor}
+          renderItem={({item}, i) => {
+            return <MeetingCard
+                        key={i}
+                        meeting={item} 
+                        onPress={this._onMeetingPress}/>}} /> 
       </View>
     );
   }
@@ -72,17 +105,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+//     alignItems: 'center',
     // backgroundColor: 'grey',
   },
   
   tab: {
-    fontFamily: 'OpenSans-Bold',
-//     margin: 5
+//     fontFamily: 'OpenSans-Bold',
+    margin: 20,
+    color: themeColor,
+    
   },
   
   selectedTab: {
-      color: themeColor,
+      fontFamily: 'OpenSans-Bold',
   },
 
 });

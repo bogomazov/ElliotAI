@@ -9,7 +9,9 @@ const defaultState = {
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
   isRehydrated: false,
   suggestions: [],
-  isSuggestionsLoaded: false
+  isSuggestionsLoaded: false,
+  isIntroSuggestionsSeen: false,
+  isIntroCalendarSeen: false
 }
 
 const app = (state = defaultState, action) => {
@@ -64,10 +66,21 @@ const app = (state = defaultState, action) => {
         isSuggestionsLoaded: true,
         suggestions: action.suggestions
       }
+    case actionType.INTRO_SUGGESTIONS_SEEN:
+      return {
+        ...state,
+        isIntroSuggestionsSeen: true,
+      }
+    case actionType.INTRO_CALENDAR_SEEN:
+      return {
+        ...state,
+        isIntroCalendarSeen: true,
+      }
     case actionType.REMOVE_SUGGESTION:
+//         console.log(action.suggestion.filter((item) => item.id != action.suggestion.id))
         return {
           ...state,
-          suggestions: action.suggestion.filter((item) => item.id != action.suggestion.id)
+          suggestions: state.suggestions.filter((item) => item.id != action.suggestion.id)
         }
     default:
       return state

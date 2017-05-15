@@ -16,6 +16,8 @@ import dateFormat from 'dateformat'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationTopBar from '../components/NavigationTopBar';
+import IconEntypo from 'react-native-vector-icons/Entypo';
+import s from '../res/values/styles'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -28,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const TOTAL_OPTIONS = 6
+const CALENDAR_TIME_RANGE = 3 // hours
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ScheduleScene extends Component {
@@ -53,7 +56,7 @@ export default class ScheduleScene extends Component {
         times = this.state.selected.map((i) => startTimes[i]._i)
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
-          this.props.removeSuggestion(this.props.suggestion)
+          this.props.appActions.removeSuggestion(this.props.suggestion)
           this.props.navigation.goBack()
         })
       }
@@ -72,9 +75,9 @@ export default class ScheduleScene extends Component {
     _loadCalendarEvents = () => {
       console.log('_loadCalendarEvents')
       console.log(this.props.suggestion.meeting_time)
-      dateEnd = this.props.suggestion.meeting_time.clone().add(2, 'h')
+      dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE, 'h')
       console.log(dateEnd)
-      getEvents(this.props.suggestion.meeting_time, this.props.suggestion.meeting_time.clone().add(2, 'hours')).then(events => {
+      getEvents(this.props.suggestion.meeting_time, dateEnd).then(events => {
             // handle events
             console.log('Calendar')
             console.log(events)
@@ -86,7 +89,6 @@ export default class ScheduleScene extends Component {
             this.props.appActions.switchPermissionsOff()
            // handle error
           });
-      console.log(dateEnd)
     }
     _onTimeSelect = (i) => {
       let index = this.state.selected.indexOf(i);
@@ -140,10 +142,19 @@ export default class ScheduleScene extends Component {
             <ScrollView>
             {
             this.state.calendarEvents.map((event, i) => {
-              return <View key={i} style={styles.timeWrapper}>
-                <Text style={[styles.textSize]}>
-                  hello!
-                </Text>
+              console.log(event)
+              startTime = moment(event.startDate).format("h:mm A")
+              endTime = moment(event.endDate).format("h:mm A")
+              return <View key={i} style={[styles.timeWrapper]}>
+                <IconEntypo name="dot-single" style={{justifyContent: 'flex-start', borderWidth: 0, margin: -8}} size={35} color={themeColor} />
+                <View style={styles.column}>  
+                  <Text style={[s.bold]}>
+                      {startTime} - {endTime}
+                  </Text>
+                  <Text style={[]}>
+                    {event.title}
+                  </Text>
+                 </View>
               </View>
             })
             }
@@ -262,8 +273,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   timeWrapper: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
     margin: 10,
-    padding: 10
+    padding: 10,
+//     backgroundColor: 'red'
+  },
+  column: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+
   },
   selectedTime: {
     backgroundColor: '#BADFDF',
