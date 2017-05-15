@@ -136,7 +136,7 @@ export default class ScheduleScene extends Component {
             </Text>
           </View>
         </View>
-        <View style={[styles.row, styles.borderTop]}>
+        <View style={[styles.row, s.borderTop]}>
           <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
             <Text style={[styles.calendarTitle, styles.textSize]}>calendar</Text>
             <ScrollView>
@@ -231,13 +231,6 @@ const styles = StyleSheet.create({
       borderRadius: 100,
       marginRight: 20,
     },
-  borderTop: {
-    borderTopColor: themeColor,
-    borderTopWidth: 3,
-    borderStyle: 'solid',
-    flex: 1,
-    alignItems: 'flex-start',
-  },
   scheduleWrapper: {
     flex: 1,
     flexDirection: 'column',

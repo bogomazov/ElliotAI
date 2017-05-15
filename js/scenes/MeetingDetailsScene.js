@@ -12,8 +12,17 @@ import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import strings from '../res/values/strings'
 import NavigationTopBar from '../components/NavigationTopBar';
+import Card from '../components/Card';
 import Suggestion from '../state/models/suggestion';
-
+import s from '../res/values/styles'
+import IconIon from 'react-native-vector-icons/Ionicons';
+import IconEvil from 'react-native-vector-icons/EvilIcons';
+// Ionicons
+// ios-time-outline
+// EvilIcons
+// location
+// close
+// close-o
 const mapStateToProps = (state) => {
 	return {app: state.app}
 }
@@ -27,41 +36,54 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MeetingDetailsScene extends Component {
     state = {
-      userSuggestions: [],
-      isUserSuggestionsLoaded: false,
+
     }
-    
-	
 
 	componentWillMount = () => {
-        this.props = {...this.props, ...this.props.navigation.state.params}
-        this.props.appActions.loadUserSuggestions(this.props.user.fb_id).then((data) => {
-        data = data.map((item) => {return new Suggestion(item)})
-          this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
-        }).catch((err) => console.log(err))
+
 	}
     
     _keyExtractor = (item, index) => item.id;
 
   render() {
+    const meeting = this.props.meeting
     console.log(this.props)
-    if (!this.state.selectedMeeting}) {
       return (
-        <View style={styles.container}>
-          <NavigationTopBar navigation={this.props.navigation} />
-          <FlatList
-            data={[...this.state.userSuggestions]}
-            keyExtractor={this._keyExtractor}
-            renderItem={({item}, i) => {
-              return <SuggestionCard
-                        key={i}
-                        suggestion={item} 
-                        onPress={this._onMeetingPress}/>}}
-              /> 
-        </View>
+        <Card style={{flex: 1}}>
+          <IconEvil.Button name="close" backgroundColor="#fff" size={25} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
+          <View style={[s.row, s.margin10]}>
+             <View style={[s.column, s.flex]}>
+                  <Text style={[s.textThemeColor, s.bold]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
+                  <Text style={s.marginTop10}>{meeting.getDateStr()}</Text>
+              </View>
+            <Image
+                style={[s.avatar]}
+                source={{ uri: meeting.friend.image }}/>
+          </View>
+          <View style={[s.column, s.borderTop, s.padding10, s.flex]}>
+            <View style={[s.row, s.alignItemsCenter]}>
+              <Text style={[s.flex, s.marigin10]}>{meeting.meeting_time.format("h:mm A")}</Text>
+              <IconIon name="ios-time-outline" style={s.margin10} size={30} backgroundColor="#fff" color="#535353" />
+            </View>
+            <View style={[s.row, s.alignItemsCenter]}>
+              <Text style={[s.flex, s.marigin10]}>Home</Text>
+              <IconEvil name="location" style={s.margin10} size={30} backgroundColor="#fff" color="#535353" />
+            </View>
+            <View style={[s.row, s.alignItemsCenter]}>
+              <Text style={[s.flex, s.marigin10]}>Message on Facebook</Text>
+              <Image
+                style={styles.topBarIcon}
+                source={require('../res/images/fb-icon-66px.png')}/>
+            </View>
+            <View style={[s.row]}>
+              <Text></Text>
+            </View>
+          </View> 
+          <View style={[styles.bottom, s.row, s.borderTop]}>
+            <Text>Reschedule</Text>
+          </View>
+        </Card>
       );
-    }
-    return <MeetingDetailsScene meeting={this.state.selectedMeeting} onMeetingClose={this._onMeetingClose} />
   }
 }
 
@@ -72,8 +94,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
 //     alignItems: 'stretched',
   },
+  
+  bottom: {
+    height: 20,
+  },
+  
+  borderTop: {
+    borderTopColor: 'grey',
+    borderTopWidth: 1,
+    borderStyle: 'solid',
+  },
+  
   topBarIcon: {
     height: 40,
     width: 40
+  },
+  marginRight: {
+    marginRight: 10
   }
 });

@@ -2,9 +2,9 @@ import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'r
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 
-export default Card = ({children}) => {
+export default Card = ({children, style}) => {
       return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
           {children}
         </View>
       );
@@ -14,14 +14,7 @@ const styles = StyleSheet.create({
     container: {
       borderRadius: 10,
       backgroundColor: 'white',
-      // margin: 10,
-      // width: '92%',
-      // marginTop: '8%'
       alignSelf: 'stretch',
-      marginTop: 10,
-      marginRight: 10,
-      marginLeft: 10
-      // left: 10,
-      // right: 10
+      margin: 10,
     },
 });

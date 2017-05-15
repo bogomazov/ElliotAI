@@ -26,5 +26,36 @@ export default s = StyleSheet.create({
   },
   alignItemsCenter: {
     alignItems: 'center'
-  }
+  },
+  textThemeColor: {
+    color: themeColor
+  },
+  borderTop: {
+    borderTopColor: themeColor,
+    borderTopWidth: 3,
+    borderStyle: 'solid',
+    flex: 1,
+//     alignItems: 'flex-start',
+  },
+  avatar: {
+      width: 45,
+      height: 45,
+      borderRadius: 100,
+  },
+  
+  flex: {
+    flex: 1
+  },
+  margin10: {
+    margin: 10
+  },
+  marginTop10: {
+    marginTop: 10
+  },
+  
+  padding10: {
+    padding: 10
+  },
+  
+  
 });

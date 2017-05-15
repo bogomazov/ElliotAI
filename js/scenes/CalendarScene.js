@@ -15,6 +15,7 @@ import {themeColor} from '../res/values/styles'
 import IntroLabel from '../components/IntroLabel'
 import MeetingCard from '../components/MeetingCard'
 import Meeting from '../state/models/meeting'
+import MeetingDetailsScene from './MeetingDetailsScene'
 import moment from 'moment'
 
 const mapStateToProps = (state) => {
@@ -44,13 +45,13 @@ export default class CalendarScene extends Component {
 	}
     
     _onMeetingPress = (selectedMeeting) => {
+      console.log(selectedMeeting)
       this.setState({selectedMeeting})
 	}
     
     _onMeetingClose = () => {
       this.setState({selectedMeeting: null})
     }
-  
     
   componentWillMount = () => {
     console.log('onComponentWillMount')
@@ -64,39 +65,42 @@ export default class CalendarScene extends Component {
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.state.upcomingMeetings: this.state.pastMeetings
     
-    return (
-      <View style={styles.container}>
-        <TopBar isMainScene>
-          {TABS.map((title, i) => {
-            
-            let style = [styles.tab]
-            
-            if (i == this.state.activeTab) {
-              style.push(styles.selectedTab)
-            }
-            console.log(style)
-            return <TouchableWithoutFeedback key={i}>
-              <View><Text
-                  style={style}>
-                  {title}
-                </Text>
-                </View>
-              </TouchableWithoutFeedback>            
-          })}
-        </TopBar>
-        {!this.props.app.isIntroCalendarSeen && <IntroLabel 
-                                                    text={string.introCalendar}
-                                                    onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
-        <FlatList
-          data={meetings}
-          keyExtractor={this._keyExtractor}
-          renderItem={({item}, i) => {
-            return <MeetingCard
-                        key={i}
-                        meeting={item} 
-                        onPress={this._onMeetingPress}/>}} /> 
-      </View>
-    );
+    if (!this.state.selectedMeeting) {
+        return (
+          <View style={styles.container}>
+            <TopBar isMainScene>
+              {TABS.map((title, i) => {
+
+                let style = [styles.tab]
+
+                if (i == this.state.activeTab) {
+                  style.push(styles.selectedTab)
+                }
+                console.log(style)
+                return <TouchableWithoutFeedback key={i} onPress={() => this.setState({activeTab: i})}>
+                  <View><Text
+                      style={style}>
+                      {title}
+                    </Text>
+                    </View>
+                  </TouchableWithoutFeedback>            
+              })}
+            </TopBar>
+            {!this.props.app.isIntroCalendarSeen && <IntroLabel 
+                                                        text={string.introCalendar}
+                                                        onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
+            <FlatList
+              data={meetings}
+              keyExtractor={this._keyExtractor}
+              renderItem={({item}, i) => {
+                return <MeetingCard
+                            key={i}
+                            meeting={item} 
+                            onPress={this._onMeetingPress}/>}} /> 
+          </View>
+        );
+    }
+    return <MeetingDetailsScene meeting={this.state.selectedMeeting} onClosePress={this._onMeetingClose} />
   }
 }
 
