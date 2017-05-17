@@ -5,6 +5,7 @@ import android.app.Application;
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.elliot.calendarevents.CalendarEventsPackage;
 import com.elliot.location.LocationReactPackage;
+import com.elliot.phonenumber.PhoneNumberReactPackage;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
@@ -21,6 +22,8 @@ import com.showlocationservicesdialogbox.LocationServicesDialogBoxPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cl.json.RNSharePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -47,7 +50,9 @@ public class MainApplication extends Application implements ReactApplication {
           new ReactNativeLocalizationPackage(),
           new LocationServicesDialogBoxPackage(),
           new ReactNativePermissionsPackage(),
-          new LocationReactPackage()
+          new LocationReactPackage(),
+          new RNSharePackage(),
+          new PhoneNumberReactPackage()
       );
     }
   };

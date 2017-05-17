@@ -87,10 +87,7 @@ export const sendLocation = (lon, lat, timestamp) => {
   // “person”
 
 
-  export const logShare = (type) => {
-    return (dispatch, getState, getAPI) => getAPI(getState, dispatch).growthLog(type)
-
-    }
+  export const logShare = (type, person) => (dispatch, getState, getAPI) => getAPI(getState, dispatch).growthLog(type, person)
 
 export const loadUserSuggestions = (userId) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).suggestionsWithUser(userId)

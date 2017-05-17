@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import Card from './Card'
 import CustomButton from './CustomButton'
+import Arrow from './Arrow'
 import strings from '../res/values/strings'
 import s, { themeColor, mainBackgroundColor } from '../res/values/styles'
 
@@ -26,11 +27,7 @@ export default MeetingCard = ({meeting, onPress}) => {
                   </View>
                 </View>
             </TouchableWithoutFeedback>
-            {!meeting.isPast() && <View style={styles.arrowWrapper}>
-              <Image
-                style={styles.backArrow}
-                source={require('../res/images/back-44px.png')}/>
-            </View>}
+            {!meeting.isPast() && <Arrow />}
           </View>
         </Card>
       );

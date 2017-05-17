@@ -24,6 +24,7 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import MainScene from './scenes/MainScene'
 import ScheduleScene from './scenes/ScheduleScene'
 import UserSuggestionsScene from './scenes/UserSuggestionsScene'
+import FriendsScene from './scenes/FriendsScene'
 
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
@@ -45,6 +46,7 @@ const Navigation = StackNavigator({
               MainScene: {screen: MainScene},
               ScheduleScene: {screen: ScheduleScene},
               UserSuggestionsScene: {screen: UserSuggestionsScene},
+              FriendsScene: {screen: FriendsScene},
             }, {headerMode: 'none'})
 class App extends Component {
     render() {

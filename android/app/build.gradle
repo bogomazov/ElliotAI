@@ -131,6 +131,7 @@ dependencies {
     compile project(':react-native-fbsdk')
     compile project(':react-native-localization')
     compile project(':react-native-permissions')
+    compile project(':react-native-share')
     compile project(':react-native-android-location-services-dialog-box')
     compile 'com.google.android.gms:play-services-location:9.6.1'
     compile 'com.google.android.gms:play-services-gcm:9.6.1'

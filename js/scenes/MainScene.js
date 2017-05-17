@@ -13,11 +13,12 @@ import SplashScene from './SplashScene'
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import { LoginManager } from 'react-native-fbsdk'
+import { mainBackgroundColor } from '../res/values/styles'
 import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
-import { mainBackgroundColor } from '../res/values/styles'
+import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 
 
 export const INVITE_FRIENDS_TAB = 2
@@ -54,6 +55,10 @@ export default class MainScene extends Component {
 
 			if (!this.props.app.isLoggedIn) {
 				return <LoginScene/>
+			}
+
+			if (!this.props.app.isPhoneNumberVerified) {
+				return <PhoneVerificationScene />
 			}
 
 			if (!this.props.app.isPermissionsGranted) {

@@ -27,9 +27,21 @@ export default s = StyleSheet.create({
   alignItemsCenter: {
     alignItems: 'center'
   },
-  textThemeColor: {
+
+  // TEXT
+  textColorTheme: {
     color: themeColor
   },
+  textColorGrey: {
+    color: '#BBBBBB'
+  },
+  textColorWhite: {
+    color: 'white'
+  },
+  textAlignCenter: {
+    textAlign: 'center'
+  },
+
   borderTop: {
     borderTopColor: themeColor,
     borderTopWidth: 3,
@@ -46,12 +58,25 @@ export default s = StyleSheet.create({
       height: 45,
       borderRadius: 100,
   },
+  avatar30: {
+      width: 30,
+      height: 30,
+      borderRadius: 100,
+  },
+  borderTopGrey: {
+    borderTopColor: '#E4E3E6',
+    borderTopWidth: 1,
+    borderStyle: 'solid',
+  },
 
   flex: {
     flex: 1
   },
   margin10: {
     margin: 10
+  },
+  marginTop5: {
+    marginTop: 5
   },
   marginTop10: {
     marginTop: 10

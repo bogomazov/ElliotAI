@@ -23,25 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export const checkContactPermission = new Promise((resolve, reject) => {
-  Contacts.checkPermission( (err, permission) => {
-    // Contacts.PERMISSION_AUTHORIZED || Contacts.PERMISSION_UNDEFINED || Contacts.PERMISSION_DENIED
-    // if(permission === 'undefined'){
-    //   Contacts.requestPermission( (err, permission) => {
-    //     // ...
-    //   })
-    // }
-    if(permission === 'authorized'){
-      resolve('authorized')
-    } else {
-      reject('no contact permission')
-    }
-    // if(permission === 'denied'){
-    //   // x.x
-    // }
-  })
-})
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class PermissionsScene extends Component {
 

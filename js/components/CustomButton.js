@@ -7,33 +7,18 @@ import { bindActionCreators } from 'redux';
 import { themeColor } from '../res/values/styles'
 
 const CustomButton = ({onPress, title, style, isWhite}) => {
-      let textStyle = [styles.buttonWrapper]
-      if (isWhite) {
-          textStyle.push(styles.white)
-      }
-      console.log(textStyle)
+
       return (
-        <View style={style}>
             <TouchableHighlight onPress={onPress} underlayColor={themeColor}>
-              <Text style={styles.text}>{title}</Text>
+              <Text style={[styles.text, style, isWhite && styles.white]}>{title}</Text>
             </TouchableHighlight>
-        </View>
       );
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
-
-    buttonWrapper: {
-      borderRadius: 10,
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: themeColor,
-    },
-
     text: {
+      alignSelf: 'center',
+      textAlign: 'center',
       borderRadius: 12,
       borderWidth: 1,
       borderStyle: 'solid',
@@ -47,10 +32,6 @@ const styles = StyleSheet.create({
       color: 'white',
       borderColor: 'white',
     }
-
-
-
-
 });
 
 export default CustomButton;

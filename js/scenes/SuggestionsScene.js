@@ -10,6 +10,7 @@ import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
+import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
 
 const mapStateToProps = (state) => {
@@ -22,6 +23,9 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
+
+const SHOW_CATCH_UP_CARD = 5 // if certain number of suggestions loaded
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
 
@@ -33,9 +37,16 @@ export default class SuggestionsScene extends Component {
       this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend})
 	}
 
+	_onCatchUpPress = () => {
+		console.log('_onCatchUpPress')
+		this.props.navigation.navigate('FriendsScene')
+	}
+
 	_onShowLessPress = (suggestion) => {
       this.props.appActions.rejectSuggestion(suggestion, 'neither')
 	}
+
+
 
 	componentWillMount = () => {
 		console.log(this.props)
@@ -59,15 +70,21 @@ export default class SuggestionsScene extends Component {
         {!this.props.app.isIntroSuggestionsSeen && <IntroLabel
                                                     text={strings.introSuggestions}
                                                     onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
-        <FlatList
-          data={[...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
+				<FlatList
+          data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}, i) => {
+          renderItem={({item}) => {
+						if (item.isCatchUp) {
+							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
+								return <CatchUpCard onPress={this._onCatchUpPress} />
+							}
+							return
+						}
+
             if (item.isTellFriends) {
-              return <TellFriendsCard key={i} onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
+              return <TellFriendsCard onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
             }
             return <SuggestionCard
-                      key={i}
                       suggestion={item}
                       onPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}

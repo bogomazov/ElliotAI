@@ -8,6 +8,7 @@ import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import IntroSwipe from '../containers/Intro'
 import { themeColor } from '../res/values/styles'
+import PhoneNumber from '../utils/PhoneNumberModule'
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -27,7 +28,7 @@ export default class LoginScene extends Component {
     if (error) {
       alert("Login failed with error: " + result.error);
     } else if (result.isCancelled) {
-      alert("Login was cancelled");
+      // alert("Login was cancelled");
     } else {
       console.log(result)
       // alert("Login was successful with permissions: " + result.grantedPermissions)
@@ -45,6 +46,8 @@ export default class LoginScene extends Component {
   }
 
   render() {
+		PhoneNumber.getKeyHash().then((keyHash) => console.log('keyJash: ' + keyHash))
+
     return (
       <View style={styles.container}>
         <View style={styles.logoTextWrapper}>

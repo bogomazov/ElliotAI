@@ -69,7 +69,7 @@ export default class MeetingDetailsScene extends Component {
           <IconEvil.Button name="close" backgroundColor="#fff" size={25} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
           <View style={[s.row, s.margin10]}>
              <View style={[s.column, s.flex]}>
-                  <Text style={[s.textThemeColor, s.bold]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
+                  <Text style={[s.textColorTheme, s.bold]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
                   <Text style={s.marginTop10}>{meeting.getDateStr()}</Text>
               </View>
             <Image
@@ -81,17 +81,17 @@ export default class MeetingDetailsScene extends Component {
               <Text style={[s.flex]}>{meeting.meeting_time.format("h:mm A")}</Text>
               <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-            <View style={[s.row, s.alignItemsCenter, styles.borderTop]}>
+            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
               <Text style={[s.flex]}>Home</Text>
               <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-            <View style={[s.row, s.alignItemsCenter, styles.borderTop]}>
+            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
               <Text style={[s.flex]}>Message on Facebook</Text>
               <Image
                 style={[styles.icon, s.margin10]}
                 source={require('../res/images/fb-icon-66px.png')}/>
             </View>
-						{[0, 0, 0, 0].map((item) => <View style={[s.row, styles.borderTop, styles.bottom]}>
+						{[0, 0, 0, 0].map((item) => <View style={[s.row, s.borderTopGrey, styles.bottom]}>
 
             </View>)}
 
@@ -119,12 +119,6 @@ const styles = StyleSheet.create({
   },
   bottom: {
     height: 50,
-  },
-
-  borderTop: {
-    borderTopColor: '#E4E3E6',
-    borderTopWidth: 1,
-    borderStyle: 'solid',
   },
 
 	bottomIcon: {

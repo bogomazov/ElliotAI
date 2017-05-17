@@ -76,9 +76,7 @@ export default class CalendarScene extends Component {
           <View style={styles.container}>
             <TopBar isMainScene>
               {TABS.map((title, i) => {
-
                 let style = [styles.tab]
-
                 if (i == this.state.activeTab) {
                   style.push(styles.selectedTab)
                 }

@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, Button, StyleSheet, Text, TouchableWithoutFeedback, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -17,6 +17,7 @@ import Contacts from 'react-native-contacts'
 // import SendSMS from 'react-native-send-sms'
 import {email, text} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
+import Share from 'react-native-share';
 
 // ...
 
@@ -102,27 +103,40 @@ export default class InviteFriendsScene extends Component {
 		const shareLinkContent = {
 		  contentType: 'link',
 		  contentUrl: "http://elliot.ai",
-		  contentDescription: 'Try out Elliot, a new app to meet with friends!',
+		  contentDescription: strings.inviteFacebook,
 		};
 	  var tmp = this;
-	  dailog.canShow(this.state.shareLinkContent).then((canShow) => {
+	  dailog.canShow(shareLinkContent).then((canShow) => {
 			console.log(canShow)
 	      if (canShow) {
-	        return dailog.show(tmp.state.shareLinkContent);
+	        return dailog.show(shareLinkContent);
 	      }
 	    }
 	  ).then((result) => {
 	      if (result.isCancelled) {
-	        alert('Share cancelled');
+	        consle.log('Share cancelled');
 	      } else {
-	        alert('Share success with postId: '
-	          + result.postId);
+					// this.appActions.
+	        console.log('Share success with postId: '
+	          + result);
+
 	      }
 	    },
 	    (error) => {
-	      alert('Share fail with error: ' + error);
+	      console.log('Share fail with error: ' + error);
 	    }
 	  );
+	}
+
+	_inviteTwitter = () => {
+		let shareOptions = {
+			title: "React Native",
+			message: strings.inviteTwitter,
+			url: "http://elliot.ai"
+		};
+		Share.shareSingle(Object.assign(shareOptions, {
+					"social": "twitter"
+				}));
 	}
 
 	_onTabPress = (i) => {
@@ -135,6 +149,8 @@ export default class InviteFriendsScene extends Component {
 					break;
 				case TAB_FACEBOOK:
 					this._inviteFacebook(ShareDialog)
+				case TAB_TWITTER:
+					this._inviteTwitter()
         break;
 			}
 		}
@@ -153,7 +169,7 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_renderItem = ({item}) => {
-		return (<TouchableHighlight onPress={() => this._onContactPress(item)}>
+		return (<TouchableWithoutFeedback onPress={() => this._onContactPress(item)}>
 			<View style={[s.row, s.stretch, s.alignItemsCenter]}>
 				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
 				<Text style={s.flex}>{item.firstName} {item.middleName} {item.lastName}</Text>
@@ -161,7 +177,7 @@ export default class InviteFriendsScene extends Component {
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
 			</View>
-		</TouchableHighlight>)
+		</TouchableWithoutFeedback>)
 	}
 
   render() {

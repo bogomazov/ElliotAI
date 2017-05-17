@@ -15,6 +15,8 @@ import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
 
+
+
 const mapStateToProps = (state) => {
 	return {app: state.app}
 }
@@ -34,12 +36,11 @@ export default class SplashScene extends Component {
     console.log(this.props.app.isRehydrated)
     console.log(this.props.app.isLoggedIn)
 
-
       console.log('checkLocationServicesIsEnabled')
       LocationAccess.checkLocationAccess().then((response) => {
         console.log(response)
         if (response == 'success') {
-          this.requestCurrentLocation()
+          this._requestCurrentLocation()
         }
       }).catch((error) => {
         console.log(error)
@@ -63,7 +64,7 @@ export default class SplashScene extends Component {
           });
   }
 
-  requestCurrentLocation = () => {
+  _requestCurrentLocation = () => {
 		console.log('request Location')
       navigator.geolocation.getCurrentPosition(
         (position) => {

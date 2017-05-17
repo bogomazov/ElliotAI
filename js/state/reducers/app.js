@@ -6,12 +6,13 @@ const defaultState = {
   isLoggedIn: false,
   isPermissionsGranted: false,
   isLocationGiven: false,
+  isPhoneNumberVerified: false,
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
   isRehydrated: false,
   suggestions: [],
   isSuggestionsLoaded: false,
   isIntroSuggestionsSeen: false,
-  isIntroCalendarSeen: false
+  isIntroCalendarSeen: false,
 }
 
 const app = (state = defaultState, action) => {

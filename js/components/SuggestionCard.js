@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import Card from './Card'
 import CustomButton from './CustomButton'
+import Arrow from './Arrow'
 import strings from '../res/values/strings'
 import { themeColor, mainBackgroundColor } from '../res/values/styles'
 
@@ -11,7 +12,7 @@ const borderWidth = 1
 
 export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onShowLessPress, withOptions}) => {
   console.log(suggestion)
-    
+
       return (
         <Card>
           <View style={styles.container}>
@@ -31,11 +32,7 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onSho
                 </View>
               </View>
             </TouchableWithoutFeedback>
-            <View style={styles.arrowWrapper}>
-              <Image
-                style={styles.backArrow}
-                source={require('../res/images/back-44px.png')}/>
-            </View>
+            <Arrow />
           </View>
           {withOptions && <View style={[styles.row, styles.buttonOptionsWrapper]}>
               <TouchableWithoutFeedback onPress={() => onMoreOptionsPress(suggestion)}>
@@ -88,40 +85,30 @@ const styles = StyleSheet.create({
       height: 40,
       margin: 10
     },
-    arrowWrapper: {
-      justifyContent: 'center',
-      position: 'absolute',
-      right: 0,
-  		top: 0,
-      bottom: 0
-    },
-    backArrow: {
-      width: 25,
-      height: 25,
-    },
+
     buttonWrapper: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      
+
     },
     optionButton: {
 //       flexDirection: 'row',
       color: themeColor,
       textAlign: 'center',
       padding: 10,
-      
+
     },
     verticalBorder: {
       width: borderWidth,
       height: '100%',
       backgroundColor: mainBackgroundColor,
     },
-  
+
     buttonOptionsWrapper: {
       borderTopColor: mainBackgroundColor,
       borderTopWidth: borderWidth,
       borderStyle: 'solid',
-      
+
     }
 });
