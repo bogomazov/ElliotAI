@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
-  
+
 	_onSuggestionPress = (suggestion) => {
       this.props.navigation.navigate('ScheduleScene', {suggestion})
 	}
@@ -43,8 +43,8 @@ export default class SuggestionsScene extends Component {
 			this.props.appActions.loadSuggestions()
 		}
 	}
-    
-    _keyExtractor = (item, index) => item.id;
+
+  _keyExtractor = (item, index) => item.id;
 
   render() {
 		console.log(this.props)
@@ -56,8 +56,8 @@ export default class SuggestionsScene extends Component {
             style={styles.topBarIcon}
             source={require('../res/images/Icon-50.png')}/>
         </TopBar>
-        {!this.props.app.isIntroSuggestionsSeen && <IntroLabel 
-                                                    text={string.introSuggestions}
+        {!this.props.app.isIntroSuggestionsSeen && <IntroLabel
+                                                    text={strings.introSuggestions}
                                                     onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
         <FlatList
           data={[...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
@@ -68,11 +68,11 @@ export default class SuggestionsScene extends Component {
             }
             return <SuggestionCard
                       key={i}
-                      suggestion={item} 
-                      onPress={this._onSuggestionPress} 
-                      onMoreOptionsPress={this._onMoreOptionsPress} 
+                      suggestion={item}
+                      onPress={this._onSuggestionPress}
+                      onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress} withOptions/>}}
-            /> 
+            />
       </View>
     );
   }

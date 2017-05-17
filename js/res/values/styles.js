@@ -34,15 +34,19 @@ export default s = StyleSheet.create({
     borderTopColor: themeColor,
     borderTopWidth: 3,
     borderStyle: 'solid',
-    flex: 1,
 //     alignItems: 'flex-start',
   },
+  icon40: {
+    width: 40,
+    height: 40,
+  },
+
   avatar: {
       width: 45,
       height: 45,
       borderRadius: 100,
   },
-  
+
   flex: {
     flex: 1
   },
@@ -52,10 +56,16 @@ export default s = StyleSheet.create({
   marginTop10: {
     marginTop: 10
   },
-  
+  marginLeft10: {
+    marginLeft: 10
+  },
+  marginRight10: {
+    marginRight: 10
+  },
+
   padding10: {
     padding: 10
   },
-  
-  
+
+
 });

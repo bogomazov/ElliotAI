@@ -26,11 +26,11 @@ export default MeetingCard = ({meeting, onPress}) => {
                   </View>
                 </View>
             </TouchableWithoutFeedback>
-            <View style={styles.arrowWrapper}>
+            {!meeting.isPast() && <View style={styles.arrowWrapper}>
               <Image
                 style={styles.backArrow}
                 source={require('../res/images/back-44px.png')}/>
-            </View>
+            </View>}
           </View>
         </Card>
       );

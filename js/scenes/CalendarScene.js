@@ -36,35 +36,41 @@ const TABS = ["Upcoming", "Past"]
 export default class CalendarScene extends Component {
 	state = {
 		activeTab: 0,
-        upcomingMeetings: [],
-        pastMeetings: [],
-        selectedMeeting: null
+    upcomingMeetings: [],
+    pastMeetings: [],
+    selectedMeeting: null
 	}
 	_onTabPress = (i) => {
 
 	}
-    
+
     _onMeetingPress = (selectedMeeting) => {
       console.log(selectedMeeting)
       this.setState({selectedMeeting})
 	}
-    
+
     _onMeetingClose = () => {
       this.setState({selectedMeeting: null})
     }
-    
+
+    _onMeetingCancel = (cancelledMeeting) => {
+      this.setState({upcomingMeetings: this.state.upcomingMeetings.filter((meeting) => meeting.suggestion_id != cancelledMeeting.suggestion_id)})
+      this._onMeetingClose()
+    }
+
   componentWillMount = () => {
     console.log('onComponentWillMount')
-    this.props.appActions.loadScheduledMeetings().then((data) => {      
-      data = data.data.map((item) => new Meeting(item))
-      this.setState({upcomingMeetings: data.filter((event) => moment() <= event.meeting_time),
-                     pastMeetings: data.filter((event) => moment() > event.meeting_time)})
+    this.props.appActions.loadScheduledMeetings().then((data) => {
+      data = data.data.map((meeting) => new Meeting(meeting))
+      data = data.filter((meeting) => meeting.canceled == 0)
+      this.setState({upcomingMeetings: data.filter((meeting) => !meeting.isPast()),
+                     pastMeetings: data.filter((meeting) => meeting.isPast())})
     })
   }
 
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.state.upcomingMeetings: this.state.pastMeetings
-    
+
     if (!this.state.selectedMeeting) {
         return (
           <View style={styles.container}>
@@ -83,11 +89,11 @@ export default class CalendarScene extends Component {
                       {title}
                     </Text>
                     </View>
-                  </TouchableWithoutFeedback>            
+                  </TouchableWithoutFeedback>
               })}
             </TopBar>
-            {!this.props.app.isIntroCalendarSeen && <IntroLabel 
-                                                        text={string.introCalendar}
+            {!this.props.app.isIntroCalendarSeen && <IntroLabel
+                                                        text={strings.introCalendar}
                                                         onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
             <FlatList
               data={meetings}
@@ -95,12 +101,15 @@ export default class CalendarScene extends Component {
               renderItem={({item}, i) => {
                 return <MeetingCard
                             key={i}
-                            meeting={item} 
-                            onPress={this._onMeetingPress}/>}} /> 
+                            meeting={item}
+                            onPress={this._onMeetingPress}/>}} />
           </View>
         );
     }
-    return <MeetingDetailsScene meeting={this.state.selectedMeeting} onClosePress={this._onMeetingClose} />
+    return <MeetingDetailsScene
+              meeting={this.state.selectedMeeting}
+              onClosePress={this._onMeetingClose}
+              onMeetingCancel={this._onMeetingCancel}/>
   }
 }
 
@@ -112,14 +121,14 @@ const styles = StyleSheet.create({
 //     alignItems: 'center',
     // backgroundColor: 'grey',
   },
-  
+
   tab: {
 //     fontFamily: 'OpenSans-Bold',
     margin: 20,
     color: themeColor,
-    
+
   },
-  
+
   selectedTab: {
       fontFamily: 'OpenSans-Bold',
   },

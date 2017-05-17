@@ -33,7 +33,7 @@ class API {
       "suggestion_id" : suggestionId,
       "times" : times
     })
-  cancel = (suggestionId, times) =>
+  cancel = (suggestionId) =>
     this.post('/cancel', {
       "suggestion_id" : suggestionId
     })
@@ -49,25 +49,10 @@ class API {
       "person" : person,
     })
 
-  //   {
-  //     "data": [
-  //         {
-  //           "canceled" : 1,
-  //           "meeting_time" : "2017-03-17 22:30:00",
-  //           "suggestion_id" : 3242, // suggestion id of this confirmed meeting
-  //           "friend" : {
-  //             "last_name" : "Alaefchgghcfe Riceson",
-  //             "image" : "Image URL", // friend's facebook profile image url
-  //             "first_name" : "Linda",
-  //             "fb_id" : "Facebook ID" // friend's facebook id
-  //           },
-  //           "meeting_type" : "Call"
-  //         }
-  //         ...
-  //     ],
-  // }
     getConfirmedMeetings = () =>
         this.get('/scheduled')
+    getFriends = () =>
+        this.get('/friends')
     suggestions = () =>
         this.get('/suggestions')
     suggestionsWithUser = (userId) =>
@@ -121,4 +106,3 @@ export const getAPI = (getState, dispatch) => {
   console.log(state)
   return new API(state.app.accessToken, dispatch)
 }
-

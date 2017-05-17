@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, FlatList, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -39,10 +39,26 @@ export default class MeetingDetailsScene extends Component {
 
     }
 
+		_onReschedulePress = () => {
+			Alert.alert(
+				'Are you sure?',
+				'Once you reschedule, you will have to schedule a meeting again!',
+				[
+					{text: 'Never mind', onPress: () => console.log('Never mind')},
+					{text: 'Reschedule', onPress: () => {
+						this.props.appActions.cancelMeeting(this.props.meeting).then((response) => {
+							this.props.onMeetingCancel(this.props.meeting)
+						})
+					}},
+				],
+				{ cancelable: true }
+				)
+		}
+
 	componentWillMount = () => {
 
 	}
-    
+
     _keyExtractor = (item, index) => item.id;
 
   render() {
@@ -62,30 +78,37 @@ export default class MeetingDetailsScene extends Component {
           </View>
           <View style={[s.column, s.borderTop, s.padding10, s.flex]}>
             <View style={[s.row, s.alignItemsCenter]}>
-              <Text style={[s.flex, s.marigin10]}>{meeting.meeting_time.format("h:mm A")}</Text>
-              <IconIon name="ios-time-outline" style={s.margin10} size={30} backgroundColor="#fff" color="#535353" />
+              <Text style={[s.flex]}>{meeting.meeting_time.format("h:mm A")}</Text>
+              <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-            <View style={[s.row, s.alignItemsCenter]}>
-              <Text style={[s.flex, s.marigin10]}>Home</Text>
-              <IconEvil name="location" style={s.margin10} size={30} backgroundColor="#fff" color="#535353" />
+            <View style={[s.row, s.alignItemsCenter, styles.borderTop]}>
+              <Text style={[s.flex]}>Home</Text>
+              <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-            <View style={[s.row, s.alignItemsCenter]}>
-              <Text style={[s.flex, s.marigin10]}>Message on Facebook</Text>
+            <View style={[s.row, s.alignItemsCenter, styles.borderTop]}>
+              <Text style={[s.flex]}>Message on Facebook</Text>
               <Image
-                style={styles.topBarIcon}
+                style={[styles.icon, s.margin10]}
                 source={require('../res/images/fb-icon-66px.png')}/>
             </View>
-            <View style={[s.row]}>
-              <Text></Text>
-            </View>
-          </View> 
-          <View style={[styles.bottom, s.row, s.borderTop]}>
-            <Text>Reschedule</Text>
+						{[0, 0, 0, 0].map((item) => <View style={[s.row, styles.borderTop, styles.bottom]}>
+
+            </View>)}
+
           </View>
+					<TouchableWithoutFeedback onPress={this._onReschedulePress}>
+	          <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
+	            <Text style={[s.flex, styles.bottomText, s.margin10]}>Reschedule</Text>
+							<IconEvil.Button name="close-o" style={[ styles.bottomIcon]} size={35} backgroundColor="#fff" color="#535353" />
+	          </View>
+					</TouchableWithoutFeedback>
+
         </Card>
       );
   }
 }
+
+const ICON_SIZE = 35
 
 const styles = StyleSheet.create({
   container: {
@@ -94,22 +117,33 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
 //     alignItems: 'stretched',
   },
-  
   bottom: {
-    height: 20,
+    height: 50,
   },
-  
+
   borderTop: {
-    borderTopColor: 'grey',
+    borderTopColor: '#E4E3E6',
     borderTopWidth: 1,
     borderStyle: 'solid',
   },
-  
-  topBarIcon: {
-    height: 40,
-    width: 40
+
+	bottomIcon: {
+		padding: 0
+	},
+
+  icon: {
+    height: 30,
+    width: 30
   },
   marginRight: {
     marginRight: 10
-  }
+  },
+
+	bottomText: {
+		color: '#49ADAF'
+	},
+	marginLocation: {
+		margin: 10,
+		marginRight: 7,
+	}
 });

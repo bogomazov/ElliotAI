@@ -34,13 +34,13 @@ const CALENDAR_TIME_RANGE = 3 // hours
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ScheduleScene extends Component {
-  
+
     state = {
       calendarEvents: [],
       isCalendarEventsLoaded: false,
       selected: []
     }
-    
+
 	componentWillMount = () => {
 //       if (!this.state.isUserSuggestionsLoaded) {
 //       this.props.appActions.loadUserSuggestions(this.props.suggestion.friend.fb_id).then((data) => {
@@ -48,8 +48,8 @@ export default class ScheduleScene extends Component {
 //           this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
 //         }).catch((err) => console.log(err))
     }
-    
-    
+
+
     _onConfirmPress = () => {
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
@@ -61,7 +61,7 @@ export default class ScheduleScene extends Component {
         })
       }
     }
-    
+
     _getStartTimes = () => {
       result = []
       let currentDate = this.props.suggestion.meeting_time
@@ -71,7 +71,7 @@ export default class ScheduleScene extends Component {
       }
       return result
     }
-    
+
     _loadCalendarEvents = () => {
       console.log('_loadCalendarEvents')
       console.log(this.props.suggestion.meeting_time)
@@ -98,14 +98,14 @@ export default class ScheduleScene extends Component {
           this.setState({selected: [...this.state.selected, i]})
       }
     }
-    
+
     _isSelected = () => {
-      
+
     }
 
   render() {
     this.props = {...this.props, ...this.props.navigation.state.params}
-    
+
     if (!this.state.isCalendarEventsLoaded) {
       this._loadCalendarEvents()
     }
@@ -114,7 +114,7 @@ export default class ScheduleScene extends Component {
     const suggestion = this.props.suggestion
     console.log(suggestion)
     let buttonStyles = [styles.confirmButtonWrapper]
-    
+
     if (this.state.selected.length > 0) {
       buttonStyles.push(styles.buttonActive)
     }
@@ -136,7 +136,7 @@ export default class ScheduleScene extends Component {
             </Text>
           </View>
         </View>
-        <View style={[styles.row, s.borderTop]}>
+        <View style={[styles.row, s.borderTop, s.flex, s.border]}>
           <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
             <Text style={[styles.calendarTitle, styles.textSize]}>calendar</Text>
             <ScrollView>
@@ -147,7 +147,7 @@ export default class ScheduleScene extends Component {
               endTime = moment(event.endDate).format("h:mm A")
               return <View key={i} style={[styles.timeWrapper]}>
                 <IconEntypo name="dot-single" style={{justifyContent: 'flex-start', borderWidth: 0, margin: -8}} size={35} color={themeColor} />
-                <View style={styles.column}>  
+                <View style={styles.column}>
                   <Text style={[s.bold]}>
                       {startTime} - {endTime}
                   </Text>
@@ -159,7 +159,7 @@ export default class ScheduleScene extends Component {
             })
             }
             </ScrollView>
-          </View> 
+          </View>
           <View style={styles.scheduleWrapper}>
             <Text style={[styles.timesTitle, styles.textSize]}>start times</Text>
             <ScrollView>
@@ -188,12 +188,12 @@ export default class ScheduleScene extends Component {
            <View style={buttonStyles}>
               <Text style={styles.confirmButton}>Sounds Good!</Text>
             </View>
-         
+
           </TouchableHighlight>
       </View>
     );
   }
-}       
+}
 
 const styles = StyleSheet.create({
   container: {

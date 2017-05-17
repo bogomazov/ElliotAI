@@ -23,6 +23,7 @@ export const getMeetingTypeIcon = (meeting_type) => {
 }
 
 const MeetingRecord = Immutable.Record({
+  suggestion_id: undefined,
   canceled: undefined,
   meeting_time: undefined,
   friend: undefined,
@@ -31,12 +32,14 @@ const MeetingRecord = Immutable.Record({
 
 class Meeting extends MeetingRecord {
   constructor(args) {
-    super({...args, 
-           friend: new User(args.friend), 
+    super({...args,
+           friend: new User(args.friend),
            meeting_time: moment(args.meeting_time)})
           }
-  
+
     getDateStr = () => this.meeting_time.format('dddd, MMM Do')
+
+    isPast = () => moment() > this.meeting_time
 }
 
 export default Meeting

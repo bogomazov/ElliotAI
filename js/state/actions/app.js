@@ -83,10 +83,23 @@ export const sendLocation = (lon, lat, timestamp) => {
     }
   }
 
+  // Requires a channel type which can be one of these: “sms”, “email”, “fb-messenger”, “fb-share”, “twitter”.
+  // “person”
+
+
+  export const logShare = (type) => {
+    return (dispatch, getState, getAPI) => getAPI(getState, dispatch).growthLog(type)
+
+    }
+
 export const loadUserSuggestions = (userId) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).suggestionsWithUser(userId)
-    
+
   }
+
+export const loadFriends = () =>
+  (dispatch, getState, getAPI) => getAPI(getState, dispatch).getFriends()
+
 
 export const loadScheduledMeetings = () => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).getConfirmedMeetings()}
@@ -122,6 +135,10 @@ export const sendEvents = (events) => {
 export const acceptSuggestion = (suggestion, times) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).accept(suggestion.id, times)
+  }
+export const cancelMeeting = (meeting) => {
+  return (dispatch, getState, getAPI) =>
+      getAPI(getState, dispatch).cancel(meeting.suggestion_id)
   }
 export const rejectSuggestion = (suggestion, responseType) => {
   return (dispatch, getState, getAPI) =>

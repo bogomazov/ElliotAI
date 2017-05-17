@@ -11,7 +11,6 @@ import * as appActions from '../state/actions/app';
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 import LocationAccess from '../utils/LocationAccessModule'
 import RNCalendarEvents from 'react-native-calendar-events';
-import Contacts from 'react-native-contacts'
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
@@ -46,20 +45,8 @@ export default class SplashScene extends Component {
         console.log(error)
       })
 
-      Contacts.getAll((err, contacts) => {
-  			console.log(err)
-  		  if(err === 'denied'){
-  		    // x.x
-          console.log('Contacts denied')
 
-          this.props.appActions.switchPermissionsOff()
-  		  } else {
-          console.log('Contacts')
 
-  		    console.log(contacts)
-  		  }
-  		})
-      
       getEvents(moment(), moment().add(1, 'months')).then(events => {
             // handle events
 
