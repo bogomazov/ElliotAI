@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+import android.util.Log;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -30,6 +32,14 @@ public class TelephonyAccessModule extends ReactContextBaseJavaModule {
     public void getPhoneNumber(Promise promise) {
         TelephonyManager t = (TelephonyManager) getReactApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
         promise.resolve(t.getLine1Number());
+    }
+
+    @ReactMethod
+    public void sendSMS(String phoneNumber, String messageText, Promise promise) {
+        SmsManager smsManager = SmsManager.getDefault();
+        Log.d(TAG, phoneNumber);
+        smsManager.sendTextMessage(phoneNumber, null, messageText, null, null);
+        promise.resolve(null);
     }
 
     @ReactMethod

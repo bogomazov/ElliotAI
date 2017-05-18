@@ -32,6 +32,57 @@ const UPCOMING = 0
 const PAST = 1
 const TABS = ["Upcoming", "Past"]
 
+const TEST_MEETIGNS = { data: [
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil5",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-05-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15295
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil4",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-04-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15297
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil3",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-03-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15297
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil6",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-06-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15290
+  }
+]}
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarScene extends Component {
 	state = {
@@ -61,10 +112,15 @@ export default class CalendarScene extends Component {
   componentWillMount = () => {
     console.log('onComponentWillMount')
     this.props.appActions.loadScheduledMeetings().then((data) => {
+      // data = TEST_MEETIGNS
+      console.log(data)
       data = data.data.map((meeting) => new Meeting(meeting))
       data = data.filter((meeting) => meeting.canceled == 0)
-      this.setState({upcomingMeetings: data.filter((meeting) => !meeting.isPast()),
-                     pastMeetings: data.filter((meeting) => meeting.isPast())})
+      pastMeetings = data.filter((meeting) => meeting.isPast())
+      pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
+      upcomingMeetings = data.filter((meeting) => !meeting.isPast())
+      upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
+      this.setState({upcomingMeetings, pastMeetings})
     })
   }
 

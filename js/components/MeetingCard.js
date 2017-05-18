@@ -27,7 +27,7 @@ export default MeetingCard = ({meeting, onPress}) => {
                   </View>
                 </View>
             </TouchableWithoutFeedback>
-            {!meeting.isPast() && <Arrow />}
+          <Arrow />
           </View>
         </Card>
       );

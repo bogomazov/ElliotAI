@@ -91,17 +91,17 @@ export default class MeetingDetailsScene extends Component {
                 style={[styles.icon, s.margin10]}
                 source={require('../res/images/fb-icon-66px.png')}/>
             </View>
-						{[0, 0, 0, 0].map((item) => <View style={[s.row, s.borderTopGrey, styles.bottom]}>
+						{[0, 0, 0, 0, 0, 0, 0].map((item) => <View style={[s.row, s.borderTopGrey, styles.bottom]}>
 
             </View>)}
 
           </View>
-					<TouchableWithoutFeedback onPress={this._onReschedulePress}>
+					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
 	          <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
 	            <Text style={[s.flex, styles.bottomText, s.margin10]}>Reschedule</Text>
 							<IconEvil.Button name="close-o" style={[ styles.bottomIcon]} size={35} backgroundColor="#fff" color="#535353" />
 	          </View>
-					</TouchableWithoutFeedback>
+					</TouchableWithoutFeedback>}
 
         </Card>
       );

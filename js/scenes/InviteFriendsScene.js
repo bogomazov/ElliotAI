@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, Button, StyleSheet, Text, TouchableWithoutFeedback, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, Alert, Button, StyleSheet, Text, TouchableWithoutFeedback, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -15,9 +15,10 @@ import {themeColor} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
 // import SendSMS from 'react-native-send-sms'
-import {email, text} from 'react-native-communications'
+import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
+import PhoneAccess from '../utils/PhoneNumberModule';
 
 // ...
 
@@ -163,7 +164,18 @@ export default class InviteFriendsScene extends Component {
 			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
 		} else {
 			console.log('text')
-			text(contact.contact, format(strings.inviteDirected, contact.firstName))
+			PhoneAccess.sendSMS(contact.contact, format(strings.inviteDirected, contact.firstName)).then(() => {
+				Alert.alert(
+				  'Andrey was successfuly invited.',
+				  'Tell about Elliot to other friends as well!',
+				  [
+				    {text: 'OK', onPress: () => console.log('OK Pressed')},
+				  ],
+				  { cancelable: true }
+				)
+				// alert(contact.firstName + ' was invited!')
+			})
+			// textWithoutEncoding(contact.contact, format(strings.inviteDirected, contact.firstName))
 
 		}
 	}

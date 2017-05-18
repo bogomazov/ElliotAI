@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
       flex: 1,
       marginRight: 20,
       margin: 10,
-      fontSize: 18,
+      marginRight: 20,
+      fontSize: 15,
       fontFamily: 'OpenSans-Bold',
       color: 'black'
     },
