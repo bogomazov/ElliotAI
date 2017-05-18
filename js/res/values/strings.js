@@ -25,7 +25,9 @@ export default strings = new LocalizedStrings({
    inviteDirected: "Hey {0}, let's catch up soon! I am using this new app called Elliot to stay in touch with friends. http://elliot.ai",
    inviteMessenger: "Let's catch up soon! I am using this new app called Elliot to stay in touch with friends, check it out.",
    inviteFacebook: "Try out Elliot, a new app to meet with friends!",
-   inviteTwitter: "Try out Elliot, a new app to meet with friends!"
+   inviteTwitter: "Try out Elliot, a new app to meet with friends!",
+   phoneIntro: "Elliot will communicate with you about timing of meeting your friends, so it will need your phone number",
+   phoneDisclaimer: "We will text you a confirmation message to continue.  None of your information will be shared by Elliot."
  }
 });
 

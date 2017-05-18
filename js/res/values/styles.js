@@ -21,6 +21,9 @@ export default s = StyleSheet.create({
   bold: {
     fontFamily: 'OpenSans-Bold'
   },
+  light: {
+    fontFamily: 'OpenSans-Light'
+  },
   stretch: {
     alignSelf: 'stretch',
   },

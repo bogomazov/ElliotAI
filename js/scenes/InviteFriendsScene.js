@@ -172,7 +172,7 @@ export default class InviteFriendsScene extends Component {
 		return (<TouchableWithoutFeedback onPress={() => this._onContactPress(item)}>
 			<View style={[s.row, s.stretch, s.alignItemsCenter]}>
 				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
-				<Text style={s.flex}>{item.firstName} {item.middleName} {item.lastName}</Text>
+				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>

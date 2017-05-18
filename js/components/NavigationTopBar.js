@@ -12,7 +12,7 @@ export default NavigationTopBar = ({navigation, title}) => {
       return (
         <TopBar isNavBar><View style={[s.row, styles.row]}>
           <TouchableWithoutFeedback onPress={this._onBackPress}>
-            <Image
+              <Image
               style={styles.topBarIcon}
               source={require('../res/images/back.png')}/>
           </TouchableWithoutFeedback>
@@ -24,8 +24,8 @@ export default NavigationTopBar = ({navigation, title}) => {
 
 const styles = StyleSheet.create({
   topBarIcon: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     left: 5,
     top: 5,
     position: 'absolute',

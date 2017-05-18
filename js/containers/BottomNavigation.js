@@ -5,29 +5,22 @@ export const ICON_UNACTIVE = 0
 export const ICON_ACTIVE = 1
 
 export default class BottomNav extends Component {
-  state = {
-    activeTab: 0
-  }
-
-  _switchTab = (sceneId) => {
-    this.setState({activeTab: sceneId})
-  }
 
   render = () =>
       <View style={styles.container}>
         <View style={styles.sceneWrapper}>
-          {React.cloneElement(this.props.children[this.state.activeTab], { switchTab: this._switchTab, navigation: this.props.navigation})}
+          {React.cloneElement(this.props.children[this.props.activeTab], { switchTab: this.props.onTabSelect, navigation: this.props.navigation})}
         </View>
         <View style={styles.bottomNav}>
         {React.Children.map(this.props.children,
           (child, i) => {
             console.log(i)
             console.log(child.props.iconActive)
-           return <TouchableWithoutFeedback onPress={() => this._switchTab(i)}>
+           return <TouchableWithoutFeedback onPress={() => this.props.onTabSelect(i)}>
             <View style={styles.inner_container}>
               <Image
                 style={styles.icon}
-                source={i == this.state.activeTab? child.props.iconActive: child.props.icon}/>
+                source={i == this.props.activeTab? child.props.iconActive: child.props.icon}/>
             </View>
           </TouchableWithoutFeedback>})}
           </View>

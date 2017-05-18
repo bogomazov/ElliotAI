@@ -13,6 +13,7 @@ export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
 export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
 export const INTRO_SUGGESTIONS_SEEN = "INTRO_SUGGESTIONS_SEEN"
 export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
+export const NEW_PHONE_NUMBER = "NEW_PHONE_NUMBER"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -47,6 +48,11 @@ export const newSuggestions = (suggestions) => {
   return {
     type: NEW_SUGGESTIONS,
     suggestions
+  }
+}
+export const phoneVerified = () => {
+  return {
+    type: NEW_PHONE_NUMBER,
   }
 }
 
@@ -96,6 +102,9 @@ export const loadUserSuggestions = (userId) => {
 
 export const loadFriends = () =>
   (dispatch, getState, getAPI) => getAPI(getState, dispatch).getFriends()
+
+export const sendPhoneNumber = (phoneNumber, token) =>
+  (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendPhoneNumber(phoneNumber, token)
 
 
 export const loadScheduledMeetings = () => {

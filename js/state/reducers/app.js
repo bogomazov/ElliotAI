@@ -72,6 +72,11 @@ const app = (state = defaultState, action) => {
         ...state,
         isIntroSuggestionsSeen: true,
       }
+    case actionType.NEW_PHONE_NUMBER:
+      return {
+        ...state,
+        isPhoneNumberVerified: true,
+      }
     case actionType.INTRO_CALENDAR_SEEN:
       return {
         ...state,

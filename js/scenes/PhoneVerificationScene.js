@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, FlatList, Linking, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -26,41 +26,73 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
+const getRandomArbitrary = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class PhoneVerificationScene extends Component {
   state = {
-    phoneNumber: ''
+    phoneNumber: '',
+    isSent: false
   }
 	componentWillMount = () => {
 		console.log(this.props)
 		PhoneNumber.getPhoneNumber().then((phoneNumber) => this.setState({phoneNumber}))
 	}
 
+  _onVerifyPressed = () => {
+    const token = getRandomArbitrary(1000, 9999)
+    console.log(token)
+    this.props.setPhoneVerificationCode(token)
+    this.props.appActions.sendPhoneNumber(this.state.phoneNumber, token).then((response) => {
+      this.setState({isSent: true})
+    })
+    // setPhoneVerificationCode
+  }
+
   render() {
 		console.log(this.props)
 
     return (
       <View style={styles.container}>
-        <Text style={[s.textAlignCenter, s.bold, s.textColorWhite]}>Elliot need to know that you are a real person!</Text>
-
+        <Image
+          style={styles.image}
+          source={require('../res/images/Icon-40@2x.png')}/>
+        <Text style={[s.textAlignCenter, s.light, s.textColorTheme]}>{strings.phoneIntro}</Text>
         <TextInput
           style={styles.textInput}
-          underlineColorAndroid='#fff'
-          selectionColor='#fff'
+          underlineColorAndroid='#000'
+          selectionColor='#000'
           onChangeText={(phoneNumber) => this.setState({phoneNumber})}
           value={this.state.phoneNumber}></TextInput>
-        <CustomButton
-          onPress={this.requestLocationPermissions}
-          style={[styles.button]}
-          title='VERIFY!'
-          isWhite
-        />
-        <Text style={[s.textColorWhite]}>We will text you a confirmation message.</Text>
 
+        {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>We have sent you sms, once you receive it - go through the link to start using Elliot!</Text>}
+        {!this.state.isSent && <Button
+            onPress={this._onVerifyPressed}
+            title="VERIFY"
+            color={themeColor}
+          />}
+
+
+        <Text style={[s.light, s.textColorTheme, s.textAlignCenter]}>{strings.phoneDisclaimer}</Text>
       </View>
     );
   }
 }
+
+{/* <Button
+    onPress={() => Linking.openURL('elliot://actions/phone-verification/34')}
+    title="Open elliot://actions/phone-verification"
+  />
+  <Button
+    onPress={() => Linking.openURL('example://test/23')}
+    title="Open example://test/23"
+  />
+  <Button
+    onPress={() => Linking.openURL('example://test/100/details')}
+    title="Open example://test/100/details"
+  /> */}
 
 const styles = StyleSheet.create({
   container: {
@@ -68,8 +100,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: themeColor,
+    backgroundColor: 'white',
     padding: 25
+  },
+
+  image: {
+    height: 100,
+    width: 100
   },
 
   textInput: {
@@ -77,9 +114,10 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     textAlign: 'center',
-    color: 'white',
-    borderColor: 'white',
-    borderWidth: 1
+    color: 'black',
+    // borderColor: 'white',
+    // borderWidth: 1,
+    // borderRadius: 50
   },
 
   button: {

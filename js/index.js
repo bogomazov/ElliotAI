@@ -28,6 +28,9 @@ import FriendsScene from './scenes/FriendsScene'
 
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
+import DeepLinking from 'react-native-deep-linking';
+
+DeepLinking.addScheme('elliot://');
 
 export const Store = createStore(
   rootReducer,

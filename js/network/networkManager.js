@@ -37,9 +37,11 @@ class API {
     this.post('/cancel', {
       "suggestion_id" : suggestionId
     })
-
-
-
+  sendPhoneNumber = (phoneNumber, token) =>
+    this.post('/sms_number', {
+      "sms_number" : phoneNumber,
+      "sms_token" : token,
+    })
 // Requires a channel type which can be one of these: “sms”, “email”, “fb-messenger”, “fb-share”, “twitter”.
 // “person”
 
@@ -68,6 +70,7 @@ class API {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'User-Agent': 'Android',
         'auth-token': this.accessToken
       },
       body: JSON.stringify(data)

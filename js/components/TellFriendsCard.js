@@ -24,12 +24,14 @@ export default TellFriendsCard = ({onPress}) => {
                 style={styles.icon}
                 source={require('../res/images/call-66px.png')}/>
             </View>
-            <View style={styles.button}>
-              <CustomButton
-                onPress={onPress}
-                title={strings.tellFriends}
-              />
-            </View>
+            <CustomButton
+              style={styles.button}
+              onPress={onPress}
+              title={strings.tellFriends}
+            />
+            {/* <View style={styles.button}>
+
+            </View> */}
 
           </View>
         </Card>
@@ -55,6 +57,6 @@ const styles = StyleSheet.create({
       // margin: 10
     },
     button: {
-      marginBottom: 20
+      marginBottom: 40
     }
 });
