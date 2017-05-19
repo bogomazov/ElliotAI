@@ -25,6 +25,7 @@ import MainScene from './scenes/MainScene'
 import ScheduleScene from './scenes/ScheduleScene'
 import UserSuggestionsScene from './scenes/UserSuggestionsScene'
 import FriendsScene from './scenes/FriendsScene'
+import codePush from "react-native-code-push";
 
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
@@ -63,6 +64,6 @@ class App extends Component {
 
 
 
-AppRegistry.registerComponent('Elliot', () => App);
+AppRegistry.registerComponent('Elliot', () => codePush(App));
 
 export default App;

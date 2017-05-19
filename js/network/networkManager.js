@@ -1,12 +1,13 @@
 import {Store} from '../index'
-import { logOut } from '../state/reducers/app'
+import * as appActions from '../state/actions/app';
+import { bindActionCreators } from 'redux'
 
 const rootURL = 'https://staging.elliot.ai/control'
 
 class API {
   constructor(accessToken, dispatch) {
     this.accessToken = accessToken;
-    this.dispatch = dispatch;
+    this.appActions = bindActionCreators(appActions, dispatch);
   }
 
   loadUser = (accessToken) => this.post('/load_user', {'fb_auth_token': accessToken})
@@ -77,7 +78,7 @@ class API {
     }).then((response) => {
       console.log(response)
         if (response.status == 401) {
-          dispatch(logOut())
+          this.appActions.logOut()
         }
         return response.json()
       }).catch((error) => {
@@ -97,7 +98,7 @@ class API {
     }).then((response) => {
       console.log(response)
         if (response.status == 401) {
-          dispatch(logOut())
+          this.appActions.logOut()
         }
         return response.json()
       })

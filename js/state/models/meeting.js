@@ -8,6 +8,7 @@ TYPE_CALL = "Call"
 TYPE_LUNCH = "Lunch"
 TYPE_COFFEE = "Coffee"
 TYPE_DINNER = "Dinner"
+TYPE_TEA = "Tea"
 
 export const getMeetingTypeIcon = (meeting_type) => {
   switch(meeting_type) {
@@ -17,8 +18,8 @@ export const getMeetingTypeIcon = (meeting_type) => {
       return require('../../res/images/lunch-66px.png')
     case TYPE_COFFEE:
       return require('../../res/images/coffee-66px.png')
-    case TYPE_DINNER:
-      return require('../../res/images/dinner-66px.png')
+    case TYPE_TEA:
+      return require('../../res/images/coffee-66px.png')
   }
 }
 

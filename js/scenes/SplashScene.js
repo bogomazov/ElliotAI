@@ -71,8 +71,8 @@ export default class SplashScene extends Component {
           console.log(position)
           this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
         },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 10000, maximumAge: 25000}
+        (error) => alert(JSON.stringify(error))
+        // {enableHighAccuracy: false, timeout: 10000, maximumAge: 25000}
       );
 	}
 

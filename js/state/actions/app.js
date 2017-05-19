@@ -1,5 +1,6 @@
 // import {API} from '../../network'
 import {persistor} from '../../index'
+import { LoginManager } from 'react-native-fbsdk'
 import {prepareDateForRequest} from '../../utils/DateTime'
 import Suggestion from '../models/suggestion'
 
@@ -40,6 +41,7 @@ export const switchPermissionsOff = () => {
   }
 }
 export const logOut = () => {
+  LoginManager.logOut()
   return {
     type: LOG_OUT,
   }

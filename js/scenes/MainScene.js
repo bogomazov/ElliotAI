@@ -51,11 +51,11 @@ export default class MainScene extends Component {
 	}
 
 	logUserOut = () => {
-		LoginManager.logOut()
 		this.props.appActions.logOut()
 	}
 
 	componentDidMount() {
+		// console.log('Andreyyy')
 		console.log('componentDidMount')
     DeepLinking.addScheme('https://');
     DeepLinking.addScheme('http://');
