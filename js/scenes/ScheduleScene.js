@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 20,
+		fontSize: 16
 	},
 
   timeWrapper: {
@@ -268,8 +269,6 @@ const styles = StyleSheet.create({
     padding: 7,
 		paddingLeft: 10,
 		paddingRight: 10,
-		fontSize: 16
-//     backgroundColor: 'red'
   },
   column: {
     flexDirection: 'column',

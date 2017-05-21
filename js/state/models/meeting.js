@@ -20,6 +20,8 @@ export const getMeetingTypeIcon = (meeting_type) => {
       return require('../../res/images/coffee-66px.png')
     case TYPE_TEA:
       return require('../../res/images/coffee-66px.png')
+    case TYPE_DINNER:
+      return require('../../res/images/dinner-66px.png')
   }
 }
 
