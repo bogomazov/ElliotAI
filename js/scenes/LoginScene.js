@@ -24,12 +24,16 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class LoginScene extends Component {
 
+	state = {
+		toShowLoginButton: true
+	}
   onLoginFinished = (error, result) => {
     if (error) {
       alert("Login failed with error: " + result.error);
     } else if (result.isCancelled) {
       // alert("Login was cancelled");
     } else {
+			this.setState({toShowLoginButton: false})
       console.log(result)
       // alert("Login was successful with permissions: " + result.grantedPermissions)
       AccessToken.getCurrentAccessToken().then(
@@ -55,11 +59,12 @@ export default class LoginScene extends Component {
         </View>
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
-          <LoginButton
+          {this.state.toShowLoginButton && <LoginButton
             style={styles.loginButton}
             readPermissions={["email","public_profile","user_friends"]}
             onLoginFinished={this.onLoginFinished}
-            onLogoutFinished={() => alert("User logged out")}/>
+            onLogoutFinished={() => alert("User logged out")}/>}
+					{!this.state.toShowLoginButton && <Text>Loading...</Text>}
             {/* <Button
               onPress={this._skipLogin}
               title="Skip Login"

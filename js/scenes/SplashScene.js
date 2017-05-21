@@ -14,8 +14,7 @@ import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
-
-
+import {IS_DEV} from '../index'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -40,7 +39,11 @@ export default class SplashScene extends Component {
       LocationAccess.checkLocationAccess().then((response) => {
         console.log(response)
         if (response == 'success') {
-          this._requestCurrentLocation()
+					LocationAccess.requestLocation().then((location) => {
+						console.log(location)
+						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp)
+					})
+          // this._requestCurrentLocation()
         }
       }).catch((error) => {
         console.log(error)
@@ -64,19 +67,22 @@ export default class SplashScene extends Component {
           });
   }
 
-  _requestCurrentLocation = () => {
-		console.log('request Location')
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log(position)
-          this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
-        },
-        (error) => alert(JSON.stringify(error))
-        // {enableHighAccuracy: false, timeout: 10000, maximumAge: 25000}
-      );
-	}
+  // _requestCurrentLocation = () => {
+	// 	console.log('request Location')
+  //     navigator.geolocation.getCurrentPosition(
+  //       (position) => {
+  //         console.log(position)
+  //         this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
+  //       },
+  //       (error) => alert(JSON.stringify(error))
+  //       // {enableHighAccuracy: false, timeout: 10000, maximumAge: 25000}
+  //     );
+	// }
 
   render() {
+			if (IS_DEV) {
+				alert('Staging server!')
+			}
       if (this.props.app.isRehydrated && this.props.app.isLoggedIn) {
         this._updateData()
       }

@@ -1,8 +1,13 @@
 import {Store} from '../index'
 import * as appActions from '../state/actions/app';
 import { bindActionCreators } from 'redux'
+import { IS_DEV } from '../index'
 
-const rootURL = 'https://staging.elliot.ai/control'
+const subdomain = 'staging'
+if (!IS_DEV) {
+  subdomain = 'prod'
+}
+const rootURL = `https://${subdomain}.elliot.ai/control`
 
 class API {
   constructor(accessToken, dispatch) {

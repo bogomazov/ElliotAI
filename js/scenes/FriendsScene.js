@@ -11,7 +11,7 @@ import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
 import InviteTabs from '../containers/InviteTabs'
 import strings from '../res/values/strings'
-import {themeColor} from '../res/values/styles'
+import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
 // import SendSMS from 'react-native-send-sms'
@@ -20,16 +20,6 @@ import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import NavigationTopBar from '../components/NavigationTopBar';
 import User from '../state/models/user';
 import Arrow from '../components/Arrow';
-
-// ...
-
-// Build up a shareable link.
-
-
-// ...
-
-// Share the link using the share dialog.
-
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -61,7 +51,7 @@ export default class FriendsScene extends Component {
 	_renderItem = ({item, index}) => {
 		console.log(item)
 		const friend = item
-		return (<TouchableWithoutFeedback onPress={() => this._onFriendPress(friend)}>
+		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onFriendPress(friend)}>
 			<View style={[...[s.row, s.stretch, s.alignItemsCenter, s.padding10], index? s.borderTopGrey: null]}>
 				<Image
 					style={s.avatar30}
@@ -69,7 +59,7 @@ export default class FriendsScene extends Component {
 				<Text style={[s.marginLeft10]}>{friend.first_name} {friend.last_name}</Text>
 				<Arrow styleIcon={{height: 30, width: 30}} />
 			</View>
-		</TouchableWithoutFeedback>)
+		</TouchableHighlight>)
 	}
 
   render() {

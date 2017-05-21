@@ -11,7 +11,7 @@ import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
 import InviteTabs from '../containers/InviteTabs'
 import strings, {format} from '../res/values/strings'
-import {themeColor} from '../res/values/styles'
+import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
 // import SendSMS from 'react-native-send-sms'
@@ -166,8 +166,8 @@ export default class InviteFriendsScene extends Component {
 			console.log('text')
 			PhoneAccess.sendSMS(contact.contact, format(strings.inviteDirected, contact.firstName)).then(() => {
 				Alert.alert(
-				  'Andrey was successfuly invited.',
-				  'Tell about Elliot to other friends as well!',
+				  `${contact.firstName} was successfuly invited.`,
+				  'Tell more friends about Elliot to stay in touch!',
 				  [
 				    {text: 'OK', onPress: () => console.log('OK Pressed')},
 				  ],
@@ -180,16 +180,16 @@ export default class InviteFriendsScene extends Component {
 		}
 	}
 
-	_renderItem = ({item}) => {
-		return (<TouchableWithoutFeedback onPress={() => this._onContactPress(item)}>
-			<View style={[s.row, s.stretch, s.alignItemsCenter]}>
+	_renderItem = ({item, index}) => {
+		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
+			<View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
 				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
 				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
 			</View>
-		</TouchableWithoutFeedback>)
+		</TouchableHighlight>)
 	}
 
   render() {

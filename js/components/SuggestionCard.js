@@ -5,7 +5,7 @@ import Card from './Card'
 import CustomButton from './CustomButton'
 import Arrow from './Arrow'
 import strings from '../res/values/strings'
-import { themeColor, mainBackgroundColor } from '../res/values/styles'
+import { themeColor, mainBackgroundColor, themeColorLight } from '../res/values/styles'
 
 
 const borderWidth = 1
@@ -28,28 +28,28 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onSho
                   <Image
                     style={styles.type}
                     source={suggestion.getIcon()}/>
-                  <Text>{suggestion.getDateStr()}</Text>
+                  <Text style={styles.date}>{suggestion.getDateStr()}</Text>
                 </View>
               </View>
             </TouchableWithoutFeedback>
             <Arrow />
           </View>
           {withOptions && <View style={[styles.row, styles.buttonOptionsWrapper]}>
-              <TouchableWithoutFeedback onPress={() => onMoreOptionsPress(suggestion)}>
-                <View style={styles.buttonWrapper}>
+              <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight} onPress={() => onMoreOptionsPress(suggestion)}>
+                <View>
                   <Text style={styles.optionButton}>
                     More Options
                   </Text>
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableHighlight>
             <View style={styles.verticalBorder} ></View>
-              <TouchableWithoutFeedback onPress={() => onShowLessPress(suggestion)}>
-                <View style={styles.buttonWrapper}>
+              <TouchableHighlight underlayColor={themeColorLight} style={styles.buttonWrapper} underlayColor={themeColorLight} onPress={() => onShowLessPress(suggestion)}>
+                <View>
                   <Text style={styles.optionButton}>
                     Show Less of {suggestion.friend.first_name}
                   </Text>
                 </View>
-              </TouchableWithoutFeedback>
+              </TouchableHighlight>
           </View>}
         </Card>
       );
@@ -65,10 +65,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       alignSelf: 'stretch',
     },
+
+    date: {
+      color: 'black',
+      fontSize: 15
+    },
     title: {
       flex: 1,
-      marginRight: 20,
       margin: 10,
+      marginLeft: 15,
       marginRight: 20,
       fontSize: 15,
       fontFamily: 'OpenSans-Bold',

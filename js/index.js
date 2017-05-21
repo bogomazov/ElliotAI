@@ -31,6 +31,9 @@ import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
 
+export const IS_DEV = false
+// export const IS_DEV = true
+
 DeepLinking.addScheme('elliot://');
 
 export const Store = createStore(

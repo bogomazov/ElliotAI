@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomNav: {
-    height: 50,
+    height: 40,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
   icon: {
-    height: 30,
-    width: 30
+    height: 28,
+    width: 28
   }
 });

@@ -114,14 +114,19 @@ export default class CalendarScene extends Component {
     this.props.appActions.loadScheduledMeetings().then((data) => {
       // data = TEST_MEETIGNS
       console.log(data)
-      data = data.data.map((meeting) => new Meeting(meeting))
-      data = data.filter((meeting) => meeting.canceled == 0)
+      meetings = data.data.map((meeting) => new Meeting(meeting))
+      data = meetings.filter((meeting) => meeting.canceled == 0)
       pastMeetings = data.filter((meeting) => meeting.isPast())
       pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
       upcomingMeetings = data.filter((meeting) => !meeting.isPast())
       upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
       this.setState({upcomingMeetings, pastMeetings})
+      this._addEventsToCalendar(meetings)
     })
+  }
+
+  _addEventsToCalendar = (meetings) => {
+    
   }
 
   render() {

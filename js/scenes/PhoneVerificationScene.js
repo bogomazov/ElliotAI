@@ -67,7 +67,7 @@ export default class PhoneVerificationScene extends Component {
           onChangeText={(phoneNumber) => this.setState({phoneNumber})}
           value={this.state.phoneNumber}></TextInput>
 
-        {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>We have sent you sms, once you receive it - go through the link to start using Elliot!</Text>}
+        {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>You will receive an SMS message that will have a link to continue so you can start using Elliot!</Text>}
         {!this.state.isSent && <Button
             onPress={this._onVerifyPressed}
             title="VERIFY"

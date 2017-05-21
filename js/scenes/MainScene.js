@@ -20,6 +20,7 @@ import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
+import {IS_DEV} from '../index'
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
@@ -121,6 +122,7 @@ export default class MainScene extends Component {
   render() {
 		console.log(this.props)
 		// this.props.appActions.newAccessToken('new one')
+
 			if (!this.props.app.isRehydrated ||
         (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && !this.props.app.isLocationGiven)) {
 				return <SplashScene />
@@ -130,13 +132,15 @@ export default class MainScene extends Component {
 				return <LoginScene/>
 			}
 
-			if (!this.props.app.isPhoneNumberVerified) {
-				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-			}
-
 			if (!this.props.app.isPermissionsGranted) {
 				return <PermissionsScene/>
 			}
+
+			// if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+			// 	return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
+			// }
+
+
 
 
 

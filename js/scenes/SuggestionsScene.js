@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const SHOW_CATCH_UP_CARD = 5 // if certain number of suggestions loaded
+const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {

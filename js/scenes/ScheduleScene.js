@@ -124,21 +124,21 @@ export default class ScheduleScene extends Component {
         <View style={styles.topWrapper}>
           <View style={styles.row}>
             <Text style={[styles.title, styles.textSize]}>
-              {suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name.charAt(0)}.{"\n"}When works for you?
+              {suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}{"\n"}When works for you?
             </Text>
             <Image
                 style={styles.avatar}
                 source={{ uri: suggestion.friend.image}}/>
           </View>
           <View style={styles.row}>
-            <Text style={[styles.time, styles.textSize]}>
+            <Text style={[styles.time, s.textColorBlack]}>
               {suggestion.getDateStr()}
             </Text>
           </View>
         </View>
         <View style={[styles.row, s.borderTop, s.flex, s.border]}>
           <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
-            <Text style={[styles.calendarTitle, styles.textSize]}>calendar</Text>
+            <Text style={[styles.calendarTitle, styles.textSize]}>my calendar</Text>
             <ScrollView>
             {
             this.state.calendarEvents.map((event, i) => {
@@ -161,21 +161,21 @@ export default class ScheduleScene extends Component {
             </ScrollView>
           </View>
           <View style={styles.scheduleWrapper}>
-            <Text style={[styles.timesTitle, styles.textSize]}>start times</Text>
+            <Text style={[styles.timesTitle, styles.textSize, s.bold, s.textColorBlack]}>start times</Text>
             <ScrollView>
             {
             this._getStartTimes().map((time, i) => {
-              let style = [styles.timeWrapper]
+              let style = [styles.timeWrapper, styles.timeBorder]
               const isSelected = this.state.selected.includes(i)
               if (isSelected) {
                 style.push(styles.selectedTime)
               }
               return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
-                <View style={styles.row}>
-                  <Text style={[style, styles.textSize]}>
+                <View style={[styles.row, styles.timeRow]}>
+                  <Text style={[style]}>
                     {time.format("h:mm A")}
                   </Text>
-                  <Icon name="md-checkmark" size={20} color={isSelected? "#3F9696": "#fff"} />
+                  <Icon style={styles.checkmark} name="md-checkmark" size={20} color={isSelected? "#3F9696": "#fff"} />
                 </View>
               </TouchableWithoutFeedback>
             })
@@ -213,23 +213,27 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
       alignSelf: 'stretch',
     },
+	timeRow: {
+		width: 130,
+		justifyContent: 'center',
+	},
   title: {
       flex: 1,
-      marginRight: 20,
       margin: 10,
+			marginTop: 0,
       fontFamily: 'OpenSans-Bold',
       color: 'black'
     },
   time: {
     marginLeft: 10,
-    fontSize: 16,
-    marginBottom: 20
+    fontSize: 15,
+    marginBottom: 13
   },
   avatar: {
       width: 45,
       height: 45,
       borderRadius: 100,
-      marginRight: 20,
+      marginRight: 10,
     },
   scheduleWrapper: {
     flex: 1,
@@ -240,36 +244,31 @@ const styles = StyleSheet.create({
     paddingTop: 5
   },
   textSize: {
-    fontSize: 20
+    fontSize: 17
   },
   calendarTitle: {
     color: themeColor,
     fontFamily: 'OpenSans-Bold',
   },
-  timesTitle: {
-    fontFamily: 'OpenSans-Bold',
-    color: 'black'
-  },
   calendarStyle: {
     backgroundColor: '#F8F8F8'
   },
-  confirmButtonWrapper: {
-    height: 50,
-    flex: 1,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#8CCACA'
-  },
-  confirmButton: {
-    color: 'white',
-    fontSize: 18,
-  },
+
+	timeBorder: {
+		borderColor: 'white',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 20,
+	},
+
   timeWrapper: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     margin: 10,
-    padding: 10,
+    padding: 7,
+		paddingLeft: 10,
+		paddingRight: 10,
+		fontSize: 16
 //     backgroundColor: 'red'
   },
   column: {
@@ -280,9 +279,22 @@ const styles = StyleSheet.create({
   selectedTime: {
     backgroundColor: '#BADFDF',
     borderColor: '#3F9696',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: 20
+  },
+	confirmButtonWrapper: {
+    height: 40,
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8CCACA'
+  },
+	checkmark: {
+		position: 'absolute',
+		right: 0
+	},
+  confirmButton: {
+    color: 'white',
+    fontSize: 16,
   },
   buttonActive: {
      backgroundColor: '#3F9696'
