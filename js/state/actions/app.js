@@ -10,6 +10,8 @@ export const PERMISSIONS_SWITCH_ON = "PERMISSIONS_SWITCH_ON"
 export const PERMISSIONS_SWITCH_OFF = "PERMISSIONS_SWITCH_OFF"
 export const NEW_LOCATION = "NEW_LOCATION"
 export const LOG_OUT = "LOG_OUT"
+export const ADD_EVENT_CALENDAR = "ADD_EVENT_CALENDAR"
+export const REMOVE_EVENT_CALENDAR = "REMOVE_EVENT_CALENDAR"
 export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
 export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
 export const INTRO_SUGGESTIONS_SEEN = "INTRO_SUGGESTIONS_SEEN"
@@ -38,6 +40,19 @@ export const switchPermissionsOn = () => {
 export const switchPermissionsOff = () => {
   return {
     type: PERMISSIONS_SWITCH_OFF,
+  }
+}
+export const addEventCalendar = (meetingIdEventIdMap) => {
+  return {
+    type: ADD_EVENT_CALENDAR,
+    meetingIdEventIdMap
+  }
+}
+
+export const removeEventCalendar = (meetingId) => {
+  return {
+    type: REMOVE_EVENT_CALENDAR,
+    meetingId
   }
 }
 export const logOut = () => {

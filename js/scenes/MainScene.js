@@ -20,7 +20,7 @@ import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
-import {IS_DEV} from '../index'
+import {IS_DEV} from '../settings'
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
@@ -49,10 +49,6 @@ export default class MainScene extends Component {
 	state = {
 		activeTab: 0,
 		phoneVerificationCode: null
-	}
-
-	logUserOut = () => {
-		this.props.appActions.logOut()
 	}
 
 	componentDidMount() {
@@ -145,11 +141,11 @@ export default class MainScene extends Component {
 
 
 			return (<View style={styles.container}>
-				{/* <Button
-          onPress={this.logUserOut}
+				<Button
+          onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"
-        /> */}
+        />
         <BottomNav
 					navigation={this.props.navigation}
 					activeTab={this.state.activeTab}

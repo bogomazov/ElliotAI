@@ -40,6 +40,8 @@ class Meeting extends MeetingRecord {
            meeting_time: moment(args.meeting_time)})
           }
 
+    getTitle = () => `${this.meeting_type} with ${this.friend.first_name} ${this.friend.last_name}`
+
     getDateStr = () => this.meeting_time.format('dddd, MMM Do')
 
     isPast = () => moment() > this.meeting_time

@@ -17,6 +17,7 @@ import MeetingCard from '../components/MeetingCard'
 import Meeting from '../state/models/meeting'
 import MeetingDetailsScene from './MeetingDetailsScene'
 import moment from 'moment'
+import {saveEvent, removeEvent} from '../utils/Calendar';
 
 const mapStateToProps = (state) => {
     return {app: state.app}
@@ -32,56 +33,7 @@ const UPCOMING = 0
 const PAST = 1
 const TABS = ["Upcoming", "Past"]
 
-const TEST_MEETIGNS = { data: [
-  {
-    canceled: 0,
-    friend: {
-      fb_id: "211646206019277",
-      first_name: "Danil5",
-      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
-      last_name: "andrey"
-    },
-    meeting_time: "2017-05-19 17:00:00",
-    meeting_type: "Call",
-    suggestion_id: 15295
-  },
-  {
-    canceled: 0,
-    friend: {
-      fb_id: "211646206019277",
-      first_name: "Danil4",
-      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
-      last_name: "andrey"
-    },
-    meeting_time: "2017-04-19 17:00:00",
-    meeting_type: "Call",
-    suggestion_id: 15297
-  },
-  {
-    canceled: 0,
-    friend: {
-      fb_id: "211646206019277",
-      first_name: "Danil3",
-      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
-      last_name: "andrey"
-    },
-    meeting_time: "2017-03-19 17:00:00",
-    meeting_type: "Call",
-    suggestion_id: 15297
-  },
-  {
-    canceled: 0,
-    friend: {
-      fb_id: "211646206019277",
-      first_name: "Danil6",
-      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
-      last_name: "andrey"
-    },
-    meeting_time: "2017-06-19 17:00:00",
-    meeting_type: "Call",
-    suggestion_id: 15290
-  }
-]}
+
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarScene extends Component {
@@ -108,6 +60,22 @@ export default class CalendarScene extends Component {
       this.setState({upcomingMeetings: this.state.upcomingMeetings.filter((meeting) => meeting.suggestion_id != cancelledMeeting.suggestion_id)})
       this._onMeetingClose()
     }
+  _updateDeviceCalendar = (meetings) => {
+    let calendarMap = this.props.app.calendarMap
+    meetings.forEach((meeting) => {
+      if (meeting.suggestion_id in calendarMap) {
+        if (meeting.canceled == 1) {
+          removeEvent(calendarMap[meeting.suggestion_id]).then((success) => this.props.appActions.removeEventCalendar(meeting.suggestion_id))
+        }
+      } else if (meeting.canceled == 0) {
+        saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
+          // const newEvent = {meeting.suggestion_id: id}
+          this.props.appActions.addEventCalendar({[meeting.suggestion_id]: id})
+        })
+      }
+    });
+    // meetings
+  }
 
   componentWillMount = () => {
     console.log('onComponentWillMount')
@@ -115,6 +83,7 @@ export default class CalendarScene extends Component {
       // data = TEST_MEETIGNS
       console.log(data)
       meetings = data.data.map((meeting) => new Meeting(meeting))
+      this._updateDeviceCalendar(meetings)
       data = meetings.filter((meeting) => meeting.canceled == 0)
       pastMeetings = data.filter((meeting) => meeting.isPast())
       pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
@@ -126,7 +95,7 @@ export default class CalendarScene extends Component {
   }
 
   _addEventsToCalendar = (meetings) => {
-    
+
   }
 
   render() {
@@ -193,3 +162,54 @@ const styles = StyleSheet.create({
   },
 
 });
+
+const TEST_MEETIGNS = { data: [
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil5",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-05-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15295
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil4",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-04-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15297
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil3",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-03-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15297
+  },
+  {
+    canceled: 0,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil6",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-06-19 17:00:00",
+    meeting_type: "Call",
+    suggestion_id: 15290
+  }
+]}

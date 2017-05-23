@@ -14,7 +14,7 @@ import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
-import {IS_DEV} from '../index'
+import {IS_DEV} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}

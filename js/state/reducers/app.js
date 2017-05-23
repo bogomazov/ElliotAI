@@ -10,6 +10,7 @@ const defaultState = {
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
   isRehydrated: false,
   suggestions: [],
+  calendarMap: {},
   isSuggestionsLoaded: false,
   isIntroSuggestionsSeen: false,
   isIntroCalendarSeen: false,
@@ -61,6 +62,16 @@ const app = (state = defaultState, action) => {
         ...state,
         isPermissionsGranted: false
       }
+    case actionType.ADD_EVENT_CALENDAR:
+      return {
+        ...state,
+        calendarMap: {...state.calendarMap, ...action.meetingIdEventIdMap}
+      }
+    case actionType.REMOVE_EVENT_CALENDAR:
+        delete state.calendarMap[action.meetingId]
+        return {
+          ...state
+        }
     case actionType.NEW_SUGGESTIONS:
       return {
         ...state,

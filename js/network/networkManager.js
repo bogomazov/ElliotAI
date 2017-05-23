@@ -1,13 +1,19 @@
 import {Store} from '../index'
 import * as appActions from '../state/actions/app';
 import { bindActionCreators } from 'redux'
-import { IS_DEV } from '../index'
+import DeviceInfo from 'react-native-device-info'
+import { IS_DEV } from '../settings'
 
 const subdomain = 'staging'
 if (!IS_DEV) {
   subdomain = 'prod'
 }
 const rootURL = `https://${subdomain}.elliot.ai/control`
+
+
+const USER_AGENT = DeviceInfo.getUserAgent()
+// console.log(userAgent)
+
 
 class API {
   constructor(accessToken, dispatch) {
@@ -66,6 +72,13 @@ class API {
     suggestionsWithUser = (userId) =>
         this.get('/suggestions?friend=' + userId)
 
+  headers = () => {
+    return {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'User-Agent': USER_AGENT,
+      'auth-token': this.accessToken
+  }}
 
   post = (path, data) => {
     console.log(path)
@@ -73,12 +86,7 @@ class API {
     console.log(JSON.stringify(data))
     return fetch(rootURL + path, {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'User-Agent': 'Android',
-        'auth-token': this.accessToken
-      },
+      headers: this.headers(),
       body: JSON.stringify(data)
     }).then((response) => {
       console.log(response)
@@ -95,11 +103,7 @@ class API {
     console.log(path)
     return fetch(rootURL + path, {
       method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'auth-token': this.accessToken
-      }
+      headers: this.headers()
     }).then((response) => {
       console.log(response)
         if (response.status == 401) {
