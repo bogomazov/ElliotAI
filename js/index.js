@@ -43,9 +43,8 @@ export const Store = createStore(
     applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
   ))
 
-
 // use .purge() to clean storage
-persistStore(Store, { storage: AsyncStorage }).purge()
+persistStore(Store, { storage: AsyncStorage })
 
 
 const Navigation = StackNavigator({

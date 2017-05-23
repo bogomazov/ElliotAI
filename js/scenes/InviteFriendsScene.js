@@ -9,11 +9,14 @@ import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
+import CustomButton from '../components/CustomButton'
+import CustomModal from '../components/CustomModal'
 import InviteTabs from '../containers/InviteTabs'
 import strings, {format} from '../res/values/strings'
 import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
+
 // import SendSMS from 'react-native-send-sms'
 import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
@@ -65,7 +68,9 @@ export default class InviteFriendsScene extends Component {
 	state = {
 		activeTab: 0,
 		emails: [],
-		numbers: []
+		numbers: [],
+		isAlertOpen: false,
+		alertUserName: ''
 	}
 
 	_reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
@@ -165,20 +170,22 @@ export default class InviteFriendsScene extends Component {
 		} else {
 			console.log('text')
 			PhoneAccess.sendSMS(contact.contact, format(strings.inviteDirected, contact.firstName)).then(() => {
-				Alert.alert(
-				  `${contact.firstName} was successfuly invited.`,
-				  'Tell more friends about Elliot to stay in touch!',
-				  [
-				    {text: 'OK', onPress: () => console.log('OK Pressed')},
-				  ],
-				  { cancelable: true }
-				)
-				// alert(contact.firstName + ' was invited!')
+				this.setState({alertUserName: contact.firstName, isAlertOpen: true})
 			})
+				// Alert.alert(
+			// 	  `${contact.firstName} was successfuly invited.`,
+			// 	  'Tell more friends about Elliot to stay in touch!',
+			// 	  [
+			// 	    {text: 'OK', onPress: () => console.log('OK Pressed')},
+			// 	  ],
+			// 	  { cancelable: true }
+			// 	)
+			// 	// alert(contact.firstName + ' was invited!')
+			// })
 			// textWithoutEncoding(contact.contact, format(strings.inviteDirected, contact.firstName))
-
 		}
 	}
+
 
 	_renderItem = ({item, index}) => {
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
@@ -213,6 +220,15 @@ export default class InviteFriendsScene extends Component {
 					filterByFields={['firstName', 'middleName', 'lastName']}
 					renderItem={this._renderItem}
         />
+				<CustomModal isOpen={this.state.isAlertOpen}>
+					<Text style={[s.bold]}>{this.state.alertUserName} was successfuly invited.</Text>
+					<Text style={[s.marginTop10]}>Tell more friends about Elliot to stay in touch!</Text>
+					<CustomButton
+            onPress={() => this.setState({isAlertOpen: false})}
+            title='Ok'
+            style={[s.marginTop10, styles.invitedModalButton]}
+          />
+			</CustomModal>
       </View>
     );
   }
@@ -240,6 +256,8 @@ const styles = StyleSheet.create({
 		color: 'white',
 		backgroundColor: '#B4BBBE',
 		padding: 5
+	},
+	invitedModalButton: {
+		width: 200
 	}
-
 });

@@ -141,11 +141,11 @@ export default class MainScene extends Component {
 
 
 			return (<View style={styles.container}>
-				<Button
+				{/* <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"
-        />
+        /> */}
         <BottomNav
 					navigation={this.props.navigation}
 					activeTab={this.state.activeTab}
