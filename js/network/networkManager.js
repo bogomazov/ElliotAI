@@ -2,14 +2,13 @@ import {Store} from '../index'
 import * as appActions from '../state/actions/app';
 import { bindActionCreators } from 'redux'
 import DeviceInfo from 'react-native-device-info'
-import { IS_DEV } from '../settings'
+import { IS_DEV, APP_VERSION } from '../settings'
 
 const subdomain = 'staging'
 if (!IS_DEV) {
   subdomain = 'prod'
 }
 const rootURL = `https://${subdomain}.elliot.ai/control`
-
 
 const USER_AGENT = DeviceInfo.getUserAgent()
 // console.log(userAgent)
@@ -76,13 +75,14 @@ class API {
     return {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'User-Agent': USER_AGENT,
+      'User-Agent': `Elliot / ${APP_VERSION} ` + USER_AGENT,
       'auth-token': this.accessToken
   }}
 
   post = (path, data) => {
     console.log(path)
     console.log(data)
+    console.log(this.headers())
     console.log(JSON.stringify(data))
     return fetch(rootURL + path, {
       method: 'POST',
