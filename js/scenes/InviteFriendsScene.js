@@ -169,20 +169,9 @@ export default class InviteFriendsScene extends Component {
 			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
 		} else {
 			console.log('text')
-			PhoneAccess.sendSMS(contact.contact, format(strings.inviteDirected, contact.firstName)).then(() => {
+			PhoneAccess.sendSMS(contact.contact, strings.inviteDirectedSMS).then(() => {
 				this.setState({alertUserName: contact.firstName, isAlertOpen: true})
 			})
-				// Alert.alert(
-			// 	  `${contact.firstName} was successfuly invited.`,
-			// 	  'Tell more friends about Elliot to stay in touch!',
-			// 	  [
-			// 	    {text: 'OK', onPress: () => console.log('OK Pressed')},
-			// 	  ],
-			// 	  { cancelable: true }
-			// 	)
-			// 	// alert(contact.firstName + ' was invited!')
-			// })
-			// textWithoutEncoding(contact.contact, format(strings.inviteDirected, contact.firstName))
 		}
 	}
 

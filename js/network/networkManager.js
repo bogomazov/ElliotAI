@@ -25,7 +25,7 @@ class API {
     this.post('/location', {
       'longitude': lon,
       'latitude': lat,
-      'time_zone': new Date().getTimezoneOffset(),
+      'time_zone': (new Date().getTimezoneOffset())*(-60),
   })
 
 

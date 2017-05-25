@@ -42,11 +42,6 @@ export default class ScheduleScene extends Component {
     }
 
 	componentWillMount = () => {
-//       if (!this.state.isUserSuggestionsLoaded) {
-//       this.props.appActions.loadUserSuggestions(this.props.suggestion.friend.fb_id).then((data) => {
-//           console.log(data)
-//           this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
-//         }).catch((err) => console.log(err))
     }
 
 

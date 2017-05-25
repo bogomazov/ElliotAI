@@ -23,6 +23,7 @@ export default strings = new LocalizedStrings({
    introSuggestions: "Elliot suggests people and times for you to meet here. Tap 'More Options' on a suggestion to find another time to meet.",
    introCalendar: "When you and your friends respond to suggestions, Elliot will confirm times to meet here.",
    inviteDirected: "Hey {0}, let's catch up soon! I am using this new app called Elliot to stay in touch with friends. http://elliot.ai",
+   inviteDirectedSMS: "Hey, let's catch up soon! I am using this new app called Elliot to stay in touch with friends. http://elliot.ai",
    inviteMessenger: "Let's catch up soon! I am using this new app called Elliot to stay in touch with friends, check it out.",
    inviteFacebook: "Try out Elliot, a new app to meet with friends!",
    inviteTwitter: "Try out Elliot, a new app to meet with friends!",
