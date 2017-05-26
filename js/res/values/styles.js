@@ -31,6 +31,9 @@ export default s = StyleSheet.create({
   alignItemsCenter: {
     alignItems: 'center'
   },
+  justifyContentCenter: {
+    justifyContent: 'center'
+  },
 
   // TEXT
   textColorTheme: {

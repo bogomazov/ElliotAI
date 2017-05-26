@@ -52,7 +52,8 @@ const Navigation = StackNavigator({
               ScheduleScene: {screen: ScheduleScene},
               UserSuggestionsScene: {screen: UserSuggestionsScene},
               FriendsScene: {screen: FriendsScene},
-            }, {headerMode: 'none'})
+            }, {headerMode: 'none',
+               transitionConfig: () => {duration: 500}})
 class App extends Component {
     render() {
         return (

@@ -118,9 +118,12 @@ export default class MainScene extends Component {
   render() {
 		console.log(this.props)
 		// this.props.appActions.newAccessToken('new one')
-
+			if (this.props.app.isLoggedIn && !this.props.app.isSuggestionsLoaded) {
+				this.props.appActions.loadSuggestions()
+			}
+			
 			if (!this.props.app.isRehydrated ||
-        (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && !this.props.app.isLocationGiven)) {
+        (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && (!this.props.app.isLocationGiven || !this.props.app.isSuggestionsLoaded))) {
 				return <SplashScene />
 			}
 

@@ -50,9 +50,7 @@ export default class SuggestionsScene extends Component {
 
 	componentWillMount = () => {
 		console.log(this.props)
-		if (!this.props.app.isSuggestionsLoaded) {
-			this.props.appActions.loadSuggestions()
-		}
+		
 	}
 
   _keyExtractor = (item, index) => item.id;

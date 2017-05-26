@@ -79,6 +79,9 @@ export default class CalendarScene extends Component {
 
   componentWillMount = () => {
     console.log('onComponentWillMount')
+    if (this.props.app.isCalendarLoaded) {
+      return
+    }
     this.props.appActions.loadScheduledMeetings().then((data) => {
       // data = TEST_MEETIGNS
       console.log(data)
@@ -89,17 +92,13 @@ export default class CalendarScene extends Component {
       pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
       upcomingMeetings = data.filter((meeting) => !meeting.isPast())
       upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
-      this.setState({upcomingMeetings, pastMeetings})
-      this._addEventsToCalendar(meetings)
+      // this.setState({upcomingMeetings, pastMeetings})
+      this.props.appActions.newCalendar(upcomingMeetings, pastMeetings)
     })
   }
 
-  _addEventsToCalendar = (meetings) => {
-
-  }
-
   render() {
-    let meetings = this.state.activeTab == UPCOMING? this.state.upcomingMeetings: this.state.pastMeetings
+    let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
 
     if (!this.state.selectedMeeting) {
         return (

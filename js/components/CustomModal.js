@@ -11,7 +11,7 @@ export default CustomModal = ({children, isOpen}) => <Modal
           animationTension={40}
           modalDidOpen={() => undefined}
           modalDidClose={() => undefined}
-          closeOnTouchOutside={true}
+          closeOnTouchOutside={false}
           containerStyle={{
              justifyContent: 'center'
           }}

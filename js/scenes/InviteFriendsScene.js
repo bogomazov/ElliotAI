@@ -33,7 +33,7 @@ import PhoneAccess from '../utils/PhoneNumberModule';
 // Share the link using the share dialog.
 
 const mapStateToProps = (state) => {
-	return {state}
+	return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -70,7 +70,7 @@ export default class InviteFriendsScene extends Component {
 		emails: [],
 		numbers: [],
 		isAlertOpen: false,
-		alertUserName: ''
+		alertContact: null
 	}
 
 	_reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
@@ -86,6 +86,10 @@ export default class InviteFriendsScene extends Component {
 	}, []);
 
 	componentWillMount = () => {
+		console.log(this.props)
+		if (this.props.app.isContactsLoaded) {
+			return
+		}
 		Contacts.getAll((err, contacts) => {
 			console.log(err)
 			if(err === 'denied'){
@@ -100,7 +104,7 @@ export default class InviteFriendsScene extends Component {
 				emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
 				numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
 				console.log(emails)
-				this.setState({emails, numbers})
+				this.props.appActions.newContacts(numbers, emails)
 			}
 		})
 	}
@@ -169,10 +173,14 @@ export default class InviteFriendsScene extends Component {
 			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
 		} else {
 			console.log('text')
-			PhoneAccess.sendSMS(contact.contact, strings.inviteDirectedSMS).then(() => {
-				this.setState({alertUserName: contact.firstName, isAlertOpen: true})
-			})
+			this.setState({alertContact: contact, isConfirmationOpen: true})
 		}
+	}
+
+	_sendSMS = () => {
+		PhoneAccess.sendSMS(this.state.alertContact.contact, strings.inviteDirectedSMS).then(() => {
+			this.setState({isAlertOpen: true})
+		})
 	}
 
 
@@ -189,7 +197,7 @@ export default class InviteFriendsScene extends Component {
 	}
 
   render() {
-		const data = this.state.activeTab? this.state.emails: this.state.numbers
+		const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
 		console.log(data)
     return (
       <View style={styles.container}>
@@ -209,15 +217,34 @@ export default class InviteFriendsScene extends Component {
 					filterByFields={['firstName', 'middleName', 'lastName']}
 					renderItem={this._renderItem}
         />
+				<CustomModal isOpen={this.state.isConfirmationOpen}>
+					<Text style={[s.bold]}>Are you sure?</Text>
+					<Text style={[s.marginTop10]}>You are about to send a SMS invitation to {this.state.isConfirmationOpen && this.state.alertContact.firstName}</Text>
+					<View style={[s.row, s.alignItemsCenter, s.justifyContentCenter, {height: 50}]}>
+						<CustomButton
+	            onPress={() => this.setState({isConfirmationOpen: false})}
+	            title='Cancel'
+	            style={[s.margin10, s.flex, {width: 100}]}
+	          />
+						<CustomButton
+	            onPress={() => {
+								this.setState({isConfirmationOpen: false})
+								this._sendSMS()
+							}}
+	            title='Invite'
+	            style={[s.margin10, s.flex, {width: 100}]}
+	          />
+					</View>
+			</CustomModal>
 				<CustomModal isOpen={this.state.isAlertOpen}>
-					<Text style={[s.bold]}>{this.state.alertUserName} was successfuly invited.</Text>
+					<Text style={[s.bold]}>{this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.</Text>
 					<Text style={[s.marginTop10]}>Tell more friends about Elliot to stay in touch!</Text>
 					<CustomButton
             onPress={() => this.setState({isAlertOpen: false})}
             title='Ok'
             style={[s.marginTop10, styles.invitedModalButton]}
           />
-			</CustomModal>
+				</CustomModal>
       </View>
     );
   }

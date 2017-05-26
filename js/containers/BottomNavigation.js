@@ -16,7 +16,7 @@ export default class BottomNav extends Component {
           (child, i) => {
             console.log(i)
             console.log(child.props.iconActive)
-           return <TouchableWithoutFeedback onPress={() => this.props.onTabSelect(i)}>
+           return <TouchableWithoutFeedback onPressIn={() => this.props.onTabSelect(i)}>
             <View style={styles.inner_container}>
               <Image
                 style={styles.icon}

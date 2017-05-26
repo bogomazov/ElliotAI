@@ -10,10 +10,16 @@ const defaultState = {
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
   isRehydrated: false,
   suggestions: [],
+  upcomingMeetings: [],
+  pastMeetings: [],
+  emails: [],
+  numbers: [],
   calendarMap: {},
   isSuggestionsLoaded: false,
   isIntroSuggestionsSeen: false,
   isIntroCalendarSeen: false,
+  isCalendarLoaded: false,
+  isContactsLoaded: false,
 }
 
 const app = (state = defaultState, action) => {
@@ -37,6 +43,7 @@ const app = (state = defaultState, action) => {
           isRehydrated: true,
           isLocationGiven: false,
           isSuggestionsLoaded: false,
+          isCalendarLoaded: false,
           suggestions: [],
         }
     case actionType.NEW_LOCATION:
@@ -78,6 +85,20 @@ const app = (state = defaultState, action) => {
         isSuggestionsLoaded: true,
         suggestions: action.suggestions
       }
+      case actionType.NEW_CALENDAR:
+        return {
+          ...state,
+          isCalendarLoaded: true,
+          upcomingMeetings: action.upcomingMeetings,
+          pastMeetings: action.pastMeetings,
+        }
+      case actionType.NEW_CONTACTS:
+        return {
+          ...state,
+          isContactsLoaded: true,
+          numbers: action.numbers,
+          emails: action.emails,
+        }
     case actionType.INTRO_SUGGESTIONS_SEEN:
       return {
         ...state,

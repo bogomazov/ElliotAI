@@ -13,6 +13,8 @@ export const LOG_OUT = "LOG_OUT"
 export const ADD_EVENT_CALENDAR = "ADD_EVENT_CALENDAR"
 export const REMOVE_EVENT_CALENDAR = "REMOVE_EVENT_CALENDAR"
 export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
+export const NEW_CALENDAR = "NEW_CALENDAR"
+export const NEW_CONTACTS = "NEW_CONTACTS"
 export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
 export const INTRO_SUGGESTIONS_SEEN = "INTRO_SUGGESTIONS_SEEN"
 export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
@@ -65,6 +67,20 @@ export const newSuggestions = (suggestions) => {
   return {
     type: NEW_SUGGESTIONS,
     suggestions
+  }
+}
+export const newCalendar = (upcomingMeetings, pastMeetings) => {
+  return {
+    type: NEW_CALENDAR,
+    upcomingMeetings,
+    pastMeetings
+  }
+}
+export const newContacts = (numbers, emails) => {
+  return {
+    type: NEW_CONTACTS,
+    numbers, 
+    emails,
   }
 }
 export const phoneVerified = () => {
