@@ -1,0 +1,36 @@
+use_frameworks!
+
+target 'Elliot' do
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  pod 'SwiftyUserDefaults'
+  pod 'Alamofire', '~> 4.0'
+  pod 'SwiftyJSON'
+  pod 'KeychainAccess'
+  pod 'Nuke', '~> 4.0'
+  pod 'BRYXBanner'
+  pod 'Presentr'
+  pod 'PhoneNumberKit', '~> 1.2'
+
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket',
+    'RCTImage',
+  ]
+  
+  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+end
+
+# Explicitly set the Swift version for Swift pods 
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+  end
+end
