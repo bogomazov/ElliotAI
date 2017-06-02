@@ -1,6 +1,6 @@
 'use strict';
 
-//import App from './js/index'
+import App from './js/index'
 
 import React from 'react';
 import codePush from "react-native-code-push";

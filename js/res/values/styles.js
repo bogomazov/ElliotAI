@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 export const themeColor = '#948763'
@@ -7,7 +7,7 @@ export const mainBackgroundColor = '#ECECF1'
 
 const customTextProps = {
   style: {
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: (Platform.OS === 'ios') ? 'OpenSans' : 'OpenSans-Regular'
   }
 }
 setCustomText(customTextProps);
