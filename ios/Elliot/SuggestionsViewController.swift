@@ -74,6 +74,17 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
                                                name: NotificationNames.newMeetingPushNotif, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData),
                                                name: NotificationNames.refreshSuggestions, object: nil)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        initReactView()
+    }
+    
+    func initReactView() {
+        let reactView = ReactFactory.shared.createView(name: "SuggestionsScene",
+                                                       props: ["native": ["accessToken": AuthorizationManager.shared.serverAuthToken!]])
+        guard let bottomBarHeight = tabBarController?.tabBar.frame.height else { return }
+        reactView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - bottomBarHeight)
+        view.addSubview(reactView)
     }
     
     override func viewDidAppear(_ animated: Bool) {

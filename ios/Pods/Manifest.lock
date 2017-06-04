@@ -68,6 +68,9 @@ PODS:
     - Yoga (= 0.44.0.React)
   - React/cxxreact (0.44.0):
     - React/jschelpers
+  - React/DevSupport (0.44.0):
+    - React/Core
+    - React/RCTWebSocket
   - React/jschelpers (0.44.0)
   - React/RCTActionSheet (0.44.0):
     - React/Core
@@ -111,6 +114,7 @@ DEPENDENCIES:
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk/ios`)
   - React/Core (from `../node_modules/react-native`)
+  - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTLinkingIOS (from `../node_modules/react-native`)
@@ -178,6 +182,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Yoga: a92a5d8e128905bf9f29c82f870192a6e873dd98
 
-PODFILE CHECKSUM: 183532882d31c016be97365fb5a19403d360fe86
+PODFILE CHECKSUM: b7ed5acb5f5747d6e794a7de2869bc791478b26b
 
 COCOAPODS: 1.2.1

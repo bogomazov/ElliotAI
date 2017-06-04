@@ -984,7 +984,7 @@
 				0370AF7C1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FBB60E771E1E0F050035D841 /* Build configuration list for PBXNativeTarget "Elliot" */ = {
 			isa = XCConfigurationList;
@@ -994,7 +994,7 @@
 				0370AF7D1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FBB60E7A1E1E0F050035D841 /* Build configuration list for PBXNativeTarget "ElliotTests" */ = {
 			isa = XCConfigurationList;
@@ -1004,7 +1004,7 @@
 				0370AF7E1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
