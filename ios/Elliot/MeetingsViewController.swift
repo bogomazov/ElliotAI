@@ -151,7 +151,7 @@ class MeetingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setTabBarBadge(n: Int) {
-        let controller = self.navigationController?.tabBarController as! MainTabBarController
+        guard let controller = self.navigationController?.tabBarController as? MainTabBarController else { return }
         controller.setTabBarBadge(n: n)
     }
     
