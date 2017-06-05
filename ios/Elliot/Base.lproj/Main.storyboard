@@ -549,10 +549,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PgT-7K-0qO">
-                                        <rect key="frame" x="285" y="71" width="50" height="46"/>
+                                        <rect key="frame" x="285" y="71" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="YFv-mn-Xy9"/>
-                                            <constraint firstAttribute="height" constant="46" id="s3D-v4-o4Z"/>
+                                            <constraint firstAttribute="height" constant="50" id="s3D-v4-o4Z"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gP-P7-toT">
@@ -1888,7 +1888,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d3T-Vf-7iA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Invite" id="4AZ-Ww-nVr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VJW-zY-75v">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VJW-zY-75v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1907,7 +1907,7 @@
                 <navigationController title="Meetings" automaticallyAdjustsScrollViewInsets="NO" id="C61-th-q3y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Meetings" id="ZKe-Pe-Fei"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Htc-Rt-eP8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Htc-Rt-eP8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1926,7 +1926,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zx4-Yu-qbo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Suggestions" id="Qtq-Xe-m1B"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yio-SR-fjI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yio-SR-fjI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2183,7 +2183,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlock Holmes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvf-S7-COn">
-                                                    <rect key="frame" x="60" y="13.5" width="272" height="23.5"/>
+                                                    <rect key="frame" x="60" y="14" width="272" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
