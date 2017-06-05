@@ -135,7 +135,7 @@ class NotificationsManager: NSObject {
         
         CalendarManager.shared.remove(meeting: meeting)
         
-        let message = "Unfortunately we will need to reschedule the \(meeting.type.lowercased()) with \(meeting.person.firstName)"
+        let message = "Unfortunately, we will need to reschedule the \(meeting.type.lowercased()) with \(meeting.person.firstName)"
         let alert = UIAlertController(title: "Reschedule", message: message,
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "More Suggestions", style: .default, handler: { (action) in

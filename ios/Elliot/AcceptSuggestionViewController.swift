@@ -123,7 +123,7 @@ class AcceptSuggestionViewController: UIViewController, UITableViewDataSource, U
                 })
                 self.performSegue(withIdentifier: "unwindToSuggestionsFeed", sender: self)
             } else {
-                let alert = UIAlertController.errorAlert(title: "Connection Error", message: "Please check you internet connection")
+                let alert = UIAlertController.errorAlert(title: "Connection Error", message: "Please check your internet connection")
                 self.present(alert, animated: true, completion: nil)
                 self.doneButton.isEnabled = true
             }
