@@ -25,7 +25,6 @@ import MainScene from './scenes/MainScene'
 import ScheduleScene from './scenes/ScheduleScene'
 import UserSuggestionsScene from './scenes/UserSuggestionsScene'
 import FriendsScene from './scenes/FriendsScene'
-import WebViewNavigator from './components/WebViewNavigator'
 import codePush, {InstallMode} from "react-native-code-push";
 
 import {getAPI} from './network/networkManager'
@@ -72,7 +71,6 @@ const Navigation = StackNavigator({
               ScheduleScene: {screen: ScheduleScene},
               UserSuggestionsScene: {screen: UserSuggestionsScene},
               FriendsScene: {screen: FriendsScene},
-              WebViewNavigator: {screen: WebViewNavigator},
             }, {headerMode: 'none',
                transitionConfig: () => {duration: 500}})
 class App extends Component {
