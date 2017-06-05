@@ -35,10 +35,6 @@ class MainTabBarController: UITabBarController {
         // Show suggestions page first
         self.selectedIndex = MainTabBarController.suggestionTab
         
-        // post location and calendar events to back-end.
-        // This code gets executed every time app is launched. (i.e. opened first time or after a kill)
-        LocationManager.shared.postUpdate()
-        CalendarManager.shared.postUpdate()
         UsageStats.reportSession()
         
         // Touch to meetings page's view to make it load

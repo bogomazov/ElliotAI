@@ -80,13 +80,14 @@ class CalendarManager: NSObject, AccessRequired {
         return fetchEvents(from: from, to: to)
     }
     
-    func postUpdate() {
+    func postUpdate(completion: @escaping (Bool) -> Void) {
         let events = fetchAllEKEvents().map { (ekevent) -> Event in
             return Event(begin: ekevent.startDate, end: ekevent.endDate)
         }
         let eventsRequest = EventsRequest(events: events)
         NetworkManager.shared.make(request: eventsRequest) { (json, success) in
             print("Calendar data update, success: \(success)")
+            completion(success)
         }
     }
     

@@ -13,13 +13,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
     static let shared = LocationManager()
     
     var locationManager: CLLocationManager?
-    var shouldPost: Bool = false
     
     var metroIdOpenTable: String = "0"
     var metroName: String = "Local"
     
     var requestCompletion: (() -> ())?
-    var inProgress: Bool = false
     
     static func getAccessStatus() -> AccessStatus {
         switch CLLocationManager.authorizationStatus() {
@@ -42,18 +40,30 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
         // create a location manager now in case authorization request is required
         locationManager = CLLocationManager()
         locationManager?.delegate = self
+        // 3 km is accurate enough
+        locationManager?.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
     
-    func postUpdate() {
+    var locationCompletion: ((Bool) -> Void)?
+    var shouldSend = false
+    
+    func postUpdate(completion: @escaping (Bool) -> Void) {
         if LocationManager.getAccessStatus() != .granted {
             // don't start the location fetch if access has not been granted
             // we don't need to worry about access status change since app is killed 
             // and launched again when that happens
+            completion(false)
             return
         }
-        inProgress = true
-        shouldPost = true
-        locationManager?.startUpdatingLocation()
+        print("[LocationSync] postUpdate")
+        if locationCompletion != nil {
+            // cancels the previous request
+            locationManager?.stopUpdatingLocation()
+        }
+        print("[LocationSync] requestLocation()")
+        locationManager?.requestLocation()
+        locationCompletion = completion
+        shouldSend = true
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -73,22 +83,26 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
             return
         }
         
-        print("New location captured: \(locations.last!.description)")
+        print("[LocationSync] New location captured: \(locations.last!.description)")
         
         determineMetroArea(location: locations.last!)
         
-        self.locationManager?.stopUpdatingLocation()
-        
-        // make sure to send only once
-        if shouldPost {
-            shouldPost = false
-            let locRequest = LocationRequest(longitude: coordinate.longitude, latitude: coordinate.latitude)
-            NetworkManager.shared.make(request: locRequest) { (json, success) in
-                print("Location post success = \(success)")
-                self.inProgress = false
-                NotificationCenter.default.post(name: NotificationNames.locationReady, object: self)
-            }
+        if !shouldSend {
+            return
         }
+        shouldSend = false
+        let locRequest = LocationRequest(longitude: coordinate.longitude, latitude: coordinate.latitude)
+        NetworkManager.shared.make(request: locRequest) { (json, success) in
+            print("[LocationSync] Location post success = \(success)")
+            self.locationCompletion?(success)
+            self.locationCompletion = nil
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("[LocationSync] locationRequest failed with error = \(error.localizedDescription)")
+        self.locationCompletion?(false)
+        self.locationCompletion = nil
     }
     
     func determineMetroArea(location: CLLocation) {

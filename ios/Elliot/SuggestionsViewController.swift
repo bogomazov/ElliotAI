@@ -41,7 +41,6 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     var topView: UIView!
     var loadingIndicator: UIActivityIndicatorView!
     
-    var waitingLocation: Bool = false
     var suggestions: [Suggestion] = []
     var isGettingRejected: [Bool] = []
     var shouldShowFriendSearch = false
@@ -67,12 +66,10 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         loadingIndicator.center = self.view.center
         self.view.addSubview(loadingIndicator)
         
-        refreshData()
+        informThenRefresh()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData),
+        NotificationCenter.default.addObserver(self, selector: #selector(self.informThenRefresh),
                                                name: NotificationNames.foregroundUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onReadyLocation),
-                                               name: NotificationNames.locationReady, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.onNewMeeting),
                                                name: NotificationNames.newMeetingPushNotif, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData),
@@ -89,33 +86,49 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         NotificationsManager.shared.requestAccess()
     }
     
-    func onReadyLocation() {
-        // Refresh suggestions only if we have been waiting for location
-        // to prevent multiple /suggestions posts
-        if waitingLocation {
-            waitingLocation = false
-            refreshData()
-        }
-    }
-    
     func onNewMeeting(notif: NSNotification) {
         if let text = notif.userInfo?["alert"] as? String {
             showBanner(onView: self.topView, title: "New Confirmed Meeting!", subtitle: text)
         }
     }
     
-    func refreshData() {
-        // Check if location is ready.
-        if LocationManager.shared.inProgress {
-            // Do not refresh, wait for /location to be posted.
-            waitingLocation = true
-            if suggestions.count == 0 {
-                loadingIndicator.startAnimating()
-            }
+    // Ensures the order of requests.
+    // i.e. provides back-end with location and calendar data before loading suggestions.
+    func informThenRefresh() {
+        print("[LocationSync] \(#function)")
+        if suggestions.count == 0 {
+            loadingIndicator.startAnimating()
+        }
+        ensureLocationIsPosted(attempts: 3) { (locationSuccess) in
+            print("[LocationSync] post location result = \(locationSuccess)")
+            CalendarManager.shared.postUpdate(completion: { [weak self] (calendarSuccess) in
+                print("[LocationSync] post calendar events result = \(calendarSuccess)")
+                self?.refreshData()
+            })
+        }
+    }
+    
+    func ensureLocationIsPosted(attempts: Int, completion: @escaping (Bool) -> Void) {
+        if LocationManager.getAccessStatus() != .granted {
+            // if location access is not granted, minimize latency
+            completion(false)
             return
         }
-        
-        print("Refreshing Suggestions")
+        LocationManager.shared.postUpdate { [weak self] (success) in
+            if success {
+                completion(true)
+                return
+            }
+            if attempts > 0 {
+                self?.ensureLocationIsPosted(attempts: attempts - 1, completion: completion)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    func refreshData() {
+        print("[LocationSync] Refreshing Suggestions")
         let request = Request(method: .get, path: "/suggestions")
         NetworkManager.shared.make(request: request) { (json, success) in
             if self.loadingIndicator.isAnimating {

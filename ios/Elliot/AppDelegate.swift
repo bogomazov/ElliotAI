@@ -104,11 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // redirect to phone-verification screen if needed
             showViewController(identifier: "verify-phone-vc")
         } else {
-            // Post location and calendar event updates, every time app is opened by the user.
-            // If the user needs to go through login or permissions screen again, we post these updates
-            // in MainTabBarController's viewDidLoad.
-            LocationManager.shared.postUpdate()
-            CalendarManager.shared.postUpdate()
             NotificationCenter.default.post(name: NotificationNames.foregroundUpdate, object: self)
             UsageStats.reportSession()
         }
