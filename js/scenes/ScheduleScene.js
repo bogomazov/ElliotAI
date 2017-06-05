@@ -175,7 +175,7 @@ export default class ScheduleScene extends Component {
                   <Text style={[style]}>
                     {time.format("h:mm A")}
                   </Text>
-                  <Icon style={styles.checkmark} name="md-checkmark" size={20} color={isSelected? "#3F9696": "#fff"} />
+                  <Icon style={styles.checkmark} name="md-checkmark" size={20} color={isSelected? "#139A9C": "#fff"} />
                 </View>
               </TouchableWithoutFeedback>
             })
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   },
   selectedTime: {
     backgroundColor: '#BADFDF',
-    borderColor: '#3F9696',
+    borderColor: '#139A9C',
   },
 	confirmButtonWrapper: {
     height: 40,
