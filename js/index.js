@@ -25,6 +25,7 @@ import MainScene from './scenes/MainScene'
 import ScheduleScene from './scenes/ScheduleScene'
 import UserSuggestionsScene from './scenes/UserSuggestionsScene'
 import FriendsScene from './scenes/FriendsScene'
+import WebViewNavigator from './components/WebViewNavigator'
 import codePush, {InstallMode} from "react-native-code-push";
 
 import {getAPI} from './network/networkManager'
@@ -46,12 +47,32 @@ export const Store = createStore(
 // use .purge() to clean storage
 persistStore(Store, { storage: AsyncStorage })
 
+let persistStateConfig = {
+  serialize: (collection) => {
+    return JSON.stringify(collection, function (k, v) {
+      if (typeof v === 'string' && v.match(RE_ISO_DATE)) {
+        return 'moment:' + moment(v).valueOf()
+      }
+      return v
+    })
+  },
+  deserialize: (serializedData) => {
+    return JSON.parse(serializedData, function (k, v) {
+      if (typeof v === 'string' && v.includes('moment:')) {
+        return moment(parseInt(v.split(':')[1], 10))
+      }
+      return v
+    })
+  }
+}
+
 
 const Navigation = StackNavigator({
               MainScene: {screen: MainScene},
               ScheduleScene: {screen: ScheduleScene},
               UserSuggestionsScene: {screen: UserSuggestionsScene},
               FriendsScene: {screen: FriendsScene},
+              WebViewNavigator: {screen: WebViewNavigator},
             }, {headerMode: 'none',
                transitionConfig: () => {duration: 500}})
 class App extends Component {
@@ -65,11 +86,11 @@ class App extends Component {
 }
 
 
-const  codePushOptions = {
-  installMode: InstallMode.ON_NEXT_RESUME,
-  minimumBackgroundDuration: 60 * 10
-};
-codePush.sync(codePushOptions)
+// const  codePushOptions = {
+//   installMode: InstallMode.ON_NEXT_RESUME,
+//   minimumBackgroundDuration: 60 * 10
+// };
+// codePush.sync(codePushOptions)
 AppRegistry.registerComponent('Elliot', () => codePush(App));
 
 export default App;

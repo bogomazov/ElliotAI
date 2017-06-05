@@ -45,6 +45,8 @@ const app = (state = defaultState, action) => {
           isSuggestionsLoaded: false,
           isCalendarLoaded: false,
           suggestions: [],
+          upcomingMeetings: [],
+          pastMeetings: [],
         }
     case actionType.NEW_LOCATION:
       return {

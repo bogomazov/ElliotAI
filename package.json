@@ -22,7 +22,7 @@
     "react-native-contacts": "^0.8.1",
     "react-native-deep-linking": "^2.1.0",
     "react-native-device-info": "^0.10.2",
-    "react-native-fbsdk": "^0.5.0",
+    "react-native-fbsdk": "0.6.0",
     "react-native-global-props": "^1.1.1",
     "react-native-localization": "^0.1.30",
     "react-native-permissions": "^0.2.7",

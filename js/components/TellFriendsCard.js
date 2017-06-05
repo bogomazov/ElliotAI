@@ -29,10 +29,6 @@ export default TellFriendsCard = ({onPress}) => {
               onPress={onPress}
               title={strings.tellFriends}
             />
-            {/* <View style={styles.button}>
-
-            </View> */}
-
           </View>
         </Card>
       );

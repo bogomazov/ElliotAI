@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, FlatList, ScrollView, Linking, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MeetingDetailsScene extends Component {
     state = {
-
+			url: null
     }
 
 		_onReschedulePress = () => {
@@ -61,6 +61,24 @@ export default class MeetingDetailsScene extends Component {
 
     _keyExtractor = (item, index) => item.id;
 
+	_onYelpPress = () => {
+		Linking.canOpenURL("yelp4:").then(supported => {
+			if (supported) {
+				Linking.openURL("yelp4:///search?find_desc=" + this.props.meeting.meeting_type)
+			} else {
+				Linking.openURL("https://www.yelp.com/search?find_desc=" + this.props.meeting.meeting_type)
+			}
+		})
+	}
+
+	_onMessengerPress = () => {
+		Linking.openURL("fb-messenger-public://");
+	}
+
+	_onOpenTablePress = () => {
+		Linking.openURL("https://www.opentable.com/s/?covers=2&dateTime=");
+	}
+
   render() {
     const meeting = this.props.meeting
     console.log(this.props)
@@ -76,7 +94,9 @@ export default class MeetingDetailsScene extends Component {
                 style={[s.avatar]}
                 source={{ uri: meeting.friend.image }}/>
           </View>
+
           <View style={[s.column, s.borderTop, s.padding10, s.flex]}>
+						<ScrollView>
             <View style={[s.row, s.alignItemsCenter]}>
               <Text style={[s.flex]}>{meeting.meeting_time.format("h:mm A")}</Text>
               <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
@@ -85,16 +105,32 @@ export default class MeetingDetailsScene extends Component {
               <Text style={[s.flex]}>Home</Text>
               <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-              <Text style={[s.flex]}>Message on Facebook</Text>
-              <Image
-                style={[styles.icon, s.margin10]}
-                source={require('../res/images/fb-icon-66px.png')}/>
-            </View>
-						{[0, 0, 0, 0, 0, 0, 0].map((item) => <View style={[s.row, s.borderTopGrey, styles.bottom]}>
-
-            </View>)}
-
+						<TouchableHighlight onPress={this._onMessengerPress}>
+	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+	              <Text style={[s.flex]}>Message on Facebook</Text>
+	              <Image
+	                style={[styles.icon, s.margin10]}
+	                source={require('../res/images/fb-icon-66px.png')}/>
+	            </View>
+						</TouchableHighlight>
+						<TouchableHighlight onPress={this._onYelpPress}>
+	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+	              <Text style={[s.flex]}>Find places</Text>
+	              <Image
+	                style={[styles.icon, s.margin10]}
+	                source={require('../res/images/yelp-icon-66px.png')}/>
+	            </View>
+						</TouchableHighlight>
+						<TouchableHighlight onPress={this._onOpenTablePress}>
+	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+	              <Text style={[s.flex]}>Reserve a table</Text>
+	              <Image
+	                style={[styles.icon, s.margin10]}
+	                source={require('../res/images/opentable-icon-66px.png')}/>
+	            </View>
+						</TouchableHighlight>
+						{[0, 0].map((item, i) => <View key={i} style={[s.row, s.borderTopGrey, styles.bottom]}></View>)}
+						</ScrollView>
           </View>
 					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
 	          <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
@@ -102,6 +138,7 @@ export default class MeetingDetailsScene extends Component {
 							<IconEvil.Button name="close-o" style={[ styles.bottomIcon]} size={35} backgroundColor="#fff" color="#535353" />
 	          </View>
 					</TouchableWithoutFeedback>}
+					{/* {this.state.url && <View style={{height: 0, width: 0}}><WebViewNavigator url={this.state.url} /></View>} */}
 
         </Card>
       );

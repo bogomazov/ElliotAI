@@ -11,6 +11,7 @@ import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
 import CustomButton from '../components/CustomButton'
 import CustomModal from '../components/CustomModal'
+import AlertDialog from '../components/AlertDialog'
 import InviteTabs from '../containers/InviteTabs'
 import strings, {format} from '../res/values/strings'
 import {themeColor, themeColorLight} from '../res/values/styles'
@@ -217,34 +218,21 @@ export default class InviteFriendsScene extends Component {
 					filterByFields={['firstName', 'middleName', 'lastName']}
 					renderItem={this._renderItem}
         />
-				<CustomModal isOpen={this.state.isConfirmationOpen}>
-					<Text style={[s.bold]}>Are you sure?</Text>
-					<Text style={[s.marginTop10]}>You are about to send a SMS invitation to {this.state.isConfirmationOpen && this.state.alertContact.firstName}</Text>
-					<View style={[s.row, s.alignItemsCenter, s.justifyContentCenter, {height: 50}]}>
-						<CustomButton
-	            onPress={() => this.setState({isConfirmationOpen: false})}
-	            title='Cancel'
-	            style={[s.margin10, s.flex, {width: 100}]}
-	          />
-						<CustomButton
-	            onPress={() => {
-								this.setState({isConfirmationOpen: false})
-								this._sendSMS()
-							}}
-	            title='Invite'
-	            style={[s.margin10, s.flex, {width: 100}]}
-	          />
-					</View>
-			</CustomModal>
-				<CustomModal isOpen={this.state.isAlertOpen}>
-					<Text style={[s.bold]}>{this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.</Text>
-					<Text style={[s.marginTop10]}>Tell more friends about Elliot to stay in touch!</Text>
-					<CustomButton
-            onPress={() => this.setState({isAlertOpen: false})}
-            title='Ok'
-            style={[s.marginTop10, styles.invitedModalButton]}
-          />
-				</CustomModal>
+				<AlertDialog isOpen={this.state.isConfirmationOpen}
+										 onClosed={() => this.setState({isConfirmationOpen: false})}
+									 		title="Are you sure?"
+											description={`You are about to send a SMS invitation to ${this.state.isConfirmationOpen && this.state.alertContact.firstName}`}
+											onSuccessTitle='Invite'
+											onCancelTitle='Cancel'
+											onSuccess={() => {
+												this.setState({isConfirmationOpen: false})
+												this._sendSMS()
+											}}/>
+				<AlertDialog isOpen={this.state.isAlertOpen}
+										 onClosed={() => this.setState({isAlertOpen: false})}
+									 		title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
+											description='Tell more friends about Elliot to stay in touch!'
+											onCancelTitle='Ok'/>
       </View>
     );
   }

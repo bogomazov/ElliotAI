@@ -29,6 +29,10 @@ const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
 
+	state = {
+		isRefreshing: false
+	}
+
 	_onSuggestionPress = (suggestion) => {
       this.props.navigation.navigate('ScheduleScene', {suggestion})
 	}
@@ -46,14 +50,20 @@ export default class SuggestionsScene extends Component {
       this.props.appActions.rejectSuggestion(suggestion, 'neither')
 	}
 
-
+	componentWillReceiveProps = (nextProps) => {
+		this.setState({isRefreshing: false})
+	}
 
 	componentWillMount = () => {
 		console.log(this.props)
-		
 	}
 
   _keyExtractor = (item, index) => item.id;
+
+	_refresh = () => {
+		this.setState({isRefreshing: true})
+		this.props.appActions.loadSuggestions()
+	}
 
   render() {
 		console.log(this.props)
@@ -69,6 +79,8 @@ export default class SuggestionsScene extends Component {
                                                     text={strings.introSuggestions}
                                                     onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
 				<FlatList
+					onRefresh={this._refresh}
+					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => {

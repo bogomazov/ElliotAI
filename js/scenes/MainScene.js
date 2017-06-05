@@ -121,7 +121,7 @@ export default class MainScene extends Component {
 			if (this.props.app.isLoggedIn && !this.props.app.isSuggestionsLoaded) {
 				this.props.appActions.loadSuggestions()
 			}
-			
+
 			if (!this.props.app.isRehydrated ||
         (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && (!this.props.app.isLocationGiven || !this.props.app.isSuggestionsLoaded))) {
 				return <SplashScene />
@@ -135,20 +135,17 @@ export default class MainScene extends Component {
 				return <PermissionsScene/>
 			}
 
-			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-			}
-
-
-
+			// if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+			// 	return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
+			// }
 
 
 			return (<View style={styles.container}>
-				{/* <Button
+				{IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"
-        /> */}
+        />}
         <BottomNav
 					navigation={this.props.navigation}
 					activeTab={this.state.activeTab}
@@ -162,7 +159,6 @@ export default class MainScene extends Component {
           <InviteFriendsScene
             iconActive={require('../res/images/invite_active.png')}
             icon={require('../res/images/invite_grey.png')}/>
-
         </BottomNav>
       </View>);
 

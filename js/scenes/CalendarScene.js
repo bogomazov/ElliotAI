@@ -41,7 +41,8 @@ export default class CalendarScene extends Component {
 		activeTab: 0,
     upcomingMeetings: [],
     pastMeetings: [],
-    selectedMeeting: null
+    selectedMeeting: null,
+		isRefreshing: false
 	}
 	_onTabPress = (i) => {
 
@@ -82,6 +83,11 @@ export default class CalendarScene extends Component {
     if (this.props.app.isCalendarLoaded) {
       return
     }
+    this._loadCalendarEvents()
+  }
+
+  _loadCalendarEvents = () => {
+    this.setState({isRefreshing: true})
     this.props.appActions.loadScheduledMeetings().then((data) => {
       // data = TEST_MEETIGNS
       console.log(data)
@@ -94,8 +100,13 @@ export default class CalendarScene extends Component {
       upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
       // this.setState({upcomingMeetings, pastMeetings})
       this.props.appActions.newCalendar(upcomingMeetings, pastMeetings)
+      this.setState({isRefreshing: false})
     })
   }
+
+  _refresh = () => {
+		this._loadCalendarEvents()
+	}
 
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
@@ -123,17 +134,21 @@ export default class CalendarScene extends Component {
                                                         text={strings.introCalendar}
                                                         onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
             <FlatList
+              onRefresh={this._refresh}
+    					refreshing={this.state.isRefreshing}
               data={meetings}
               keyExtractor={this._keyExtractor}
               renderItem={({item}, i) => {
-                return <MeetingCard
-                            key={i}
-                            meeting={item}
-                            onPress={this._onMeetingPress}/>}} />
+                return <View key={i}>
+                          <MeetingCard
+                                meeting={item}
+                                onPress={this._onMeetingPress}/>
+                        </View>}} />
           </View>
         );
     }
     return <MeetingDetailsScene
+              navigation={this.props.navigation}
               meeting={this.state.selectedMeeting}
               onClosePress={this._onMeetingClose}
               onMeetingCancel={this._onMeetingCancel}/>

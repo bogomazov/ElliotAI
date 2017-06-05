@@ -5,12 +5,14 @@ import Card from './Card'
 import CustomButton from './CustomButton'
 import Arrow from './Arrow'
 import strings from '../res/values/strings'
+import Meeting from '../state/models/meeting'
 import s, { themeColor, mainBackgroundColor } from '../res/values/styles'
 
 
 const borderWidth = 1
 
-export default MeetingCard = ({meeting, onPress}) => {
+const MeetingCard = ({meeting, onPress}) => {
+
   console.log(meeting)
       return (
         <Card>
@@ -32,6 +34,12 @@ export default MeetingCard = ({meeting, onPress}) => {
         </Card>
       );
 }
+
+MeetingCard.propTypes = {
+  meeting: PropTypes.objectOf(Meeting)
+}
+
+export default MeetingCard
 
 const styles = StyleSheet.create({
 
