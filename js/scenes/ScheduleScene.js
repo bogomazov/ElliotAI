@@ -48,7 +48,7 @@ export default class ScheduleScene extends Component {
     _onConfirmPress = () => {
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
-        times = this.state.selected.map((i) => startTimes[i]._i)
+        times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
@@ -104,7 +104,9 @@ export default class ScheduleScene extends Component {
     if (!this.state.isCalendarEventsLoaded) {
       this._loadCalendarEvents()
     }
-	console.log(this.props)
+	// console.log(this.props)
+	// console.log(this.state)
+	// console.log(this._getStartTimes())
 
     const suggestion = this.props.suggestion
     console.log(suggestion)
