@@ -56,6 +56,14 @@ class NotificationsManager: NSObject {
         if type == nil {
             return
         }
+        if type! == .update {
+            if let url = URL(string: "https://itunes.apple.com/us/app/elliot-meet-with-friends/id1198050572?mt=8") {
+                DispatchQueue.main.async {
+                    UIApplication.shared.openURL(url)
+                }
+            }
+            return
+        }
         switch type! {
         case .friendJoined, .reschedule, .weekly:
             setShownTab(target: MainTabBarController.suggestionTab)
@@ -71,14 +79,6 @@ class NotificationsManager: NSObject {
     func handleNotificationTap(data: JSON) {
         print("PUSHLOG: Handling notification tap...")
         guard let notifType = getNotifType(data: data) else {
-            return
-        }
-        if notifType == .update {
-            if let url = URL(string: "https://itunes.apple.com/us/app/elliot-meet-with-friends/id1198050572?mt=8") {
-                DispatchQueue.main.async {
-                    UIApplication.shared.openURL(url)
-                }
-            }
             return
         }
         setTabForNotif(type: notifType)

@@ -110,6 +110,7 @@ class VerifyPhoneViewController: UIViewController {
             return
         }
         generatedToken = "\(arc4random_uniform(900000) + 100000)" // 6 figure token
+        print("[VerifyPhoneViewController] - token = \(generatedToken!) in \(#function)")
         let request = SMSNumberRequest(phoneNumber: number!, token: generatedToken!)
         NetworkManager.shared.make(request: request) { (json, success) in
             if !success {

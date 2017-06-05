@@ -16,18 +16,20 @@ extension DefaultsKeys {
 class SMSNotifManager {
     // Returns true if url denotes an SMS notif
     class func handle(url: URL) -> Bool {
+        guard url.scheme == "elliot" else { return false }
+        guard url.host == "actions" else { return false }
         let paths = url.pathComponents
-        guard paths.count > 0 else { return false }
-        switch paths.first! {
+        guard paths.count > 1 else { return false }
+        switch paths[1] {
         case "phone-verification":
-            if paths.count > 1 {
+            if paths.count > 2 {
                 NotificationCenter.default.post(name: NotificationNames.gotSMSToken,
                                                 object: self,
-                                                userInfo: ["token": paths[1]])
+                                                userInfo: ["token": paths[2]])
             }
             return true
         case "open-tab":
-            if paths.count > 1, let type = Int(paths[1]) {
+            if paths.count > 2, let type = Int(paths[2]) {
                 NotificationsManager.shared.handleSMSOpenTab(notifyType: type)
             }
             return true
