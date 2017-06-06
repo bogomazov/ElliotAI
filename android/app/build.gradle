@@ -91,8 +91,8 @@ android {
         applicationId "com.elliot"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 14
-        versionName "1.0.4"
+        versionCode 15
+        versionName "1.0.5"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -117,14 +117,14 @@ android {
     }
     buildTypes {
         releaseStaging {
-            buildConfigField "String", "CODEPUSH_KEY", "XfTVc6iw1yNgRQpCxTWNwrCuLHngNJn1D0Dx7"
+            buildConfigField "String", "CODEPUSH_KEY", "\"XfTVc6iw1yNgRQpCxTWNwrCuLHngNJn1D0Dx7\""
         }
 
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", "aQvbV1sYiJYYb1giWIaU_7Vez3RiNJn1D0Dx7"
+            buildConfigField "String", "CODEPUSH_KEY", "\"aQvbV1sYiJYYb1giWIaU_7Vez3RiNJn1D0Dx7\""
         }
     }
     // applicationVariants are e.g. debug, release

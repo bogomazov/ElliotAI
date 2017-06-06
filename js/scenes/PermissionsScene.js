@@ -119,11 +119,8 @@ export default class PermissionsScene extends Component {
             style={styles.button}
             isWhite
           />}
-
-
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
-
       </View>);
   }
 }
@@ -153,7 +150,5 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 10,
-    // flex: 3
-    // flex: 1,
   }
 });

@@ -70,7 +70,6 @@ export default class CalendarScene extends Component {
         }
       } else if (meeting.canceled == 0) {
         saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
-          // const newEvent = {meeting.suggestion_id: id}
           this.props.appActions.addEventCalendar({[meeting.suggestion_id]: id})
         })
       }
