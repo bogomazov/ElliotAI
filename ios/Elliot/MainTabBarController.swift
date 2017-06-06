@@ -24,7 +24,7 @@ class MainTabBarController: UITabBarController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.tabBarVC = self
         
-        tabBar.barTintColor = UIColor.navigationAndTabBar()
+        /*tabBar.barTintColor = UIColor.navigationAndTabBar()
         
         for i in 0 ..< iconNames.count {
             let item = tabBar.items![i]
@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController {
         if let meetingNavController = self.viewControllers?[MainTabBarController.meetingsTab] as? UINavigationController {
             meetingNavController.topViewController?.view
         }
-        
+        */
         NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)
     }
     

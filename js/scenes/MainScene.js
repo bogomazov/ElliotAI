@@ -3,7 +3,7 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
@@ -116,30 +116,31 @@ export default class MainScene extends Component {
 
 
   render() {
-		console.log(this.props)
-		// this.props.appActions.newAccessToken('new one')
-			if (this.props.app.isLoggedIn && !this.props.app.isSuggestionsLoaded) {
-				this.props.appActions.loadSuggestions()
-			}
+	console.log(this.props)
+	// this.props.appActions.newAccessToken('new one')
+	if (this.props.app.isLoggedIn && !this.props.app.isSuggestionsLoaded) {
+		this.props.appActions.loadSuggestions()
+	}
 
-			if (!this.props.app.isRehydrated ||
-        (this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && (!this.props.app.isLocationGiven || !this.props.app.isSuggestionsLoaded))) {
-				return <SplashScene />
-			}
+	if (Platform.OS !== 'ios') {
+		if (!this.props.app.isRehydrated ||
+			(this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && (!this.props.app.isLocationGiven || !this.props.app.isSuggestionsLoaded))) {
+			return <SplashScene />
+		}
 
-			if (!this.props.app.isLoggedIn) {
-				return <LoginScene/>
-			}
+		if (!this.props.app.isLoggedIn) {
+			return <LoginScene/>
+		}
 
-			if (!this.props.app.isPermissionsGranted) {
-				return <PermissionsScene/>
-			}
-
-			// if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-			// 	return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-			// }
-
-
+		if (!this.props.app.isPermissionsGranted) {
+			return <PermissionsScene/>
+		}
+		
+		// if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+		// 	return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
+		// }
+	}
+	
 			return (<View style={styles.container}>
 				{IS_DEV && <Button
           onPress={this.props.appActions.logOut}

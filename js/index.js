@@ -31,7 +31,11 @@ import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 // export const IS_DEV = true
+
+Icon.loadFont();
 
 DeepLinking.addScheme('elliot://');
 

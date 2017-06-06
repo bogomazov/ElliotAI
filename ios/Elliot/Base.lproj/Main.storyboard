@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-9p-vaY">
-                                <rect key="frame" x="0.0" y="168" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inviteCell" id="s4d-1M-itN" customClass="ContactTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-83-WoK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="meetingCell" id="WT6-UT-3i0" customClass="MeetingsTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -1019,7 +1019,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="220" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-Ea-ab3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionCell" id="wKO-OV-gxq" customClass="SuggestionTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -1655,7 +1655,7 @@
                                 <rect key="frame" x="36" y="153.5" width="303" height="350.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nch-EP-CYo">
-                                        <rect key="frame" x="51" y="79.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="80" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="WRu-dx-RcN"/>
                                             <constraint firstAttribute="height" constant="44" id="rAX-Cu-IJg"/>
@@ -1669,7 +1669,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gof-O5-0j4">
-                                        <rect key="frame" x="51" y="153.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="154" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="Nhd-wR-gF5"/>
                                             <constraint firstAttribute="height" constant="44" id="kn1-ic-M93"/>
@@ -1683,7 +1683,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nm-fM-3Ac">
-                                        <rect key="frame" x="51" y="227.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="228" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AIN-Lx-9K4"/>
                                             <constraint firstAttribute="width" constant="200" id="mHt-As-TIE"/>
@@ -1872,11 +1872,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="zx4-Yu-qbo" kind="relationship" relationship="viewControllers" id="7EW-R6-VFi"/>
-                        <segue destination="C61-th-q3y" kind="relationship" relationship="viewControllers" id="wP5-7L-glP"/>
-                        <segue destination="d3T-Vf-7iA" kind="relationship" relationship="viewControllers" id="vvH-jz-xaO"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbK-QK-Doj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1888,7 +1883,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d3T-Vf-7iA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Invite" id="4AZ-Ww-nVr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VJW-zY-75v">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VJW-zY-75v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1907,7 +1902,7 @@
                 <navigationController title="Meetings" automaticallyAdjustsScrollViewInsets="NO" id="C61-th-q3y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Meetings" id="ZKe-Pe-Fei"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Htc-Rt-eP8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Htc-Rt-eP8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1926,7 +1921,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zx4-Yu-qbo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Suggestions" id="Qtq-Xe-m1B"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yio-SR-fjI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yio-SR-fjI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2183,7 +2178,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlock Holmes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvf-S7-COn">
-                                                    <rect key="frame" x="60" y="14" width="272" height="23.5"/>
+                                                    <rect key="frame" x="60" y="13.5" width="272" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
