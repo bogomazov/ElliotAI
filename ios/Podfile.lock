@@ -49,18 +49,18 @@ PODS:
     - React
   - react-native-contacts (0.8.1):
     - React
-  - react-native-fbsdk (0.5.0):
+  - react-native-fbsdk (0.6.0):
     - React
-    - react-native-fbsdk/Core (= 0.5.0)
-    - react-native-fbsdk/Login (= 0.5.0)
-    - react-native-fbsdk/Share (= 0.5.0)
-  - react-native-fbsdk/Core (0.5.0):
+    - react-native-fbsdk/Core (= 0.6.0)
+    - react-native-fbsdk/Login (= 0.6.0)
+    - react-native-fbsdk/Share (= 0.6.0)
+  - react-native-fbsdk/Core (0.6.0):
     - FBSDKCoreKit
     - React
-  - react-native-fbsdk/Login (0.5.0):
+  - react-native-fbsdk/Login (0.6.0):
     - FBSDKLoginKit
     - React
-  - react-native-fbsdk/Share (0.5.0):
+  - react-native-fbsdk/Share (0.6.0):
     - FBSDKShareKit
     - React
   - React/Core (0.44.0):
@@ -85,6 +85,8 @@ PODS:
   - ReactNativeLocalization (0.1.30):
     - React
   - ReactNativePermissions (0.2.7):
+    - React
+  - RNDeviceInfo (0.9.3):
     - React
   - RNShare (1.0.20):
     - React
@@ -117,6 +119,7 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - ReactNativeLocalization (from `../node_modules/react-native-localization/`)
   - ReactNativePermissions (from `../node_modules/react-native-permissions`)
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNShare (from `../node_modules/react-native-share`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - SwiftyJSON
@@ -138,6 +141,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-localization/
   ReactNativePermissions:
     :path: ../node_modules/react-native-permissions
+  RNDeviceInfo:
+    :path: ../node_modules/react-native-device-info
   RNShare:
     :path: ../node_modules/react-native-share
   RNVectorIcons:
@@ -163,15 +168,16 @@ SPEC CHECKSUMS:
   React: d2077cc20245ccdc8bfe1fdc002f2003318ae8d8
   react-native-calendar-events: 90d9f3da1f9d4b7d04faad9640275c085140f017
   react-native-contacts: dbc9bb4f09079acf1f0fa931ce59232008936856
-  react-native-fbsdk: b1dcaf67cb1358c893a1378b659623b96e05167a
+  react-native-fbsdk: b4fa61b104152f635c86974f8d467bef42365773
   ReactNativeLocalization: 69591a73e54a41e61fcf1cb2dc4b52c6a8e1e012
   ReactNativePermissions: b1347baacb2ac4a93581fe5f4d80ce7c0d581089
+  RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNShare: f58d823417bcdf71859c9afd7bb0cbcbb2b98e90
   RNVectorIcons: 6d98d83e944d15014d8071dd9819beb094c61133
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Yoga: a92a5d8e128905bf9f29c82f870192a6e873dd98
 
-PODFILE CHECKSUM: 51cb23b70241758ce6fa071464c51f7719bf0773
+PODFILE CHECKSUM: 183532882d31c016be97365fb5a19403d360fe86
 
 COCOAPODS: 1.2.1

@@ -19,6 +19,8 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initForReactNative()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.tabBarVC = self
         
@@ -43,6 +45,15 @@ class MainTabBarController: UITabBarController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)
+    }
+    
+    func initForReactNative() {
+        tabBar.isHidden = true
+        guard let authToken = AuthorizationManager.shared.serverAuthToken else { return }
+        let reactRoot = ReactFactory.shared.createView(name: "Elliot",
+                                                       props: ["nativeIOS": ["accessToken": authToken]])
+        reactRoot.frame = view.frame
+        view.addSubview(reactRoot)
     }
     
     func showInviteTab() {
