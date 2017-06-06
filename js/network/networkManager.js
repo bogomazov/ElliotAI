@@ -5,9 +5,9 @@ import DeviceInfo from 'react-native-device-info'
 import { IS_DEV, APP_VERSION } from '../settings'
 
 const subdomain = 'staging'
-/*if (!IS_DEV) {
+if (!IS_DEV) {
   subdomain = 'prod'
-}*/
+}
 
 const rootURL = `https://${subdomain}.elliot.ai/control`
 
