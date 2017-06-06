@@ -1,56 +1,63 @@
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  * @flow
-//  */
+'use strict';
 
 import App from './js/index'
 
-//
-// import React, { Component } from 'react';
-// import {
-//   AppRegistry,
-//   StyleSheet,
-//   Text,
-//   View
-// } from 'react-native';
-//
-// export default class Elliot extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//         <Text style={styles.instructions}>
-//           To get started, edit index.ios.js
-//         </Text>
-//         <Text style={styles.instructions}>
-//           Press Cmd+R to reload,{'\n'}
-//           Cmd+D or shake for dev menu
-//         </Text>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
-//
-// AppRegistry.registerComponent('Elliot', () => Elliot);
+import React from 'react';
+import codePush from "react-native-code-push";
+
+import {
+  Text,
+  StyleSheet,
+  AppRegistry,
+  View,
+  TouchableOpacity,
+  NativeModules,
+} from 'react-native';
+
+class ReactTest extends React.Component {
+  componentDidMount() {
+    codePush.sync({installMode: codePush.InstallMode.ON_NEXT_RESUME});
+  }
+
+  onButtonPress() {
+      codePush.sync({
+          updateDialog: true,
+          installMode: codePush.InstallMode.IMMEDIATE
+      });
+  }
+
+  onBackPress() {
+    NativeModules.ReactTestConnector.tappedBack(this.props.rootTag);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+          <TouchableOpacity onPress={this.onButtonPress}>
+              <Text style={styles.text}>Check for updates</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {this.onBackPress()}}>
+              <Text style={styles.text}>Back</Text>
+          </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green',
+  },
+  text: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: 'white',
+  },
+});
+
+// Module name
+AppRegistry.registerComponent('ReactTest', () => ReactTest);

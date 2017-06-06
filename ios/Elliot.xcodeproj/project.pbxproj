@@ -5,359 +5,184 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
-		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
-		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
-		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
-		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
-		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
-		00E356F31AD99517003FC87E /* ElliotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ElliotTests.m */; };
-		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
-		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
-		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2D02E4C21E0B4AEC006451C7 /* libRCTAnimation-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */; };
-		2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */; };
-		2D02E4C41E0B4AEC006451C7 /* libRCTLinking-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */; };
-		2D02E4C51E0B4AEC006451C7 /* libRCTNetwork-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */; };
-		2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */; };
-		2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */; };
-		2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */; };
-		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
-		2DCD954D1E0B4F2C00145EB5 /* ElliotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ElliotTests.m */; };
-		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		85C083BC0EAD43ABBC09331F /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97CA3F01E0A5496D92746EF3 /* libRCTFBSDK.a */; };
-		AE4B3FB406444050B48E09FD /* libRNCalendarEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59372433E1904F6EACDF4639 /* libRNCalendarEvents.a */; };
-		77AC7FC9C3F446389B80A7AB /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFF4DD10500B4DC9AE4C7AAA /* libRCTContacts.a */; };
-		FDD0F982E648443581A1638F /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FACFACF9AE7641209069776E /* libRCTActionSheet.a */; };
-		6535761D294B4EC3B12D8D7A /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32FCF4074B494003A9402C7B /* libReactNativeLocalization.a */; };
-		63797CFCC3A64583B4CC30AE /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C92978125846AFB05AEA17 /* libReactNativePermissions.a */; };
-		C4C0C25BB1F5409FA9FC4A3A /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDEE48AD48F4A3283B78F67 /* libRNVectorIcons.a */; };
-		B44F77F73DDB4E1C914E7EA5 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB47CCF8E55348C199951841 /* Entypo.ttf */; };
-		C71C69EACAEB46CBA31F9538 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0D2FCE7D9AE462D87D1C6D7 /* EvilIcons.ttf */; };
-		A007FDDF22BB4B0C84DBB151 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8979370A9C8415FAC28FDC1 /* FontAwesome.ttf */; };
-		DDAA8B4563024AD69F8F97BF /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C45D7F00B4C422893BF33FF /* Foundation.ttf */; };
-		1D30C6D558EB4C94BDC77323 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B087EC9D74455F9884CF7B /* Ionicons.ttf */; };
-		1037706C3F9847E2B6D3F405 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5E4D8A97ADB4A8BAF2B9CFD /* MaterialCommunityIcons.ttf */; };
-		D2D4E6DAB9544DD2B600627F /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37B0B1A6D5774105962C41CC /* MaterialIcons.ttf */; };
-		241AE7C1B8FD4AE886C707AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE0ECC6A635B4363B302AA66 /* Octicons.ttf */; };
-		9EF6F31B4E8948B3BCD85AC5 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5EED8CE68D84C68AB4947CA /* SimpleLineIcons.ttf */; };
-		8D5EEC9ED3AE446A9D4246D0 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FD9246E58C3464B84468968 /* Zocial.ttf */; };
-		BB7D77F90B0F4C6287DD0619 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3ED5E82FF2D43E699F5B1EA /* libCodePush.a */; };
-		D51A32A44D014964869DCEC8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B879E8A95E034FA98C308015 /* libz.tbd */; };
-		FAEA612C4BC8483DA57EE96E /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C848F145B420CB5370A32 /* libRNDeviceInfo.a */; };
+		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
+		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
+		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
+		031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D71EBD28F5001881B7 /* SearchController.swift */; };
+		0322D5411E2115C500239A3A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5401E2115C500239A3A /* LocationManager.swift */; };
+		0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5441E22393E00239A3A /* PermissionsViewController.swift */; };
+		0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */; };
+		0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54C1E22539C00239A3A /* CalendarManager.swift */; };
+		0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54E1E2256E600239A3A /* AccessRequired.swift */; };
+		0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5501E2272F000239A3A /* InviteViewController.swift */; };
+		0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; };
+		0328E9121E2F9CF8003427C3 /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */; };
+		0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A41A1E3E550D006E8DCF /* UsageStats.swift */; };
+		033375A51E256079000A5C21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A41E256079000A5C21 /* NetworkManager.swift */; };
+		033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A71E2685ED000A5C21 /* MeetingsViewController.swift */; };
+		033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */; };
+		033375B01E268D0A000A5C21 /* MeetingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */; };
+		03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */; };
+		03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
+		03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
+		034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
+		034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
+		034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
+		037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037047601E3124B5007912B6 /* NotificationsManager.swift */; };
+		0370AF671EDD642A000D376B /* ReactTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF661EDD642A000D376B /* ReactTestViewController.swift */; };
+		0370AF761EDD86B5000D376B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0370AF751EDD86B4000D376B /* main.jsbundle */; };
+		0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7A1EDDBE59000D376B /* ReactFactory.swift */; };
+		0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */; };
+		0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */; };
+		03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */; };
+		03755F631E28E780003EDAD9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03755F621E28E780003EDAD9 /* Models.swift */; };
+		03785F6E1E300E8000A452F3 /* MeetingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */; };
+		03785F701E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */; };
+		03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */; };
+		03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */; };
+		037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037E52181E77536500F2738D /* DifferentTimeViewController.swift */; };
+		0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
+		0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */; };
+		03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */; };
+		03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393CC1E29239100661CEA /* MainTabBarController.swift */; };
+		03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */; };
+		03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */; };
+		03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */; };
+		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
+		03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */; };
+		03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */; };
+		03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */; };
+		03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E739321E6A0B4800525383 /* UIViewController+Banner.swift */; };
+		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
+		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
+		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
+		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
+		FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */; };
+		FBB60E731E1E0F050035D841 /* ElliotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E721E1E0F050035D841 /* ElliotTests.swift */; };
+		FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00C302AB1ABCB8CE00DB3ED1 /* PBXContainerItemProxy */ = {
+		03785F691E2FEC1300A452F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
+			containerPortal = 03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTActionSheet;
+			remoteGlobalIDString = 2EC889141A931302002E513D;
+			remoteInfo = OpenSansSwift;
 		};
-		00C302B91ABCB90400DB3ED1 /* PBXContainerItemProxy */ = {
+		03785F6B1E2FEC1300A452F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
+			containerPortal = 03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTGeolocation;
+			remoteGlobalIDString = 2EC8891F1A931302002E513D;
+			remoteInfo = OpenSansSwiftTests;
 		};
-		00C302BF1ABCB91800DB3ED1 /* PBXContainerItemProxy */ = {
+		FBB60E6F1E1E0F050035D841 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
-			remoteInfo = RCTImage;
-		};
-		00C302DB1ABCB9D200DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B511DB1A9E6C8500147676;
-			remoteInfo = RCTNetwork;
-		};
-		00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
-			remoteInfo = RCTVibration;
-		};
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			containerPortal = FBB60E521E1E0F050035D841 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteGlobalIDString = FBB60E591E1E0F050035D841;
 			remoteInfo = Elliot;
-		};
-		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTSettings;
-		};
-		139FDEF31B06529B00C62182 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3C86DF461ADF2C930047B81A;
-			remoteInfo = RCTWebSocket;
-		};
-		146834031AC3E56700842450 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
-			remoteInfo = React;
-		};
-		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "Elliot-tvOS";
-		};
-		3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A283A1D9B042B00D4039D;
-			remoteInfo = "RCTImage-tvOS";
-		};
-		3DAD3E871DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28471D9B043800D4039D;
-			remoteInfo = "RCTLinking-tvOS";
-		};
-		3DAD3E8B1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28541D9B044C00D4039D;
-			remoteInfo = "RCTNetwork-tvOS";
-		};
-		3DAD3E8F1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28611D9B046600D4039D;
-			remoteInfo = "RCTSettings-tvOS";
-		};
-		3DAD3E931DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A287B1D9B048500D4039D;
-			remoteInfo = "RCTText-tvOS";
-		};
-		3DAD3E981DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28881D9B049200D4039D;
-			remoteInfo = "RCTWebSocket-tvOS";
-		};
-		3DAD3EA21DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
-			remoteInfo = "React-tvOS";
-		};
-		3DAD3EA41DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3C059A1DE3340900C268FA;
-			remoteInfo = yoga;
-		};
-		3DAD3EA61DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3C06751DE3340C00C268FA;
-			remoteInfo = "yoga-tvOS";
-		};
-		3DAD3EA81DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9251DE5FBEC00167DC4;
-			remoteInfo = cxxreact;
-		};
-		3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9321DE5FBEE00167DC4;
-			remoteInfo = "cxxreact-tvOS";
-		};
-		3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
-			remoteInfo = jschelpers;
-		};
-		3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
-			remoteInfo = "jschelpers-tvOS";
-		};
-		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTAnimation;
-		};
-		5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
-			remoteInfo = "RCTAnimation-tvOS";
-		};
-		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTLinking;
-		};
-		832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
-			remoteInfo = RCTText;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0328E9131E2F9CF8003427C3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0328E9121E2F9CF8003427C3 /* OpenSansSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
-		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
-		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
-		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
-		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* ElliotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElliotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ElliotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElliotTests.m; sourceTree = "<group>"; };
-		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
-		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Elliot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elliot.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Elliot/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Elliot/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Elliot/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Elliot/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Elliot/main.m; sourceTree = "<group>"; };
-		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* Elliot-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elliot-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* Elliot-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Elliot-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
-		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		2FE935CBF09349FCBDDCC0C1 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		97CA3F01E0A5496D92746EF3 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		2030F3756FA64DAB9747AAB1 /* RNCalendarEvents.xcodeproj */ = {isa = PBXFileReference; name = "RNCalendarEvents.xcodeproj"; path = "../node_modules/react-native-calendar-events/RNCalendarEvents.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		59372433E1904F6EACDF4639 /* libRNCalendarEvents.a */ = {isa = PBXFileReference; name = "libRNCalendarEvents.a"; path = "libRNCalendarEvents.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		5FDF0446442144B0A90136CF /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; name = "RCTContacts.xcodeproj"; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		CFF4DD10500B4DC9AE4C7AAA /* libRCTContacts.a */ = {isa = PBXFileReference; name = "libRCTContacts.a"; path = "libRCTContacts.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		E96469817CF841FD84BC5523 /* ReactNativeGlobalProps.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeGlobalProps.xcodeproj"; path = "../node_modules/react-native-global-props/ios/ReactNativeGlobalProps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		FACFACF9AE7641209069776E /* libRCTActionSheet.a */ = {isa = PBXFileReference; name = "libRCTActionSheet.a"; path = "libRCTActionSheet.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		C7DCD7D91CB24AEBA64F5130 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeLocalization.xcodeproj"; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		32FCF4074B494003A9402C7B /* libReactNativeLocalization.a */ = {isa = PBXFileReference; name = "libReactNativeLocalization.a"; path = "libReactNativeLocalization.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		9122A1AB3B7A40A9A1D346A2 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativePermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A9C92978125846AFB05AEA17 /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		9BBC5585EFC44F6681F4E872 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		7FDEE48AD48F4A3283B78F67 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		DB47CCF8E55348C199951841 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A0D2FCE7D9AE462D87D1C6D7 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B8979370A9C8415FAC28FDC1 /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1C45D7F00B4C422893BF33FF /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		40B087EC9D74455F9884CF7B /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E5E4D8A97ADB4A8BAF2B9CFD /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		37B0B1A6D5774105962C41CC /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		AE0ECC6A635B4363B302AA66 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E5EED8CE68D84C68AB4947CA /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5FD9246E58C3464B84468968 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0A9268034D394C05A5499147 /* CodePush.xcodeproj */ = {isa = PBXFileReference; name = "CodePush.xcodeproj"; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		B3ED5E82FF2D43E699F5B1EA /* libCodePush.a */ = {isa = PBXFileReference; name = "libCodePush.a"; path = "libCodePush.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		B879E8A95E034FA98C308015 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		F947F6A3F3E94360BFABA988 /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		4A6C848F145B420CB5370A32 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
+		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
+		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
+		031DD2D71EBD28F5001881B7 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		0322D5401E2115C500239A3A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0322D5441E22393E00239A3A /* PermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
+		0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeysExtension.swift; sourceTree = "<group>"; };
+		0322D54C1E22539C00239A3A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		0322D54E1E2256E600239A3A /* AccessRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessRequired.swift; sourceTree = "<group>"; };
+		0322D5501E2272F000239A3A /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenSansSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHighlightedButton.swift; sourceTree = "<group>"; };
+		0332A41A1E3E550D006E8DCF /* UsageStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageStats.swift; sourceTree = "<group>"; };
+		033375A41E256079000A5C21 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		033375A71E2685ED000A5C21 /* MeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsViewController.swift; sourceTree = "<group>"; };
+		033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsTableViewCell.swift; sourceTree = "<group>"; };
+		033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDetailViewController.swift; sourceTree = "<group>"; };
+		03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+BottomBorder.swift"; sourceTree = "<group>"; };
+		03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
+		03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSNotifManager.swift; sourceTree = "<group>"; };
+		034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
+		034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Elliot.swift"; sourceTree = "<group>"; };
+		034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenSansSwift.framework; path = "../../../../Downloads/OpenSansSwift-master 2/build/Debug-iphoneos/OpenSansSwift.framework"; sourceTree = "<group>"; };
+		0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elliot.entitlements; sourceTree = "<group>"; };
+		037047601E3124B5007912B6 /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		0370AF661EDD642A000D376B /* ReactTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactTestViewController.swift; sourceTree = "<group>"; };
+		0370AF751EDD86B4000D376B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = SOURCE_ROOT; };
+		0370AF7A1EDDBE59000D376B /* ReactFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactFactory.swift; sourceTree = "<group>"; };
+		0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactTestConnector.swift; sourceTree = "<group>"; };
+		0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactTestConnectorBridge.m; sourceTree = "<group>"; };
+		03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+FormatUtil.swift"; sourceTree = "<group>"; };
+		03755F621E28E780003EDAD9 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "OpenSansSwift-master 2/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
+		03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDetailTableViewCell.swift; sourceTree = "<group>"; };
+		03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineSuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventTableViewCell.swift; sourceTree = "<group>"; };
+		03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlockTableViewCell.swift; sourceTree = "<group>"; };
+		037E52181E77536500F2738D /* DifferentTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifferentTimeViewController.swift; sourceTree = "<group>"; };
+		0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
+		03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifferentTimeCell.swift; sourceTree = "<group>"; };
+		03A393CC1E29239100661CEA /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
+		03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptSuggestionViewController.swift; sourceTree = "<group>"; };
+		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
+		03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationCell.swift; sourceTree = "<group>"; };
+		03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardToInviteCell.swift; sourceTree = "<group>"; };
+		03E739321E6A0B4800525383 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
+		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.staging.xcconfig"; sourceTree = "<group>"; };
+		208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.debug.xcconfig"; sourceTree = "<group>"; };
+		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.release.xcconfig"; sourceTree = "<group>"; };
+		EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elliot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB60E5A1E1E0F050035D841 /* Elliot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elliot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FBB60E621E1E0F050035D841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FBB60E641E1E0F050035D841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FBB60E671E1E0F050035D841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FBB60E691E1E0F050035D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElliotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB60E721E1E0F050035D841 /* ElliotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElliotTests.swift; sourceTree = "<group>"; };
+		FBB60E741E1E0F050035D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
+		FBB60E571E1E0F050035D841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */,
+				FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */,
+				0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
-				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
-				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
-				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
-				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
-				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				85C083BC0EAD43ABBC09331F /* libRCTFBSDK.a in Frameworks */,
-				AE4B3FB406444050B48E09FD /* libRNCalendarEvents.a in Frameworks */,
-				77AC7FC9C3F446389B80A7AB /* libRCTContacts.a in Frameworks */,
-				FDD0F982E648443581A1638F /* libRCTActionSheet.a in Frameworks */,
-				6535761D294B4EC3B12D8D7A /* libReactNativeLocalization.a in Frameworks */,
-				63797CFCC3A64583B4CC30AE /* libReactNativePermissions.a in Frameworks */,
-				C4C0C25BB1F5409FA9FC4A3A /* libRNVectorIcons.a in Frameworks */,
-				BB7D77F90B0F4C6287DD0619 /* libCodePush.a in Frameworks */,
-				D51A32A44D014964869DCEC8 /* libz.tbd in Frameworks */,
-				FAEA612C4BC8483DA57EE96E /* libRNDeviceInfo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E4781E0B4A5D006451C7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */,
-				2D02E4C21E0B4AEC006451C7 /* libRCTAnimation-tvOS.a in Frameworks */,
-				2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */,
-				2D02E4C41E0B4AEC006451C7 /* libRCTLinking-tvOS.a in Frameworks */,
-				2D02E4C51E0B4AEC006451C7 /* libRCTNetwork-tvOS.a in Frameworks */,
-				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
-				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
-				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
+		FBB60E6B1E1E0F050035D841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -367,318 +192,243 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00C302A81ABCB8CE00DB3ED1 /* Products */ = {
+		031DD2CB1EBCE1C2001881B7 /* FriendSearch */ = {
 			isa = PBXGroup;
 			children = (
-				00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */,
+				031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */,
+				031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */,
+			);
+			name = FriendSearch;
+			sourceTree = "<group>";
+		};
+		0322D5471E223A6600239A3A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */,
+				03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */,
+				0322D5441E22393E00239A3A /* PermissionsViewController.swift */,
+				0322D5501E2272F000239A3A /* InviteViewController.swift */,
+				033375A71E2685ED000A5C21 /* MeetingsViewController.swift */,
+				03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */,
+				037E52181E77536500F2738D /* DifferentTimeViewController.swift */,
+				03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */,
+				033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */,
+				03A393CC1E29239100661CEA /* MainTabBarController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0370AF791EDDBC25000D376B /* ReactNative */ = {
+			isa = PBXGroup;
+			children = (
+				0370AF661EDD642A000D376B /* ReactTestViewController.swift */,
+				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
+				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
+				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+			);
+			name = ReactNative;
+			sourceTree = "<group>";
+		};
+		03785F651E2FEC1300A452F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03785F6A1E2FEC1300A452F3 /* OpenSansSwift.framework */,
+				03785F6C1E2FEC1300A452F3 /* OpenSansSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00C302B61ABCB90400DB3ED1 /* Products */ = {
+		03AD35A51E240505002F9D6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */,
+				03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */,
+				031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */,
+				033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */,
+				03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */,
+				03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */,
+				03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */,
+				03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */,
+				03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */,
+				03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */,
+				03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */,
+				03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */,
+				0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		03E7392F1E6A0B0D00525383 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */,
+				03A393D61E2B9EE800661CEA /* AlertController+Util.swift */,
+				034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */,
+				03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */,
+				03E739321E6A0B4800525383 /* UIViewController+Banner.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		471DB5F868120E522A051585 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */,
+				70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */,
+				0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B46A17F51B4D478A11CB98A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */,
+				EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */,
+				5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FBB60E511E1E0F050035D841 = {
+			isa = PBXGroup;
+			children = (
+				03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */,
+				0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */,
+				FBB60E5C1E1E0F050035D841 /* Elliot */,
+				FBB60E711E1E0F050035D841 /* ElliotTests */,
+				FBB60E5B1E1E0F050035D841 /* Products */,
+				471DB5F868120E522A051585 /* Pods */,
+				8B46A17F51B4D478A11CB98A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FBB60E5B1E1E0F050035D841 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FBB60E5A1E1E0F050035D841 /* Elliot.app */,
+				FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		00C302BC1ABCB91800DB3ED1 /* Products */ = {
+		FBB60E5C1E1E0F050035D841 /* Elliot */ = {
 			isa = PBXGroup;
 			children = (
-				00C302C01ABCB91800DB3ED1 /* libRCTImage.a */,
-				3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */,
+				0370AF751EDD86B4000D376B /* main.jsbundle */,
+				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
+				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
+				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
+				0322D54C1E22539C00239A3A /* CalendarManager.swift */,
+				037047601E3124B5007912B6 /* NotificationsManager.swift */,
+				03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */,
+				0332A41A1E3E550D006E8DCF /* UsageStats.swift */,
+				0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */,
+				0322D5401E2115C500239A3A /* LocationManager.swift */,
+				03F909C41E39F4C9002D24CE /* NotificationNames.swift */,
+				0322D54E1E2256E600239A3A /* AccessRequired.swift */,
+				033375A41E256079000A5C21 /* NetworkManager.swift */,
+				034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */,
+				03755F621E28E780003EDAD9 /* Models.swift */,
+				031DD2D71EBD28F5001881B7 /* SearchController.swift */,
+				0370AF791EDDBC25000D376B /* ReactNative */,
+				031DD2CB1EBCE1C2001881B7 /* FriendSearch */,
+				03E7392F1E6A0B0D00525383 /* Extensions */,
+				03AD35A51E240505002F9D6A /* Views */,
+				0322D5471E223A6600239A3A /* ViewControllers */,
+				FBB60E611E1E0F050035D841 /* Main.storyboard */,
+				FBB60E641E1E0F050035D841 /* Assets.xcassets */,
+				FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */,
+				FBB60E691E1E0F050035D841 /* Info.plist */,
 			);
-			name = Products;
+			path = Elliot;
 			sourceTree = "<group>";
 		};
-		00C302D41ABCB9D200DB3ED1 /* Products */ = {
+		FBB60E711E1E0F050035D841 /* ElliotTests */ = {
 			isa = PBXGroup;
 			children = (
-				00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */,
-				3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00C302E01ABCB9EE00DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00E356EF1AD99517003FC87E /* ElliotTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* ElliotTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
+				FBB60E721E1E0F050035D841 /* ElliotTests.swift */,
+				FBB60E741E1E0F050035D841 /* Info.plist */,
 			);
 			path = ElliotTests;
 			sourceTree = "<group>";
 		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		139105B71AF99BAD00B5F7CC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139105C11AF99BAD00B5F7CC /* libRCTSettings.a */,
-				3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		139FDEE71B06529A00C62182 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
-				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		13B07FAE1A68108700A75B9A /* Elliot */ = {
-			isa = PBXGroup;
-			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				13B07FB71A68108700A75B9A /* main.m */,
-			);
-			name = Elliot;
-			sourceTree = "<group>";
-		};
-		146834001AC3E56700842450 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				146834041AC3E56700842450 /* libReact.a */,
-				3DAD3EA31DF850E9000B6D8A /* libReact.a */,
-				3DAD3EA51DF850E9000B6D8A /* libyoga.a */,
-				3DAD3EA71DF850E9000B6D8A /* libyoga.a */,
-				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
-				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
-				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
-				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
-				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		78C398B11ACF4ADC00677621 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
-				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
-				146833FF1AC3E56700842450 /* React.xcodeproj */,
-				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
-				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
-				00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */,
-				78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */,
-				00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */,
-				139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */,
-				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
-				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
-				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				2FE935CBF09349FCBDDCC0C1 /* RCTFBSDK.xcodeproj */,
-				2030F3756FA64DAB9747AAB1 /* RNCalendarEvents.xcodeproj */,
-				5FDF0446442144B0A90136CF /* RCTContacts.xcodeproj */,
-				E96469817CF841FD84BC5523 /* ReactNativeGlobalProps.xcodeproj */,
-				C7DCD7D91CB24AEBA64F5130 /* ReactNativeLocalization.xcodeproj */,
-				9122A1AB3B7A40A9A1D346A2 /* ReactNativePermissions.xcodeproj */,
-				9BBC5585EFC44F6681F4E872 /* RNVectorIcons.xcodeproj */,
-				0A9268034D394C05A5499147 /* CodePush.xcodeproj */,
-				F947F6A3F3E94360BFABA988 /* RNDeviceInfo.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
-		832341B11AAA6A8300B99B32 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				832341B51AAA6A8300B99B32 /* libRCTText.a */,
-				3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		83CBB9F61A601CBA00E9B192 = {
-			isa = PBXGroup;
-			children = (
-				13B07FAE1A68108700A75B9A /* Elliot */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ElliotTests */,
-				83CBBA001A601CBA00E9B192 /* Products */,
-				C1060C8321224CD1B8F5B1AB /* Resources */,
-				0EF14E54E0924AAB936D2F94 /* Frameworks */,
-			);
-			indentWidth = 2;
-			sourceTree = "<group>";
-			tabWidth = 2;
-		};
-		83CBBA001A601CBA00E9B192 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				13B07F961A680F5B00A75B9A /* Elliot.app */,
-				00E356EE1AD99517003FC87E /* ElliotTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* Elliot-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* Elliot-tvOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C1060C8321224CD1B8F5B1AB /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				DB47CCF8E55348C199951841 /* Entypo.ttf */,
-				A0D2FCE7D9AE462D87D1C6D7 /* EvilIcons.ttf */,
-				B8979370A9C8415FAC28FDC1 /* FontAwesome.ttf */,
-				1C45D7F00B4C422893BF33FF /* Foundation.ttf */,
-				40B087EC9D74455F9884CF7B /* Ionicons.ttf */,
-				E5E4D8A97ADB4A8BAF2B9CFD /* MaterialCommunityIcons.ttf */,
-				37B0B1A6D5774105962C41CC /* MaterialIcons.ttf */,
-				AE0ECC6A635B4363B302AA66 /* Octicons.ttf */,
-				E5EED8CE68D84C68AB4947CA /* SimpleLineIcons.ttf */,
-				5FD9246E58C3464B84468968 /* Zocial.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
-		};
-		0EF14E54E0924AAB936D2F94 /* Frameworks */ = {
-			isa = "PBXGroup";
-			children = (
-				B879E8A95E034FA98C308015 /* libz.tbd */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-			path = "";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ElliotTests */ = {
+		FBB60E591E1E0F050035D841 /* Elliot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ElliotTests" */;
+			buildConfigurationList = FBB60E771E1E0F050035D841 /* Build configuration list for PBXNativeTarget "Elliot" */;
 			buildPhases = (
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = ElliotTests;
-			productName = ElliotTests;
-			productReference = 00E356EE1AD99517003FC87E /* ElliotTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		13B07F861A680F5B00A75B9A /* Elliot */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Elliot" */;
-			buildPhases = (
-				13B07F871A680F5B00A75B9A /* Sources */,
-				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				13B07F8E1A680F5B00A75B9A /* Resources */,
-				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				8FA6D2A9373F6F669A1732EE /* [CP] Check Pods Manifest.lock */,
+				028A973DF94AB850634D62E6 /* [CP] Check Pods Manifest.lock */,
+				FBB60E561E1E0F050035D841 /* Sources */,
+				FBB60E571E1E0F050035D841 /* Frameworks */,
+				FBB60E581E1E0F050035D841 /* Resources */,
+				7992DDBE9CB240CF41BA5C33 /* [CP] Embed Pods Frameworks */,
+				5C33A5FC2BAD45D754E86D18 /* [CP] Copy Pods Resources */,
+				4F3AABC32FDAB9F2DD1538BB /* 📦 Embed Pods Frameworks */,
+				FD6C97965F97846635AD97B1 /* 📦 Copy Pods Resources */,
+				0328E9131E2F9CF8003427C3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Elliot;
-			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* Elliot.app */;
+			productName = Elliot;
+			productReference = FBB60E5A1E1E0F050035D841 /* Elliot.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* Elliot-tvOS */ = {
+		FBB60E6D1E1E0F050035D841 /* ElliotTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Elliot-tvOS" */;
+			buildConfigurationList = FBB60E7A1E1E0F050035D841 /* Build configuration list for PBXNativeTarget "ElliotTests" */;
 			buildPhases = (
-				2D02E4771E0B4A5D006451C7 /* Sources */,
-				2D02E4781E0B4A5D006451C7 /* Frameworks */,
-				2D02E4791E0B4A5D006451C7 /* Resources */,
-				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+				FBB60E6A1E1E0F050035D841 /* Sources */,
+				FBB60E6B1E1E0F050035D841 /* Frameworks */,
+				FBB60E6C1E1E0F050035D841 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FBB60E701E1E0F050035D841 /* PBXTargetDependency */,
 			);
-			name = "Elliot-tvOS";
-			productName = "Elliot-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* Elliot-tvOS.app */;
-			productType = "com.apple.product-type.application";
-		};
-		2D02E48F1E0B4A5D006451C7 /* Elliot-tvOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Elliot-tvOSTests" */;
-			buildPhases = (
-				2D02E48C1E0B4A5D006451C7 /* Sources */,
-				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
-				2D02E48E1E0B4A5D006451C7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
-			);
-			name = "Elliot-tvOSTests";
-			productName = "Elliot-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* Elliot-tvOSTests.xctest */;
+			name = ElliotTests;
+			productName = ElliotTests;
+			productReference = FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+		FBB60E521E1E0F050035D841 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 610;
-				ORGANIZATIONNAME = Facebook;
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Elliot Technologies";
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
+					FBB60E591E1E0F050035D841 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ZN3S5P8EPC;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
-					2D02E47A1E0B4A5D006451C7 = {
+					FBB60E6D1E1E0F050035D841 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
-					};
-					2D02E48F1E0B4A5D006451C7 = {
-						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+						TestTargetID = FBB60E591E1E0F050035D841;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Elliot" */;
+			buildConfigurationList = FBB60E551E1E0F050035D841 /* Build configuration list for PBXProject "Elliot" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -686,279 +436,53 @@
 				en,
 				Base,
 			);
-			mainGroup = 83CBB9F61A601CBA00E9B192;
-			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			mainGroup = FBB60E511E1E0F050035D841;
+			productRefGroup = FBB60E5B1E1E0F050035D841 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
-					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
-				},
-				{
-					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
-					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
-					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
-					ProjectRef = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-				},
-				{
-					ProductGroup = 78C398B11ACF4ADC00677621 /* Products */;
-					ProjectRef = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
-					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-				},
-				{
-					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
-					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-				},
-				{
-					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
-					ProjectRef = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302E01ABCB9EE00DB3ED1 /* Products */;
-					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
-				},
-				{
-					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
-					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-				},
-				{
-					ProductGroup = 146834001AC3E56700842450 /* Products */;
-					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+					ProductGroup = 03785F651E2FEC1300A452F3 /* Products */;
+					ProjectRef = 03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Elliot */,
-				00E356ED1AD99517003FC87E /* ElliotTests */,
-				2D02E47A1E0B4A5D006451C7 /* Elliot-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* Elliot-tvOSTests */,
+				FBB60E591E1E0F050035D841 /* Elliot */,
+				FBB60E6D1E1E0F050035D841 /* ElliotTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */ = {
+		03785F6A1E2FEC1300A452F3 /* OpenSansSwift.framework */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTActionSheet.a;
-			remoteRef = 00C302AB1ABCB8CE00DB3ED1 /* PBXContainerItemProxy */;
+			fileType = wrapper.framework;
+			path = OpenSansSwift.framework;
+			remoteRef = 03785F691E2FEC1300A452F3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */ = {
+		03785F6C1E2FEC1300A452F3 /* OpenSansSwiftTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTGeolocation.a;
-			remoteRef = 00C302B91ABCB90400DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302C01ABCB91800DB3ED1 /* libRCTImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTImage.a;
-			remoteRef = 00C302BF1ABCB91800DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTNetwork.a;
-			remoteRef = 00C302DB1ABCB9D200DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTVibration.a;
-			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTSettings.a;
-			remoteRef = 139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139FDEF41B06529B00C62182 /* libRCTWebSocket.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTWebSocket.a;
-			remoteRef = 139FDEF31B06529B00C62182 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		146834041AC3E56700842450 /* libReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReact.a;
-			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTImage-tvOS.a";
-			remoteRef = 3DAD3E831DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTLinking-tvOS.a";
-			remoteRef = 3DAD3E871DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E8C1DF850E9000B6D8A /* libRCTNetwork-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTNetwork-tvOS.a";
-			remoteRef = 3DAD3E8B1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E901DF850E9000B6D8A /* libRCTSettings-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTSettings-tvOS.a";
-			remoteRef = 3DAD3E8F1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E941DF850E9000B6D8A /* libRCTText-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTText-tvOS.a";
-			remoteRef = 3DAD3E931DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTWebSocket-tvOS.a";
-			remoteRef = 3DAD3E981DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA31DF850E9000B6D8A /* libReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReact.a;
-			remoteRef = 3DAD3EA21DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA51DF850E9000B6D8A /* libyoga.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libyoga.a;
-			remoteRef = 3DAD3EA41DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA71DF850E9000B6D8A /* libyoga.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libyoga.a;
-			remoteRef = 3DAD3EA61DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcxxreact.a;
-			remoteRef = 3DAD3EA81DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcxxreact.a;
-			remoteRef = 3DAD3EAA1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTAnimation.a;
-			remoteRef = 5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTAnimation-tvOS.a";
-			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTLinking.a;
-			remoteRef = 78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		832341B51AAA6A8300B99B32 /* libRCTText.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTText.a;
-			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
+			fileType = wrapper.cfbundle;
+			path = OpenSansSwiftTests.xctest;
+			remoteRef = 03785F6B1E2FEC1300A452F3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
+		FBB60E581E1E0F050035D841 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */,
+				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
+				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
+				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13B07F8E1A680F5B00A75B9A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				B44F77F73DDB4E1C914E7EA5 /* Entypo.ttf in Resources */,
-				C71C69EACAEB46CBA31F9538 /* EvilIcons.ttf in Resources */,
-				A007FDDF22BB4B0C84DBB151 /* FontAwesome.ttf in Resources */,
-				DDAA8B4563024AD69F8F97BF /* Foundation.ttf in Resources */,
-				1D30C6D558EB4C94BDC77323 /* Ionicons.ttf in Resources */,
-				1037706C3F9847E2B6D3F405 /* MaterialCommunityIcons.ttf in Resources */,
-				D2D4E6DAB9544DD2B600627F /* MaterialIcons.ttf in Resources */,
-				241AE7C1B8FD4AE886C707AC /* Octicons.ttf in Resources */,
-				9EF6F31B4E8948B3BCD85AC5 /* SimpleLineIcons.ttf in Resources */,
-				8D5EEC9ED3AE446A9D4246D0 /* Zocial.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E4791E0B4A5D006451C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+		FBB60E6C1E1E0F050035D841 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -968,413 +492,196 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+		028A973DF94AB850634D62E6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bundle React Native code and images";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+		4F3AABC32FDAB9F2DD1538BB /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bundle React Native Code And Images";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C33A5FC2BAD45D754E86D18 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7992DDBE9CB240CF41BA5C33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FA6D2A9373F6F669A1732EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD6C97965F97846635AD97B1 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
+		FBB60E561E1E0F050035D841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ElliotTests.m in Sources */,
+				03785F701E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift in Sources */,
+				03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */,
+				03785F6E1E300E8000A452F3 /* MeetingDetailTableViewCell.swift in Sources */,
+				03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */,
+				031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */,
+				03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */,
+				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
+				03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */,
+				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
+				03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */,
+				03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */,
+				031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */,
+				037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */,
+				037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */,
+				031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */,
+				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
+				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
+				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
+				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
+				0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */,
+				0322D5411E2115C500239A3A /* LocationManager.swift in Sources */,
+				0370AF671EDD642A000D376B /* ReactTestViewController.swift in Sources */,
+				033375B01E268D0A000A5C21 /* MeetingDetailViewController.swift in Sources */,
+				03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */,
+				0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */,
+				03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */,
+				033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */,
+				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
+				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
+				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
+				03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */,
+				03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */,
+				0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */,
+				03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */,
+				0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */,
+				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
+				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
+				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
+				0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */,
+				0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */,
+				FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */,
+				0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */,
+				03755F631E28E780003EDAD9 /* Models.swift in Sources */,
+				0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */,
+				0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */,
+				033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		13B07F871A680F5B00A75B9A /* Sources */ = {
+		FBB60E6A1E1E0F050035D841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E4771E0B4A5D006451C7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D02E48C1E0B4A5D006451C7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2DCD954D1E0B4F2C00145EB5 /* ElliotTests.m in Sources */,
+				FBB60E731E1E0F050035D841 /* ElliotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+		FBB60E701E1E0F050035D841 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Elliot */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* Elliot-tvOS */;
-			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+			target = FBB60E591E1E0F050035D841 /* Elliot */;
+			targetProxy = FBB60E6F1E1E0F050035D841 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
+		FBB60E611E1E0F050035D841 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				13B07FB21A68108700A75B9A /* Base */,
+				FBB60E621E1E0F050035D841 /* Base */,
 			);
-			name = LaunchScreen.xib;
-			path = Elliot;
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FBB60E671E1E0F050035D841 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ElliotTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ElliotTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Release;
-		};
-		13B07F941A680F5B00A75B9A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = NO;
-				INFOPLIST_FILE = Elliot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = Elliot;
-				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Debug;
-		};
-		13B07F951A680F5B00A75B9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = Elliot/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = Elliot;
-				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Release;
-		};
-		2D02E4971E0B4A5E006451C7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Elliot-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Elliot-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Debug;
-		};
-		2D02E4981E0B4A5E006451C7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Elliot-tvOS/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Elliot-tvOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.2;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-calendar-events",
-					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
-					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
-					"$(SRCROOT)/../node_modules/react-native-localization",
-					"$(SRCROOT)/../node_modules/react-native-permissions/**",
-					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-code-push/ios/CodePush/**",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
-				);
-			};
-			name = Release;
-		};
-		2D02E4991E0B4A5E006451C7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Elliot-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Elliot-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot-tvOS.app/Elliot-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-			};
-			name = Debug;
-		};
-		2D02E49A1E0B4A5E006451C7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Elliot-tvOSTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.Elliot-tvOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot-tvOS.app/Elliot-tvOS";
-				TVOS_DEPLOYMENT_TARGET = 10.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-			};
-			name = Release;
-		};
-		83CBBA201A601CBA00E9B192 /* Debug */ = {
+		0370AF7C1EDDC489000D376B /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1382,40 +689,147 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_PUSH_KEY = f0_Q7aSTno8YKmLz6iHy43GB3E7k4kLR2XUW7;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-D STAGING";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
+		0370AF7D1EDDC489000D376B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = Elliot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
+		0370AF7E1EDDC489000D376B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ElliotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.ElliotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
+			};
+			name = Staging;
+		};
+		FBB60E751E1E0F050035D841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_PUSH_KEY = f0_Q7aSTno8YKmLz6iHy43GB3E7k4kLR2XUW7;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		83CBBA211A601CBA00E9B192 /* Release */ = {
+		FBB60E761E1E0F050035D841 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1423,79 +837,176 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_PUSH_KEY = ogPCC7NbVSrh_HM2cM1xVUOMttES4kLR2XUW7;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-D RELEASE";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FBB60E781E1E0F050035D841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = Elliot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FBB60E791E1E0F050035D841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = Elliot/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FBB60E7B1E1E0F050035D841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ElliotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.ElliotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
+			};
+			name = Debug;
+		};
+		FBB60E7C1E1E0F050035D841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ElliotTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.ElliotTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ElliotTests" */ = {
+		FBB60E551E1E0F050035D841 /* Build configuration list for PBXProject "Elliot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
+				FBB60E751E1E0F050035D841 /* Debug */,
+				FBB60E761E1E0F050035D841 /* Release */,
+				0370AF7C1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Elliot" */ = {
+		FBB60E771E1E0F050035D841 /* Build configuration list for PBXNativeTarget "Elliot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13B07F941A680F5B00A75B9A /* Debug */,
-				13B07F951A680F5B00A75B9A /* Release */,
+				FBB60E781E1E0F050035D841 /* Debug */,
+				FBB60E791E1E0F050035D841 /* Release */,
+				0370AF7D1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Elliot-tvOS" */ = {
+		FBB60E7A1E1E0F050035D841 /* Build configuration list for PBXNativeTarget "ElliotTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2D02E4971E0B4A5E006451C7 /* Debug */,
-				2D02E4981E0B4A5E006451C7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Elliot-tvOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2D02E4991E0B4A5E006451C7 /* Debug */,
-				2D02E49A1E0B4A5E006451C7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Elliot" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83CBBA201A601CBA00E9B192 /* Debug */,
-				83CBBA211A601CBA00E9B192 /* Release */,
+				FBB60E7B1E1E0F050035D841 /* Debug */,
+				FBB60E7C1E1E0F050035D841 /* Release */,
+				0370AF7E1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+	rootObject = FBB60E521E1E0F050035D841 /* Project object */;
 }
