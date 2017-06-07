@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var nextButton: UIButton!
     
     var loginButton: LoginButton!
+    let loginManager = LoginManager()
     
     let previewNames = ["login1", "login2", "login3"]
     let previewTexts = ["Elliot suggests people and times for you to meet",
@@ -89,12 +90,17 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             print(grantedPermissions.description)
             print(declinedPermissions.description)
             print("-------------")
-            AuthorizationManager.shared.loadToken()
-            if AccessStatus.hasEnabledAll() {
-                performSegue(withIdentifier: "login-main", sender: self)
-            } else {
-                performSegue(withIdentifier: "login-permissions", sender: self)
-            }
+            AuthorizationManager.shared.loadToken(completion: { (json, success) in
+                if success {
+                    if AccessStatus.hasEnabledAll() {
+                        self.performSegue(withIdentifier: "login-main", sender: self)
+                    } else {
+                        self.performSegue(withIdentifier: "login-permissions", sender: self)
+                    }
+                } else {
+                    self.loginManager.logOut()
+                }
+            })
         }
     }
     
