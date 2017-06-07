@@ -30,14 +30,16 @@ import codePush, {InstallMode} from "react-native-code-push";
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
-
 import Icon from 'react-native-vector-icons/Ionicons';
+import {IS_IOS} from './settings'
 
 // export const IS_DEV = true
 
 // call for IOS
 console.log(Icon)
-// Icon.loadFont();
+if (IS_IOS) {
+  Icon.loadFont()
+}
 
 DeepLinking.addScheme('elliot://');
 
