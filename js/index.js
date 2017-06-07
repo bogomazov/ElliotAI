@@ -10,7 +10,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 import { connect, Provider } from 'react-redux'
@@ -36,8 +37,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 // export const IS_DEV = true
 
 // call for IOS
-console.log(Icon)
-// Icon.loadFont();
+if (Platform.OS === 'ios') {
+  Icon.loadFont();
+}
 
 DeepLinking.addScheme('elliot://');
 
