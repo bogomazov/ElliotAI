@@ -33,7 +33,7 @@ export default class UserSuggestionsScene extends Component {
 
 	_onSuggestionPress = (suggestion) => {
       this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion,
-																											 twiceBackKey: this.props.navigation.state.key})
+																											 skipBack: this.props.navigation.state.key})
 	}
 
 	componentWillMount = () => {

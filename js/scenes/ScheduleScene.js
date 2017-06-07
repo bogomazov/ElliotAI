@@ -17,6 +17,7 @@ import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationTopBar from '../components/NavigationTopBar';
 import IconEntypo from 'react-native-vector-icons/Entypo';
+import { NavigationActions } from 'react-navigation'
 import s from '../res/values/styles'
 
 const mapStateToProps = (state) => {
@@ -46,18 +47,16 @@ export default class ScheduleScene extends Component {
 
 
     _onConfirmPress = () => {
-			const twiceBackKey = this.props.twiceBackKey
+			const skipBack = this.props.skipBack
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
         times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
-					if (twiceBackKey) {
-						this.props.navigation.goBack(twiceBackKey)
-					} else {
-						this.props.navigation.goBack()
-					}
+					this.props.navigation.dispatch(NavigationActions.back({
+					  key: skipBack
+					}))
         })
       }
     }
@@ -105,7 +104,7 @@ export default class ScheduleScene extends Component {
 
   render() {
     this.props = {...this.props, ...this.props.navigation.state.params}
-
+		console.log(this.props)
     if (!this.state.isCalendarEventsLoaded) {
       this._loadCalendarEvents()
     }
