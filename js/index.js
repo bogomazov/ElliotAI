@@ -32,14 +32,19 @@ import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
 import {newAccessToken} from './state/actions/app'
 
 // export const IS_DEV = true
 
 // call for IOS
 if (Platform.OS === 'ios') {
-  Icon.loadFont();
+  Ionicons.loadFont()
+  Entypo.loadFont()
+  EvilIcons.loadFont()
 }
 
 DeepLinking.addScheme('elliot://');
