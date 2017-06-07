@@ -46,13 +46,18 @@ export default class ScheduleScene extends Component {
 
 
     _onConfirmPress = () => {
+			const twiceBackKey = this.props.twiceBackKey
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
         times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
-          this.props.navigation.goBack()
+					if (twiceBackKey) {
+						this.props.navigation.goBack(twiceBackKey)
+					} else {
+						this.props.navigation.goBack()
+					}
         })
       }
     }

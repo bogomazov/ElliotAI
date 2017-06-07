@@ -30,9 +30,10 @@ export default class UserSuggestionsScene extends Component {
       userSuggestions: [],
       isUserSuggestionsLoaded: false
     }
-    
+
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion})
+      this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion,
+																											 twiceBackKey: this.props.navigation.state.key})
 	}
 
 	componentWillMount = () => {
@@ -42,7 +43,7 @@ export default class UserSuggestionsScene extends Component {
           this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
         }).catch((err) => console.log(err))
 	}
-    
+
     _keyExtractor = (item, index) => item.id;
 
   render() {
@@ -56,9 +57,9 @@ export default class UserSuggestionsScene extends Component {
           renderItem={({item}, i) => {
             return <SuggestionCard
                       key={i}
-                      suggestion={item} 
+                      suggestion={item}
                       onPress={this._onSuggestionPress}/>}}
-            /> 
+            />
       </View>
     );
   }
