@@ -57,6 +57,8 @@
 		03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */; };
 		03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E739321E6A0B4800525383 /* UIViewController+Banner.swift */; };
 		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
+		03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7A81EE821A000DC815C /* LocationAccess.swift */; };
+		03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -155,6 +157,8 @@
 		03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardToInviteCell.swift; sourceTree = "<group>"; };
 		03E739321E6A0B4800525383 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
 		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		03F9E7A81EE821A000DC815C /* LocationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccess.swift; sourceTree = "<group>"; };
+		03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAccessBridge.m; sourceTree = "<group>"; };
 		0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.staging.xcconfig"; sourceTree = "<group>"; };
 		208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.debug.xcconfig"; sourceTree = "<group>"; };
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +229,7 @@
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+				03F9E7AC1EE822BF00DC815C /* LocationAccess */,
 			);
 			name = ReactNative;
 			sourceTree = "<group>";
@@ -267,6 +272,15 @@
 				03E739321E6A0B4800525383 /* UIViewController+Banner.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		03F9E7AC1EE822BF00DC815C /* LocationAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03F9E7A81EE821A000DC815C /* LocationAccess.swift */,
+				03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */,
+			);
+			name = LocationAccess;
 			sourceTree = "<group>";
 		};
 		471DB5F868120E522A051585 /* Pods */ = {
@@ -607,6 +621,7 @@
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
 				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
 				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
 				0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */,
@@ -631,6 +646,7 @@
 				0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */,
 				0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */,
 				FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */,
+				03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */,
 				0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */,
 				03755F631E28E780003EDAD9 /* Models.swift in Sources */,
 				0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */,

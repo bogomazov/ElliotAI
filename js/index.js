@@ -10,7 +10,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 import { connect, Provider } from 'react-redux'
@@ -30,15 +31,20 @@ import codePush, {InstallMode} from "react-native-code-push";
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
-import Icon from 'react-native-vector-icons/Ionicons';
 import {IS_IOS} from './settings'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Entypo from 'react-native-vector-icons/Entypo';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
+
+import {newAccessToken} from './state/actions/app'
 
 // export const IS_DEV = true
 
 // call for IOS
-console.log(Icon)
 if (IS_IOS) {
-  Icon.loadFont()
+  Ionicons.loadFont()
+  Entypo.loadFont()
+  EvilIcons.loadFont()
 }
 
 DeepLinking.addScheme('elliot://');
@@ -52,7 +58,7 @@ export const Store = createStore(
   ))
 
 // use .purge() to clean storage
-persistStore(Store, { storage: AsyncStorage })
+const Persistor = persistStore(Store, { storage: AsyncStorage })
 
 let persistStateConfig = {
   serialize: (collection) => {
@@ -82,13 +88,21 @@ const Navigation = StackNavigator({
             }, {headerMode: 'none',
                transitionConfig: () => {duration: 500}})
 class App extends Component {
-    render() {
-        return (
-          <Provider store={Store}>
-            <Navigation/>
-           </Provider>
-        );
+  componentWillMount() {
+    if (Platform.OS == 'ios') {
+      Persistor.purge();
+      const accessToken = this.props.nativeIOS.accessToken
+      Store.dispatch(newAccessToken(accessToken))
     }
+  }
+
+  render() {
+    return (
+      <Provider store={Store}>
+        <Navigation/>
+       </Provider>
+    );
+  }
 }
 
 
