@@ -33,6 +33,7 @@ import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import {newAccessToken} from './state/actions/app'
 
 // export const IS_DEV = true
 
@@ -52,7 +53,7 @@ export const Store = createStore(
   ))
 
 // use .purge() to clean storage
-persistStore(Store, { storage: AsyncStorage })
+const Persistor = persistStore(Store, { storage: AsyncStorage })
 
 let persistStateConfig = {
   serialize: (collection) => {
@@ -82,13 +83,21 @@ const Navigation = StackNavigator({
             }, {headerMode: 'none',
                transitionConfig: () => {duration: 500}})
 class App extends Component {
-    render() {
-        return (
-          <Provider store={Store}>
-            <Navigation/>
-           </Provider>
-        );
+  componentWillMount() {
+    if (Platform.OS == 'ios') {
+      Persistor.purge();
+      const accessToken = this.props.nativeIOS.accessToken
+      Store.dispatch(newAccessToken(accessToken))
     }
+  }
+
+  render() {
+    return (
+      <Provider store={Store}>
+        <Navigation/>
+       </Provider>
+    );
+  }
 }
 
 
