@@ -89,8 +89,8 @@ const Navigation = StackNavigator({
                transitionConfig: () => {duration: 500}})
 class App extends Component {
   componentWillMount() {
-    if (Platform.OS == 'ios') {
-      Persistor.purge();
+    if (IS_IOS) {
+      Persistor.purge()
       const accessToken = this.props.nativeIOS.accessToken
       Store.dispatch(newAccessToken(accessToken))
     }
