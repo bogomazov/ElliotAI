@@ -20,7 +20,7 @@ import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
-import {IS_DEV} from '../settings'
+import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
@@ -122,7 +122,7 @@ export default class MainScene extends Component {
 		this.props.appActions.loadSuggestions()
 	}
 
-	if (Platform.OS !== 'ios') {
+	if (IS_ANDROID) {
 		if (!this.props.app.isRehydrated) {
 			return <SplashScene />
 		}

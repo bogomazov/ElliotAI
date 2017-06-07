@@ -13,6 +13,7 @@ import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
 import LocationAccess from '../utils/LocationAccessModule'
+import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -73,22 +74,23 @@ export default class SuggestionsScene extends Component {
 
 	_updateData = () => {
 		this.setState({isRefreshing: true})
-
-      LocationAccess.checkLocationAccess().then((response) => {
-        console.log(response)
-        if (response == 'success') {
-					LocationAccess.requestLocation().then((location) => {
-						console.log(location)
-						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
-				       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-							 this._updateCalendarEvents()
+			if (IS_ANDROID) {
+				LocationAccess.checkLocationAccess().then((response) => {
+	        console.log(response)
+	        if (response == 'success') {
+						LocationAccess.requestLocation().then((location) => {
+							console.log(location)
+							this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
+					       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+								 this._updateCalendarEvents()
+							})
 						})
-					})
-          // this._requestCurrentLocation()
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
+	          // this._requestCurrentLocation()
+	        }
+	      }).catch((error) => {
+	        console.log(error)
+	      })
+			}
   }
 
 	_updateCalendarEvents = () => {
