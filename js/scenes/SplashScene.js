@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux'
 import IntroSwipe from '../containers/Intro'
 import * as appActions from '../state/actions/app';
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
-import LocationAccess from '../utils/LocationAccessModule'
 import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
@@ -30,39 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
-  _updateData = () => {
-    console.log('did mount')
-    console.log(this.props.app.isRehydrated)
-    console.log(this.props.app.isLoggedIn)
 
-      console.log('checkLocationServicesIsEnabled')
-      LocationAccess.checkLocationAccess().then((response) => {
-        console.log(response)
-        if (response == 'success') {
-					LocationAccess.requestLocation().then((location) => {
-						console.log(location)
-						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp)
-					})
-          // this._requestCurrentLocation()
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-
-      getEvents(moment(), moment().add(1, 'months')).then(events => {
-            // handle events
-            console.log('Calendar fetchAllEvents')
-            console.log(events)
-            if (events.length > 0) {
-              this.props.appActions.sendEvents(events)
-            }
-          })
-          .catch(error => {
-            console.log(error)
-            this.props.appActions.switchPermissionsOff()
-           // handle error
-          });
-  }
 
   // _requestCurrentLocation = () => {
 	// 	console.log('request Location')
@@ -80,9 +47,6 @@ export default class SplashScene extends Component {
 			if (IS_DEV) {
 				alert('Staging server!')
 			}
-      if (this.props.app.isRehydrated && this.props.app.isLoggedIn) {
-        this._updateData()
-      }
 			return (<View style={styles.container}>
         <Image
           style={styles.image}

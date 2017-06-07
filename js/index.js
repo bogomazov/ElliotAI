@@ -37,7 +37,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // call for IOS
 console.log(Icon)
-Icon.loadFont();
+// Icon.loadFont();
 
 DeepLinking.addScheme('elliot://');
 

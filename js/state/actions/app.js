@@ -79,7 +79,7 @@ export const newCalendar = (upcomingMeetings, pastMeetings) => {
 export const newContacts = (numbers, emails) => {
   return {
     type: NEW_CONTACTS,
-    numbers, 
+    numbers,
     emails,
   }
 }
@@ -115,11 +115,7 @@ export const newLocation = (lon, lat, timestamp) => {
 }
 
 export const sendLocation = (lon, lat, timestamp) => {
-  return (dispatch, getState, getAPI) => {
-      getAPI(getState, dispatch).sendLocation(lon, lat, timestamp).then((data) => {
-          dispatch(newLocation(lon, lat, timestamp))
-      })
-    }
+  return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendLocation(lon, lat, timestamp)
   }
 
   // Requires a channel type which can be one of these: “sms”, “email”, “fb-messenger”, “fb-share”, “twitter”.
@@ -164,11 +160,7 @@ export const sendEvents = (events) => {
 
   console.log(events)
 
-  return (dispatch, getState, getAPI) => {
-      getAPI(getState, dispatch).sendEvents(events).then((data) => {
-          console.log(data)
-      })
-    }
+  return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendEvents(events)
   }
 
 export const acceptSuggestion = (suggestion, times) => {

@@ -123,8 +123,7 @@ export default class MainScene extends Component {
 	}
 
 	if (Platform.OS !== 'ios') {
-		if (!this.props.app.isRehydrated ||
-			(this.props.app.isLoggedIn && this.props.app.isPermissionsGranted && (!this.props.app.isLocationGiven || !this.props.app.isSuggestionsLoaded))) {
+		if (!this.props.app.isRehydrated) {
 			return <SplashScene />
 		}
 
@@ -135,12 +134,12 @@ export default class MainScene extends Component {
 		if (!this.props.app.isPermissionsGranted) {
 			return <PermissionsScene/>
 		}
-		
+
 		// if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 		// 	return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 		// }
 	}
-	
+
 			return (<View style={styles.container}>
 				{IS_DEV && <Button
           onPress={this.props.appActions.logOut}

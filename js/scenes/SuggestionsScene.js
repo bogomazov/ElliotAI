@@ -12,6 +12,7 @@ import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
+import LocationAccess from '../utils/LocationAccessModule'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -30,7 +31,9 @@ const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
 export default class SuggestionsScene extends Component {
 
 	state = {
-		isRefreshing: false
+		isRefreshing: false,
+		isLocationSent: false,
+		isEventsSent: false,
 	}
 
 	_onSuggestionPress = (suggestion) => {
@@ -56,6 +59,9 @@ export default class SuggestionsScene extends Component {
 
 	componentWillMount = () => {
 		console.log(this.props)
+		if (!this.props.app.isSuggestionsLoaded) {
+			this._updateData()
+		}
 	}
 
   _keyExtractor = (item, index) => item.id;
@@ -63,6 +69,44 @@ export default class SuggestionsScene extends Component {
 	_refresh = () => {
 		this.setState({isRefreshing: true})
 		this.props.appActions.loadSuggestions()
+	}
+
+	_updateData = () => {
+		this.setState({isRefreshing: true})
+
+      LocationAccess.checkLocationAccess().then((response) => {
+        console.log(response)
+        if (response == 'success') {
+					LocationAccess.requestLocation().then((location) => {
+						console.log(location)
+						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
+				       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+							 this._updateCalendarEvents()
+						})
+					})
+          // this._requestCurrentLocation()
+        }
+      }).catch((error) => {
+        console.log(error)
+      })
+  }
+
+	_updateCalendarEvents = () => {
+		getEvents(moment(), moment().add(1, 'months')).then(events => {
+					// handle events
+					console.log('Calendar fetchAllEvents')
+					console.log(events)
+					if (events.length > 0) {
+						this.props.appActions.sendEvents(events).then(data=> {
+							this.props.appActions.loadSuggestions()
+						})
+					}
+				})
+				.catch(error => {
+					console.log(error)
+					this.props.appActions.switchPermissionsOff()
+				 // handle error
+				});
 	}
 
   render() {
