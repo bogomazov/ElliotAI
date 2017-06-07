@@ -49,8 +49,6 @@ export default class SplashScene extends Component {
         console.log(error)
       })
 
-
-
       getEvents(moment(), moment().add(1, 'months')).then(events => {
             // handle events
             console.log('Calendar fetchAllEvents')
