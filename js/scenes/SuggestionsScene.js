@@ -13,6 +13,8 @@ import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
 import LocationAccess from '../utils/LocationAccessModule'
+import {getEvents} from '../utils/Calendar'
+import moment from 'moment'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -78,6 +80,7 @@ export default class SuggestionsScene extends Component {
         console.log(response)
         if (response == 'success') {
 					LocationAccess.requestLocation().then((location) => {
+						console.log('got location')
 						console.log(location)
 						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
 				       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
@@ -92,6 +95,7 @@ export default class SuggestionsScene extends Component {
   }
 
 	_updateCalendarEvents = () => {
+		console.log('getting events')
 		getEvents(moment(), moment().add(1, 'months')).then(events => {
 					// handle events
 					console.log('Calendar fetchAllEvents')

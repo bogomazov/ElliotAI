@@ -66,6 +66,23 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
         shouldSend = true
     }
     
+    typealias LocationSuccess = ((Double, Double) -> Void)
+    typealias LocationFailure = (String) -> Void
+    
+    var getLocationSuccess: LocationSuccess? = nil
+    var getLocationFailure: LocationFailure? = nil
+    
+    func getLocation(success: @escaping LocationSuccess, failure: @escaping LocationFailure) {
+        if LocationManager.getAccessStatus() != .granted {
+            failure("permission is not granted")
+            return
+        }
+        locationManager?.stopUpdatingLocation()
+        locationManager?.requestLocation()
+        getLocationSuccess = success
+        getLocationFailure = failure
+    }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if LocationManager.getAccessStatus() != .granted {
             return
@@ -87,6 +104,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
         
         determineMetroArea(location: locations.last!)
         
+        getLocationSuccess?(coordinate.longitude, coordinate.latitude)
+        getLocationSuccess = nil
+        getLocationFailure = nil
+        
         if !shouldSend {
             return
         }
@@ -101,6 +122,10 @@ class LocationManager: NSObject, CLLocationManagerDelegate, AccessRequired {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("[LocationSync] locationRequest failed with error = \(error.localizedDescription)")
+        getLocationFailure?(error.localizedDescription)
+        getLocationSuccess = nil
+        getLocationFailure = nil
+        
         self.locationCompletion?(false)
         self.locationCompletion = nil
     }
