@@ -61,6 +61,7 @@
 		03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
 		03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
 		03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
+		03F9E7B91EE9AD3900DC815C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 03F9E7B81EE9AD3900DC815C /* assets */; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -163,6 +164,7 @@
 		03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAccessBridge.m; sourceTree = "<group>"; };
 		03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationAccess.swift; sourceTree = "<group>"; };
 		03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationAccessBridge.m; sourceTree = "<group>"; };
+		03F9E7B81EE9AD3900DC815C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
 		0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.staging.xcconfig"; sourceTree = "<group>"; };
 		208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.debug.xcconfig"; sourceTree = "<group>"; };
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				0370AF751EDD86B4000D376B /* main.jsbundle */,
+				03F9E7B81EE9AD3900DC815C /* assets */,
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
 				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
 				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
@@ -503,6 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F9E7B91EE9AD3900DC815C /* assets in Resources */,
 				FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */,
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,

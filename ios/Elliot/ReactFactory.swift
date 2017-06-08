@@ -20,7 +20,7 @@ class ReactFactory: NSObject, RCTBridgeDelegate {
     }()
     
     func sourceURL(for bridge: RCTBridge!) -> URL! {
-        #if DEBUG
+        #if TARGET_IPHONE_SIMULATOR
             return URL(string: "http://localhost:8081/index.ios.bundle?platform=ios")
         #else
             return CodePush.bundleURL()
