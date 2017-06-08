@@ -140,8 +140,14 @@ export default class MainScene extends Component {
 		}
 	}
 
+	if (IS_IOS) {
+		return (
+			<SuggestionsScene navigation={this.props.navigation}/>
+		);
+	}
+
 			return (<View style={styles.container}>
-				{IS_DEV && <Button
+				{false && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"

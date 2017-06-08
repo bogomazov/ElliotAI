@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-9p-vaY">
-                                <rect key="frame" x="0.0" y="168" width="375" height="499"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inviteCell" id="s4d-1M-itN" customClass="ContactTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-83-WoK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="meetingCell" id="WT6-UT-3i0" customClass="MeetingsTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -1019,7 +1019,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="220" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mEl-Ea-ab3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggestionCell" id="wKO-OV-gxq" customClass="SuggestionTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -1462,6 +1462,7 @@
                             <constraint firstItem="mEl-Ea-ab3" firstAttribute="top" secondItem="NI5-Nf-Ve3" secondAttribute="bottom" id="k7T-AQ-x0E"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ZbK-0p-7Fb"/>
                     <navigationItem key="navigationItem" title="Suggestions" id="L05-De-0mW"/>
                     <connections>
                         <outlet property="tableView" destination="mEl-Ea-ab3" id="nPJ-rJ-w2H"/>
@@ -1655,7 +1656,7 @@
                                 <rect key="frame" x="36" y="153.5" width="303" height="350.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nch-EP-CYo">
-                                        <rect key="frame" x="51" y="80" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="79.5" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="WRu-dx-RcN"/>
                                             <constraint firstAttribute="height" constant="44" id="rAX-Cu-IJg"/>
@@ -1669,7 +1670,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gof-O5-0j4">
-                                        <rect key="frame" x="51" y="154" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="153.5" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="Nhd-wR-gF5"/>
                                             <constraint firstAttribute="height" constant="44" id="kn1-ic-M93"/>
@@ -1683,7 +1684,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nm-fM-3Ac">
-                                        <rect key="frame" x="51" y="228" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="227.5" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AIN-Lx-9K4"/>
                                             <constraint firstAttribute="width" constant="200" id="mHt-As-TIE"/>
@@ -1872,6 +1873,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
+                    <connections>
+                        <segue destination="apG-96-gIP" kind="relationship" relationship="viewControllers" id="xlu-b3-rSK"/>
+                        <segue destination="C61-th-q3y" kind="relationship" relationship="viewControllers" id="ph3-Wh-XJA"/>
+                        <segue destination="d3T-Vf-7iA" kind="relationship" relationship="viewControllers" id="gOH-qj-q93"/>
+                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbK-QK-Doj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1883,7 +1889,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d3T-Vf-7iA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Invite" id="4AZ-Ww-nVr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VJW-zY-75v">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VJW-zY-75v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1902,7 +1908,7 @@
                 <navigationController title="Meetings" automaticallyAdjustsScrollViewInsets="NO" id="C61-th-q3y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Meetings" id="ZKe-Pe-Fei"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Htc-Rt-eP8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Htc-Rt-eP8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1921,7 +1927,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zx4-Yu-qbo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Suggestions" id="Qtq-Xe-m1B"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yio-SR-fjI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yio-SR-fjI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1936,7 +1942,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LBC-v8-6dp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3132" y="1106"/>
+            <point key="canvasLocation" x="3441" y="954"/>
         </scene>
         <!--Different Times-->
         <scene sceneID="bdL-WF-tdw">
@@ -2247,7 +2253,8 @@
         <image name="right-arrow" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iwh-uF-w61"/>
         <segue reference="8W0-I6-3du"/>
+        <segue reference="xlu-b3-rSK"/>
+        <segue reference="iwh-uF-w61"/>
     </inferredMetricsTieBreakers>
 </document>

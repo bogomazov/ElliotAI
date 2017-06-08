@@ -11,7 +11,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Platform
+  Platform,
+  NativeModules,
 } from 'react-native';
 
 import { connect, Provider } from 'react-redux'
@@ -99,7 +100,20 @@ class App extends Component {
   render() {
     return (
       <Provider store={Store}>
-        <Navigation/>
+        <Navigation
+          onNavigationStateChange = {(prev, next) => {
+            if (IS_IOS) {
+              const nextRoute = next.routes[next.index].routeName;
+              if (nextRoute === 'MainScene') {
+                console.log('BottomBar - show')
+                NativeModules.NSNotificationAccess.post("show-bottom-bar", null);
+              } else {
+                console.log('BottomBar - hide')
+                NativeModules.NSNotificationAccess.post("hide-bottom-bar", null);
+              }
+            }
+          }}
+        />
        </Provider>
     );
   }

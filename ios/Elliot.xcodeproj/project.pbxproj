@@ -59,6 +59,8 @@
 		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
 		03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7A81EE821A000DC815C /* LocationAccess.swift */; };
 		03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
+		03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
+		03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -159,6 +161,8 @@
 		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		03F9E7A81EE821A000DC815C /* LocationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccess.swift; sourceTree = "<group>"; };
 		03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAccessBridge.m; sourceTree = "<group>"; };
+		03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationAccess.swift; sourceTree = "<group>"; };
+		03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationAccessBridge.m; sourceTree = "<group>"; };
 		0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.staging.xcconfig"; sourceTree = "<group>"; };
 		208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.debug.xcconfig"; sourceTree = "<group>"; };
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +233,7 @@
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+				03F9E7B11EE97F5500DC815C /* NSNotificationAccess */,
 				03F9E7AC1EE822BF00DC815C /* LocationAccess */,
 			);
 			name = ReactNative;
@@ -281,6 +286,15 @@
 				03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */,
 			);
 			name = LocationAccess;
+			sourceTree = "<group>";
+		};
+		03F9E7B11EE97F5500DC815C /* NSNotificationAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */,
+				03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */,
+			);
+			name = NSNotificationAccess;
 			sourceTree = "<group>";
 		};
 		471DB5F868120E522A051585 /* Pods */ = {
@@ -614,6 +628,7 @@
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
 				03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */,
 				03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */,
+				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,
 				031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */,
 				037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */,
 				037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */,
@@ -650,6 +665,7 @@
 				0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */,
 				03755F631E28E780003EDAD9 /* Models.swift in Sources */,
 				0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */,
+				03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */,
 				0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */,
 				033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */,
 			);

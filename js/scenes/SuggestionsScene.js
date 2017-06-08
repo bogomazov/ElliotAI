@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -162,7 +162,13 @@ export default class SuggestionsScene extends Component {
 						}
 
             if (item.isTellFriends) {
-              return <TellFriendsCard onPress={() => this.props.switchTab(INVITE_FRIENDS_TAB)} />
+              return <TellFriendsCard onPress={() => {
+								if (IS_IOS) {
+									NativeModules.NSNotificationAccess.post("showInviteNotif", null);
+								} else {
+									this.props.switchTab(INVITE_FRIENDS_TAB)
+								}
+							}} />
             }
             return <SuggestionCard
                       suggestion={item}
