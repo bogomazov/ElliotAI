@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -37,6 +37,7 @@ export default class SuggestionsScene extends Component {
 		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
+		appState: AppState.currentState,
 	}
 
 	_onSuggestionPress = (suggestion) => {
@@ -62,9 +63,26 @@ export default class SuggestionsScene extends Component {
 
 	componentWillMount = () => {
 		console.log(this.props)
+
 		if (!this.props.app.isSuggestionsLoaded) {
 			this._updateData()
 		}
+	}
+
+	componentDidMount = () => {
+		AppState.addEventListener('change', this._onAppStateChange)
+	}
+
+	componentWillUnmount = () => {
+		AppState.removeEventListener('change', this._onAppStateChange)
+	}
+
+	_onAppStateChange = (nextAppState) => {
+		const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
+		if (wasOnBackground && nextAppState === 'active') {
+			this._updateData();
+		}
+		this.setState({appState: nextAppState});
 	}
 
   _keyExtractor = (item, index) => item.id;
