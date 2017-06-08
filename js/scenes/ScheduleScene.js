@@ -80,7 +80,8 @@ export default class ScheduleScene extends Component {
             // handle events
             console.log('Calendar')
             console.log(events)
-            this.setState({calendarEvents: events,
+						const filteredEvents = events.filter((event) => !event.allDay)
+            this.setState({calendarEvents: filteredEvents,
                           isCalendarEventsLoaded: true})
           })
           .catch(error => {
