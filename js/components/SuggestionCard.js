@@ -8,7 +8,7 @@ import strings from '../res/values/strings'
 import { themeColor, mainBackgroundColor, themeColorLight } from '../res/values/styles'
 
 
-const borderWidth = 1
+const borderWidth = 2
 
 export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onShowLessPress, withOptions}) => {
   console.log(suggestion)
@@ -67,28 +67,28 @@ const styles = StyleSheet.create({
     },
 
     date: {
-      color: 'black',
-      fontSize: 15
+      fontFamily: "OpenSans-Light",
+      fontSize: 17
     },
     title: {
       flex: 1,
       margin: 10,
       marginLeft: 15,
       marginRight: 20,
-      fontSize: 15,
+      fontSize: 17,
       fontFamily: 'OpenSans-Bold',
       color: 'black'
     },
     avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 100,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
       marginTop: 10,
       marginRight: 30,
     },
     type: {
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 50,
       margin: 10
     },
 
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-
+      height: 50,
     },
     optionButton: {
 //       flexDirection: 'row',
