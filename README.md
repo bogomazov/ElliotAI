@@ -6,3 +6,10 @@
 5. Go to `node_modules/react-native-fbsdk/android/build.gradle` and change the last compile to `compile('com.facebook.android:facebook-android-sdk:4.22.1')` (will be removed once facebook resolves the issue) <br/>
 # Run: <br/>
 `react-native run-android` with an emulator/device connected. <br/>
+
+# Elliot-iOS | React Native
+1. Clone the repository.
+2. `open ios/Elliot.xcworkspace`, don't convert Swift syntax, choose "later" and "no". This step lets Xcode register a scheme for react-native-cli to use, automatically. You can now close Xcode.
+3. Run `npm install` inside the directory where `package.json` exists.
+4. `npm start`
+5. `react-native run-ios`
