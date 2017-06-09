@@ -58,8 +58,8 @@ export default class SuggestionsScene extends Component {
 
 	_onShowLessPress = (suggestion) => {
 		this.setState({rejectingIds: [...this.state.rejectingIds, suggestion.id]});
-    this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
-			this.setState({rejectingIds: this.state.rejecting.filter((id) => id !== suggestion.id)});
+		this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
+			this.setState({rejectingIds: this.state.rejectingIds.filter((id) => id !== suggestion.id)});
 			this.props.appActions.loadSuggestions();
 		})
 	}
