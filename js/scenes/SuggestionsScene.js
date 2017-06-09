@@ -182,7 +182,7 @@ export default class SuggestionsScene extends Component {
 						}
 
             if (item.isTellFriends) {
-              return <TellFriendsCard onPress={() => {
+              return <TellFriendsCard isMoreFriends={this.props.app.suggestions.length !== 0} onPress={() => {
 								if (IS_IOS) {
 									NativeModules.NSNotificationAccess.post("showInviteNotif", null);
 								} else {

@@ -19,6 +19,7 @@ export default strings = new LocalizedStrings({
    enableCalendar:"Enable Calendar",
    tellFriendsTop: "Tell Friends About Elliot",
    tellFriends: "Tell your friends about Elliot",
+   tellMoreFriends: "These are your friends who are already using Elliot. Tell more friends about Elliot to catch up with them!",
    disclaimer:"* Elliot needs to know who your friends are and what times and locations are convenient for you. This information will never be shared with anyone.",
    introSuggestions: "Elliot suggests people and times for you to meet here. Tap 'More Options' on a suggestion to find another time to meet.",
    introCalendar: "When you and your friends respond to suggestions, Elliot will confirm times to meet here.",
