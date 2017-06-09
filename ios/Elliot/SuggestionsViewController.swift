@@ -110,16 +110,6 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.perform(#selector(requestNotifAccess), with: nil, afterDelay: 2.0)
-    }
-    
-    func requestNotifAccess() {
-        NotificationsManager.shared.requestAccess()
-    }
-    
     func onNewMeeting(notif: NSNotification) {
         if let text = notif.userInfo?["alert"] as? String {
             showBanner(onView: self.topView, title: "New Confirmed Meeting!", subtitle: text)

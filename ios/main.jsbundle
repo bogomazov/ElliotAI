@@ -1402,8 +1402,11 @@ var App = function (_Component) {
   return App;
 }(_react.Component);
 
+var codePushOptions = {
+  checkFrequency: _reactNativeCodePush2.default.CheckFrequency.ON_APP_RESUME
+};
 _reactNative.AppRegistry.registerComponent('Elliot', function () {
-  return (0, _reactNativeCodePush2.default)(App);
+  return (0, _reactNativeCodePush2.default)(codePushOptions)(App);
 });
 
 exports.default = App;
@@ -61050,6 +61053,7 @@ exports.default = strings = new _reactNativeLocalization2.default({
     enableCalendar: "Enable Calendar",
     tellFriendsTop: "Tell Friends About Elliot",
     tellFriends: "Tell your friends about Elliot",
+    tellMoreFriends: "These are your friends who are already using Elliot. Tell more friends about Elliot to catch up with them!",
     disclaimer: "* Elliot needs to know who your friends are and what times and locations are convenient for you. This information will never be shared with anyone.",
     introSuggestions: "Elliot suggests people and times for you to meet here. Tap 'More Options' on a suggestion to find another time to meet.",
     introCalendar: "When you and your friends respond to suggestions, Elliot will confirm times to meet here.",
@@ -61279,12 +61283,12 @@ exports.default = s = _reactNative.StyleSheet.create({
   avatar: {
     width: 45,
     height: 45,
-    borderRadius: 100
+    borderRadius: 22
   },
   avatar30: {
     width: 30,
     height: 30,
-    borderRadius: 100
+    borderRadius: 15
   },
   borderTopGrey: {
     borderTopColor: '#E4E3E6',
@@ -61313,6 +61317,9 @@ exports.default = s = _reactNative.StyleSheet.create({
 
   padding10: {
     padding: 10
+  },
+  padding15: {
+    padding: 15
   }
 
 });
@@ -62439,6 +62446,8 @@ var _moment = require(485     ); // 485 = moment
 
 var _moment2 = babelHelpers.interopRequireDefault(_moment);
 
+var _styles = require(516                      ); // 516 = ../res/values/styles.js
+
 var mapStateToProps = function mapStateToProps(state) {
 	return { app: state.app };
 };
@@ -62467,7 +62476,8 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 			isRefreshing: false,
 			isLocationSent: false,
 			isEventsSent: false,
-			appState: _reactNative.AppState.currentState
+			appState: _reactNative.AppState.currentState,
+			nativeEventsSubscription: null
 		}, _this._onSuggestionPress = function (suggestion) {
 			_this.props.navigation.navigate('ScheduleScene', { suggestion: suggestion });
 		}, _this._onMoreOptionsPress = function (suggestion) {
@@ -62476,7 +62486,9 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 			console.log('_onCatchUpPress');
 			_this.props.navigation.navigate('FriendsScene');
 		}, _this._onShowLessPress = function (suggestion) {
-			_this.props.appActions.rejectSuggestion(suggestion, 'neither');
+			_this.props.appActions.rejectSuggestion(suggestion, 'neither').then(function (data) {
+				_this.props.appActions.loadSuggestions();
+			});
 		}, _this.componentWillReceiveProps = function (nextProps) {
 			_this.setState({ isRefreshing: false });
 		}, _this.componentWillMount = function () {
@@ -62487,8 +62499,19 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 			}
 		}, _this.componentDidMount = function () {
 			_reactNative.AppState.addEventListener('change', _this._onAppStateChange);
+			if (_settings.IS_IOS) {
+				var NSNotificationEvent = new _reactNative.NativeEventEmitter(_reactNative.NativeModules.NSNotificationAccess);
+				_this.state.nativeEventsSubscription = NSNotificationEvent.addListener('refreshSuggestions', function (data) {
+					_this.props.appActions.loadSuggestions();
+				});
+			}
 		}, _this.componentWillUnmount = function () {
 			_reactNative.AppState.removeEventListener('change', _this._onAppStateChange);
+			if (_settings.IS_IOS) {
+				if (_this.state.nativeEventsSubscription) {
+					_this.state.nativeEventsSubscription.remove();
+				}
+			}
 		}, _this._onAppStateChange = function (nextAppState) {
 			var wasOnBackground = _this.state.appState === 'inactive' || _this.state.appState === 'background';
 			if (wasOnBackground && nextAppState === 'active') {
@@ -62501,7 +62524,6 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 			_this.setState({ isRefreshing: true });
 			_this.props.appActions.loadSuggestions();
 		}, _this._updateData = function () {
-			_this.setState({ isRefreshing: true });
 			_LocationAccessModule2.default.checkLocationAccess().then(function (response) {
 				console.log(response);
 				if (response == 'success') {
@@ -62543,7 +62565,6 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 			var _this2 = this;
 
 			console.log(this.props);
-
 			return _react2.default.createElement(
 				_reactNative.View,
 				{ style: styles.container },
@@ -62559,7 +62580,8 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 					onClosePress: function onClosePress() {
 						return _this2.props.appActions.introSuggestionsSeen();
 					} }),
-				_react2.default.createElement(_reactNative.FlatList, {
+				!this.props.app.isSuggestionsLoaded && _react2.default.createElement(_reactNative.ActivityIndicator, { animating: true, color: _styles.themeColor, size: 'large', style: styles.activityIndicator }),
+				this.props.app.isSuggestionsLoaded && _react2.default.createElement(_reactNative.FlatList, {
 					onRefresh: this._refresh,
 					refreshing: this.state.isRefreshing,
 					data: [{ isCatchUp: true, id: -2 }].concat(babelHelpers.toConsumableArray(this.props.app.suggestions), [{ isTellFriends: true, id: -1 }]),
@@ -62575,7 +62597,7 @@ var SHOW_CATCH_UP_CARD = 6;var SuggestionsScene = (_dec = (0, _reactRedux.connec
 						}
 
 						if (item.isTellFriends) {
-							return _react2.default.createElement(_TellFriendsCard2.default, { onPress: function onPress() {
+							return _react2.default.createElement(_TellFriendsCard2.default, { isMoreFriends: _this2.props.app.suggestions.length !== 0, onPress: function onPress() {
 									if (_settings.IS_IOS) {
 										_reactNative.NativeModules.NSNotificationAccess.post("showInviteNotif", null);
 									} else {
@@ -62603,11 +62625,16 @@ var styles = _reactNative.StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'flex-start',
-		alignItems: 'center'
+		alignItems: 'stretch'
 	},
 	topBarIcon: {
 		height: 40,
 		width: 40
+	},
+	activityIndicator: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
 }, 546, null, "Elliot/js/scenes/SuggestionsScene.js");
@@ -62636,16 +62663,17 @@ var _strings = require(511                    ); // 511 = ../res/values/strings
 var _strings2 = babelHelpers.interopRequireDefault(_strings);
 
 exports.default = TellFriendsCard = function TellFriendsCard(_ref) {
-  var onPress = _ref.onPress;
+  var onPress = _ref.onPress,
+      isMoreFriends = _ref.isMoreFriends;
 
   console.log(onPress);
   return _react2.default.createElement(
     _Card2.default,
-    null,
+    { style: { marginBottom: 15 } },
     _react2.default.createElement(
       _reactNative.View,
       { style: styles.container },
-      _react2.default.createElement(
+      !isMoreFriends && _react2.default.createElement(
         _reactNative.View,
         { style: styles.iconsWrapper },
         _react2.default.createElement(_reactNative.Image, {
@@ -62660,6 +62688,11 @@ exports.default = TellFriendsCard = function TellFriendsCard(_ref) {
         _react2.default.createElement(_reactNative.Image, {
           style: styles.icon,
           source: require(490                          ) }) // 490 = ../res/images/call-66px.png
+      ),
+      isMoreFriends && _react2.default.createElement(
+        _reactNative.Text,
+        { style: styles.moreFriends },
+        _strings2.default.tellMoreFriends
       ),
       _react2.default.createElement(_CustomButton2.default, {
         style: styles.button,
@@ -62688,7 +62721,15 @@ var styles = _reactNative.StyleSheet.create({
     height: 50
   },
   button: {
-    marginBottom: 25
+    marginBottom: 15,
+    fontSize: 17
+  },
+  moreFriends: {
+    margin: 10,
+    marginTop: 15,
+    textAlign: 'center',
+    fontFamily: 'OpenSans-SemiBold',
+    fontSize: 17
   }
 });
 }, 547, null, "Elliot/js/components/TellFriendsCard.js");
@@ -62720,7 +62761,9 @@ var styles = _reactNative.StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'white',
     alignSelf: 'stretch',
-    margin: 10
+    marginLeft: 15,
+    marginRight: 15,
+    marginTop: 15
   }
 });
 }, 548, null, "Elliot/js/components/Card.js");
@@ -62806,7 +62849,7 @@ var _strings2 = babelHelpers.interopRequireDefault(_strings);
 
 var _styles = require(516                   ); // 516 = ../res/values/styles
 
-var borderWidth = 1;
+var borderWidth = 2;
 
 exports.default = SuggestionCard = function SuggestionCard(_ref) {
   var suggestion = _ref.suggestion,
@@ -62914,36 +62957,36 @@ var styles = _reactNative.StyleSheet.create({
   },
 
   date: {
-    color: 'black',
-    fontSize: 15
+    fontFamily: "OpenSans-Light",
+    fontSize: 17
   },
   title: {
     flex: 1,
     margin: 10,
     marginLeft: 15,
     marginRight: 20,
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: 'OpenSans-Bold',
     color: 'black'
   },
   avatar: {
-    width: 45,
-    height: 45,
-    borderRadius: 100,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     marginTop: 10,
     marginRight: 30
   },
   type: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     margin: 10
   },
 
   buttonWrapper: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
-
+    justifyContent: 'center',
+    height: 50
   },
   optionButton: {
     color: _styles.themeColor,
@@ -63004,8 +63047,8 @@ var styles = _reactNative.StyleSheet.create({
     bottom: 0
   },
   backArrow: {
-    width: 25,
-    height: 25
+    width: 30,
+    height: 30
   }
 });
 }, 551, null, "Elliot/js/components/Arrow.js");
@@ -67068,16 +67111,16 @@ exports.default = CatchUpCard = function CatchUpCard(_ref) {
         null,
         _react2.default.createElement(
           _reactNative.View,
-          { style: [_styles2.default.column, _styles2.default.padding10] },
+          { style: [_styles2.default.column, _styles2.default.padding15] },
           _react2.default.createElement(
             _reactNative.Text,
-            { style: [_styles2.default.bold, _styles2.default.textColorTheme] },
+            { style: [_styles2.default.bold, _styles2.default.textColorTheme, { fontSize: 17 }] },
             'I want to catch up with...'
           ),
           _react2.default.createElement(
             _reactNative.Text,
-            { style: [_styles2.default.textColorGrey, _styles2.default.marginTop5] },
-            'Select the friend you would like to see'
+            { style: [_styles2.default.textColorGrey, _styles2.default.marginTop5, { fontSize: 16 }] },
+            "Select the friend you'd like to see"
           )
         ),
         _react2.default.createElement(_Arrow2.default, null)
@@ -67980,7 +68023,7 @@ var SearchContainer = (_dec = (0, _reactRedux.connect)(mapStateToProps, mapDispa
       return _this.props.data.filter(function (item) {
 
         return _this.props.filterByFields.reduce(function (isChosen, field) {
-          return isChosen || item[field] && item[field].toLowerCase().startsWith(_this.state.currentText);
+          return isChosen || item[field] && item[field].toLowerCase().includes(_this.state.currentText.toLowerCase());
         }, false);
       });
     };
@@ -69318,6 +69361,8 @@ var CalendarScene = (_dec = (0, _reactRedux.connect)(mapStateToProps, mapDispatc
           return meeting.suggestion_id != cancelledMeeting.suggestion_id;
         }) });
       _this._onMeetingClose();
+
+      _this.props.appActions.loadSuggestions();
     }, _this._updateDeviceCalendar = function (meetings) {
       var calendarMap = _this.props.app.calendarMap;
       meetings.forEach(function (meeting) {
@@ -69992,7 +70037,7 @@ exports.default = NavigationTopBar = function NavigationTopBar(_ref) {
       ),
       _react2.default.createElement(
         _reactNative.Text,
-        { style: [_styles2.default.alignItemsCenter, _styles2.default.bold, _styles2.default.textColorTheme] },
+        { style: [_styles2.default.alignItemsCenter, _styles2.default.bold, _styles2.default.textColorTheme, { fontSize: 16 }] },
         title
       )
     )
@@ -70553,6 +70598,7 @@ var CALENDAR_TIME_RANGE = 3;var ScheduleScene = (_dec = (0, _reactRedux.connect)
         console.log(times);
         _this.props.appActions.acceptSuggestion(_this.props.suggestion, times).then(function (data) {
           _this.props.appActions.removeSuggestion(_this.props.suggestion);
+          _this.props.appActions.loadSuggestions();
           _this.props.navigation.dispatch(_reactNavigation.NavigationActions.back({
             key: skipBack
           }));
@@ -70784,9 +70830,9 @@ var styles = _reactNative.StyleSheet.create({
     marginBottom: 13
   },
   avatar: {
-    width: 45,
-    height: 45,
-    borderRadius: 100,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     marginRight: 10
   },
   scheduleWrapper: {
@@ -70831,10 +70877,11 @@ var styles = _reactNative.StyleSheet.create({
   },
   selectedTime: {
     backgroundColor: '#BADFDF',
-    borderColor: '#139A9C'
+    borderColor: '#139A9C',
+    overflow: 'hidden'
   },
   confirmButtonWrapper: {
-    height: 40,
+    height: 50,
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -78048,8 +78095,10 @@ var UserSuggestionsScene = (_dec = (0, _reactRedux.connect)(mapStateToProps, map
       userSuggestions: [],
       isUserSuggestionsLoaded: false
     }, _this._onSuggestionPress = function (suggestion) {
+      var ownSkipBack = _this.props.navigation.state.params.skipBack;
+      var skipBack = ownSkipBack ? ownSkipBack : _this.props.navigation.state.key;
       _this.props.navigation.navigate('ScheduleScene', { suggestion: suggestion,
-        skipBack: _this.props.navigation.state.key });
+        skipBack: skipBack });
     }, _this.componentWillMount = function () {
       _this.props = babelHelpers.extends({}, _this.props, _this.props.navigation.state.params);
       _this.props.appActions.loadUserSuggestions(_this.props.user.fb_id).then(function (data) {
@@ -78208,7 +78257,10 @@ var FriendsScene = (_dec = (0, _reactRedux.connect)(mapStateToProps, mapDispatch
 					}) });
 			});
 		}, _this._onFriendPress = function (friend) {
-			_this.props.navigation.navigate('UserSuggestionsScene', { user: friend });
+			_this.props.navigation.navigate('UserSuggestionsScene', {
+				user: friend,
+				skipBack: _this.props.navigation.state.key
+			});
 		}, _this._renderItem = function (_ref2) {
 			var item = _ref2.item,
 			    index = _ref2.index;
@@ -78228,12 +78280,12 @@ var FriendsScene = (_dec = (0, _reactRedux.connect)(mapStateToProps, mapDispatch
 						source: { uri: friend.image } }),
 					_react2.default.createElement(
 						_reactNative.Text,
-						{ style: [s.marginLeft10] },
+						{ style: [s.marginLeft10, { fontSize: 17 }] },
 						friend.first_name,
 						' ',
 						friend.last_name
 					),
-					_react2.default.createElement(_Arrow2.default, { styleIcon: { height: 30, width: 30 } })
+					_react2.default.createElement(_Arrow2.default, { styleIcon: { height: 15, width: 15, marginRight: 5 } })
 				)
 			);
 		}, _temp), babelHelpers.possibleConstructorReturn(_this, _ret);

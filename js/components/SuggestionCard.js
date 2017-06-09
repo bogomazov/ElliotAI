@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
       color: themeColor,
       textAlign: 'center',
       padding: 10,
-
+      fontFamily: 'OpenSans-Bold'
     },
     verticalBorder: {
       width: borderWidth,
