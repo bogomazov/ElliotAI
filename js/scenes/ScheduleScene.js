@@ -54,6 +54,7 @@ export default class ScheduleScene extends Component {
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
+					this.props.appActions.loadSuggestions();
 					this.props.navigation.dispatch(NavigationActions.back({
 					  key: skipBack
 					}))

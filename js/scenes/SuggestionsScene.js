@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules } from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -38,6 +38,7 @@ export default class SuggestionsScene extends Component {
 		isLocationSent: false,
 		isEventsSent: false,
 		appState: AppState.currentState,
+		nativeEventsSubscription: null,
 	}
 
 	_onSuggestionPress = (suggestion) => {
@@ -54,7 +55,9 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onShowLessPress = (suggestion) => {
-      this.props.appActions.rejectSuggestion(suggestion, 'neither')
+      this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
+				this.props.appActions.loadSuggestions();
+			})
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -71,10 +74,24 @@ export default class SuggestionsScene extends Component {
 
 	componentDidMount = () => {
 		AppState.addEventListener('change', this._onAppStateChange)
+		if (IS_IOS) {
+			const NSNotificationEvent = new NativeEventEmitter(NativeModules.NSNotificationAccess);
+			this.state.nativeEventsSubscription = NSNotificationEvent.addListener(
+				'refreshSuggestions',
+				(data) => {
+					this.props.appActions.loadSuggestions();
+				}
+			);
+		}
 	}
 
 	componentWillUnmount = () => {
 		AppState.removeEventListener('change', this._onAppStateChange)
+		if (IS_IOS) {
+			if (this.state.nativeEventsSubscription) {
+				this.state.nativeEventsSubscription.remove();
+			}
+		}
 	}
 
 	_onAppStateChange = (nextAppState) => {

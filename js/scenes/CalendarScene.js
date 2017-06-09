@@ -60,6 +60,8 @@ export default class CalendarScene extends Component {
     _onMeetingCancel = (cancelledMeeting) => {
       this.setState({upcomingMeetings: this.state.upcomingMeetings.filter((meeting) => meeting.suggestion_id != cancelledMeeting.suggestion_id)})
       this._onMeetingClose()
+      // Refresh suggestions to let user reschedule the cancelled event.
+      this.props.appActions.loadSuggestions();
     }
   _updateDeviceCalendar = (meetings) => {
     let calendarMap = this.props.app.calendarMap
