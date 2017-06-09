@@ -119,12 +119,9 @@ class App extends Component {
   }
 }
 
-
-// const  codePushOptions = {
-//   installMode: InstallMode.ON_NEXT_RESUME,
-//   minimumBackgroundDuration: 60 * 10
-// };
-// codePush.sync(codePushOptions)
-AppRegistry.registerComponent('Elliot', () => codePush(App));
+let codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME
+};
+AppRegistry.registerComponent('Elliot', () => codePush(codePushOptions)(App));
 
 export default App;
