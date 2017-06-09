@@ -40,6 +40,7 @@ export default class SuggestionsScene extends Component {
 		isEventsSent: false,
 		appState: AppState.currentState,
 		nativeEventsSubscription: null,
+		rejectingIds: [],
 	}
 
 	_onSuggestionPress = (suggestion) => {
@@ -56,9 +57,11 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onShowLessPress = (suggestion) => {
-      this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
-				this.props.appActions.loadSuggestions();
-			})
+		this.setState({rejectingIds: [...this.state.rejectingIds, suggestion.id]});
+    this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
+			this.setState({rejectingIds: this.state.rejecting.filter((id) => id !== suggestion.id)});
+			this.props.appActions.loadSuggestions();
+		})
 	}
 
 	componentWillReceiveProps = (nextProps) => {
@@ -194,7 +197,8 @@ export default class SuggestionsScene extends Component {
                       suggestion={item}
                       onPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
-                      onShowLessPress={this._onShowLessPress} withOptions/>}}
+                      onShowLessPress={this._onShowLessPress}
+											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>}}
             />}
       </View>
     );

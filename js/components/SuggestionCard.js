@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableWithoutFeedback, Image, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Image, Button, Text, View, TextInput, TouchableHighlight, ActivityIndicator } from 'react-native';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import Card from './Card'
@@ -10,7 +10,7 @@ import { themeColor, mainBackgroundColor, themeColorLight } from '../res/values/
 
 const borderWidth = 2
 
-export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onShowLessPress, withOptions}) => {
+export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onShowLessPress, withOptions, animateShowLess}) => {
   console.log(suggestion)
 
       return (
@@ -45,9 +45,14 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onSho
             <View style={styles.verticalBorder} ></View>
               <TouchableHighlight underlayColor={themeColorLight} style={styles.buttonWrapper} underlayColor={themeColorLight} onPress={() => onShowLessPress(suggestion)}>
                 <View>
-                  <Text style={styles.optionButton}>
-                    Show Less of {suggestion.friend.first_name}
-                  </Text>
+                  {animateShowLess &&
+                    <ActivityIndicator animating={true} color={themeColor} size="small" style={styles.activityIndicator}/>
+                  }
+                  {!animateShowLess &&
+                    <Text style={styles.optionButton}>
+                      Show Less of {suggestion.friend.first_name}
+                    </Text>
+                  }
                 </View>
               </TouchableHighlight>
           </View>}
@@ -110,11 +115,14 @@ const styles = StyleSheet.create({
       height: '100%',
       backgroundColor: mainBackgroundColor,
     },
-
     buttonOptionsWrapper: {
       borderTopColor: mainBackgroundColor,
       borderTopWidth: borderWidth,
       borderStyle: 'solid',
-
+    },
+    activityIndicator: {
+      flex: 1,
+  		justifyContent: 'center',
+  		alignItems: 'center',
     }
 });
