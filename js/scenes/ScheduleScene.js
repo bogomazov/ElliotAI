@@ -48,16 +48,24 @@ export default class ScheduleScene extends Component {
 
     _onConfirmPress = () => {
 			const skipBack = this.props.skipBack
+			const rootSuggestion = this.props.rootSuggestion
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
         times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
-					this.props.appActions.loadSuggestions();
 					this.props.navigation.dispatch(NavigationActions.back({
-					  key: skipBack
+						key: skipBack
 					}))
+					// If we came here via 'more options', reject the root suggestion.
+					if (rootSuggestion) {
+						this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
+							this.props.appActions.loadSuggestions()
+						})
+					} else {
+						this.props.appActions.loadSuggestions()
+					}
         })
       }
     }

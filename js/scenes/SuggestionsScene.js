@@ -48,7 +48,10 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
-      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend})
+      this.props.navigation.navigate('UserSuggestionsScene', {
+				user: suggestion.friend,
+				rootSuggestion: suggestion
+			})
 	}
 
 	_onCatchUpPress = () => {
