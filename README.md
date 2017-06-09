@@ -8,8 +8,14 @@
 `react-native run-android` with an emulator/device connected. <br/>
 
 # Elliot-iOS | React Native
+
+## Running on simulator
 1. Clone the repository.
 2. `open ios/Elliot.xcworkspace`, don't convert Swift syntax, choose "later" and "no". This step lets Xcode register a scheme for react-native-cli to use, automatically. You can now close Xcode.
 3. Run `npm install` inside the directory where `package.json` exists.
 4. `npm start`
 5. `react-native run-ios`
+
+## Running on a device (on dev-merge only)
+Connect the device and run the app via Xcode in the same way.
+Codepush will automatically fetch the latest 'staging' JS code.
