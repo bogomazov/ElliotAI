@@ -20,11 +20,11 @@ class ReactFactory: NSObject, RCTBridgeDelegate {
     }()
     
     func sourceURL(for bridge: RCTBridge!) -> URL! {
-        #if TARGET_IPHONE_SIMULATOR
+        if TARGET_OS_SIMULATOR != 0 {
             return URL(string: "http://localhost:8081/index.ios.bundle?platform=ios")
-        #else
+        } else {
             return CodePush.bundleURL()
-        #endif
+        }
     }
     
     func createView(name: String, props: [String: Any]?) -> RCTRootView {
