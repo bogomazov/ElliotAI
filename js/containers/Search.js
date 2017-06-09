@@ -66,7 +66,7 @@ export default class SearchContainer extends Component {
 
      return this.props.filterByFields.reduce((isChosen, field) => {
         // console.log(field)
-        return isChosen || (item[field] && item[field].toLowerCase().startsWith(this.state.currentText))
+        return isChosen || (item[field] && item[field].toLowerCase().includes(this.state.currentText.toLowerCase()))
       }, false)})
 
   render() {
