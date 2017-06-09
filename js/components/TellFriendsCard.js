@@ -8,7 +8,7 @@ import strings from '../res/values/strings'
 export default TellFriendsCard = ({onPress}) => {
   console.log(onPress)
       return (
-        <Card>
+        <Card style={{marginBottom: 15}}>
           <View style={styles.container}>
             <View style={styles.iconsWrapper}>
               <Image

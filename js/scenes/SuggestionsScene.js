@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    alignItems: 'center',
+    alignItems: 'stretch',
   },
   topBarIcon: {
     height: 40,
