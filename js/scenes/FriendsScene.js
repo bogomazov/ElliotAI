@@ -45,7 +45,10 @@ export default class FriendsScene extends Component {
 	}
 
 	_onFriendPress = (friend) => {
-		this.props.navigation.navigate('UserSuggestionsScene', {user: friend})
+		this.props.navigation.navigate('UserSuggestionsScene', {
+			user: friend,
+			skipBack: this.props.navigation.state.key
+		})
 	}
 
 	_renderItem = ({item, index}) => {

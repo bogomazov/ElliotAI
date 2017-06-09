@@ -32,8 +32,10 @@ export default class UserSuggestionsScene extends Component {
     }
 
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion,
-																											 skipBack: this.props.navigation.state.key})
+		const ownSkipBack = this.props.navigation.state.params.skipBack;
+		const skipBack = ownSkipBack ? ownSkipBack : this.props.navigation.state.key;
+		this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion,
+																										 skipBack: skipBack})
 	}
 
 	componentWillMount = () => {
