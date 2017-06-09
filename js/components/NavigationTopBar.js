@@ -22,7 +22,7 @@ export default NavigationTopBar = ({navigation, title}) => {
                 source={require('../res/images/back.png')}/> */}
             </IconIon.Button>
           </View>
-            <Text style={[s.alignItemsCenter, s.bold, s.textColorTheme]}>{title}</Text>
+            <Text style={[s.alignItemsCenter, s.bold, s.textColorTheme, {fontSize: 16}]}>{title}</Text>
           </View>
         </TopBar>
       );

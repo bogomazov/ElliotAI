@@ -232,9 +232,9 @@ const styles = StyleSheet.create({
     marginBottom: 13
   },
   avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 100,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
       marginRight: 10,
     },
   scheduleWrapper: {
@@ -280,9 +280,10 @@ const styles = StyleSheet.create({
   selectedTime: {
     backgroundColor: '#BADFDF',
     borderColor: '#139A9C',
+		overflow: 'hidden',
   },
 	confirmButtonWrapper: {
-    height: 40,
+    height: 50,
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',

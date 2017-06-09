@@ -66,12 +66,12 @@ export default s = StyleSheet.create({
   avatar: {
       width: 45,
       height: 45,
-      borderRadius: 100,
+      borderRadius: 22,
   },
   avatar30: {
       width: 30,
       height: 30,
-      borderRadius: 100,
+      borderRadius: 15,
   },
   borderTopGrey: {
     borderTopColor: '#E4E3E6',
@@ -101,6 +101,8 @@ export default s = StyleSheet.create({
   padding10: {
     padding: 10
   },
-
+  padding15: {
+    padding: 15
+  }
 
 });

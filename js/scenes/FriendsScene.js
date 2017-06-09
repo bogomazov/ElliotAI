@@ -56,8 +56,8 @@ export default class FriendsScene extends Component {
 				<Image
 					style={s.avatar30}
 					source={{ uri: friend.image}}/>
-				<Text style={[s.marginLeft10]}>{friend.first_name} {friend.last_name}</Text>
-				<Arrow styleIcon={{height: 30, width: 30}} />
+				<Text style={[s.marginLeft10, {fontSize: 17}]}>{friend.first_name} {friend.last_name}</Text>
+				<Arrow styleIcon={{height: 15, width: 15, marginRight: 5}} />
 			</View>
 		</TouchableHighlight>)
 	}
