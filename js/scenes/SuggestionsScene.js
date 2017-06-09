@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter} from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -16,6 +16,7 @@ import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
+import {themeColor} from '../res/values/styles.js'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -110,7 +111,6 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_updateData = () => {
-		this.setState({isRefreshing: true})
 		LocationAccess.checkLocationAccess().then((response) => {
       console.log(response)
       if (response == 'success') {
@@ -154,7 +154,6 @@ export default class SuggestionsScene extends Component {
 
   render() {
 		console.log(this.props)
-
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
@@ -165,6 +164,10 @@ export default class SuggestionsScene extends Component {
         {!this.props.app.isIntroSuggestionsSeen && <IntroLabel
                                                     text={strings.introSuggestions}
                                                     onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
+				{!this.props.app.isSuggestionsLoaded &&
+					<ActivityIndicator animating={true} color={themeColor} size="large" style={styles.activityIndicator}/>
+				}
+				{this.props.app.isSuggestionsLoaded &&
 				<FlatList
 					onRefresh={this._refresh}
 					refreshing={this.state.isRefreshing}
@@ -192,7 +195,7 @@ export default class SuggestionsScene extends Component {
                       onPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress} withOptions/>}}
-            />
+            />}
       </View>
     );
   }
@@ -208,5 +211,10 @@ const styles = StyleSheet.create({
   topBarIcon: {
     height: 40,
     width: 40
-  }
+  },
+	activityIndicator: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	}
 });
