@@ -42,10 +42,6 @@ export default class ScheduleScene extends Component {
       selected: []
     }
 
-	componentWillMount = () => {
-    }
-
-
     _onConfirmPress = () => {
 			const skipBack = this.props.skipBack
 			const rootSuggestion = this.props.rootSuggestion
@@ -66,6 +62,7 @@ export default class ScheduleScene extends Component {
 					} else {
 						this.props.appActions.loadSuggestions()
 					}
+					this.props.onScheduleMeeting()
         })
       }
     }

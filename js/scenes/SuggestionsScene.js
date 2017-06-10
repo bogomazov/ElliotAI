@@ -16,7 +16,11 @@ import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
+<<<<<<< HEAD
 import {themeColor} from '../res/values/styles.js'
+=======
+import Notification from 'react-native-in-app-notification'
+>>>>>>> badges
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -44,14 +48,18 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion})
+      this.props.navigation.navigate('ScheduleScene', {suggestion, onScheduleMeeting: this._onScheduleMeeting})
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
+<<<<<<< HEAD
       this.props.navigation.navigate('UserSuggestionsScene', {
 				user: suggestion.friend,
 				rootSuggestion: suggestion
 			})
+=======
+      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend, onScheduleMeeting: this._onScheduleMeeting})
+>>>>>>> badges
 	}
 
 	_onCatchUpPress = () => {
@@ -158,6 +166,21 @@ export default class SuggestionsScene extends Component {
 				});
 	}
 
+	_onScheduleMeeting = () => {
+		this.notification.show(
+      'Great! You accepted a suggestion',
+      'Meeting will be scheduled once Elliot finds a time that works for both of you',
+      () => console.log('notification clicked'),
+    )
+	}
+
+	_notificationComponent = ({title, message}) => {
+		return <View style={[s.padding10, {backgroundColor: 'green', height: 80}]}>
+			<Text style={[s.textColorWhite, s.bold]}>{title}</Text>
+			<Text style={[s.textColorWhite]}>{message}</Text>
+		</View>
+	}
+
   render() {
 		console.log(this.props)
     return (
@@ -201,8 +224,12 @@ export default class SuggestionsScene extends Component {
                       onPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
-											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>}}
+											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
+						}}
             />}
+						<Notification ref={(ref) => { this.notification = ref; }}
+													notificationBodyComponent={this._notificationComponent}
+													height={80} />
       </View>
     );
   }
