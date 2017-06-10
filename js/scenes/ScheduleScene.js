@@ -42,10 +42,6 @@ export default class ScheduleScene extends Component {
       selected: []
     }
 
-	componentWillMount = () => {
-    }
-
-
     _onConfirmPress = () => {
 			const skipBack = this.props.skipBack
       if (this.state.selected.length > 0) {
@@ -57,6 +53,7 @@ export default class ScheduleScene extends Component {
 					this.props.navigation.dispatch(NavigationActions.back({
 					  key: skipBack
 					}))
+					this.props.onScheduleMeeting()
         })
       }
     }

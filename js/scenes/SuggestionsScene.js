@@ -16,6 +16,7 @@ import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
+import Notification from 'react-native-in-app-notification'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -41,11 +42,11 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion})
+      this.props.navigation.navigate('ScheduleScene', {suggestion, onScheduleMeeting: this._onScheduleMeeting})
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
-      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend})
+      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend, onScheduleMeeting: this._onScheduleMeeting})
 	}
 
 	_onCatchUpPress = () => {
@@ -135,6 +136,21 @@ export default class SuggestionsScene extends Component {
 				});
 	}
 
+	_onScheduleMeeting = () => {
+		this.notification.show(
+      'Great! You accepted a suggestion',
+      'Meeting will be scheduled once Elliot finds a time that works for both of you',
+      () => console.log('notification clicked'),
+    )
+	}
+
+	_notificationComponent = ({title, message}) => {
+		return <View style={[s.padding10, {backgroundColor: 'green', height: 80}]}>
+			<Text style={[s.textColorWhite, s.bold]}>{title}</Text>
+			<Text style={[s.textColorWhite]}>{message}</Text>
+		</View>
+	}
+
   render() {
 		console.log(this.props)
 
@@ -176,6 +192,9 @@ export default class SuggestionsScene extends Component {
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress} withOptions/>}}
             />
+						<Notification ref={(ref) => { this.notification = ref; }}
+													notificationBodyComponent={this._notificationComponent}
+													height={80} />
       </View>
     );
   }

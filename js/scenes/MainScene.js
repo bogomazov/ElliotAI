@@ -144,7 +144,7 @@ export default class MainScene extends Component {
 	}
 
 			return (<View style={styles.container}>
-				{false && IS_DEV && <Button
+				{IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"

@@ -101,7 +101,8 @@ class App extends Component {
     return (
       <Provider store={Store}>
         <Navigation
-          onNavigationStateChange = {(prev, next) => {
+          onNavigationStateChange = {(prev, next, action) => {
+            console.log(action)
             if (IS_IOS) {
               const nextRoute = next.routes[next.index].routeName;
               if (nextRoute === 'MainScene') {

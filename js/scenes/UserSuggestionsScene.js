@@ -33,6 +33,7 @@ export default class UserSuggestionsScene extends Component {
 
 	_onSuggestionPress = (suggestion) => {
       this.props.navigation.navigate('ScheduleScene', {suggestion: suggestion,
+																											 onScheduleMeeting: this.props.onScheduleMeeting,
 																											 skipBack: this.props.navigation.state.key})
 	}
 
