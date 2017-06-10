@@ -113,8 +113,6 @@ export default class MainScene extends Component {
     this.setState({activeTab: sceneId})
   }
 
-
-
   render() {
 	console.log(this.props)
 
@@ -142,9 +140,13 @@ export default class MainScene extends Component {
 			<SuggestionsScene navigation={this.props.navigation}/>
 		);
 	}
+	if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
+		this.props.appActions.calendarLoading()
+		this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
+	}
 
 			return (<View style={styles.container}>
-				{IS_DEV && <Button
+				{IS_ANDROID && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"
@@ -152,7 +154,8 @@ export default class MainScene extends Component {
         <BottomNav
 					navigation={this.props.navigation}
 					activeTab={this.state.activeTab}
-					onTabSelect={this._switchTab}>
+					onTabSelect={this._switchTab}
+					badges={[0, this.props.app.calendarBadges, 0]}>
           <SuggestionsScene
             iconActive={require('../res/images/home_active_1.5-66px.png')}
             icon={require('../res/images/home_gray-66px.png')}/>

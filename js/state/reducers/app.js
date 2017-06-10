@@ -15,10 +15,12 @@ const defaultState = {
   emails: [],
   numbers: [],
   calendarMap: {},
+  calendarBadges: 0,
   isSuggestionsLoaded: false,
   isIntroSuggestionsSeen: false,
   isIntroCalendarSeen: false,
   isCalendarLoaded: false,
+  isCalendarLoading: false,
   isContactsLoaded: false,
 }
 
@@ -44,6 +46,7 @@ const app = (state = defaultState, action) => {
           isLocationGiven: false,
           isSuggestionsLoaded: false,
           isCalendarLoaded: false,
+          isCalendarLoading: false,
           suggestions: [],
           upcomingMeetings: [],
           pastMeetings: [],
@@ -93,7 +96,19 @@ const app = (state = defaultState, action) => {
           isCalendarLoaded: true,
           upcomingMeetings: action.upcomingMeetings,
           pastMeetings: action.pastMeetings,
+          calendarBadges: action.badges,
+          isCalendarLoading: false
         }
+      case actionType.CALENDAR_LOADING:
+        return {
+          ...state,
+          isCalendarLoading: action.isLoading
+        }
+      case actionType.SET_CALENDAR_BADGES:
+       return {
+         ...state,
+         calendarBadges: action.badges
+       }
       case actionType.NEW_CONTACTS:
         return {
           ...state,

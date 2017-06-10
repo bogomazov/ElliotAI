@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
+import Suggestion from '../state/models/suggestion';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
@@ -13,11 +14,12 @@ import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
 import LocationAccess from '../utils/LocationAccessModule'
-import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
+import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
 import {themeColor} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
+
 
 
 const mapStateToProps = (state) => {
@@ -32,6 +34,8 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
+
+
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
@@ -83,6 +87,7 @@ export default class SuggestionsScene extends Component {
 	}
 
 	componentDidMount = () => {
+		console.log('componentDidMount')
 		AppState.addEventListener('change', this._onAppStateChange)
 		if (IS_IOS) {
 			const NSNotificationEvent = new NativeEventEmitter(NativeModules.NSNotificationAccess);
@@ -93,6 +98,10 @@ export default class SuggestionsScene extends Component {
 				}
 			);
 		}
+	}
+
+	componentDidUpdate = () => {
+		console.log('componentDidUpdate')
 	}
 
 	componentWillUnmount = () => {
@@ -115,6 +124,11 @@ export default class SuggestionsScene extends Component {
   _keyExtractor = (item, index) => item.id;
 
 	_refresh = () => {
+		if (IS_TEST_SUGGESTIONS) {
+			suggestions = TEST_SUGGESTIONS.data.map((item) => {return new Suggestion(item)})
+			this.props.appActions.newSuggestions(suggestions)
+			return
+		}
 		this.setState({isRefreshing: true})
 		this.props.appActions.loadSuggestions()
 	}
@@ -162,11 +176,15 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onScheduleMeeting = () => {
+		console.log('_onScheduleMeeting')
+		console.log(this.notification)
+		// this.toShowNotification = true
+
 		this.notification.show(
-      'Great! You accepted a suggestion',
-      'Meeting will be scheduled once Elliot finds a time that works for both of you',
-      () => console.log('notification clicked'),
-    )
+			'Great! You accepted a suggestion',
+			'Meeting will be scheduled once Elliot finds a time that works for both of you',
+			() => console.log('notification clicked'),
+		)
 	}
 
 	_notificationComponent = ({title, message}) => {
@@ -177,6 +195,7 @@ export default class SuggestionsScene extends Component {
 	}
 
   render() {
+
 		console.log(this.props)
     return (
       <View style={styles.container}>
@@ -248,3 +267,21 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	}
 });
+// id: undefined,
+// meeting_time: undefined,
+// friend: undefined,
+// meeting_type: undefined
+const TEST_SUGGESTIONS  = { data: [
+  {
+		id:15295,
+    friend: {
+      fb_id: "211646206019277",
+      first_name: "Danil5",
+      image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
+      last_name: "andrey"
+    },
+    meeting_time: "2017-05-19 17:00:00",
+    meeting_type: "Call",
+  },
+]
+}

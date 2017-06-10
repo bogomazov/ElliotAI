@@ -44,6 +44,11 @@ export default class CalendarScene extends Component {
     selectedMeeting: null,
 		isRefreshing: false
 	}
+
+  componentWillMount = () => {
+    this.props.appActions.setCalendarBadges(0)
+    this.props.appActions.resetBadges()
+  }
 	_onTabPress = (i) => {
 
 	}
@@ -63,50 +68,10 @@ export default class CalendarScene extends Component {
       // Refresh suggestions to let user reschedule the cancelled event.
       this.props.appActions.loadSuggestions();
     }
-  _updateDeviceCalendar = (meetings) => {
-    let calendarMap = this.props.app.calendarMap
-    meetings.forEach((meeting) => {
-      if (meeting.suggestion_id in calendarMap) {
-        if (meeting.canceled == 1) {
-          removeEvent(calendarMap[meeting.suggestion_id]).then((success) => this.props.appActions.removeEventCalendar(meeting.suggestion_id))
-        }
-      } else if (meeting.canceled == 0) {
-        saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
-          this.props.appActions.addEventCalendar({[meeting.suggestion_id]: id})
-        })
-      }
-    });
-    // meetings
-  }
-
-  componentWillMount = () => {
-    console.log('onComponentWillMount')
-    if (this.props.app.isCalendarLoaded) {
-      return
-    }
-    this._loadCalendarEvents()
-  }
-
-  _loadCalendarEvents = () => {
-    this.setState({isRefreshing: true})
-    this.props.appActions.loadScheduledMeetings().then((data) => {
-      // data = TEST_MEETIGNS
-      console.log(data)
-      meetings = data.data.map((meeting) => new Meeting(meeting))
-      this._updateDeviceCalendar(meetings)
-      data = meetings.filter((meeting) => meeting.canceled == 0)
-      pastMeetings = data.filter((meeting) => meeting.isPast())
-      pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
-      upcomingMeetings = data.filter((meeting) => !meeting.isPast())
-      upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
-      // this.setState({upcomingMeetings, pastMeetings})
-      this.props.appActions.newCalendar(upcomingMeetings, pastMeetings)
-      this.setState({isRefreshing: false})
-    })
-  }
 
   _refresh = () => {
-		this._loadCalendarEvents()
+    this.props.appActions.calendarLoading()
+		this.props.appActions.loadScheduledMeetings()
 	}
 
   render() {
@@ -136,7 +101,7 @@ export default class CalendarScene extends Component {
                                                         onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
             <FlatList
               onRefresh={this._refresh}
-    					refreshing={this.state.isRefreshing}
+    					refreshing={this.props.app.isCalendarLoading}
               data={meetings}
               keyExtractor={this._keyExtractor}
               renderItem={({item}, i) => {

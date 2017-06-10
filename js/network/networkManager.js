@@ -49,6 +49,8 @@ class API {
     this.post('/cancel', {
       "suggestion_id" : suggestionId
     })
+  resetCalendarBadge = () =>
+    this.post('/badge_reset')
   sendPhoneNumber = (phoneNumber, token) =>
     this.post('/sms_number', {
       "sms_number" : phoneNumber,

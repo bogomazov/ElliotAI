@@ -2,6 +2,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 export const themeColor = '#B3A784'
+export const themeColorThird = '#3F9696'
 export const themeColorLight = '#CEC19B'
 export const mainBackgroundColor = '#F1F1F1'
 

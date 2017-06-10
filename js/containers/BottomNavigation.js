@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { AppRegistry, TouchableWithoutFeedback, View, Image, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, TextInput, Button } from 'react-native'
+import s, {themeColorThird} from '../res/values/styles'
 
 export const ICON_UNACTIVE = 0
 export const ICON_ACTIVE = 1
 
 export default class BottomNav extends Component {
 
+  componentWillMount = () => {
+    console.log(this.props)
+    console.log(themeColorThird)
+  }
   render = () =>
       <View style={styles.container}>
         <View style={styles.sceneWrapper}>
@@ -22,7 +27,7 @@ export default class BottomNav extends Component {
                 <Image
                 style={[styles.icon, s.margin10]}
                 source={i == this.props.activeTab? child.props.iconActive: child.props.icon}/>
-                <Text style={styles.contactAvatar}>2</Text>
+                {this.props.badges[i] > 0 && <Text style={styles.contactAvatar}>{this.props.badges[i]}</Text>}
               </View>
             </View>
           </TouchableWithoutFeedback>})}
@@ -67,6 +72,6 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		borderRadius: 20,
 		color: 'white',
-		backgroundColor: '#B4BBBE',
+		backgroundColor: themeColorThird,
 	},
 });

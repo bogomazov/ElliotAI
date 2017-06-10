@@ -18,7 +18,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationTopBar from '../components/NavigationTopBar';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { NavigationActions } from 'react-navigation'
-import s from '../res/values/styles'
+import s, { themeColorThird } from '../res/values/styles'
+import {IS_TEST_SUGGESTIONS} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -49,6 +50,11 @@ export default class ScheduleScene extends Component {
         startTimes = this._getStartTimes()
         times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
+				if (IS_TEST_SUGGESTIONS) {
+					this.props.navigation.goBack()
+					this.props.onScheduleMeeting()
+					return
+				}
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
 					this.props.navigation.dispatch(NavigationActions.back({
@@ -305,6 +311,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonActive: {
-     backgroundColor: '#3F9696'
+     backgroundColor: themeColorThird
   }
 });
