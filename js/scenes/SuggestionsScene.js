@@ -16,15 +16,9 @@ import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
-<<<<<<< HEAD
-<<<<<<< HEAD
 import {themeColor} from '../res/values/styles.js'
-=======
 import Notification from 'react-native-in-app-notification'
->>>>>>> badges
-=======
-import Notification from 'react-native-in-app-notification'
->>>>>>> 80f78ada3961488f53cfc95ae98047081d7d8376
+
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -56,18 +50,11 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
       this.props.navigation.navigate('UserSuggestionsScene', {
 				user: suggestion.friend,
-				rootSuggestion: suggestion
+				rootSuggestion: suggestion,
+				onScheduleMeeting: this._onScheduleMeeting
 			})
-=======
-      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend, onScheduleMeeting: this._onScheduleMeeting})
->>>>>>> badges
-=======
-      this.props.navigation.navigate('UserSuggestionsScene', {user: suggestion.friend, onScheduleMeeting: this._onScheduleMeeting})
->>>>>>> 80f78ada3961488f53cfc95ae98047081d7d8376
 	}
 
 	_onCatchUpPress = () => {
