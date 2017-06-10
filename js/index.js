@@ -60,7 +60,7 @@ export const Store = createStore(
 
 // use .purge() to clean storage
 const Persistor = persistStore(Store, { storage: AsyncStorage })
-
+// Persistor.purge()
 let persistStateConfig = {
   serialize: (collection) => {
     return JSON.stringify(collection, function (k, v) {
