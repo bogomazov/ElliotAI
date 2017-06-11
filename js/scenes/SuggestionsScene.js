@@ -17,7 +17,7 @@ import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 import {getEvents} from '../utils/Calendar'
 import moment from 'moment'
-import {themeColor} from '../res/values/styles.js'
+import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
 
 
@@ -186,7 +186,8 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_notificationComponent = ({title, message}) => {
-		return <View style={[s.padding10, {backgroundColor: 'green', height: 80}]}>
+    const topMargin = IS_IOS ? {marginTop: -20} : {};
+		return <View style={[topMargin, s.padding10, {backgroundColor: themeColorThird, height: 80}]}>
 			<Text style={[s.textColorWhite, s.bold]}>{title}</Text>
 			<Text style={[s.textColorWhite]}>{message}</Text>
 		</View>
