@@ -37,7 +37,7 @@ export default class UserSuggestionsScene extends Component {
 		this.props.navigation.navigate('ScheduleScene', {
 			suggestion: suggestion,
 		 	skipBack: skipBack,
-			onScheduleMeeting: this.props.onScheduleMeeting,
+			onScheduleMeeting: this.props.navigation.state.params.onScheduleMeeting,
 			rootSuggestion: this.props.navigation.state.params.rootSuggestion
 		})
 	}
