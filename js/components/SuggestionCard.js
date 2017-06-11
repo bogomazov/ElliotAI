@@ -30,9 +30,9 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onSho
                     source={suggestion.getIcon()}/>
                   <Text style={styles.date}>{suggestion.getDateStr()}</Text>
                 </View>
+                <Arrow />
               </View>
             </TouchableWithoutFeedback>
-            <Arrow />
           </View>
           {withOptions && <View style={[styles.row, styles.buttonOptionsWrapper]}>
               <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight} onPress={() => onMoreOptionsPress(suggestion)}>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      height: 50,
+      height: 58,
     },
     optionButton: {
 //       flexDirection: 'row',
