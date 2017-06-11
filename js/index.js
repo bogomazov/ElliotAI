@@ -91,7 +91,6 @@ const Navigation = StackNavigator({
 class App extends Component {
   componentWillMount() {
     if (IS_IOS) {
-      Persistor.purge(['accessToken'])
       const accessToken = this.props.nativeIOS.accessToken
       Store.dispatch(newAccessToken(accessToken))
     }

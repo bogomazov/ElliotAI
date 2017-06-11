@@ -136,6 +136,9 @@ export default class MainScene extends Component {
 	}
 
 	if (IS_IOS) {
+    if (!this.props.app.isRehydrated) {
+      return <View style={styles.container}></View>
+    }
 		return (
 			<SuggestionsScene navigation={this.props.navigation}/>
 		);

@@ -1,5 +1,6 @@
 import * as actionType from '../actions/app'
 import { REHYDRATE } from 'redux-persist/constants'
+import {IS_IOS} from '../../settings.js'
 
 const defaultState = {
   accessToken: null,
@@ -41,7 +42,10 @@ const app = (state = defaultState, action) => {
     case REHYDRATE:
       const incoming = action.payload.app
       console.log(incoming)
+      // don't persist accessToken on iOS
+      const auth = IS_IOS ? {accessToken: state.accessToken} : {};
       return {...state, ...incoming,
+          ...auth,
           isRehydrated: true,
           isLocationGiven: false,
           isSuggestionsLoaded: false,
