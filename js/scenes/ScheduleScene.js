@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -19,7 +19,7 @@ import NavigationTopBar from '../components/NavigationTopBar';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 import { NavigationActions } from 'react-navigation'
 import s, { themeColorThird } from '../res/values/styles'
-import {IS_TEST_SUGGESTIONS} from '../settings'
+import {IS_TEST_SUGGESTIONS, IS_IOS} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -60,7 +60,14 @@ export default class ScheduleScene extends Component {
 					this.props.navigation.dispatch(NavigationActions.back({
 						key: skipBack
 					}))
-					// If we came here via 'more options', reject the root suggestion.
+          // Refresh confirmed-meetings
+          if (IS_IOS) {
+            NativeModules.NSNotificationAccess.post('refreshMeetingsNotif', null);
+          } else {
+            this.props.appActions.calendarLoading();
+            this.props.appActions.loadScheduledMeetings();
+          }
+          // If we came here via 'more options', reject the root suggestion.
 					if (rootSuggestion) {
 						this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
 							this.props.appActions.loadSuggestions()

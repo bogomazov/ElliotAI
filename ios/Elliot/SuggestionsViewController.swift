@@ -50,8 +50,8 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Timer.scheduledTimer(timeInterval: 300.0, target: self, selector: #selector(self.refreshData),
-                             userInfo: nil, repeats: true)
+        //Timer.scheduledTimer(timeInterval: 300.0, target: self, selector: #selector(self.refreshData),
+        //                     userInfo: nil, repeats: true)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 220
@@ -119,6 +119,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     // Ensures the order of requests.
     // i.e. provides back-end with location and calendar data before loading suggestions.
     func informThenRefresh() {
+        return
         print("[LocationSync] \(#function)")
         if suggestions.count == 0 {
             loadingIndicator.startAnimating()
@@ -152,6 +153,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func refreshData() {
+        return
         print("[LocationSync] Refreshing Suggestions")
         let request = Request(method: .get, path: "/suggestions")
         NetworkManager.shared.make(request: request) { (json, success) in
