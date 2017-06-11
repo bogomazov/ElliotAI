@@ -47,6 +47,7 @@ const app = (state = defaultState, action) => {
           isSuggestionsLoaded: false,
           isCalendarLoaded: false,
           isCalendarLoading: false,
+          isContactsLoaded: false,
           suggestions: [],
           upcomingMeetings: [],
           pastMeetings: [],

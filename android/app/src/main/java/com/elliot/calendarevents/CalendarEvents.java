@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
@@ -339,8 +340,8 @@ public class CalendarEvents extends ReactContextBaseJavaModule {
                 reminderValues.put(CalendarContract.Reminders.EVENT_ID, eventID);
                 reminderValues.put(CalendarContract.Reminders.MINUTES, minutes);
                 reminderValues.put(CalendarContract.Reminders.METHOD, CalendarContract.Reminders.METHOD_ALERT);
-
                 resolver.insert(CalendarContract.Reminders.CONTENT_URI, reminderValues);
+
             }
         }
     }

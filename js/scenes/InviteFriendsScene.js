@@ -75,15 +75,24 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
+		console.log(item[field])
 		if (item[field].length > 0) {
-					newArray.push({
-						id: i,
-						firstName: item.givenName,
-						middleName: item.middleName,
-						lastName: item.familyName,
-						contact: item[field][0][secondField]})
+			let contact = item[field][0][secondField]
+			if (field == 'phoneNumbers') {
+				filteredContact = item[field].filter(item=> item.label == 'mobile')
+				if (filteredContact.length > 0) {
+					contact = filteredContact[0][secondField]
+				}
 			}
-			return newArray
+			newArray.push({
+				id: i,
+				firstName: item.givenName,
+				middleName: item.middleName,
+				lastName: item.familyName,
+				contact: contact
+			})
+		}
+		return newArray
 	}, []);
 
 	componentWillMount = () => {

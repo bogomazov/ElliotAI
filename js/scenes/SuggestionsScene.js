@@ -162,11 +162,9 @@ export default class SuggestionsScene extends Component {
 					// handle events
 					console.log('Calendar fetchAllEvents')
 					console.log(events)
-					if (events.length > 0) {
-						this.props.appActions.sendEvents(events).then(data=> {
-							this.props.appActions.loadSuggestions()
-						})
-					}
+					this.props.appActions.sendEvents(events).then(data=> {
+						this.props.appActions.loadSuggestions()
+					})
 				})
 				.catch(error => {
 					console.log(error)

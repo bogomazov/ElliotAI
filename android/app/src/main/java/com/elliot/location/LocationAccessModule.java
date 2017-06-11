@@ -83,6 +83,7 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed");
+        Log.e(TAG, connectionResult.getErrorCode() + " " + connectionResult.getErrorMessage());
     }
 
     @Override
