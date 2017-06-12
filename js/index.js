@@ -39,6 +39,9 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import {newAccessToken} from './state/actions/app'
 
+// Disable font scaling to prevent breaking the layout
+Text.defaultProps.allowFontScaling = false;
+
 // export const IS_DEV = true
 
 // call for IOS
