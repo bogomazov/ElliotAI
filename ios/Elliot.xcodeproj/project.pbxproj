@@ -54,6 +54,8 @@
 		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
 		03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */; };
 		03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */; };
+		03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
+		03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
 		03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */; };
 		03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E739321E6A0B4800525383 /* UIViewController+Banner.swift */; };
 		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
@@ -157,6 +159,8 @@
 		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
 		03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationCell.swift; sourceTree = "<group>"; };
+		03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccess.swift; sourceTree = "<group>"; };
+		03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccessBridge.m; sourceTree = "<group>"; };
 		03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardToInviteCell.swift; sourceTree = "<group>"; };
 		03E739321E6A0B4800525383 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
 		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+				03C1BCE01EEEBFEC003246F3 /* ShareAccess */,
 				03F9E7B11EE97F5500DC815C /* NSNotificationAccess */,
 				03F9E7AC1EE822BF00DC815C /* LocationAccess */,
 			);
@@ -267,6 +272,15 @@
 				0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		03C1BCE01EEEBFEC003246F3 /* ShareAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */,
+				03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */,
+			);
+			name = ShareAccess;
 			sourceTree = "<group>";
 		};
 		03E7392F1E6A0B0D00525383 /* Extensions */ = {
@@ -631,6 +645,7 @@
 				03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
 				03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */,
+				03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */,
 				03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */,
 				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,
 				031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */,
@@ -654,6 +669,7 @@
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
 				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
 				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
+				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
 				03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */,
 				03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */,
 				0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */,
