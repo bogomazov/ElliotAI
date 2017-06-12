@@ -93,9 +93,10 @@ export default class ScheduleScene extends Component {
     _loadCalendarEvents = () => {
       console.log('_loadCalendarEvents')
       console.log(this.props.suggestion.meeting_time)
-      dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE, 'h')
+			dateStart = this.props.suggestion.meeting_time.clone().subtract(1, 'h')
+      dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE + 1, 'h')
       console.log(dateEnd)
-      getEvents(this.props.suggestion.meeting_time, dateEnd).then(events => {
+      getEvents(dateStart, dateEnd).then(events => {
             // handle events
             console.log('Calendar')
             console.log(events)
@@ -168,11 +169,11 @@ export default class ScheduleScene extends Component {
               endTime = moment(event.endDate).format("h:mm A")
               return <View key={i} style={[styles.timeWrapper]}>
                 <IconEntypo name="dot-single" style={{justifyContent: 'flex-start', borderWidth: 0, margin: -8}} size={35} color={themeColor} />
-                <View style={styles.column}>
+                <View style={[styles.column]}>
                   <Text style={[s.bold]}>
                       {startTime} - {endTime}
                   </Text>
-                  <Text style={[]}>
+                  <Text style={[s.marginRight10]}>
                     {event.title}
                   </Text>
                  </View>
@@ -219,7 +220,7 @@ export default class ScheduleScene extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'white'
