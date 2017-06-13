@@ -97,8 +97,9 @@ class API {
           this.appActions.logOut()
         }
         return response.json()
-      }).catch((error) => {
-      console.log(error)
+    }).catch((error) => {
+      console.log(error);
+      throw error;
     })
   }
 

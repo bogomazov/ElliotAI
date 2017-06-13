@@ -16,6 +16,7 @@ export const LOG_OUT = "LOG_OUT"
 export const ADD_EVENT_CALENDAR = "ADD_EVENT_CALENDAR"
 export const REMOVE_EVENT_CALENDAR = "REMOVE_EVENT_CALENDAR"
 export const NEW_SUGGESTIONS = "NEW_SUGGESTIONS"
+export const SUGGESTIONS_LOADING = "SUGGESTIONS_LOADING"
 export const NEW_CALENDAR = "NEW_CALENDAR"
 export const NEW_CONTACTS = "NEW_CONTACTS"
 export const REMOVE_SUGGESTION = "REMOVE_SUGGESTION"
@@ -72,6 +73,12 @@ export const newSuggestions = (suggestions) => {
   return {
     type: NEW_SUGGESTIONS,
     suggestions
+  }
+}
+export const suggestionsLoading = (isLoading) => {
+  return {
+    type: SUGGESTIONS_LOADING,
+    isLoading
   }
 }
 export const newCalendar = (upcomingMeetings, pastMeetings, badges) => {
@@ -196,13 +203,15 @@ const _updateDeviceCalendar = (dispatch, meetings) => {
 
 export const loadSuggestions = () => {
   return (dispatch, getState, getAPI) => {
+      dispatch(suggestionsLoading(true));
       getAPI(getState, dispatch).suggestions().then((data) => {
           console.log(data)
           suggestions = data.map((item) => {return new Suggestion(item)})
           dispatch(newSuggestions(suggestions))
       }).catch((error) => {
           console.error(error);
-        });
+          dispatch(suggestionsLoading(false));
+      });
     }
   }
 

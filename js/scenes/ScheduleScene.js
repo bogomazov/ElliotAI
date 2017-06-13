@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules } from 'react-native'
+import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, ActivityIndicator } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -45,7 +45,9 @@ export default class ScheduleScene extends Component {
     }
 
     _onConfirmPress = () => {
-			const skipBack = this.props.skipBack
+      if (this.state.isConfirming) {
+        return;
+      }
 			const rootSuggestion = this.props.rootSuggestion
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
@@ -62,11 +64,9 @@ export default class ScheduleScene extends Component {
 
 				this.setState({isAcceptLoading: true})
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
+          this.setState({isAcceptLoading: false})
           this.props.appActions.removeSuggestion(this.props.suggestion)
-					this.props.navigation.dispatch(NavigationActions.back({
-						key: skipBack
-					}))
-          // Refresh confirmed-meetings
+					// Refresh confirmed-meetings
           if (IS_IOS) {
             NativeModules.NSNotificationAccess.post('refreshMeetingsNotif', null);
           } else {
@@ -74,16 +74,30 @@ export default class ScheduleScene extends Component {
             this.props.appActions.loadScheduledMeetings();
           }
           // If we came here via 'more options', reject the root suggestion.
-					if (rootSuggestion) {
-						this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
-							this.props.appActions.loadSuggestions()
-						})
-					} else {
-						this.props.appActions.loadSuggestions()
-					}
-					this.props.onScheduleMeeting()
+          if (rootSuggestion) {
+            this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
+              this.props.appActions.loadSuggestions()
+            })
+          } else {
+            this.props.appActions.loadSuggestions()
+          }
+          setTimeout(() => {
+            if (this.props.onScheduleMeeting) {
+              this.props.onScheduleMeeting();
+            }
+          }, 300);
+          this._navigateBack();
+        }).catch((err) => {
+          this.setState({isConfirming: false})
         })
       }
+    }
+
+    _navigateBack = () => {
+      const skipBack = this.props.skipBack
+      this.props.navigation.dispatch(NavigationActions.back({
+        key: skipBack
+      }))
     }
 
     _getStartTimes = () => {
@@ -128,6 +142,13 @@ export default class ScheduleScene extends Component {
     _isSelected = () => {
 
     }
+
+  componentDidUpdate() {
+    // Prevent accepting an expired suggestion.
+    if (this.props.app.isSuggestionsLoading) {
+      this._navigateBack();
+    }
+  }
 
   render() {
     this.props = {...this.props, ...this.props.navigation.state.params}
@@ -209,11 +230,15 @@ export default class ScheduleScene extends Component {
           </View>
         </View>
 
-         <TouchableHighlight  style={styles.row} onPress={this._onConfirmPress}>
-           <View style={buttonStyles}>
+        <TouchableHighlight  style={styles.row} onPress={this._onConfirmPress}>
+          <View style={buttonStyles}>
+            {!this.state.isConfirming &&
               <Text style={styles.confirmButton}>Sounds Good!</Text>
-            </View>
-
+            }
+            {this.state.isConfirming &&
+              <ActivityIndicator animating={true} color="white" size="small"/>
+            }
+          </View>
           </TouchableHighlight>
       </View>
     );

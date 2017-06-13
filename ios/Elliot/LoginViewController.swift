@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var nextButton: UIButton!
     
     var loginButton: LoginButton!
+    var loadingIndicator: UIActivityIndicatorView!
     let loginManager = LoginManager()
     
     let previewNames = ["login1", "login2", "login3"]
@@ -38,6 +39,11 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         loginButton.isHidden = true
         
         self.view.addSubview(loginButton)
+        
+        loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        loadingIndicator.color = UIColor.elliotBeige()
+        loadingIndicator.center = center
+        self.view.addSubview(loadingIndicator)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.goLeft))
         swipeLeft.direction = .right
@@ -90,6 +96,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             print(grantedPermissions.description)
             print(declinedPermissions.description)
             print("-------------")
+            loadingIndicator.startAnimating()
+            loginButton.isHidden = true
+            loginButton.isUserInteractionEnabled = false
             AuthorizationManager.shared.loadToken(completion: { (json, success) in
                 if success {
                     if AccessStatus.hasEnabledAll() {
@@ -99,7 +108,10 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
                     }
                 } else {
                     self.loginManager.logOut()
+                    self.loginButton.isHidden = false
+                    self.loginButton.isUserInteractionEnabled = true
                 }
+                self.loadingIndicator.stopAnimating()
             })
         }
     }

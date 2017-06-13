@@ -128,9 +128,10 @@ export default class InviteFriendsScene extends Component {
 					break;
 				case TAB_FACEBOOK:
 					this._inviteFacebook(ShareDialog)
+          break;
 				case TAB_TWITTER:
 					this._inviteTwitter()
-        break;
+          break;
 			}
 		}
 	}
