@@ -93,7 +93,8 @@ export default class MeetingDetailsScene extends Component {
 	}
 
 	_onOpenTablePress = () => {
-		Linking.openURL("https://www.opentable.com/s/?covers=2&dateTime=");
+		const time = this.props.meeting.meeting_time
+		Linking.openURL(`https://www.opentable.com/s/?covers=2&dateTime=${time.format("YYYY-MM-DD")}%20${time.format("HH")}%3A${time.format("mm")}&metroId=${this.props.app.metroId}`);
 	}
 
 	_sendSMS = () => {
@@ -155,14 +156,14 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/yelp-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						<TouchableHighlight onPress={this._onOpenTablePress}>
+						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex]}>Reserve a table</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/opentable-icon-66px.png')}/>
 	            </View>
-						</TouchableHighlight>
+						</TouchableHighlight>}
 						{this.state.number &&
 						<TouchableHighlight onPress={this._call}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>

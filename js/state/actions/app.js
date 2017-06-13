@@ -6,6 +6,7 @@ import { LoginManager } from 'react-native-fbsdk'
 import {prepareDateForRequest} from '../../utils/DateTime'
 import Suggestion from '../models/suggestion'
 import {saveEvent, removeEvent} from '../../utils/Calendar';
+import turf from 'turf'
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
@@ -131,11 +132,13 @@ export const introCalendarSeen = () => {
   }
 }
 export const newLocation = (lon, lat, timestamp) => {
+  const metroId = getOpenTabelMetroId(lat, lon)
   return {
     type: NEW_LOCATION,
-    lon: lon,
-    lat: lat,
-    timestamp: timestamp
+    lon,
+    lat,
+    timestamp,
+    metroId
   }
 }
 
@@ -167,17 +170,17 @@ export const loadScheduledMeetings = () => {
     console.log(data)
     console.log('loadScheduledMeetings0')
 
-    badges = data.badges
-    meetings = data.data.map((meeting) => new Meeting(meeting))
+    const badges = data.badges
+    const meetings = data.data.map((meeting) => new Meeting(meeting))
     console.log('loadScheduledMeetings1')
 
     _updateDeviceCalendar(dispatch, meetings)
     console.log('loadScheduledMeetings2')
 
     data = meetings.filter((meeting) => meeting.canceled == 0)
-    pastMeetings = data.filter((meeting) => meeting.isPast())
+    const pastMeetings = data.filter((meeting) => meeting.isPast())
     pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
-    upcomingMeetings = data.filter((meeting) => !meeting.isPast())
+    const upcomingMeetings = data.filter((meeting) => !meeting.isPast())
     upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
     // this.setState({upcomingMeetings, pastMeetings})
     console.log('loadScheduledMeetings3')
@@ -263,4 +266,125 @@ export const sendSocialMediaAccessToken = (accessToken, type) => {
         });
       };
     }
+}
+
+// func determineMetroArea(location: CLLocation) {
+//         if (location.distance(from: CLLocation(latitude: 42.36, longitude: -71.05)) < 100000) {
+//             metroIdOpenTable = "7"
+//             metroName = "Boston Area"
+//         } else if (location.distance(from: CLLocation(latitude: 37.56, longitude: -122.32)) < 100000) {
+//             metroIdOpenTable = "4"
+//             metroName = "San Francisco Bay Area"
+//         } else if (location.distance(from: CLLocation(latitude: 40.71, longitude: -74.00)) < 100000) {
+//             metroIdOpenTable = "8"
+//             metroName = "New York Area"
+//         } else if (location.distance(from: CLLocation(latitude: 41.87, longitude: -87.62)) < 100000) {
+//             metroIdOpenTable = "3"
+//             metroName = "Chicago Area"
+//         } else if (location.distance(from: CLLocation(latitude: 47.60, longitude: -122.33)) < 100000) {
+//             metroIdOpenTable = "2"
+//             metroName = "Seattle Area"
+//         } else if (location.distance(from: CLLocation(latitude: 34.05, longitude: -118.24)) < 100000) {
+//             metroIdOpenTable = "6"
+//             metroName = "Los Angeles Area"
+//         } else if (location.distance(from: CLLocation(latitude: 26.12, longitude: -80.13)) < 100000) {
+//             metroIdOpenTable = "17"
+//             metroName = "Miami Area"
+//         } else if (location.distance(from: CLLocation(latitude: 43.65, longitude: -79.38)) < 100000) {
+//             metroIdOpenTable = "74"
+//             metroName = "Toronto Area"
+//         } else if (location.distance(from: CLLocation(latitude: 45.50, longitude: -73.56)) < 100000) {
+//             metroIdOpenTable = "75"
+//             metroName = "Montreal Area"
+//         }
+//     }
+
+const getPoint = (lat, lng) => {
+  return {
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+      "type": "Point",
+      "coordinates": [lat, lng]
+    }
+  }
+}
+
+const OPENTABLE_METRO_IDS = [
+  {
+    location: {
+      lat: 42.36,
+      lng: -71.05
+    },
+    metroId: 7
+  },
+  {
+    location: {
+      lat: 37.56,
+      lng: -122.32
+    },
+    metroId: 4
+  },
+  {
+    location: {
+      lat: 40.71,
+      lng: -74.00
+    },
+    metroId: 8
+  },
+  {
+    location: {
+      lat: 41.87,
+      lng: -87.62
+    },
+    metroId: 3
+  },
+  {
+    location: {
+      lat: 47.60,
+      lng: -122.33
+    },
+    metroId: 2
+  },
+  {
+    location: {
+      lat: 34.05,
+      lng: -118.24
+    },
+    metroId: 6
+  },
+  {
+    location: {
+      lat: 26.12,
+      lng: -80.13
+    },
+    metroId: 17
+  },
+  {
+    location: {
+      lat: 43.65,
+      lng: -79.38
+    },
+    metroId: 74
+  },
+  {
+    location: {
+      lat: 45.50,
+      lng: -73.56
+    },
+    metroId: 75
+  },
+]
+
+const getOpenTabelMetroId = (lat, lng) => {
+  const currentPos = getPoint(lat, lng)
+  const units = "miles"
+  const RANGE = 100
+
+  for (let item of OPENTABLE_METRO_IDS) {
+    if (turf.distance(currentPos, getPoint(item.location.lat, item.location.lng), units) < RANGE) {
+      return item.metroId
+    }
+  }
+  return null
 }

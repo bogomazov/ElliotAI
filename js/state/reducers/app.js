@@ -9,6 +9,7 @@ const defaultState = {
   isLocationGiven: false,
   isPhoneNumberVerified: false,
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
+  metroId: null,
   isRehydrated: false,
   suggestions: [],
   upcomingMeetings: [],
@@ -63,6 +64,7 @@ const app = (state = defaultState, action) => {
         ...state,
         isLocationGiven: true,
         location: {lat: action.lat, lng: action.lng, updatedAt: action.updatedAt},
+        metroId: action.metroId
       }
     case actionType.LOG_OUT:
       return {
