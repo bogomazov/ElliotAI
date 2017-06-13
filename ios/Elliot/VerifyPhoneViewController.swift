@@ -97,8 +97,6 @@ class VerifyPhoneViewController: UIViewController {
     }
     
     @IBAction func tappedVerify(_ sender: Any) {
-        // TODO: fix when deep-linking is figured out.
-        continueToApp()
         guard let numText = numberTextField.text else {
             showInvalidNumberAlert()
             return
