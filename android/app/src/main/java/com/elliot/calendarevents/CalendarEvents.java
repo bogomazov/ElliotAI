@@ -307,9 +307,9 @@ public class CalendarEvents extends ReactContextBaseJavaModule {
             Uri eventUri = cr.insert(eventsUri, eventValues);
             int eventID = Integer.parseInt(eventUri.getLastPathSegment());
 
-            if (details.hasKey("alarms")) {
-                createRemindersForEvent(cr, eventID, details.getArray("alarms"));
-            }
+//            if (details.hasKey("alarms")) {
+//                createRemindersForEvent(cr, eventID, details.getArray("alarms"));
+//            }
             event.putInt("eventID", eventID);
         }
 
