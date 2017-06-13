@@ -43,9 +43,6 @@ class SMSNotifManager {
     }
     
     class func hasVerifiedNumber() -> Bool {
-        #if DEBUG
-            return true
-        #endif
         return Defaults[.hasVerifiedNumber]
     }
 }
