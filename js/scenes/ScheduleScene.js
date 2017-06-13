@@ -44,7 +44,6 @@ export default class ScheduleScene extends Component {
     }
 
     _onConfirmPress = () => {
-			const skipBack = this.props.skipBack
 			const rootSuggestion = this.props.rootSuggestion
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
@@ -57,9 +56,7 @@ export default class ScheduleScene extends Component {
 				}
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
-					this.props.navigation.dispatch(NavigationActions.back({
-						key: skipBack
-					}))
+					this._navigateBack();
           // Refresh confirmed-meetings
           if (IS_IOS) {
             NativeModules.NSNotificationAccess.post('refreshMeetingsNotif', null);
@@ -78,6 +75,13 @@ export default class ScheduleScene extends Component {
 					this.props.onScheduleMeeting()
         })
       }
+    }
+
+    _navigateBack = () => {
+      const skipBack = this.props.skipBack
+      this.props.navigation.dispatch(NavigationActions.back({
+        key: skipBack
+      }))
     }
 
     _getStartTimes = () => {
@@ -122,6 +126,13 @@ export default class ScheduleScene extends Component {
     _isSelected = () => {
 
     }
+
+  componentDidUpdate() {
+    // Prevent accepting an expired suggestion.
+    if (this.props.app.isSuggestionsLoading) {
+      this._navigateBack();
+    }
+  }
 
   render() {
     this.props = {...this.props, ...this.props.navigation.state.params}

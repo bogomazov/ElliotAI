@@ -18,6 +18,7 @@ const defaultState = {
   calendarMap: {},
   calendarBadges: 0,
   isSuggestionsLoaded: false,
+  isSuggestionsLoading: false,
   isIntroSuggestionsSeen: false,
   isIntroCalendarSeen: false,
   isCalendarLoaded: false,
@@ -49,6 +50,7 @@ const app = (state = defaultState, action) => {
           isRehydrated: true,
           isLocationGiven: false,
           isSuggestionsLoaded: false,
+          isSuggestionsLoading: false,
           isCalendarLoaded: false,
           isCalendarLoading: false,
           isContactsLoaded: false,
@@ -93,7 +95,13 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         isSuggestionsLoaded: true,
+        isSuggestionsLoading: false,
         suggestions: action.suggestions
+      }
+    case actionType.SUGGESTIONS_LOADING:
+      return {
+        ...state,
+        isSuggestionsLoading: action.isLoading
       }
       case actionType.NEW_CALENDAR:
         return {
