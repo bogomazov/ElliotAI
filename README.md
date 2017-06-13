@@ -21,3 +21,10 @@
 ## Running on a device (on dev-merge only)
 Connect the device and run the app via Xcode in the same way.
 Codepush will automatically fetch the latest 'staging' JS code.
+
+# Codepush Deployment
+1. Install code-push cli: `npm install -g code-push-cli`
+2. Make sure you have access to the previously added code-push app.
+3. `sh deploy.sh <environment> <unique-app-name> <platform>`
+    - `<environment>` should be either `Staging` or `Production`.
+    - `platform` should be either `ios` or `android`.
