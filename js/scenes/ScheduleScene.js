@@ -40,10 +40,14 @@ export default class ScheduleScene extends Component {
     state = {
       calendarEvents: [],
       isCalendarEventsLoaded: false,
-      selected: []
+      selected: [],
+      isConfirming: false,
     }
 
     _onConfirmPress = () => {
+      if (this.state.isConfirming) {
+        return;
+      }
 			const rootSuggestion = this.props.rootSuggestion
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
@@ -54,7 +58,9 @@ export default class ScheduleScene extends Component {
 					this.props.onScheduleMeeting()
 					return
 				}
+        this.setState({isConfirming: true});
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
+          this.setState({isConfirming: false})
           this.props.appActions.removeSuggestion(this.props.suggestion)
 					this._navigateBack();
           // Refresh confirmed-meetings
@@ -73,6 +79,8 @@ export default class ScheduleScene extends Component {
 						this.props.appActions.loadSuggestions()
 					}
 					this.props.onScheduleMeeting()
+        }).catch((err) => {
+          this.setState({isConfirming: false})
         })
       }
     }
