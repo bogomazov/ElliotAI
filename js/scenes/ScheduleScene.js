@@ -40,7 +40,8 @@ export default class ScheduleScene extends Component {
     state = {
       calendarEvents: [],
       isCalendarEventsLoaded: false,
-      selected: []
+      selected: [],
+			isAcceptLoading: false
     }
 
     _onConfirmPress = () => {
@@ -55,6 +56,11 @@ export default class ScheduleScene extends Component {
 					this.props.onScheduleMeeting()
 					return
 				}
+				if (this.state.isAcceptLoading) {
+					return
+				}
+
+				this.setState({isAcceptLoading: true})
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
           this.props.appActions.removeSuggestion(this.props.suggestion)
 					this.props.navigation.dispatch(NavigationActions.back({
@@ -129,15 +135,12 @@ export default class ScheduleScene extends Component {
     if (!this.state.isCalendarEventsLoaded) {
       this._loadCalendarEvents()
     }
-	// console.log(this.props)
-	// console.log(this.state)
-	// console.log(this._getStartTimes())
 
     const suggestion = this.props.suggestion
     console.log(suggestion)
     let buttonStyles = [styles.confirmButtonWrapper]
 
-    if (this.state.selected.length > 0) {
+    if (this.state.selected.length > 0 && !this.state.isAcceptLoading) {
       buttonStyles.push(styles.buttonActive)
     }
     return (

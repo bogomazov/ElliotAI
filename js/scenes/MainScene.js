@@ -20,6 +20,7 @@ import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
+import {loadContacts} from '../utils/Contacts'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 
 export const MAIN_TAB = 0
@@ -144,9 +145,14 @@ export default class MainScene extends Component {
 		);
 	}
 	if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
+		if (!this.props.app.isContactsLoaded) {
+			loadContacts()
+		}
 		this.props.appActions.calendarLoading()
 		this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
 	}
+
+
 
 			return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button

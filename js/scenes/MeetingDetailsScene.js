@@ -17,6 +17,8 @@ import Suggestion from '../state/models/suggestion';
 import s from '../res/values/styles'
 import IconIon from 'react-native-vector-icons/Ionicons';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
+import {phonecall} from 'react-native-communications'
+import {IS_ANDROID} from '../settings'
 // Ionicons
 // ios-time-outline
 // EvilIcons
@@ -36,7 +38,8 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MeetingDetailsScene extends Component {
     state = {
-			url: null
+			url: null,
+			number: null
     }
 
 		_onReschedulePress = () => {
@@ -56,7 +59,21 @@ export default class MeetingDetailsScene extends Component {
 		}
 
 	componentWillMount = () => {
+		const friend = this.props.meeting.friend
+		const numbers = this._getContactNumbersByStr(friend.first_name + ' ' + friend.last_name)
 
+		console.log(numbers)
+		if (numbers.length > 0) {
+			this.setState({
+				number: numbers[0]
+			})
+		}
+	}
+
+	_getContactNumbersByStr = (str) => {
+		return this.props.app.numbers.filter(number => {
+			const name = `${number.firstName? number.firstName: ''}${number.middleName? ' ' + number.middleName: ''} ${number.lastName? number.lastName: ''}`
+			return str.includes(name)})
 	}
 
     _keyExtractor = (item, index) => item.id;
@@ -79,9 +96,26 @@ export default class MeetingDetailsScene extends Component {
 		Linking.openURL("https://www.opentable.com/s/?covers=2&dateTime=");
 	}
 
+	_sendSMS = () => {
+		const url = `sms:${this.state.number.contact}`
+
+		Linking.canOpenURL(url).then(supported => {
+		  if (!supported) {
+		    console.log('Unsupported url: ' + url)
+		  } else {
+		    return Linking.openURL(url)
+		  }
+		}).catch(err => console.error('An error occurred', err))
+	}
+
+	_call = () => {
+		phonecall(this.state.number.contact, true)
+	}
+
   render() {
     const meeting = this.props.meeting
     console.log(this.props)
+    console.log(this.state)
       return (
         <Card style={{flex: 1}}>
           <IconEvil.Button name="close" backgroundColor="#fff" size={25} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
@@ -129,7 +163,24 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/opentable-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						{[0, 0].map((item, i) => <View key={i} style={[s.row, s.borderTopGrey, styles.bottom]}></View>)}
+						{this.state.number &&
+						<TouchableHighlight onPress={this._call}>
+	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+	              <Text style={[s.flex]}>Call {meeting.friend.first_name}</Text>
+	              <Image
+	                style={[styles.icon, s.margin10]}
+	                source={require('../res/images/call-66px.png')}/>
+	            </View>
+						</TouchableHighlight>}
+						{this.state.number && <TouchableHighlight onPress={this._sendSMS}>
+	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+	              <Text style={[s.flex]}>Send {meeting.friend.first_name} SMS</Text>
+	              <Image
+	                style={[styles.icon, s.margin10]}
+	                source={require('../res/images/messageicon.png')}/>
+	            </View>
+						</TouchableHighlight>}
+						{[0, 0, 0, 0].map((item, i) => <View key={i} style={[s.row, s.borderTopGrey, styles.bottom]}></View>)}
 						</ScrollView>
           </View>
 					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
