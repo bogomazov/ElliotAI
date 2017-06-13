@@ -1,6 +1,7 @@
 import RNCalendarEvents from 'react-native-calendar-events';
 import {fromDateToIsoStr} from './DateTime'
 
+export const checkCalendarPermissions = () => RNCalendarEvents.authorizationStatus()
 export const getEvents = (momentStart, momentEnd) =>
   RNCalendarEvents.fetchAllEvents(momentStart.toISOString(), momentEnd.toISOString())
 

@@ -169,7 +169,9 @@ export const loadScheduledMeetings = () => {
     // data = TEST_MEETIGNS
     console.log(data)
     console.log('loadScheduledMeetings0')
-
+    if (data.error) {
+      return
+    }
     const badges = data.badges
     const meetings = data.data.map((meeting) => new Meeting(meeting))
     console.log('loadScheduledMeetings1')

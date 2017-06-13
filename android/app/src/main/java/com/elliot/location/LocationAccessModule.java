@@ -204,8 +204,11 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
                         // All location settings are satisfied. The client can
                         // initialize location requests here.
                         Log.d("LocationSettingsSat", "true");
-                        promise.resolve(SUCCESS);
-
+                        if (promise != null) {
+                            promise.resolve(SUCCESS);
+                            promise = null;
+                        }
+                        
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         Log.d("ResolutionRequired", "true");

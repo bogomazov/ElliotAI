@@ -15,7 +15,7 @@ import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
 import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
-import {getEvents} from '../utils/Calendar'
+import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
 import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
@@ -141,6 +141,7 @@ export default class SuggestionsScene extends Component {
 					console.log(location)
 					this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
 			       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+
 						 this._updateCalendarEvents()
 					})
         // this._requestCurrentLocation()
@@ -158,19 +159,30 @@ export default class SuggestionsScene extends Component {
 
 	_updateCalendarEvents = () => {
 		console.log('getting events')
-		getEvents(moment(), moment().add(1, 'months')).then(events => {
-					// handle events
-					console.log('Calendar fetchAllEvents')
-					console.log(events)
-					this.props.appActions.sendEvents(events).then(data=> {
-						this.props.appActions.loadSuggestions()
-					})
+
+	  checkCalendarPermissions().then(status => {
+			console.log(status)
+			if (status != 'authorized') {
+				this.props.appActions.switchPermissionsOff()
+				return
+			}
+			getEvents(moment(), moment().add(1, 'months')).then(events => {
+				// handle events
+				console.log('Calendar fetchAllEvents')
+				console.log(events)
+				this.props.appActions.sendEvents(events).then(data=> {
+					this.props.appActions.loadSuggestions()
 				})
-				.catch(error => {
-					console.log(error)
-					this.props.appActions.switchPermissionsOff()
-				 // handle error
-				});
+			})
+			.catch(error => {
+				console.log(error)
+			 // handle error
+			});
+	  })
+	  .catch(error => {
+	   // handle error
+	  });
+
 	}
 
 	_onScheduleMeeting = () => {

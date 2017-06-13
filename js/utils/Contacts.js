@@ -3,23 +3,29 @@ import { Store } from '../index'
 import { switchPermissionsOff, newContacts } from '../state/actions/app'
 
 export const loadContacts = () => {
-  Contacts.getAll((err, contacts) => {
-    console.log(err)
-    if(err === 'denied'){
-      // x.x
-      console.log('Contacts denied')
-
+  Contacts.checkPermission( (err, permission) => {
+    if(permission != 'authorized'){
       Store.dispatch(switchPermissionsOff())
-    } else {
-      console.log('Contacts')
-      console.log(contacts)
-
-      emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
-      numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
-      console.log(emails)
-      Store.dispatch(newContacts(numbers, emails))
+      return
     }
+    Contacts.getAll((err, contacts) => {
+      console.log(err)
+      if(err === 'denied'){
+        // x.x
+        console.log('Contacts denied')
+
+      } else {
+        console.log('Contacts')
+        console.log(contacts)
+
+        emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
+        numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
+        console.log(emails)
+        Store.dispatch(newContacts(numbers, emails))
+      }
+    })
   })
+
 }
 
 _reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {

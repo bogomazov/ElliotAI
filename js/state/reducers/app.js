@@ -71,7 +71,7 @@ const app = (state = defaultState, action) => {
         ...state,
         isLoggedIn: false,
         accessToken: null,
-        isPermissionsGranted: false
+        isPermissionsGranted: false,
       }
     case actionType.PERMISSIONS_SWITCH_ON:
       return {
