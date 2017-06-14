@@ -140,9 +140,6 @@ export default class MainScene extends Component {
 	    if (!this.props.app.isRehydrated) {
 	      return <View style={styles.container}></View>
 	    }
-			return (
-				<SuggestionsScene navigation={this.props.navigation}/>
-			);
 		}
 			if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
 				if (!this.props.app.isContactsLoaded) {
