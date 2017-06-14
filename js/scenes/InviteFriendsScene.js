@@ -217,7 +217,8 @@ const styles = StyleSheet.create({
 
   topBarText: {
     color: themeColor,
-    fontFamily: 'OpenSans-Bold'
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 16,
   },
 	contactAvatar: {
 		width: 30,
@@ -225,7 +226,8 @@ const styles = StyleSheet.create({
 		margin: 10,
 		justifyContent: 'center',
 		textAlign: 'center',
-		borderRadius: 100,
+		borderRadius: 15,
+    overflow: 'hidden',
 		color: 'white',
 		backgroundColor: '#B4BBBE',
 		padding: 5
