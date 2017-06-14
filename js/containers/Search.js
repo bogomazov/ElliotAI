@@ -79,6 +79,8 @@ export default class SearchContainer extends Component {
 						backgroundColor="#fff"
 						titleCancelColor={themeColor}
 						onChangeText={this._onChangeText}
+            onDelete={() => this._onChangeText("")}
+            onCancel={() => this._onChangeText("")}
 	        />
           <FlatList
             data={this._getFilteredData()}
