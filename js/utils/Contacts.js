@@ -44,7 +44,9 @@ _reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, i
       firstName: item.givenName,
       middleName: item.middleName,
       lastName: item.familyName,
-      contact: contact
+      contact: contact,
+      thumbnailPath: item.thumbnailPath,
+      hasThumbnail: item.hasThumbnail
     })
   }
   return newArray

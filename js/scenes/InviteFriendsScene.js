@@ -157,7 +157,12 @@ export default class InviteFriendsScene extends Component {
 	_renderItem = ({item, index}) => {
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
 			<View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
-				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
+        {item.hasThumbnail &&
+          <Image style={styles.contactAvatar} source={{uri: item.thumbnailPath}}/>
+        }
+        {!item.hasThumbnail &&
+          <Text style={[styles.contactAvatar, styles.contactInitials]}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
+        }
 				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
@@ -220,14 +225,16 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Bold',
     fontSize: 16,
   },
-	contactAvatar: {
-		width: 30,
-		height: 30,
-		margin: 10,
+  contactAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    overflow: 'hidden',
+    margin: 10,
+  },
+	contactInitials: {
 		justifyContent: 'center',
 		textAlign: 'center',
-		borderRadius: 15,
-    overflow: 'hidden',
 		color: 'white',
 		backgroundColor: '#B4BBBE',
 		padding: 5
