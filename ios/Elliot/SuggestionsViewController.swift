@@ -88,6 +88,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func initReactView() {
+        ReactFactory.rootViewController = self
         reactView = ReactFactory.shared.createView(name: "Elliot",
                                                        props: ["nativeIOS": ["accessToken": AuthorizationManager.shared.serverAuthToken!]])
         guard let bottomBarHeight = tabBarController?.tabBar.frame.height else { return }

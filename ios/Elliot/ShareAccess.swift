@@ -85,17 +85,11 @@ class ShareAccess: NSObject {
     var bridge: RCTBridge!
     var requestMap: [String: ShareRequest] = [:]
     
-    func getViewController(for reactTag: NSNumber) -> UIViewController? {
-        guard let view = self.bridge.uiManager.view(forReactTag: reactTag) else { return nil }
-        return view.reactViewController()
-    }
-    
     // MARK - SMS and Email
     
-    @objc func sendSMS(_ reactTag: NSNumber, numbers: [String], content: String,
+    @objc func sendSMS(_ numbers: [String], content: String,
                        resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-        guard let viewController = getViewController(for: reactTag),
-            MFMessageComposeViewController.canSendText() else {
+        guard MFMessageComposeViewController.canSendText() else {
             reject("failure", "can't send text", nil)
             return
         }
@@ -105,13 +99,12 @@ class ShareAccess: NSObject {
         composeVC.messageComposeDelegate = request
         composeVC.recipients = numbers
         composeVC.body = content
-        viewController.present(composeVC, animated: true, completion: nil)
+        ReactFactory.rootViewController?.present(composeVC, animated: true, completion: nil)
     }
     
-    @objc func sendMail(_ reactTag: NSNumber, addresses: [String], subject: String, content: String,
+    @objc func sendMail(_ addresses: [String], subject: String, content: String,
                         resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-        guard let viewController = getViewController(for: reactTag),
-            MFMailComposeViewController.canSendMail() else {
+        guard MFMailComposeViewController.canSendMail() else {
             reject("failure", "can't send email", nil)
             return
         }
@@ -122,28 +115,27 @@ class ShareAccess: NSObject {
         composeVC.setSubject(subject)
         composeVC.setToRecipients(addresses)
         composeVC.setMessageBody(content, isHTML: false)
-        viewController.present(composeVC, animated: true, completion: nil)
+        ReactFactory.rootViewController?.present(composeVC, animated: true, completion: nil)
     }
     
     // MARK - Social Media
     
-    @objc func shareWithSocialKit(reactTag: NSNumber, link: String, initialText: String, serviceType: String) {
-        guard let viewController = getViewController(for: reactTag),
-            let shareVC = SLComposeViewController(forServiceType: serviceType),
+    @objc func shareWithSocialKit(link: String, initialText: String, serviceType: String) {
+        guard let shareVC = SLComposeViewController(forServiceType: serviceType),
             let url = URL(string: link) else {
                 return
         }
         shareVC.add(url)
         shareVC.setInitialText(initialText)
-        viewController.present(shareVC, animated: true, completion: nil)
+        ReactFactory.rootViewController?.present(shareVC, animated: true, completion: nil)
     }
     
-    @objc func shareOnMessenger(_ reactTag: NSNumber, link: String, initialText: String) {
-        shareWithSocialKit(reactTag: reactTag, link: link,
-                           initialText: initialText, serviceType: "com.facebook.Messenger.ShareExtension")
+    @objc func shareOnMessenger(_ link: String, initialText: String) {
+        shareWithSocialKit(link: link, initialText: initialText,
+                           serviceType: "com.facebook.Messenger.ShareExtension")
     }
     
-    @objc func shareOnFacebook(_ reactTag: NSNumber, link: String, title: String, text: String) {
+    @objc func shareOnFacebook(_ link: String, title: String, text: String) {
         guard let url = URL(string: link) else {
             return
         }
@@ -157,9 +149,9 @@ class ShareAccess: NSObject {
         }
     }
     
-    @objc func shareOnTwitter(_ reactTag: NSNumber, link: String, initialText: String) {
-        shareWithSocialKit(reactTag: reactTag, link: link,
-                           initialText: initialText, serviceType: SLServiceTypeTwitter)
+    @objc func shareOnTwitter(_ link: String, initialText: String) {
+        shareWithSocialKit(link: link, initialText: initialText,
+                           serviceType: SLServiceTypeTwitter)
     }
 }
 
