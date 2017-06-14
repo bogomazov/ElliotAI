@@ -39,6 +39,11 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 import {newAccessToken} from './state/actions/app'
 
+// Override console logs to improve performance on prod.
+if (!__DEV__) {
+  console.log = () => {};
+  console.error = () => {};
+}
 // Disable font scaling to prevent breaking the layout
 Text.defaultProps.allowFontScaling = false;
 
