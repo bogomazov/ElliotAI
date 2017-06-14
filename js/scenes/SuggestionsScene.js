@@ -45,7 +45,6 @@ export default class SuggestionsScene extends Component {
 		isLocationSent: false,
 		isEventsSent: false,
 		appState: AppState.currentState,
-		nativeEventsSubscription: null,
 		rejectingIds: [],
 	}
 
@@ -89,15 +88,6 @@ export default class SuggestionsScene extends Component {
 	componentDidMount = () => {
 		console.log('componentDidMount')
 		AppState.addEventListener('change', this._onAppStateChange)
-		if (IS_IOS) {
-			const NSNotificationEvent = new NativeEventEmitter(NativeModules.NSNotificationAccess);
-			this.state.nativeEventsSubscription = NSNotificationEvent.addListener(
-				'refreshSuggestions',
-				(data) => {
-					this.props.appActions.loadSuggestions();
-				}
-			);
-		}
 	}
 
 	componentDidUpdate = () => {
@@ -106,11 +96,6 @@ export default class SuggestionsScene extends Component {
 
 	componentWillUnmount = () => {
 		AppState.removeEventListener('change', this._onAppStateChange)
-		if (IS_IOS) {
-			if (this.state.nativeEventsSubscription) {
-				this.state.nativeEventsSubscription.remove();
-			}
-		}
 	}
 
 	_onAppStateChange = (nextAppState) => {
@@ -237,11 +222,7 @@ export default class SuggestionsScene extends Component {
 
             if (item.isTellFriends) {
               return <TellFriendsCard isMoreFriends={this.props.app.suggestions.length !== 0} onPress={() => {
-								if (IS_IOS) {
-									NativeModules.NSNotificationAccess.post("showInviteNotif", null);
-								} else {
-									this.props.switchTab(INVITE_FRIENDS_TAB)
-								}
+								this.props.switchTab(INVITE_FRIENDS_TAB)
 							}} />
             }
             return <SuggestionCard

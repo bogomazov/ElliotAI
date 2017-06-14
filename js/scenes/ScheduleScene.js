@@ -67,12 +67,8 @@ export default class ScheduleScene extends Component {
           this.setState({isAcceptLoading: false})
           this.props.appActions.removeSuggestion(this.props.suggestion)
 					// Refresh confirmed-meetings
-          if (IS_IOS) {
-            NativeModules.NSNotificationAccess.post('refreshMeetingsNotif', null);
-          } else {
-            this.props.appActions.calendarLoading();
-            this.props.appActions.loadScheduledMeetings();
-          }
+          this.props.appActions.calendarLoading();
+          this.props.appActions.loadScheduledMeetings();
           // If we came here via 'more options', reject the root suggestion.
           if (rootSuggestion) {
             this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
