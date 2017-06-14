@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 //     fontFamily: 'OpenSans-Bold',
     margin: 20,
     color: themeColor,
-
+    fontSize: 16,
   },
 
   selectedTab: {
