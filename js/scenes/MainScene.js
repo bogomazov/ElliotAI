@@ -118,41 +118,39 @@ export default class MainScene extends Component {
 	console.log(this.props)
 
 
-	if (IS_ANDROID) {
-		if (!this.props.app.isRehydrated) {
-			return <SplashScene />
+		if (IS_ANDROID) {
+			if (!this.props.app.isRehydrated) {
+				return <SplashScene />
+			}
+
+			if (!this.props.app.isLoggedIn) {
+				return <LoginScene/>
+			}
+
+			if (!this.props.app.isPermissionsGranted) {
+				return <PermissionsScene/>
+			}
+
+			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
+			}
 		}
 
-		if (!this.props.app.isLoggedIn) {
-			return <LoginScene/>
+		if (IS_IOS) {
+	    if (!this.props.app.isRehydrated) {
+	      return <View style={styles.container}></View>
+	    }
+			return (
+				<SuggestionsScene navigation={this.props.navigation}/>
+			);
 		}
-
-		if (!this.props.app.isPermissionsGranted) {
-			return <PermissionsScene/>
-		}
-
-		if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-			return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-		}
-	}
-
-	if (IS_IOS) {
-    if (!this.props.app.isRehydrated) {
-      return <View style={styles.container}></View>
-    }
-		return (
-			<SuggestionsScene navigation={this.props.navigation}/>
-		);
-	}
-	if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
-		if (!this.props.app.isContactsLoaded) {
-			loadContacts()
-		}
-		this.props.appActions.calendarLoading()
-		this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
-	}
-
-
+			if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
+				if (!this.props.app.isContactsLoaded) {
+					loadContacts()
+				}
+				this.props.appActions.calendarLoading()
+				this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
+			}
 
 			return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button

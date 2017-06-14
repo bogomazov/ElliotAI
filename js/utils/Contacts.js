@@ -4,6 +4,7 @@ import { switchPermissionsOff, newContacts } from '../state/actions/app'
 
 export const loadContacts = () => {
   Contacts.checkPermission( (err, permission) => {
+    console.log(permission)
     if(permission != 'authorized'){
       Store.dispatch(switchPermissionsOff())
       return

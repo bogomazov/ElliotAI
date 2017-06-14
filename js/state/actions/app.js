@@ -7,6 +7,7 @@ import {prepareDateForRequest} from '../../utils/DateTime'
 import Suggestion from '../models/suggestion'
 import {saveEvent, removeEvent} from '../../utils/Calendar';
 import turf from 'turf'
+import {TEST_MEETINGS} from '../../scenes/CalendarScene'
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
@@ -166,7 +167,7 @@ export const sendPhoneNumber = (phoneNumber, token) =>
 
 export const loadScheduledMeetings = () => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).getConfirmedMeetings().then((data) => {
-    // data = TEST_MEETIGNS
+    // data = TEST_MEETINGS
     console.log(data)
     console.log('loadScheduledMeetings0')
     if (data.error) {
