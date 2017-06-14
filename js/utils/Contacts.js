@@ -17,11 +17,10 @@ export const loadContacts = () => {
 
       } else {
         console.log('Contacts')
-        console.log(contacts)
 
         emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
         numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
-        console.log(emails)
+
         Store.dispatch(newContacts(numbers, emails))
       }
     })
@@ -30,7 +29,6 @@ export const loadContacts = () => {
 }
 
 _reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
-  console.log(item[field])
   if (item[field].length > 0) {
     let contact = item[field][0][secondField]
     if (field == 'phoneNumbers') {

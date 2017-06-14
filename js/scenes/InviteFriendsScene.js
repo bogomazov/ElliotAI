@@ -23,6 +23,8 @@ import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
 import PhoneAccess from '../utils/PhoneNumberModule';
+import ShareAccess from '../utils/ShareModule';
+import {IS_IOS} from '../settings.js';
 
 // ...
 
@@ -42,6 +44,8 @@ const mapDispatchToProps = (dispatch) => {
 		appActions: bindActionCreators(appActions, dispatch),
 	}
 }
+
+ELLIOT_LINK = "http://elliot.ai"
 
 TYPE_SMS = "sms"
 TYPE_EMAIL = "email"
@@ -81,7 +85,7 @@ export default class InviteFriendsScene extends Component {
 	_inviteFacebook = (dailog) => {
 		const shareLinkContent = {
 		  contentType: 'link',
-		  contentUrl: "http://elliot.ai",
+		  contentUrl: ELLIOT_LINK,
 		  contentDescription: strings.inviteFacebook,
 		};
 	  var tmp = this;
@@ -108,15 +112,27 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_inviteTwitter = () => {
+    if (IS_IOS) {
+      ShareAccess.shareOnTwitter(ELLIOT_LINK, strings.inviteTwitter);
+      return;
+    }
 		let shareOptions = {
-			title: "React Native",
+			title: "Try out Elliot!",
 			message: strings.inviteTwitter,
-			url: "http://elliot.ai"
+			url: ELLIOT_LINK
 		};
 		Share.shareSingle(Object.assign(shareOptions, {
 					"social": "twitter"
 				}));
 	}
+
+  _inviteMessenger = () => {
+    if (IS_IOS) {
+      ShareAccess.shareOnMessenger(ELLIOT_LINK, strings.inviteFacebook);
+    } else {
+      this._inviteFacebook(MessageDialog);
+    }
+  }
 
 	_onTabPress = (i) => {
 		if (i >= 0 && i <= 1) {
@@ -124,7 +140,7 @@ export default class InviteFriendsScene extends Component {
 		} else {
 			switch(i) {
 				case TAB_MESSENGER:
-					this._inviteFacebook(MessageDialog)
+					this._inviteMessenger()
 					break;
 				case TAB_FACEBOOK:
 					this._inviteFacebook(ShareDialog)
@@ -140,11 +156,23 @@ export default class InviteFriendsScene extends Component {
 		console.log(this.state.activeTab)
 		if (this.state.activeTab) {
 			console.log('email')
-			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      if (IS_IOS) {
+        ShareAccess.sendMail([contact.contact], "Try out Elliot!", format(strings.inviteDirected, contact.firstName)).then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+      } else {
+			  email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      }
 		} else {
 			console.log('text')
-			this.setState({alertContact: contact, isConfirmationOpen: true})
-		}
+      if (IS_IOS) {
+        this._sendSMSIOS(contact);
+      } else {
+        this.setState({alertContact: contact, isConfirmationOpen: true})
+      }
+    }
 	}
 
 	_sendSMS = () => {
@@ -153,6 +181,16 @@ export default class InviteFriendsScene extends Component {
 		})
 	}
 
+  _sendSMSIOS = (contact) => {
+    const number = contact.contact;
+    const content = strings.inviteDirectedSMS;
+    console.log(number);
+    ShareAccess.sendSMS([number], content).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 
 	_renderItem = ({item, index}) => {
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
@@ -173,8 +211,7 @@ export default class InviteFriendsScene extends Component {
 
   render() {
 		const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
-		console.log(data)
-    return (
+		return (
       <View style={styles.container}>
         <TopBar isMainScene>
           <Text
