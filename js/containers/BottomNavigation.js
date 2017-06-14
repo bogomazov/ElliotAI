@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomNav: {
-    height: 40,
+    height: 50,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
   icon: {
-    height: 28,
-    width: 28
+    height: 32,
+    width: 32
   },
   contactAvatar: {
     position: 'absolute',

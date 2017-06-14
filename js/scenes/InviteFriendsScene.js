@@ -201,7 +201,7 @@ export default class InviteFriendsScene extends Component {
         {!item.hasThumbnail &&
           <Text style={[styles.contactAvatar, styles.contactInitials]}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
         }
-				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
+				<Text style={[s.flex, styles.nameText]}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
@@ -263,9 +263,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   contactAvatar: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     overflow: 'hidden',
     margin: 10,
   },
@@ -274,9 +274,13 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: 'white',
 		backgroundColor: '#B4BBBE',
-		padding: 5
+		padding: 5,
+    fontSize: 19,
 	},
 	invitedModalButton: {
 		width: 200
-	}
+	},
+  nameText: {
+    fontSize: 17,
+  }
 });
