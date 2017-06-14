@@ -100,12 +100,14 @@ export default class CalendarScene extends Component {
             {!this.props.app.isIntroCalendarSeen && <IntroLabel
                                                         text={strings.introCalendar}
                                                         onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
+
             <FlatList
               onRefresh={this._refresh}
     					refreshing={this.props.app.isCalendarLoading}
               data={meetings}
-              keyExtractor={this._keyExtractor}
+              keyExtractor={(item, index) => item.suggestion_id}
               renderItem={({item}, i) => {
+                console.log(i)
                 return <View key={i}>
                           <MeetingCard
                                 meeting={item}

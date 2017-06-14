@@ -11,7 +11,7 @@ import s, { themeColor, mainBackgroundColor } from '../res/values/styles'
 
 const borderWidth = 1
 
-const MeetingCard = ({meeting, onPress}) => {
+export default MeetingCard = ({meeting, onPress}) => {
 
   console.log(meeting)
       return (
@@ -35,11 +35,11 @@ const MeetingCard = ({meeting, onPress}) => {
       );
 }
 
-MeetingCard.propTypes = {
-  meeting: PropTypes.objectOf(Meeting)
-}
+// MeetingCard.propTypes = {
+//   meeting: PropTypes.objectOf(Meeting)
+// }
 
-export default MeetingCard
+// export default MeetingCard
 
 const styles = StyleSheet.create({
 
