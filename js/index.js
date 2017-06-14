@@ -32,7 +32,7 @@ import codePush, {InstallMode} from "react-native-code-push";
 import {getAPI} from './network/networkManager'
 import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
-import {IS_IOS} from './settings'
+import {IS_IOS, IS_REDUX_LOGGER_ENABLED, IS_DEV} from './settings'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -53,12 +53,16 @@ if (IS_IOS) {
 
 DeepLinking.addScheme('elliot://');
 
+const reduxLogger = createLogger({
+  predicate: (getState, action) => (IS_REDUX_LOGGER_ENABLED && IS_DEV)
+});
+
 export const Store = createStore(
   rootReducer,
   undefined,
   compose(
     autoRehydrate(),
-    applyMiddleware(thunk.withExtraArgument(getAPI), createLogger()),
+    applyMiddleware(thunk.withExtraArgument(getAPI), reduxLogger),
   ))
 
 // use .purge() to clean storage
