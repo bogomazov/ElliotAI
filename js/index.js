@@ -102,21 +102,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={Store}>
-        <Navigation
-          onNavigationStateChange = {(prev, next, action) => {
-            console.log(action)
-            if (IS_IOS) {
-              const nextRoute = next.routes[next.index].routeName;
-              if (nextRoute === 'MainScene') {
-                console.log('BottomBar - show')
-                NativeModules.NSNotificationAccess.post("show-bottom-bar", null);
-              } else {
-                console.log('BottomBar - hide')
-                NativeModules.NSNotificationAccess.post("hide-bottom-bar", null);
-              }
-            }
-          }}
-        />
+        <Navigation/>
        </Provider>
     );
   }
