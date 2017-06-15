@@ -14,11 +14,12 @@ import strings from '../res/values/strings'
 import NavigationTopBar from '../components/NavigationTopBar';
 import Card from '../components/Card';
 import Suggestion from '../state/models/suggestion';
-import s from '../res/values/styles'
+import s, {themeColorLight} from '../res/values/styles'
 import IconIon from 'react-native-vector-icons/Ionicons';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
 import {phonecall} from 'react-native-communications'
 import {IS_ANDROID} from '../settings'
+import ShareAccess from '../utils/ShareModule';
 // Ionicons
 // ios-time-outline
 // EvilIcons
@@ -98,8 +99,15 @@ export default class MeetingDetailsScene extends Component {
 	}
 
 	_sendSMS = () => {
+    if (IS_IOS) {
+      ShareAccess.sendSMS([this.state.number.contact], "").then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
+      return;
+    }
 		const url = `sms:${this.state.number.contact}`
-
 		Linking.canOpenURL(url).then(supported => {
 		  if (!supported) {
 		    console.log('Unsupported url: ' + url)
@@ -140,7 +148,7 @@ export default class MeetingDetailsScene extends Component {
               <Text style={[s.flex, styles.optionText]}>Home</Text>
               <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-						<TouchableHighlight onPress={this._onMessengerPress} underlayColor={s.themeColorLight}>
+						<TouchableHighlight onPress={this._onMessengerPress} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Message on Facebook</Text>
 	              <Image
@@ -148,7 +156,7 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/fb-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						<TouchableHighlight onPress={this._onYelpPress} underlayColor={s.themeColorLight}>
+						<TouchableHighlight onPress={this._onYelpPress} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Find places</Text>
 	              <Image
@@ -156,7 +164,7 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/yelp-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={s.themeColorLight}>
+						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
 	              <Image
@@ -165,7 +173,7 @@ export default class MeetingDetailsScene extends Component {
 	            </View>
 						</TouchableHighlight>}
 						{this.state.number &&
-						<TouchableHighlight onPress={this._call} underlayColor={s.themeColorLight}>
+						<TouchableHighlight onPress={this._call} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Call {meeting.friend.first_name}</Text>
 	              <Image
@@ -173,7 +181,7 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/call-66px.png')}/>
 	            </View>
 						</TouchableHighlight>}
-						{this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={s.themeColorLight}>
+						{this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Send {meeting.friend.first_name} SMS</Text>
 	              <Image
