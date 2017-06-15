@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -42,7 +42,8 @@ export default class CalendarScene extends Component {
     upcomingMeetings: [],
     pastMeetings: [],
     selectedMeeting: null,
-		isRefreshing: false
+		isRefreshing: false,
+    appState: AppState.currentState,
 	}
 
   componentWillMount = () => {
@@ -50,6 +51,21 @@ export default class CalendarScene extends Component {
     this.props.appActions.setCalendarBadges(0)
     this.props.appActions.resetBadges()
   }
+
+  // MARK - on-resume detection
+  componentDidMount = () => {
+    AppState.addEventListener('change', this._onAppStateChange)
+  }
+
+  componentWillUnmount = () => {
+    AppState.removeEventListener('change', this._onAppStateChange)
+  }
+
+  _onAppStateChange = (nextAppState) => {
+    // show upcoming tab when app is resumed
+    this.setState({activeTab: UPCOMING});
+  }
+
 	_onTabPress = (i) => {
 
 	}
