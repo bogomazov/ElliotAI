@@ -3,7 +3,7 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, Platform } from 'react-native'
+import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, Platform, NativeModules } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
@@ -99,6 +99,11 @@ export default class MainScene extends Component {
     Linking.removeEventListener('url', this._handleUrl);
   }
 
+  componentDidUpdate() {
+    console.log('Did Update MainScene');
+    console.log('isRehydrated:' + this.props.app.isRehydrated);
+  }
+
 	_setPhoneVerificationCode = (code) => this.setState({phoneVerificationCode: code})
 
 	_handleUrl = ({ url }) => {
@@ -112,6 +117,18 @@ export default class MainScene extends Component {
 
   _switchTab = (sceneId) => {
     this.setState({activeTab: sceneId})
+  }
+
+  _loadScheduledMeetings = () => {
+    this.props.appActions.calendarLoading();
+    if (IS_IOS && !this.props.app.didMigrateIOSCalendar) {
+      NativeModules.CalendarMigration.getAllStored().then((dict) => {
+        this.props.appActions.migrateIOSCalendar(dict);
+        this.props.appActions.loadScheduledMeetings();
+      });
+      return;
+    }
+    this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
   }
 
   render() {
@@ -145,9 +162,8 @@ export default class MainScene extends Component {
 				if (!this.props.app.isContactsLoaded) {
 					loadContacts()
 				}
-				this.props.appActions.calendarLoading()
-				this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
-			}
+        this._loadScheduledMeetings();
+      }
 
 			return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button

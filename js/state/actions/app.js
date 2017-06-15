@@ -27,6 +27,7 @@ export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
 export const NEW_PHONE_NUMBER = "NEW_PHONE_NUMBER"
 export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
+export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -140,6 +141,12 @@ export const newLocation = (lon, lat, timestamp) => {
     lat,
     timestamp,
     metroId
+  }
+}
+export const migrateIOSCalendar = (iosCalendarMap) => {
+  return {
+    type: MIGRATE_IOS_CALENDAR,
+    iosCalendarMap,
   }
 }
 

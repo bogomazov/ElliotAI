@@ -25,6 +25,7 @@ const defaultState = {
   isCalendarLoaded: false,
   isCalendarLoading: false,
   isContactsLoaded: false,
+  didMigrateIOSCalendar: false,
 }
 
 const app = (state = defaultState, action) => {
@@ -152,6 +153,12 @@ const app = (state = defaultState, action) => {
           ...state,
           suggestions: state.suggestions.filter((item) => item.id != action.suggestion.id)
         }
+    case actionType.MIGRATE_IOS_CALENDAR:
+      return {
+        ...state,
+        calendarMap: {...state.calendarMap, ...action.iosCalendarMap},
+        didMigrateIOSCalendar: true,
+      }
     default:
       return state
   }

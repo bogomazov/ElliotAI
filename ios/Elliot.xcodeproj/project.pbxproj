@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
+		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -111,6 +113,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
+		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -206,6 +210,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0300FC921EF2B3BA0043BD43 /* CalendarMigration */ = {
+			isa = PBXGroup;
+			children = (
+				0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */,
+				0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */,
+			);
+			name = CalendarMigration;
+			sourceTree = "<group>";
+		};
 		031DD2CB1EBCE1C2001881B7 /* FriendSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +252,7 @@
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+				0300FC921EF2B3BA0043BD43 /* CalendarMigration */,
 				03C1BCE01EEEBFEC003246F3 /* ShareAccess */,
 				03F9E7B11EE97F5500DC815C /* NSNotificationAccess */,
 				03F9E7AC1EE822BF00DC815C /* LocationAccess */,
@@ -641,6 +655,7 @@
 				03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */,
 				031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */,
 				03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */,
+				0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */,
 				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
 				03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
@@ -675,6 +690,7 @@
 				0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */,
 				03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */,
 				0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */,
+				0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */,
 				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
 				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
 				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
