@@ -118,64 +118,64 @@ export default class MeetingDetailsScene extends Component {
     console.log(this.props)
     console.log(this.state)
       return (
-        <Card style={{flex: 1}}>
-          <IconEvil.Button name="close" backgroundColor="#fff" size={25} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
+        <Card style={{flex: 1, marginBottom: 15, overflow: 'hidden'}}>
+          <IconEvil.Button name="close" backgroundColor="#fff" size={40} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
           <View style={[s.row, s.margin10]}>
              <View style={[s.column, s.flex]}>
-                  <Text style={[s.textColorTheme, s.bold]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
-                  <Text style={s.marginTop10}>{meeting.getDateStr()}</Text>
+                  <Text style={[s.textColorTheme, s.bold, styles.titleText]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
+                  <Text style={[s.marginTop10, s.light, styles.titleText]}>{meeting.getDateStr()}</Text>
               </View>
             <Image
                 style={[s.avatar]}
                 source={{ uri: meeting.friend.image }}/>
           </View>
 
-          <View style={[s.column, s.borderTop, s.padding10, s.flex]}>
+          <View style={[s.column, s.borderTop, s.flex]}>
 						<ScrollView>
             <View style={[s.row, s.alignItemsCenter]}>
-              <Text style={[s.flex]}>{meeting.meeting_time.format("h:mm A")}</Text>
+              <Text style={[s.flex, styles.optionText]}>{meeting.meeting_time.format("h:mm A")}</Text>
               <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
             <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-              <Text style={[s.flex]}>Home</Text>
+              <Text style={[s.flex, styles.optionText]}>Home</Text>
               <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-						<TouchableHighlight onPress={this._onMessengerPress}>
+						<TouchableHighlight onPress={this._onMessengerPress} underlayColor={s.themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex]}>Message on Facebook</Text>
+	              <Text style={[s.flex, styles.optionText]}>Message on Facebook</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/fb-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						<TouchableHighlight onPress={this._onYelpPress}>
+						<TouchableHighlight onPress={this._onYelpPress} underlayColor={s.themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex]}>Find places</Text>
+	              <Text style={[s.flex, styles.optionText]}>Find places</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/yelp-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress}>
+						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={s.themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex]}>Reserve a table</Text>
+	              <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/opentable-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>}
 						{this.state.number &&
-						<TouchableHighlight onPress={this._call}>
+						<TouchableHighlight onPress={this._call} underlayColor={s.themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex]}>Call {meeting.friend.first_name}</Text>
+	              <Text style={[s.flex, styles.optionText]}>Call {meeting.friend.first_name}</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/call-66px.png')}/>
 	            </View>
 						</TouchableHighlight>}
-						{this.state.number && <TouchableHighlight onPress={this._sendSMS}>
+						{this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={s.themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex]}>Send {meeting.friend.first_name} SMS</Text>
+	              <Text style={[s.flex, styles.optionText]}>Send {meeting.friend.first_name} SMS</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/messageicon.png')}/>
@@ -186,8 +186,8 @@ export default class MeetingDetailsScene extends Component {
           </View>
 					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
 	          <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
-	            <Text style={[s.flex, styles.bottomText, s.margin10]}>Reschedule</Text>
-							<IconEvil.Button name="close-o" style={[ styles.bottomIcon]} size={35} backgroundColor="#fff" color="#535353" />
+	            <Text style={[s.flex, styles.bottomText, styles.optionText]}>Reschedule</Text>
+							<IconEvil.Button name="close-o" style={[styles.bottomIcon]} size={40} backgroundColor="#fff" color="#535353" />
 	          </View>
 					</TouchableWithoutFeedback>}
 					{/* {this.state.url && <View style={{height: 0, width: 0}}><WebViewNavigator url={this.state.url} /></View>} */}
@@ -207,13 +207,11 @@ const styles = StyleSheet.create({
 //     alignItems: 'stretched',
   },
   bottom: {
-    height: 50,
+    height: 60,
   },
-
 	bottomIcon: {
 		padding: 0
 	},
-
   icon: {
     height: 30,
     width: 30
@@ -221,7 +219,14 @@ const styles = StyleSheet.create({
   marginRight: {
     marginRight: 10
   },
-
+  optionText: {
+    fontSize: 17,
+    marginLeft: 15,
+  },
+  titleText: {
+    fontSize: 17,
+    marginLeft: 5,
+  },
 	bottomText: {
 		color: '#49ADAF'
 	},
