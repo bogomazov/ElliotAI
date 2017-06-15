@@ -77,7 +77,7 @@ export default class CalendarScene extends Component {
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
     // let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
-
+    // meetings = TEST_MEETINGS.data.map((item) => new Meeting(item));
     if (!this.state.selectedMeeting) {
         return (
           <View style={styles.container}>
@@ -151,7 +151,7 @@ export const TEST_MEETINGS = { data: [
     canceled: 0,
     friend: {
       fb_id: "211646206019277",
-      first_name: "Danil5",
+      first_name: "Danil5 Long Middle A Name",
       image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
       last_name: "andrey"
     },
