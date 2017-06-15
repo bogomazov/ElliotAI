@@ -46,6 +46,7 @@ export default class CalendarScene extends Component {
 	}
 
   componentWillMount = () => {
+    console.log('Calendar Will Mount');
     this.props.appActions.setCalendarBadges(0)
     this.props.appActions.resetBadges()
   }
