@@ -18,7 +18,7 @@ import s, {themeColorLight} from '../res/values/styles'
 import IconIon from 'react-native-vector-icons/Ionicons';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
 import {phonecall} from 'react-native-communications'
-import {IS_ANDROID} from '../settings'
+import {IS_ANDROID, IS_IOS} from '../settings'
 import ShareAccess from '../utils/ShareModule';
 // Ionicons
 // ios-time-outline
@@ -65,6 +65,7 @@ export default class MeetingDetailsScene extends Component {
 
 		console.log(numbers)
 		if (numbers.length > 0) {
+      console.log(numbers[0]);
 			this.setState({
 				number: numbers[0]
 			})
@@ -73,8 +74,11 @@ export default class MeetingDetailsScene extends Component {
 
 	_getContactNumbersByStr = (str) => {
 		return this.props.app.numbers.filter(number => {
-			const name = `${number.firstName? number.firstName: ''}${number.middleName? ' ' + number.middleName: ''} ${number.lastName? number.lastName: ''}`
-			return str.includes(name)})
+			const fullName = `${number.firstName? number.firstName: ''}${number.middleName? ' ' + number.middleName: ''} ${number.lastName? number.lastName: ''}`
+      const trimmedName = fullName.trim();
+      // ignore empty names
+      return trimmedName.length !== 0 && str.toLowerCase().includes(trimmedName.toLowerCase())
+    })
 	}
 
     _keyExtractor = (item, index) => item.id;
