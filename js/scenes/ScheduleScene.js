@@ -218,10 +218,10 @@ export default class ScheduleScene extends Component {
               }
               return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
                 <View style={[styles.row, styles.timeRow]}>
-                  <Text style={[style]}>
+									<Icon style={styles.checkmark} name="md-checkmark" size={22} color={isSelected? "#139A9C": "#fff"} />
+									<Text style={[style]}>
                     {time.format("h:mm A")}
                   </Text>
-                  <Icon style={styles.checkmark} name="md-checkmark" size={20} color={isSelected? "#139A9C": "#fff"} />
                 </View>
               </TouchableWithoutFeedback>
             })
@@ -265,6 +265,7 @@ const styles = StyleSheet.create({
     },
 	timeRow: {
 		width: 130,
+		marginLeft: 20,
 		justifyContent: 'center',
 	},
   title: {
@@ -316,9 +317,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     margin: 10,
+		marginLeft: 20,
     padding: 7,
 		paddingLeft: 10,
 		paddingRight: 10,
+
   },
   column: {
     flexDirection: 'column',
@@ -340,7 +343,14 @@ const styles = StyleSheet.create({
   },
 	checkmark: {
 		position: 'absolute',
-		right: 0
+		left: 0,
+		borderRadius: 0,
+		borderStyle: 'solid',
+		borderColor: 'grey',
+		borderWidth: 1,
+		paddingLeft: 2,
+		// paddingRight: 0,
+		// padding: 0
 	},
   confirmButton: {
     color: 'white',
@@ -348,5 +358,10 @@ const styles = StyleSheet.create({
   },
   buttonActive: {
      backgroundColor: themeColorThird
-  }
+  },
+	box: {
+		borderRadius: 0,
+		borderStyle: 'solid',
+		borderColor: mainBackgroundColor
+	}
 });
