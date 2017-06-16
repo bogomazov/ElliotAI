@@ -10,6 +10,7 @@ import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import Permissions from 'react-native-permissions'
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 const mapStateToProps = (state) => {
@@ -78,12 +79,39 @@ export default class PermissionsScene extends Component {
       })
   }
 
+	_googleSignIn = () => {
+		GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+			GoogleSignin.configure({
+				 scopes: ["https://www.googleapis.com/auth/drive.readonly"], // what API you want to access on behalf of the user, default is email and profile
+				 iosClientId: "", // only for iOS
+				 webClientId: "", // client ID of type WEB for your server (needed to verify user ID and offline access)
+				 offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
+				})
+				.then(() => {
+					GoogleSignin.signIn()
+						.then((user) => {
+						  console.log(user);
+						  this.setState({user: user});
+						})
+						.catch((err) => {
+						  console.log('WRONG SIGNIN', err);
+						})
+						.done();
+				 // you can now call currentUserAsync()
+				});
+		})
+		.catch((err) => {
+		  console.log("Play services error", err.code, err.message);
+		})
+	}
+
   componentDidUpdate = () => {
     console.log('componentWillUpdate')
     console.log(this.state)
     if (this.state.isCalendarGranted
       && this.state.isContactsGranted
-      && this.state.isLocationGranted) {
+      && this.state.isLocationGranted
+			&& !this.props.app.isPermissionsGranted) {
       this.props.appActions.switchPermissionsOn()
     }
   }
@@ -119,6 +147,12 @@ export default class PermissionsScene extends Component {
             style={styles.button}
             isWhite
           />}
+					<GoogleSigninButton
+				    style={{width: 212, height: 48}}
+				    size={GoogleSigninButton.Size.Wide}
+				    color={GoogleSigninButton.Color.Light}
+						onPress={this._googleSignIn}
+				    />
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
       </View>);

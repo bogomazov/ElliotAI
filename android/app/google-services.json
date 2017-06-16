@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1019421776523",
+    "project_id": "elliot-170913"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019421776523:android:f610c87f4a49c3c8",
+        "android_client_info": {
+          "package_name": "com.elliot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019421776523-jmpbgvr1aciqmhq85hbgiv9ek0bkruhk.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1019421776523-sfus3emi13e2vvqeaku23dqe61jhtkvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elliot",
+            "certificate_hash": "8db065f67b74a28467366febaddd97f4712f507c"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4fjjP37hZ61GMWmUgmAagz3YIx-mKhEs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

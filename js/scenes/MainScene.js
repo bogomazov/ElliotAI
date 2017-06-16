@@ -127,13 +127,16 @@ export default class MainScene extends Component {
 				return <LoginScene/>
 			}
 
-			if (!this.props.app.isPermissionsGranted) {
-				return <PermissionsScene/>
-			}
+			// if (!this.props.app.isPermissionsGranted) {
+			// 	return <PermissionsScene/>
+			// }
+			return <PermissionsScene/>
+
 
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 			}
+
 		}
 
 		if (IS_IOS) {
