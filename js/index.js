@@ -37,7 +37,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-import {newAccessToken} from './state/actions/app'
+import {newAccessToken} from './state/actions/app';
+import * as appActions from './state/actions/app';
+import SplashScene from './scenes/SplashScene';
 
 // Override console logs to improve performance on prod.
 if (!__DEV__) {
@@ -100,6 +102,7 @@ const Navigation = StackNavigator({
               FriendsScene: {screen: FriendsScene},
             }, {headerMode: 'none',
                transitionConfig: () => {duration: 500}})
+
 class App extends Component {
   componentWillMount() {
     if (IS_IOS) {
@@ -109,11 +112,26 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <Provider store={Store}>
-        <Navigation/>
+        <Rehydrator/>
        </Provider>
     );
+  }
+}
+
+const mapStateToProps = (state) => {
+	return {app: state.app}
+}
+@connect(mapStateToProps)
+class Rehydrator extends Component {
+  render() {
+    console.log(this.props);
+    if (!this.props.app.isRehydrated) {
+      return (<SplashScene/>);
+    }
+    return (<Navigation/>);
   }
 }
 
