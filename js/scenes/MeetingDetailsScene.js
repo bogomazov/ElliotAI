@@ -160,15 +160,15 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/fb-icon-66px.png')}/>
 	            </View>
 						</TouchableHighlight>
-						<TouchableHighlight onPress={this._onYelpPress} underlayColor={themeColorLight}>
+						{!meeting.isCall() && <TouchableHighlight onPress={this._onYelpPress} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Find places</Text>
 	              <Image
 	                style={[styles.icon, s.margin10]}
 	                source={require('../res/images/yelp-icon-66px.png')}/>
 	            </View>
-						</TouchableHighlight>
-						{this.props.app.metroId && <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={themeColorLight}>
+						</TouchableHighlight>}
+						{this.props.app.metroId && !meeting.isCall() && <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={themeColorLight}>
 	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
 	              <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
 	              <Image

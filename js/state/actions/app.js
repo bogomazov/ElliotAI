@@ -206,12 +206,12 @@ const _updateDeviceCalendar = (dispatch, meetings) => {
         removeEvent(calendarMap[meeting.suggestion_id]).then((success) => dispatch(removeEventCalendar(meeting.suggestion_id)))
       }
     } else if (meeting.canceled == 0) {
-      saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
+      const end_time = meeting.meeting_time.clone().add(meeting.getDuration(), 'm');
+      saveEvent(meeting.getTitle(), meeting.meeting_time, end_time).then((id) => {
         dispatch(addEventCalendar({[meeting.suggestion_id]: id}))
       })
     }
   });
-  // meetings
 }
 
 export const loadSuggestions = () => {
