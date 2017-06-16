@@ -17,8 +17,7 @@ import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
-
-
+import InAppNotification from '../components/InAppNotification';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -103,14 +102,6 @@ export default class SuggestionsScene extends Component {
 		)
 	}
 
-	_notificationComponent = ({title, message}) => {
-    const topMargin = IS_IOS ? {marginTop: -20} : {};
-		return <View style={[topMargin, s.padding10, {backgroundColor: themeColorThird, height: 80}]}>
-			<Text style={[s.textColorWhite, s.bold]}>{title}</Text>
-			<Text style={[s.textColorWhite]}>{message}</Text>
-		</View>
-	}
-
   render() {
 
 		console.log(this.props)
@@ -156,7 +147,7 @@ export default class SuggestionsScene extends Component {
             />}
 
 						<Notification ref={(ref) => { this.notification = ref; }}
-													notificationBodyComponent={this._notificationComponent}
+													notificationBodyComponent={InAppNotification}
 													height={80} />
       </View>
     );
