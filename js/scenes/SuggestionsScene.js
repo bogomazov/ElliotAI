@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
@@ -13,9 +13,7 @@ import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
-import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
-import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
 import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
@@ -44,7 +42,6 @@ export default class SuggestionsScene extends Component {
 		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
-		appState: AppState.currentState,
 		rejectingIds: [],
 	}
 
@@ -79,31 +76,7 @@ export default class SuggestionsScene extends Component {
 
 	componentWillMount = () => {
 		console.log(this.props)
-
-		if (!this.props.app.isSuggestionsLoaded) {
-			this._updateData()
-		}
-	}
-
-	componentDidMount = () => {
-		console.log('componentDidMount')
-		AppState.addEventListener('change', this._onAppStateChange)
-	}
-
-	componentDidUpdate = () => {
-		console.log('componentDidUpdate')
-	}
-
-	componentWillUnmount = () => {
-		AppState.removeEventListener('change', this._onAppStateChange)
-	}
-
-	_onAppStateChange = (nextAppState) => {
-		const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
-		if (wasOnBackground && nextAppState === 'active') {
-			this._updateData();
-		}
-		this.setState({appState: nextAppState});
+    console.log(this.props.appActions.newSuggestions);
 	}
 
   _keyExtractor = (item, index) => item.id;
@@ -116,58 +89,6 @@ export default class SuggestionsScene extends Component {
 		}
 		this.setState({isRefreshing: true})
 		this.props.appActions.loadSuggestions()
-	}
-
-	_updateData = () => {
-		LocationAccess.checkLocationAccess().then((response) => {
-      console.log(response)
-      if (response == 'success') {
-				LocationAccess.requestLocation().then((location) => {
-					console.log(location)
-					this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
-			       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-
-						 this._updateCalendarEvents()
-					})
-        // this._requestCurrentLocation()
-				})
-    	}
-		}).catch((error) => {
-      console.log(error)
-			// On iOS location permission is optional.
-			// So if access hasn't been granted, move on with calendar events.
-			if (IS_IOS) {
-				this._updateCalendarEvents()
-			}
-    })
-  }
-
-	_updateCalendarEvents = () => {
-		console.log('getting events')
-
-	  checkCalendarPermissions().then(status => {
-			console.log(status)
-			if (status != 'authorized') {
-				this.props.appActions.switchPermissionsOff()
-				return
-			}
-			getEvents(moment(), moment().add(1, 'months')).then(events => {
-				// handle events
-				console.log('Calendar fetchAllEvents')
-				console.log(events)
-				this.props.appActions.sendEvents(events).then(data=> {
-					this.props.appActions.loadSuggestions()
-				})
-			})
-			.catch(error => {
-				console.log(error)
-			 // handle error
-			});
-	  })
-	  .catch(error => {
-	   // handle error
-	  });
-
 	}
 
 	_onScheduleMeeting = () => {
