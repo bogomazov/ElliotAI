@@ -147,6 +147,7 @@ export default class PermissionsScene extends Component {
             style={styles.button}
             isWhite
           />}
+					<Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
 					<GoogleSigninButton
 				    style={{width: 212, height: 48}}
 				    size={GoogleSigninButton.Size.Wide}
