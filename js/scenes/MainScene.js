@@ -52,6 +52,15 @@ export default class MainScene extends Component {
 		phoneVerificationCode: null
 	}
 
+  componentWillMount() {
+    if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
+			if (!this.props.app.isContactsLoaded) {
+				loadContacts()
+			}
+      this._loadScheduledMeetings();
+    }
+  }
+
 	componentDidMount() {
 		// console.log('Andreyyy')
 		console.log('componentDidMount')
@@ -132,14 +141,9 @@ export default class MainScene extends Component {
   }
 
   render() {
-	console.log(this.props)
-
+    console.log(this.props)
 
 		if (IS_ANDROID) {
-			if (!this.props.app.isRehydrated) {
-				return <SplashScene />
-			}
-
 			if (!this.props.app.isLoggedIn) {
 				return <LoginScene/>
 			}
@@ -153,19 +157,7 @@ export default class MainScene extends Component {
 			}
 		}
 
-		if (IS_IOS) {
-	    if (!this.props.app.isRehydrated) {
-	      return <View style={styles.container}></View>
-	    }
-		}
-			if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
-				if (!this.props.app.isContactsLoaded) {
-					loadContacts()
-				}
-        this._loadScheduledMeetings();
-      }
-
-			return (<View style={styles.container}>
+		return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
