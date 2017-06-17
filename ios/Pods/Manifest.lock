@@ -63,6 +63,8 @@ PODS:
   - react-native-fbsdk/Share (0.6.0):
     - FBSDKShareKit
     - React
+  - react-native-fetch-blob (0.10.3-beta.1):
+    - React/Core
   - React/Core (0.44.0):
     - React/cxxreact
     - Yoga (= 0.44.0.React)
@@ -113,6 +115,7 @@ DEPENDENCIES:
   - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk/ios`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - React/Core (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
@@ -141,6 +144,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-contacts
   react-native-fbsdk:
     :path: ../node_modules/react-native-fbsdk/ios
+  react-native-fetch-blob:
+    :path: ../node_modules/react-native-fetch-blob
   ReactNativeLocalization:
     :path: ../node_modules/react-native-localization/
   ReactNativePermissions:
@@ -173,6 +178,7 @@ SPEC CHECKSUMS:
   react-native-calendar-events: 90d9f3da1f9d4b7d04faad9640275c085140f017
   react-native-contacts: dbc9bb4f09079acf1f0fa931ce59232008936856
   react-native-fbsdk: b4fa61b104152f635c86974f8d467bef42365773
+  react-native-fetch-blob: cf03e85ac13174bd415f61193911567472f86d69
   ReactNativeLocalization: 69591a73e54a41e61fcf1cb2dc4b52c6a8e1e012
   ReactNativePermissions: b1347baacb2ac4a93581fe5f4d80ce7c0d581089
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
@@ -182,6 +188,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Yoga: a92a5d8e128905bf9f29c82f870192a6e873dd98
 
-PODFILE CHECKSUM: b7ed5acb5f5747d6e794a7de2869bc791478b26b
+PODFILE CHECKSUM: 0314ce36a17bbaad3412d30acd514a14171b8eb9
 
 COCOAPODS: 1.2.1
