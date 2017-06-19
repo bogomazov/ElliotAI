@@ -43,6 +43,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        var googleError: NSError?
+        GGLContext.sharedInstance().configureWithError(&googleError)
+        if googleError != nil {
+            print("Google initialization failed with \(googleError)")
+        }
+        
         UserProfile.updatesOnAccessTokenChange = true
         
         OpenSans.registerFonts()
@@ -72,6 +78,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if SMSNotifManager.handle(url: url) {
+            return true
+        }
+        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
         return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)

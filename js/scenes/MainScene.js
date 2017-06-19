@@ -118,7 +118,7 @@ export default class MainScene extends Component {
 	console.log(this.props)
 
 
-		if (IS_ANDROID) {
+		if (true || IS_ANDROID) {
 			if (!this.props.app.isRehydrated) {
 				return <SplashScene />
 			}

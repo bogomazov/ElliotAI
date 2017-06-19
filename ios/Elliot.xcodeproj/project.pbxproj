@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */; };
 		0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */; };
+		0300FE8E1EF83AEA0043BD43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -116,6 +117,8 @@
 		0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGoogleSignin.h; sourceTree = "<group>"; };
 		0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignin.m; sourceTree = "<group>"; };
 		0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSigninButtonManager.m; sourceTree = "<group>"; };
+		0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Elliot-Bridging-Header.h"; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -344,6 +347,7 @@
 		FBB60E511E1E0F050035D841 = {
 			isa = PBXGroup;
 			children = (
+				0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */,
 				03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */,
 				0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */,
 				FBB60E5C1E1E0F050035D841 /* Elliot */,
@@ -366,6 +370,7 @@
 		FBB60E5C1E1E0F050035D841 /* Elliot */ = {
 			isa = PBXGroup;
 			children = (
+				0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */,
 				0370AF751EDD86B4000D376B /* main.jsbundle */,
 				03F9E7B81EE9AD3900DC815C /* assets */,
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
@@ -533,6 +538,7 @@
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
 				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
+				0300FE8E1EF83AEA0043BD43 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +822,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -964,6 +971,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1002,6 +1010,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
