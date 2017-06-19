@@ -20,7 +20,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 import { NavigationActions } from 'react-navigation'
 import s, { themeColorThird } from '../res/values/styles'
 import {IS_TEST_SUGGESTIONS, IS_IOS} from '../settings'
-import {CachedImage} from "react-native-img-cache";
+import RemoteImage from '../components/RemoteImage';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -169,7 +169,7 @@ export default class ScheduleScene extends Component {
             <Text style={[styles.title, styles.textSize]}>
               {suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}{"\n"}When works for you?
             </Text>
-            <CachedImage
+            <RemoteImage
                 style={styles.avatar}
                 source={{ uri: suggestion.friend.image}}/>
           </View>

@@ -7,7 +7,7 @@ import Arrow from './Arrow'
 import strings from '../res/values/strings'
 import Meeting from '../state/models/meeting'
 import s, { themeColor, mainBackgroundColor } from '../res/values/styles'
-import {CachedImage} from "react-native-img-cache";
+import RemoteImage from './RemoteImage';
 
 const borderWidth = 1
 
@@ -19,7 +19,7 @@ export default MeetingCard = ({meeting, onPress}) => {
           <View style={styles.container}>
             <TouchableWithoutFeedback onPress={() => onPress(meeting)}>
                 <View style={[s.row, s.stretch, s.alignItemsCenter, {marginTop: 5, marginBottom: 5}]}>
-                  <CachedImage
+                  <RemoteImage
                     style={styles.avatar}
                     source={{ uri: meeting.friend.image}}/>
                   <View style={s.column}>
