@@ -205,14 +205,6 @@ export default class MainScene extends Component {
     console.log(this.props)
 
 		if (IS_ANDROID) {
-			if (!this.props.app.isLoggedIn) {
-				return <LoginScene/>
-			}
-
-			if (!this.props.app.isPermissionsGranted) {
-				return <PermissionsScene/>
-			}
-
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 			}
