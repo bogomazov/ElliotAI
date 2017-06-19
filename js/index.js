@@ -38,7 +38,7 @@ import SplashScene from './scenes/SplashScene';
 import LandingScene from './scenes/LandingScene';
 
 // Override console logs to improve performance on prod.
-if (!__DEV__) {
+if (!IS_DEV) {
   console.log = () => {};
   console.error = () => {};
 }
