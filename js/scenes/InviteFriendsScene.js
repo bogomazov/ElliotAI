@@ -25,7 +25,6 @@ import Share from 'react-native-share';
 import PhoneAccess from '../utils/PhoneNumberModule';
 import ShareAccess from '../utils/ShareModule';
 import {IS_IOS} from '../settings.js';
-import Notification from 'react-native-in-app-notification'
 import InAppNotification from '../components/InAppNotification';
 
 // ...
@@ -256,9 +255,7 @@ export default class InviteFriendsScene extends Component {
 									 		title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
 											description='Tell more friends about Elliot to stay in touch!'
 											onCancelTitle='Ok'/>
-        <Notification ref={(ref) => { this.notification = ref; }}
-                      notificationBodyComponent={InAppNotification}
-                      height={60} />
+        <InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }

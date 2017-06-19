@@ -146,9 +146,7 @@ export default class SuggestionsScene extends Component {
 						}}
             />}
 
-						<Notification ref={(ref) => { this.notification = ref; }}
-													notificationBodyComponent={InAppNotification}
-													height={80} />
+						<InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }
