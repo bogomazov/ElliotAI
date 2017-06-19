@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */; };
+		0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -111,6 +113,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGoogleSignin.h; sourceTree = "<group>"; };
+		0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignin.m; sourceTree = "<group>"; };
+		0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSigninButtonManager.m; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -236,6 +241,9 @@
 			isa = PBXGroup;
 			children = (
 				0370AF661EDD642A000D376B /* ReactTestViewController.swift */,
+				0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */,
+				0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */,
+				0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */,
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
@@ -655,6 +663,7 @@
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
 				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */,
 				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
 				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
@@ -667,6 +676,7 @@
 				03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */,
 				033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */,
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
+				0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */,
 				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
 				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
 				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
