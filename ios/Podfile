@@ -12,7 +12,8 @@ target 'Elliot' do
   pod 'BRYXBanner'
   pod 'Presentr'
   pod 'PhoneNumberKit', '~> 1.2'
-
+  pod 'Google/SignIn'
+  
   # React Native Dependencies
 
   pod 'React', :path => '../node_modules/react-native', :subspecs => [

@@ -5,7 +5,11 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
+		0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */; };
+		0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */; };
+		0300FE8E1EF83AEA0043BD43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -69,11 +73,6 @@
 		FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */; };
 		FBB60E731E1E0F050035D841 /* ElliotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E721E1E0F050035D841 /* ElliotTests.swift */; };
 		FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */; };
-		E494FB9F58CB436689B758D9 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C119312B55B64BFF879D147E /* libRNGoogleSignin.a */; };
-		B2872C8D0FC14B0D85777A70 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F529C3754D149939A16E239 /* libz.tbd */; };
-		9257E4C4D6134E8087B87BE1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E939FB0A594840B991FAF18D /* SafariServices.framework */; };
-		3E9A8F396B2B4D31AA96AF89 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */; };
-		A9074315BF824BD583FF6AD0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421D337B23BA4B8BA26B438F /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +114,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGoogleSignin.h; sourceTree = "<group>"; };
+		0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignin.m; sourceTree = "<group>"; };
+		0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSigninButtonManager.m; sourceTree = "<group>"; };
+		0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Elliot-Bridging-Header.h"; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -187,12 +191,6 @@
 		FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElliotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E721E1E0F050035D841 /* ElliotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElliotTests.swift; sourceTree = "<group>"; };
 		FBB60E741E1E0F050035D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A40A1B60040548E8913FC2CC /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C119312B55B64BFF879D147E /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1F529C3754D149939A16E239 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		E939FB0A594840B991FAF18D /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		421D337B23BA4B8BA26B438F /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,11 +201,6 @@
 				034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */,
 				FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */,
 				0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */,
-				E494FB9F58CB436689B758D9 /* libRNGoogleSignin.a in Frameworks */,
-				B2872C8D0FC14B0D85777A70 /* libz.tbd in Frameworks */,
-				9257E4C4D6134E8087B87BE1 /* SafariServices.framework in Frameworks */,
-				3E9A8F396B2B4D31AA96AF89 /* SystemConfiguration.framework in Frameworks */,
-				A9074315BF824BD583FF6AD0 /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				0370AF661EDD642A000D376B /* ReactTestViewController.swift */,
+				0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */,
+				0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */,
+				0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */,
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
@@ -344,10 +340,6 @@
 				034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */,
 				EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */,
 				5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */,
-				1F529C3754D149939A16E239 /* libz.tbd */,
-				E939FB0A594840B991FAF18D /* SafariServices.framework */,
-				E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */,
-				421D337B23BA4B8BA26B438F /* AddressBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -355,6 +347,7 @@
 		FBB60E511E1E0F050035D841 = {
 			isa = PBXGroup;
 			children = (
+				0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */,
 				03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */,
 				0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */,
 				FBB60E5C1E1E0F050035D841 /* Elliot */,
@@ -362,7 +355,6 @@
 				FBB60E5B1E1E0F050035D841 /* Products */,
 				471DB5F868120E522A051585 /* Pods */,
 				8B46A17F51B4D478A11CB98A /* Frameworks */,
-				A1B02BD48A1C478188C5C942 /* Libraries */,
 			);
 			sourceTree = "<group>";
 		};
@@ -378,6 +370,7 @@
 		FBB60E5C1E1E0F050035D841 /* Elliot */ = {
 			isa = PBXGroup;
 			children = (
+				0300FE8D1EF83AEA0043BD43 /* GoogleService-Info.plist */,
 				0370AF751EDD86B4000D376B /* main.jsbundle */,
 				03F9E7B81EE9AD3900DC815C /* assets */,
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
@@ -416,15 +409,6 @@
 			);
 			path = ElliotTests;
 			sourceTree = "<group>";
-		};
-		A1B02BD48A1C478188C5C942 /* Libraries */ = {
-			isa = "PBXGroup";
-			children = (
-				A40A1B60040548E8913FC2CC /* RNGoogleSignin.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -477,14 +461,14 @@
 		FBB60E521E1E0F050035D841 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 820;
-				LastUpgradeCheck = 820;
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Elliot Technologies";
 				TargetAttributes = {
 					FBB60E591E1E0F050035D841 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZN3S5P8EPC;
-						LastSwiftMigration = 830;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -554,6 +538,7 @@
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
 				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
+				0300FE8E1EF83AEA0043BD43 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +669,7 @@
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
 				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */,
 				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
 				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
@@ -696,6 +682,7 @@
 				03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */,
 				033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */,
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
+				0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */,
 				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
 				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
 				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
@@ -835,12 +822,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Staging;
 		};
@@ -855,10 +839,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Staging;
 		};
@@ -991,13 +971,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -1033,12 +1010,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};
@@ -1053,10 +1027,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -1071,10 +1041,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};

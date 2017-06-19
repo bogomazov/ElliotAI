@@ -12,6 +12,13 @@ import strings from '../res/values/strings'
 import Permissions from 'react-native-permissions'
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
+// TODO: move this to index.js
+GoogleSignin.configure({
+   scopes: ["https://www.googleapis.com/auth/calendar.readonly"], // what API you want to access on behalf of the user, default is email and profile
+   iosClientId: "112753570022-pvgppqdcq3ej00hj6jarphalsu1i1p3r.apps.googleusercontent.com", // only for iOS
+   webClientId: "", // client ID of type WEB for your server (needed to verify user ID and offline access)
+   offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
+})
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -81,13 +88,15 @@ export default class PermissionsScene extends Component {
 
 	_googleSignIn = () => {
 		GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
+      console.log('has play services');
 			GoogleSignin.configure({
-				 scopes: ["https://www.googleapis.com/auth/drive.readonly"], // what API you want to access on behalf of the user, default is email and profile
-				 iosClientId: "", // only for iOS
+				 scopes: ["https://www.googleapis.com/auth/calendar.readonly"], // what API you want to access on behalf of the user, default is email and profile
+				 iosClientId: "112753570022-pvgppqdcq3ej00hj6jarphalsu1i1p3r.apps.googleusercontent.com", // only for iOS
 				 webClientId: "", // client ID of type WEB for your server (needed to verify user ID and offline access)
 				 offlineAccess: true // if you want to access Google API on behalf of the user FROM YOUR SERVER
 				})
 				.then(() => {
+          console.log('signing in');
 					GoogleSignin.signIn()
 						.then((user) => {
 						  console.log(user);
