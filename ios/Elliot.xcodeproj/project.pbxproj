@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
@@ -69,11 +70,6 @@
 		FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */; };
 		FBB60E731E1E0F050035D841 /* ElliotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E721E1E0F050035D841 /* ElliotTests.swift */; };
 		FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */; };
-		E494FB9F58CB436689B758D9 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C119312B55B64BFF879D147E /* libRNGoogleSignin.a */; };
-		B2872C8D0FC14B0D85777A70 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F529C3754D149939A16E239 /* libz.tbd */; };
-		9257E4C4D6134E8087B87BE1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E939FB0A594840B991FAF18D /* SafariServices.framework */; };
-		3E9A8F396B2B4D31AA96AF89 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */; };
-		A9074315BF824BD583FF6AD0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421D337B23BA4B8BA26B438F /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,12 +183,6 @@
 		FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElliotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E721E1E0F050035D841 /* ElliotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElliotTests.swift; sourceTree = "<group>"; };
 		FBB60E741E1E0F050035D841 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A40A1B60040548E8913FC2CC /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C119312B55B64BFF879D147E /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1F529C3754D149939A16E239 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		E939FB0A594840B991FAF18D /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		421D337B23BA4B8BA26B438F /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,11 +193,6 @@
 				034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */,
 				FF9C6C82DBC37459311C345F /* Pods_Elliot.framework in Frameworks */,
 				0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */,
-				E494FB9F58CB436689B758D9 /* libRNGoogleSignin.a in Frameworks */,
-				B2872C8D0FC14B0D85777A70 /* libz.tbd in Frameworks */,
-				9257E4C4D6134E8087B87BE1 /* SafariServices.framework in Frameworks */,
-				3E9A8F396B2B4D31AA96AF89 /* SystemConfiguration.framework in Frameworks */,
-				A9074315BF824BD583FF6AD0 /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,10 +329,6 @@
 				034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */,
 				EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */,
 				5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */,
-				1F529C3754D149939A16E239 /* libz.tbd */,
-				E939FB0A594840B991FAF18D /* SafariServices.framework */,
-				E84DA5F95DF947E0B88699A4 /* SystemConfiguration.framework */,
-				421D337B23BA4B8BA26B438F /* AddressBook.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -362,7 +343,6 @@
 				FBB60E5B1E1E0F050035D841 /* Products */,
 				471DB5F868120E522A051585 /* Pods */,
 				8B46A17F51B4D478A11CB98A /* Frameworks */,
-				A1B02BD48A1C478188C5C942 /* Libraries */,
 			);
 			sourceTree = "<group>";
 		};
@@ -417,15 +397,6 @@
 			path = ElliotTests;
 			sourceTree = "<group>";
 		};
-		A1B02BD48A1C478188C5C942 /* Libraries */ = {
-			isa = "PBXGroup";
-			children = (
-				A40A1B60040548E8913FC2CC /* RNGoogleSignin.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-			path = "";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,14 +448,14 @@
 		FBB60E521E1E0F050035D841 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 820;
-				LastUpgradeCheck = 820;
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Elliot Technologies";
 				TargetAttributes = {
 					FBB60E591E1E0F050035D841 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZN3S5P8EPC;
-						LastSwiftMigration = 830;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -837,10 +808,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Staging;
 		};
@@ -855,10 +822,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Staging;
 		};
@@ -994,10 +957,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -1035,10 +994,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};
@@ -1053,10 +1008,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Debug;
 		};
@@ -1071,10 +1022,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
 			};
 			name = Release;
 		};
