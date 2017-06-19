@@ -1,5 +1,0 @@
-target 'Elliot' do
-  pod 'FacebookCore'
-  pod 'FacebookLogin'
-  pod 'FacebookShare'
-end
