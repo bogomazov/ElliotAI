@@ -23,14 +23,8 @@ import thunk  from 'redux-thunk'
 import rootReducer  from './state/reducers/index'
 // import * as storage from 'redux-storage'
 import {persistStore, autoRehydrate} from 'redux-persist'
-import MainScene from './scenes/MainScene'
-import ScheduleScene from './scenes/ScheduleScene'
-import UserSuggestionsScene from './scenes/UserSuggestionsScene'
-import FriendsScene from './scenes/FriendsScene'
 import codePush, {InstallMode} from "react-native-code-push";
-
 import {getAPI} from './network/networkManager'
-import { StackNavigator } from 'react-navigation';
 import DeepLinking from 'react-native-deep-linking';
 import {IS_IOS, IS_REDUX_LOGGER_ENABLED, IS_DEV} from './settings'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -41,6 +35,7 @@ import {ImageCache} from 'react-native-img-cache';
 import {newAccessToken} from './state/actions/app';
 import * as appActions from './state/actions/app';
 import SplashScene from './scenes/SplashScene';
+import LandingScene from './scenes/LandingScene';
 
 // Override console logs to improve performance on prod.
 if (!__DEV__) {
@@ -98,15 +93,6 @@ let persistStateConfig = {
   }
 }
 
-
-const Navigation = StackNavigator({
-              MainScene: {screen: MainScene},
-              ScheduleScene: {screen: ScheduleScene},
-              UserSuggestionsScene: {screen: UserSuggestionsScene},
-              FriendsScene: {screen: FriendsScene},
-            }, {headerMode: 'none',
-               transitionConfig: () => {duration: 500}})
-
 class App extends Component {
   componentWillMount() {
     if (IS_IOS) {
@@ -135,7 +121,7 @@ class Rehydrator extends Component {
     if (!this.props.app.isRehydrated) {
       return (<SplashScene/>);
     }
-    return (<Navigation/>);
+    return (<LandingScene/>);
   }
 }
 
