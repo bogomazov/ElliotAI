@@ -20,6 +20,7 @@ import IconEvil from 'react-native-vector-icons/EvilIcons';
 import {phonecall} from 'react-native-communications'
 import {IS_ANDROID, IS_IOS} from '../settings'
 import ShareAccess from '../utils/ShareModule';
+import RemoteImage from '../components/RemoteImage';
 // Ionicons
 // ios-time-outline
 // EvilIcons
@@ -137,7 +138,7 @@ export default class MeetingDetailsScene extends Component {
                   <Text style={[s.textColorTheme, s.bold, styles.titleText]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
                   <Text style={[s.marginTop10, s.light, styles.titleText]}>{meeting.getDateStr()}</Text>
               </View>
-            <Image
+            <RemoteImage
                 style={[s.avatar]}
                 source={{ uri: meeting.friend.image }}/>
           </View>
