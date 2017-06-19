@@ -27,6 +27,7 @@ export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
 export const NEW_PHONE_NUMBER = "NEW_PHONE_NUMBER"
 export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
+export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -142,6 +143,12 @@ export const newLocation = (lon, lat, timestamp) => {
     metroId
   }
 }
+export const migrateIOSCalendar = (iosCalendarMap) => {
+  return {
+    type: MIGRATE_IOS_CALENDAR,
+    iosCalendarMap,
+  }
+}
 
 export const sendLocation = (lon, lat, timestamp) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendLocation(lon, lat, timestamp)
@@ -199,12 +206,12 @@ const _updateDeviceCalendar = (dispatch, meetings) => {
         removeEvent(calendarMap[meeting.suggestion_id]).then((success) => dispatch(removeEventCalendar(meeting.suggestion_id)))
       }
     } else if (meeting.canceled == 0) {
-      saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
+      const end_time = meeting.meeting_time.clone().add(meeting.getDuration(), 'm');
+      saveEvent(meeting.getTitle(), meeting.meeting_time, end_time).then((id) => {
         dispatch(addEventCalendar({[meeting.suggestion_id]: id}))
       })
     }
   });
-  // meetings
 }
 
 export const loadSuggestions = () => {

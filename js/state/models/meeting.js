@@ -45,6 +45,10 @@ class Meeting extends MeetingRecord {
     getDateStr = () => this.meeting_time.format('dddd, MMM Do')
 
     isPast = () => moment() > this.meeting_time
+
+    isCall = () => this.meeting_type === 'Call';
+
+    getDuration = () => this.isCall() ? 30 : 60;
 }
 
 export default Meeting

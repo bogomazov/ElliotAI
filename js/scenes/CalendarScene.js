@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -42,13 +42,30 @@ export default class CalendarScene extends Component {
     upcomingMeetings: [],
     pastMeetings: [],
     selectedMeeting: null,
-		isRefreshing: false
+		isRefreshing: false,
+    appState: AppState.currentState,
 	}
 
   componentWillMount = () => {
+    console.log('Calendar Will Mount');
     this.props.appActions.setCalendarBadges(0)
     this.props.appActions.resetBadges()
   }
+
+  // MARK - on-resume detection
+  componentDidMount = () => {
+    AppState.addEventListener('change', this._onAppStateChange)
+  }
+
+  componentWillUnmount = () => {
+    AppState.removeEventListener('change', this._onAppStateChange)
+  }
+
+  _onAppStateChange = (nextAppState) => {
+    // show upcoming tab when app is resumed
+    this.setState({activeTab: UPCOMING});
+  }
+
 	_onTabPress = (i) => {
 
 	}
@@ -77,7 +94,7 @@ export default class CalendarScene extends Component {
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
     // let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
-
+    // meetings = TEST_MEETINGS.data.map((item) => new Meeting(item));
     if (!this.state.selectedMeeting) {
         return (
           <View style={styles.container}>
@@ -137,7 +154,7 @@ const styles = StyleSheet.create({
 //     fontFamily: 'OpenSans-Bold',
     margin: 20,
     color: themeColor,
-
+    fontSize: 16,
   },
 
   selectedTab: {
@@ -151,7 +168,7 @@ export const TEST_MEETINGS = { data: [
     canceled: 0,
     friend: {
       fb_id: "211646206019277",
-      first_name: "Danil5",
+      first_name: "Danil5 Long Middle A Name",
       image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
       last_name: "andrey"
     },
@@ -167,7 +184,7 @@ export const TEST_MEETINGS = { data: [
       image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
       last_name: "andrey"
     },
-    meeting_time: "2017-04-19 17:00:00",
+    meeting_time: "2018-04-19 17:00:00",
     meeting_type: "Call",
     suggestion_id: 15297
   },

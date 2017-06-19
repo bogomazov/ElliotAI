@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-9p-vaY">
-                                <rect key="frame" x="0.0" y="168" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inviteCell" id="s4d-1M-itN" customClass="ContactTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-83-WoK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="meetingCell" id="WT6-UT-3i0" customClass="MeetingsTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -1656,7 +1656,7 @@
                                 <rect key="frame" x="36" y="153.5" width="303" height="350.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nch-EP-CYo">
-                                        <rect key="frame" x="51" y="79.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="80" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="WRu-dx-RcN"/>
                                             <constraint firstAttribute="height" constant="44" id="rAX-Cu-IJg"/>
@@ -1670,7 +1670,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gof-O5-0j4">
-                                        <rect key="frame" x="51" y="153.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="154" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="Nhd-wR-gF5"/>
                                             <constraint firstAttribute="height" constant="44" id="kn1-ic-M93"/>
@@ -1684,7 +1684,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nm-fM-3Ac">
-                                        <rect key="frame" x="51" y="227.5" width="200" height="44"/>
+                                        <rect key="frame" x="51" y="228" width="200" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AIN-Lx-9K4"/>
                                             <constraint firstAttribute="width" constant="200" id="mHt-As-TIE"/>
@@ -1875,8 +1875,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="apG-96-gIP" kind="relationship" relationship="viewControllers" id="xlu-b3-rSK"/>
-                        <segue destination="C61-th-q3y" kind="relationship" relationship="viewControllers" id="ph3-Wh-XJA"/>
-                        <segue destination="d3T-Vf-7iA" kind="relationship" relationship="viewControllers" id="gOH-qj-q93"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbK-QK-Doj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2184,7 +2182,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlock Holmes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvf-S7-COn">
-                                                    <rect key="frame" x="60" y="13.5" width="272" height="23.5"/>
+                                                    <rect key="frame" x="60" y="14" width="272" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

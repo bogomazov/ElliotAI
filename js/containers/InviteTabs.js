@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
+    height: 60,
   },
 
   borderLeft: {
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    height: 35,
-    width: 35
+    height: 40,
+    width: 40
   },
 
 

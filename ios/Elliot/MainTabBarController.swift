@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
         appDelegate.tabBarVC = self
         
         tabBar.barTintColor = UIColor.navigationAndTabBar()
-        
+        /*
         for i in 0 ..< iconNames.count {
             let item = tabBar.items![i]
             item.image = UIImage(named: iconNames[i] + "-passive")?.withRenderingMode(.alwaysOriginal)
@@ -36,7 +36,7 @@ class MainTabBarController: UITabBarController {
         
         // Show suggestions page first
         self.selectedIndex = MainTabBarController.suggestionTab
-        
+ 
         UsageStats.reportSession()
         
         // Touch to meetings page's view to make it load
@@ -44,7 +44,7 @@ class MainTabBarController: UITabBarController {
             meetingNavController.topViewController?.view
         }
  
-        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)*/
     }
     
     func initForReactNative() {

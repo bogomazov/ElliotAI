@@ -3,7 +3,21 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, Platform } from 'react-native'
+import {
+  AppRegistry,
+  Linking,
+  Button,
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Navigator,
+  ListView,
+  Modal,
+  Platform,
+  NativeModules,
+  AppState,
+} from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
@@ -21,6 +35,9 @@ import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
 import {loadContacts} from '../utils/Contacts'
+import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
+import LocationAccess from '../utils/LocationAccessModule'
+import moment from 'moment'
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 
 export const MAIN_TAB = 0
@@ -49,25 +66,29 @@ export default class MainScene extends Component {
 
 	state = {
 		activeTab: 0,
-		phoneVerificationCode: null
+		phoneVerificationCode: null,
+    appState: AppState.currentState
 	}
 
+  componentWillMount() {
+    this._onResume();
+  }
+
 	componentDidMount() {
-		// console.log('Andreyyy')
 		console.log('componentDidMount')
+    AppState.addEventListener('change', this._onAppStateChange)
+
     DeepLinking.addScheme('https://');
     DeepLinking.addScheme('http://');
     DeepLinking.addScheme('elliot://');
     Linking.addEventListener('url', this._handleUrl);
 		DeepLinking.addRoute('/phone-verification/:code', (response) => {
-      // example://test
 			console.log(response)
 			if (this.state.phoneVerificationCode == response.code) {
 				this.props.appActions.phoneVerified()
 			}
     });
 		DeepLinking.addRoute('/open-tab/:code', (response) => {
-      // example://test/23
       console.log(response)
       switch (parseInt(response.code)) {
         case weekly:
@@ -84,19 +105,24 @@ export default class MainScene extends Component {
 					break;
       }
     });
-
-
-
-		// Linking.getInitialURL().then((url) => {
-    //   if (url) {
-    //     Linking.openURL(url);
-    //   }
-    // }).catch(err => console.error('An error occurred', err));
-
 	}
 
 	componentWillUnmount() {
     Linking.removeEventListener('url', this._handleUrl);
+    AppState.removeEventListener('change', this._onAppStateChange);
+  }
+
+  componentDidUpdate() {
+    console.log('Did Update MainScene');
+    console.log('isRehydrated:' + this.props.app.isRehydrated);
+  }
+
+  _onAppStateChange = (nextAppState) => {
+  	const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
+  	if (wasOnBackground && nextAppState === 'active') {
+      this._onResume();
+    }
+  	this.setState({appState: nextAppState});
   }
 
 	_setPhoneVerificationCode = (code) => this.setState({phoneVerificationCode: code})
@@ -114,45 +140,77 @@ export default class MainScene extends Component {
     this.setState({activeTab: sceneId})
   }
 
-  render() {
-	console.log(this.props)
+  _onResume = () => {
+    this._refreshFeed();
+    this._loadScheduledMeetings();
+    loadContacts();
+  }
 
+  _loadScheduledMeetings = () => {
+    this.props.appActions.calendarLoading();
+    if (IS_IOS && !this.props.app.didMigrateIOSCalendar) {
+      NativeModules.CalendarMigration.getAllStored().then((dict) => {
+        this.props.appActions.migrateIOSCalendar(dict);
+        this.props.appActions.loadScheduledMeetings();
+      });
+      return;
+    }
+    this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
+  }
+
+  _refreshFeed = () => {
+    LocationAccess.checkLocationAccess().then((response) => {
+      console.log(response)
+      if (response == 'success') {
+        LocationAccess.requestLocation().then((location) => {
+          console.log(location)
+          this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
+            this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+            this._updateCalendarEvents()
+          })
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+      // On iOS location permission is optional.
+      // So if access hasn't been granted, move on with calendar events.
+      if (IS_IOS) {
+        this._updateCalendarEvents()
+      }
+    })
+  }
+
+	_updateCalendarEvents = () => {
+    console.log('getting events')
+    checkCalendarPermissions().then(status => {
+      console.log(status)
+      if (status != 'authorized') {
+        this.props.appActions.switchPermissionsOff()
+        return
+      }
+      getEvents(moment(), moment().add(1, 'months')).then(events => {
+        console.log(events)
+        this.props.appActions.sendEvents(events).then(data=> {
+          this.props.appActions.loadSuggestions()
+        })
+      }).catch(error => {
+        console.log(error)
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  render() {
+    console.log(this.props)
 
 		if (IS_ANDROID) {
-			if (!this.props.app.isRehydrated) {
-				return <SplashScene />
-			}
-
-			if (!this.props.app.isLoggedIn) {
-				return <LoginScene/>
-			}
-
-			if (!this.props.app.isPermissionsGranted) {
-				return <PermissionsScene/>
-			}
-
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 			}
 		}
 
-		if (IS_IOS) {
-	    if (!this.props.app.isRehydrated) {
-	      return <View style={styles.container}></View>
-	    }
-			return (
-				<SuggestionsScene navigation={this.props.navigation}/>
-			);
-		}
-			if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
-				if (!this.props.app.isContactsLoaded) {
-					loadContacts()
-				}
-				this.props.appActions.calendarLoading()
-				this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
-			}
-
-			return (<View style={styles.container}>
+		return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"

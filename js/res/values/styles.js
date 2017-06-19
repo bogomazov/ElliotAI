@@ -65,9 +65,9 @@ export default s = StyleSheet.create({
   },
 
   avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 22,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
   },
   avatar30: {
       width: 30,

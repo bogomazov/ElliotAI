@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
+import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
@@ -13,14 +13,11 @@ import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
-import LocationAccess from '../utils/LocationAccessModule'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
-import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
 import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
-
-
+import InAppNotification from '../components/InAppNotification';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -44,8 +41,6 @@ export default class SuggestionsScene extends Component {
 		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
-		appState: AppState.currentState,
-		nativeEventsSubscription: null,
 		rejectingIds: [],
 	}
 
@@ -80,45 +75,7 @@ export default class SuggestionsScene extends Component {
 
 	componentWillMount = () => {
 		console.log(this.props)
-
-		if (!this.props.app.isSuggestionsLoaded) {
-			this._updateData()
-		}
-	}
-
-	componentDidMount = () => {
-		console.log('componentDidMount')
-		AppState.addEventListener('change', this._onAppStateChange)
-		if (IS_IOS) {
-			const NSNotificationEvent = new NativeEventEmitter(NativeModules.NSNotificationAccess);
-			this.state.nativeEventsSubscription = NSNotificationEvent.addListener(
-				'refreshSuggestions',
-				(data) => {
-					this.props.appActions.loadSuggestions();
-				}
-			);
-		}
-	}
-
-	componentDidUpdate = () => {
-		console.log('componentDidUpdate')
-	}
-
-	componentWillUnmount = () => {
-		AppState.removeEventListener('change', this._onAppStateChange)
-		if (IS_IOS) {
-			if (this.state.nativeEventsSubscription) {
-				this.state.nativeEventsSubscription.remove();
-			}
-		}
-	}
-
-	_onAppStateChange = (nextAppState) => {
-		const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
-		if (wasOnBackground && nextAppState === 'active') {
-			this._updateData();
-		}
-		this.setState({appState: nextAppState});
+    console.log(this.props.appActions.newSuggestions);
 	}
 
   _keyExtractor = (item, index) => item.id;
@@ -133,58 +90,6 @@ export default class SuggestionsScene extends Component {
 		this.props.appActions.loadSuggestions()
 	}
 
-	_updateData = () => {
-		LocationAccess.checkLocationAccess().then((response) => {
-      console.log(response)
-      if (response == 'success') {
-				LocationAccess.requestLocation().then((location) => {
-					console.log(location)
-					this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
-			       this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-
-						 this._updateCalendarEvents()
-					})
-        // this._requestCurrentLocation()
-				})
-    	}
-		}).catch((error) => {
-      console.log(error)
-			// On iOS location permission is optional.
-			// So if access hasn't been granted, move on with calendar events.
-			if (IS_IOS) {
-				this._updateCalendarEvents()
-			}
-    })
-  }
-
-	_updateCalendarEvents = () => {
-		console.log('getting events')
-
-	  checkCalendarPermissions().then(status => {
-			console.log(status)
-			if (status != 'authorized') {
-				this.props.appActions.switchPermissionsOff()
-				return
-			}
-			getEvents(moment(), moment().add(1, 'months')).then(events => {
-				// handle events
-				console.log('Calendar fetchAllEvents')
-				console.log(events)
-				this.props.appActions.sendEvents(events).then(data=> {
-					this.props.appActions.loadSuggestions()
-				})
-			})
-			.catch(error => {
-				console.log(error)
-			 // handle error
-			});
-	  })
-	  .catch(error => {
-	   // handle error
-	  });
-
-	}
-
 	_onScheduleMeeting = () => {
 		console.log('_onScheduleMeeting')
 		console.log(this.notification)
@@ -195,14 +100,6 @@ export default class SuggestionsScene extends Component {
 			'Meeting will be scheduled once Elliot finds a time that works for both of you',
 			() => console.log('notification clicked'),
 		)
-	}
-
-	_notificationComponent = ({title, message}) => {
-    const topMargin = IS_IOS ? {marginTop: -20} : {};
-		return <View style={[topMargin, s.padding10, {backgroundColor: themeColorThird, height: 80}]}>
-			<Text style={[s.textColorWhite, s.bold]}>{title}</Text>
-			<Text style={[s.textColorWhite]}>{message}</Text>
-		</View>
 	}
 
   render() {
@@ -237,11 +134,7 @@ export default class SuggestionsScene extends Component {
 
             if (item.isTellFriends) {
               return <TellFriendsCard isMoreFriends={this.props.app.suggestions.length !== 0} onPress={() => {
-								if (IS_IOS) {
-									NativeModules.NSNotificationAccess.post("showInviteNotif", null);
-								} else {
-									this.props.switchTab(INVITE_FRIENDS_TAB)
-								}
+								this.props.switchTab(INVITE_FRIENDS_TAB)
 							}} />
             }
             return <SuggestionCard
@@ -253,9 +146,7 @@ export default class SuggestionsScene extends Component {
 						}}
             />}
 
-						<Notification ref={(ref) => { this.notification = ref; }}
-													notificationBodyComponent={this._notificationComponent}
-													height={80} />
+						<InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }

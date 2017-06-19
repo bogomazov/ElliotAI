@@ -6,7 +6,7 @@ import CustomButton from './CustomButton'
 import Arrow from './Arrow'
 import strings from '../res/values/strings'
 import { themeColor, mainBackgroundColor, themeColorLight } from '../res/values/styles'
-
+import RemoteImage from './RemoteImage';
 
 const borderWidth = 2
 
@@ -20,7 +20,7 @@ export default SuggestionCard = ({suggestion, onPress, onMoreOptionsPress, onSho
               <View>
                 <View style={styles.row}>
                   <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
-                  <Image
+                  <RemoteImage
                     style={styles.avatar}
                     source={{ uri: suggestion.friend.image}}/>
                 </View>
