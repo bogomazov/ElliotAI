@@ -42,17 +42,17 @@ export default class SuggestionsScene extends Component {
 		isLocationSent: false,
 		isEventsSent: false,
 		rejectingIds: [],
+    lastBannerTimestamp: null,
 	}
 
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion, onScheduleMeeting: this._onScheduleMeeting})
+      this.props.navigation.navigate('ScheduleScene', {suggestion})
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
       this.props.navigation.navigate('UserSuggestionsScene', {
 				user: suggestion.friend,
 				rootSuggestion: suggestion,
-				onScheduleMeeting: this._onScheduleMeeting
 			})
 	}
 
@@ -78,6 +78,10 @@ export default class SuggestionsScene extends Component {
     console.log(this.props.appActions.newSuggestions);
 	}
 
+  componentDidUpdate() {
+    this._showBannerIfNeeded();
+  }
+
   _keyExtractor = (item, index) => item.id;
 
 	_refresh = () => {
@@ -90,11 +94,14 @@ export default class SuggestionsScene extends Component {
 		this.props.appActions.loadSuggestions()
 	}
 
-	_onScheduleMeeting = () => {
-		console.log('_onScheduleMeeting')
+  _showBannerIfNeeded = () => {
+    const curTimestamp = this.props.app.acceptedBannerTimestamp;
+    const lastTimestamp = this.state.lastBannerTimestamp;
+    if (!curTimestamp || curTimestamp === lastTimestamp) {
+      return;
+    }
+    this.setState({lastBannerTimestamp: curTimestamp});
 		console.log(this.notification)
-		// this.toShowNotification = true
-
 		this.notification.show(
 			'Great! You accepted a suggestion',
 			'Meeting will be scheduled once Elliot finds a time that works for both of you',
