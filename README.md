@@ -19,8 +19,9 @@
 5. `react-native run-ios`
 
 ## Running on a device (on dev-merge only)
-Connect the device and run the app via Xcode in the same way.
-Codepush will automatically fetch the latest 'staging' JS code.
+1. Run `npm install` to make sure your local packages are up to date.
+2. Connect the device and run the app via Xcode in the same way.
+3. Codepush will automatically fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`).
 
 # Codepush Deployment
 1. Install code-push cli: `npm install -g code-push-cli`
