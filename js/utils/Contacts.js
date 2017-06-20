@@ -1,12 +1,16 @@
 import Contacts from 'react-native-contacts'
 import { Store } from '../index'
 import { switchPermissionsOff, newContacts } from '../state/actions/app'
+import {IS_IOS} from '../settings';
 
 export const loadContacts = () => {
   Contacts.checkPermission( (err, permission) => {
     console.log(permission)
     if(permission != 'authorized'){
-      Store.dispatch(switchPermissionsOff())
+      // Contacts permission is optional on iOS.
+      if (!IS_IOS) {
+        Store.dispatch(switchPermissionsOff())
+      }
       return
     }
     Contacts.getAll((err, contacts) => {

@@ -27,7 +27,7 @@ export default class BottomNav extends Component {
                 <Image
                 style={[styles.icon, s.margin10]}
                 source={i == this.props.activeTab? child.props.iconActive: child.props.icon}/>
-                {this.props.badges[i] > 0 && <Text style={styles.contactAvatar}>{this.props.badges[i]}</Text>}
+                {this.props.badges[i] > 0 && <Text style={styles.badge}>{this.props.badges[i]}</Text>}
               </View>
             </View>
           </TouchableWithoutFeedback>})}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32
   },
-  contactAvatar: {
+  badge: {
     position: 'absolute',
 		width: 20,
 		height: 20,
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     right: 0,
 		justifyContent: 'center',
 		textAlign: 'center',
-		borderRadius: 20,
+		borderRadius: 10,
+    overflow: 'hidden',
 		color: 'white',
 		backgroundColor: themeColorThird,
 	},
