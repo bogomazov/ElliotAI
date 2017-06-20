@@ -150,10 +150,10 @@ export const migrateIOSCalendar = (iosCalendarMap) => {
     iosCalendarMap,
   }
 }
-export const showAcceptedBanner = () => {
+export const showAcceptedBanner = (shouldShow) => {
   return {
     type: SHOW_ACCEPTED_BANNER,
-    timestamp: new Date().getTime()
+    shouldShow
   }
 }
 

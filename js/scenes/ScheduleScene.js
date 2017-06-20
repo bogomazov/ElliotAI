@@ -56,7 +56,7 @@ export default class ScheduleScene extends Component {
         console.log(times)
 				if (IS_TEST_SUGGESTIONS) {
 					this.props.navigation.goBack()
-          this.props.appActions.showAcceptedBanner();
+          this.props.appActions.showAcceptedBanner(true);
 					return
 				}
 				if (this.state.isAcceptLoading) {
@@ -79,7 +79,7 @@ export default class ScheduleScene extends Component {
             this.props.appActions.loadSuggestions()
           }
           setTimeout(() => {
-            this.props.appActions.showAcceptedBanner();
+            this.props.appActions.showAcceptedBanner(true);
           }, 300);
           this._navigateBack();
         }).catch((err) => {

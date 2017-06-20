@@ -42,7 +42,6 @@ export default class SuggestionsScene extends Component {
 		isLocationSent: false,
 		isEventsSent: false,
 		rejectingIds: [],
-    lastBannerTimestamp: null,
 	}
 
 	_onSuggestionPress = (suggestion) => {
@@ -95,12 +94,10 @@ export default class SuggestionsScene extends Component {
 	}
 
   _showBannerIfNeeded = () => {
-    const curTimestamp = this.props.app.acceptedBannerTimestamp;
-    const lastTimestamp = this.state.lastBannerTimestamp;
-    if (!curTimestamp || curTimestamp === lastTimestamp) {
+    if (!this.props.app.shouldShowAcceptedBanner) {
       return;
     }
-    this.setState({lastBannerTimestamp: curTimestamp});
+    this.props.appActions.showAcceptedBanner(false);
 		console.log(this.notification)
 		this.notification.show(
 			'Great! You accepted a suggestion',
