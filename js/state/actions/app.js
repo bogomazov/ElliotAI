@@ -189,9 +189,9 @@ export const loadScheduledMeetings = () => {
 
     data = meetings.filter((meeting) => meeting.canceled == 0)
     const pastMeetings = data.filter((meeting) => meeting.isPast())
-    pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
+    pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((a.meeting_time > b.meeting_time) ? -1 : 0);} );
     const upcomingMeetings = data.filter((meeting) => !meeting.isPast())
-    upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
+    upcomingMeetings.sort((a,b) => (a.meeting_time > b.meeting_time)? 1 : ((a.meeting_time < b.meeting_time) ? -1 : 0) );
     // this.setState({upcomingMeetings, pastMeetings})
     console.log('loadScheduledMeetings3')
     dispatch(newCalendar(upcomingMeetings, pastMeetings, badges))
