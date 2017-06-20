@@ -170,7 +170,7 @@ export const TEST_MEETINGS = { data: [
       image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
       last_name: "andrey"
     },
-    meeting_time: "2017-05-19 17:00:00",
+    meeting_time: "2017-03-19 16:00:00",
     meeting_type: "Call",
     suggestion_id: 15295
   },
@@ -182,7 +182,7 @@ export const TEST_MEETINGS = { data: [
       image: "https://scontent.xx.fbcdn.net/v/t1.0-1/c15.0.50.50/p50x50/10354686_10150004552801856_220367501106153455_n.jpg?oh=99f7a23b27b7b285107a17ae7a3003da&oe=59AF882F",
       last_name: "andrey"
     },
-    meeting_time: "2018-04-19 17:00:00",
+    meeting_time: "2017-06-18 17:00:00",
     meeting_type: "Call",
     suggestion_id: 15297
   },

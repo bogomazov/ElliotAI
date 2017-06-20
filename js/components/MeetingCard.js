@@ -19,6 +19,7 @@ export default MeetingCard = ({meeting, onPress}) => {
           <View style={styles.container}>
             <TouchableWithoutFeedback onPress={() => onPress(meeting)}>
                 <View style={[s.row, s.stretch, s.alignItemsCenter, {marginTop: 5, marginBottom: 5}]}>
+                  <Arrow />
                   <RemoteImage
                     style={styles.avatar}
                     source={{ uri: meeting.friend.image}}/>
@@ -27,7 +28,7 @@ export default MeetingCard = ({meeting, onPress}) => {
                     <Text style={[s.light, styles.subtitle]}>{meeting.getDateStr()}</Text>
                     <Text style={[s.light, styles.subtitle]}>{meeting.meeting_time.format("h:mm A")}</Text>
                   </View>
-                  <Arrow />
+
                 </View>
             </TouchableWithoutFeedback>
           </View>
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 17,
-      marginRight: 15,
+      marginRight: 35,
     },
     subtitle: {
       fontSize: 15,
