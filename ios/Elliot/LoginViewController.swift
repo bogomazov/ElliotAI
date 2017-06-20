@@ -101,10 +101,13 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             loginButton.isUserInteractionEnabled = false
             AuthorizationManager.shared.loadToken(completion: { (json, success) in
                 if success {
-                    if AccessStatus.hasEnabledAll() {
-                        self.performSegue(withIdentifier: "login-main", sender: self)
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                    }
+                    if SMSNotifManager.hasVerifiedNumber() {
+                        appDelegate.showViewController(identifier: "main-vc")
                     } else {
-                        self.performSegue(withIdentifier: "login-permissions", sender: self)
+                        appDelegate.showViewController(identifier: "verify-phone-vc")
                     }
                 } else {
                     self.loginManager.logOut()
