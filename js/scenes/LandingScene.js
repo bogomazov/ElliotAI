@@ -69,9 +69,9 @@ export default class LandingScene extends Component {
       if (!this.props.app.isLoggedIn) {
         return <LoginScene/>
       }
-      if (!this.props.app.isPermissionsGranted) {
-        return <PermissionsScene/>
-      }
+    }
+    if (!this.props.app.isPermissionsGranted) {
+      return <PermissionsScene/>
     }
     return <Navigation/>
   }

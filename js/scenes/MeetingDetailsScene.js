@@ -61,6 +61,8 @@ export default class MeetingDetailsScene extends Component {
 		}
 
 	componentWillMount = () => {
+		this.props = {...this.props, ...this.props.navigation.state.params}
+
 		const friend = this.props.meeting.friend
 		const numbers = this._getContactNumbersByStr(friend.first_name + ' ' + friend.last_name)
 
@@ -132,7 +134,7 @@ export default class MeetingDetailsScene extends Component {
     console.log(this.state)
       return (
         <Card style={{flex: 1, marginBottom: 15, overflow: 'hidden'}}>
-          <IconEvil.Button name="close" backgroundColor="#fff" size={40} color="#A0A0A0" onPress={() => this.props.onClosePress(meeting)} />
+          <IconEvil.Button name="close" backgroundColor="#fff" size={40} color="#A0A0A0" onPress={() => this.props.navigation.goBack()} />
           <View style={[s.row, s.margin10]}>
              <View style={[s.column, s.flex]}>
                   <Text style={[s.textColorTheme, s.bold, styles.titleText]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>

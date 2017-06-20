@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { AppRegistry, TouchableWithoutFeedback, View, Image, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, TextInput, Button } from 'react-native'
 import s, {themeColorThird} from '../res/values/styles'
-
 export const ICON_UNACTIVE = 0
 export const ICON_ACTIVE = 1
+const CALENDAR_TAB = 1
 
 export default class BottomNav extends Component {
 
@@ -14,7 +14,7 @@ export default class BottomNav extends Component {
   render = () =>
       <View style={styles.container}>
         <View style={styles.sceneWrapper}>
-          {React.cloneElement(this.props.children[this.props.activeTab], { switchTab: this.props.onTabSelect, navigation: this.props.navigation})}
+          {React.cloneElement(this.props.children[this.props.activeTab], this.props.activeTab != CALENDAR_TAB? { switchTab: this.props.onTabSelect, navigation: this.props.navigation}: {})}
         </View>
         <View style={styles.bottomNav}>
         {React.Children.map(this.props.children,

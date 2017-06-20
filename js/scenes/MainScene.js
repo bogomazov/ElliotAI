@@ -31,6 +31,7 @@ import { mainBackgroundColor } from '../res/values/styles'
 import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
+import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
@@ -38,6 +39,7 @@ import {loadContacts} from '../utils/Contacts'
 import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
 import LocationAccess from '../utils/LocationAccessModule'
 import moment from 'moment'
+import {StackNavigator} from 'react-navigation';
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 
 export const MAIN_TAB = 0
@@ -60,6 +62,8 @@ const mapDispatchToProps = (dispatch) => {
 		appActions: bindActionCreators(appActions, dispatch),
 	}
 }
+
+
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
@@ -210,6 +214,16 @@ export default class MainScene extends Component {
 			}
 		}
 
+
+		// Placed to rendered due to unresolved circular dependency with CalendarScene
+		const CalendarNavigation = StackNavigator({
+			CalendarScene: {screen: CalendarScene},
+			MeetingDetailsScene: {screen: MeetingDetailsScene},
+		}, {
+			headerMode: 'none',
+			transitionConfig: () => {duration: 500}
+		})
+
 		return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
@@ -224,7 +238,7 @@ export default class MainScene extends Component {
           <SuggestionsScene
             iconActive={require('../res/images/home_active_1.5-66px.png')}
             icon={require('../res/images/home_gray-66px.png')}/>
-          <CalendarScene
+          <CalendarNavigation
             iconActive={require('../res/images/calendar_active_1.5-66px.png')}
             icon={require('../res/images/calenar_grey-66px.png')}/>
           <InviteFriendsScene
@@ -235,6 +249,10 @@ export default class MainScene extends Component {
 
   }
 }
+
+
+
+
 
 export const styles = StyleSheet.create({
   container: {
