@@ -63,7 +63,10 @@ export default s = StyleSheet.create({
     width: 40,
     height: 40,
   },
-
+  tabIcon: {
+    width: 32,
+    height: 32,
+  },
   avatar: {
       width: 50,
       height: 50,
