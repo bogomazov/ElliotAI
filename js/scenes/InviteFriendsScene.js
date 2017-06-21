@@ -71,6 +71,12 @@ const icons = [
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class InviteFriendsScene extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor, focused}) =>
+      focused ? <Image style={s.tabIcon} source={require('../res/images/invite_active.png')}/>
+        : <Image style={s.tabIcon} source={require('../res/images/invite_grey.png')}/>,
+  };
+
 	state = {
 		activeTab: 0,
 		emails: [],

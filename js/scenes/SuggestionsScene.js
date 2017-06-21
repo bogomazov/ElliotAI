@@ -13,6 +13,7 @@ import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
 import strings from '../res/values/strings'
+import s from '../res/values/styles'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
@@ -36,6 +37,11 @@ const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor, focused}) =>
+      focused ? <Image style={s.tabIcon} source={require('../res/images/home_active_1.5-66px.png')}/>
+        : <Image style={s.tabIcon} source={require('../res/images/home_gray-66px.png')}/>,
+  };
 
 	state = {
 		isRefreshing: false,
@@ -45,19 +51,20 @@ export default class SuggestionsScene extends Component {
 	}
 
 	_onSuggestionPress = (suggestion) => {
-      this.props.navigation.navigate('ScheduleScene', {suggestion})
+    console.log(this.props);
+    this.props.screenProps.mainNav.navigate('ScheduleScene', {suggestion})
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
-      this.props.navigation.navigate('UserSuggestionsScene', {
-				user: suggestion.friend,
-				rootSuggestion: suggestion,
-			})
+    this.props.screenProps.mainNav.navigate('UserSuggestionsScene', {
+			user: suggestion.friend,
+			rootSuggestion: suggestion,
+		})
 	}
 
 	_onCatchUpPress = () => {
 		console.log('_onCatchUpPress')
-		this.props.navigation.navigate('FriendsScene')
+		this.props.screenProps.mainNav.navigate('FriendsScene')
 	}
 
 	_onShowLessPress = (suggestion) => {
@@ -138,7 +145,7 @@ export default class SuggestionsScene extends Component {
 
             if (item.isTellFriends) {
               return <TellFriendsCard isMoreFriends={this.props.app.suggestions.length !== 0} onPress={() => {
-								this.props.switchTab(INVITE_FRIENDS_TAB)
+								this.props.navigation.navigate('InviteFriendsTab');
 							}} />
             }
             return <SuggestionCard
