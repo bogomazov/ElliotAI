@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-const SHOW_CATCH_UP_CARD = 6 // if certain number of suggestions loaded
+const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 
 
 
