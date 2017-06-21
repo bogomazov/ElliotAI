@@ -1,4 +1,5 @@
 import dateFormat from 'dateformat'
+import moment from 'moment'
 
 export const fromDateToIsoStr = (date) => {
   // 2016-08-19T19:26:00.000Z
@@ -6,7 +7,7 @@ export const fromDateToIsoStr = (date) => {
 }
 
 export const prepareDateForRequest = (dateStr) => {
-	return dateStr.replace(".000Z", "").replace("T", " ")
+	return moment(dateStr).local().format("YYYY-MM-DD HH:mm:ss")
 }
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

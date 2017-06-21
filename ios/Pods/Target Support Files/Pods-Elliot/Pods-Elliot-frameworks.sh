@@ -103,6 +103,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Presentr/Presentr.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RNDeviceInfo/RNDeviceInfo.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNShare/RNShare.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNVectorIcons/RNVectorIcons.framework"
   install_framework "$BUILT_PRODUCTS_DIR/React/React.framework"
@@ -114,6 +115,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -130,6 +132,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Presentr/Presentr.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RNDeviceInfo/RNDeviceInfo.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNShare/RNShare.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNVectorIcons/RNVectorIcons.framework"
   install_framework "$BUILT_PRODUCTS_DIR/React/React.framework"
@@ -141,6 +144,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -157,6 +161,7 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Presentr/Presentr.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RNDeviceInfo/RNDeviceInfo.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNShare/RNShare.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNVectorIcons/RNVectorIcons.framework"
   install_framework "$BUILT_PRODUCTS_DIR/React/React.framework"
@@ -168,6 +173,7 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

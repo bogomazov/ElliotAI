@@ -21,6 +21,7 @@ class ExplanationCell: UITableViewCell {
     func configure(text: String, closeAction: @escaping (() -> ())) {
         self.label.text = text
         self.closeAction = closeAction
+        self.backgroundColor = UIColor.elliotBeige()
     }
     
     @IBAction func tappedClose(_ sender: Any) {

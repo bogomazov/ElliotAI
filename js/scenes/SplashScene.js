@@ -9,12 +9,12 @@ import { bindActionCreators } from 'redux'
 import IntroSwipe from '../containers/Intro'
 import * as appActions from '../state/actions/app';
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
-import LocationAccess from '../utils/LocationAccessModule'
 import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
-import {IS_DEV} from '../index'
+import {IS_DEV, IS_IOS, IS_ANDROID} from '../settings'
+import {mainBackgroundColor} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -26,65 +26,14 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
-  _updateData = () => {
-    console.log('did mount')
-    console.log(this.props.app.isRehydrated)
-    console.log(this.props.app.isLoggedIn)
-
-      console.log('checkLocationServicesIsEnabled')
-      LocationAccess.checkLocationAccess().then((response) => {
-        console.log(response)
-        if (response == 'success') {
-					LocationAccess.requestLocation().then((location) => {
-						console.log(location)
-						this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp)
-					})
-          // this._requestCurrentLocation()
-        }
-      }).catch((error) => {
-        console.log(error)
-      })
-
-
-
-      getEvents(moment(), moment().add(1, 'months')).then(events => {
-            // handle events
-
-            console.log('Calendar fetchAllEvents')
-            console.log(events)
-            if (events.length > 0) {
-              this.props.appActions.sendEvents(events)
-            }
-          })
-          .catch(error => {
-            console.log(error)
-            this.props.appActions.switchPermissionsOff()
-           // handle error
-          });
-  }
-
-  // _requestCurrentLocation = () => {
-	// 	console.log('request Location')
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         console.log(position)
-  //         this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
-  //       },
-  //       (error) => alert(JSON.stringify(error))
-  //       // {enableHighAccuracy: false, timeout: 10000, maximumAge: 25000}
-  //     );
-	// }
-
   render() {
-			if (IS_DEV) {
+			if (IS_DEV && IS_ANDROID) {
 				alert('Staging server!')
 			}
-      if (this.props.app.isRehydrated && this.props.app.isLoggedIn) {
-        this._updateData()
+      if (IS_IOS) {
+        return (<View style={styles.iosContainer}></View>);
       }
 			return (<View style={styles.container}>
         <Image
@@ -101,6 +50,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  iosContainer: {
+    flex: 1,
+    backgroundColor: mainBackgroundColor
   },
   swiper: {
   },

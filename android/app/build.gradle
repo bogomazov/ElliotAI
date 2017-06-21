@@ -84,15 +84,15 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.elliot"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 8
-        versionName "1.0"
+        versionCode 16
+        versionName "1.0.6"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -116,10 +116,15 @@ android {
         }
     }
     buildTypes {
+        releaseStaging {
+            buildConfigField "String", "CODEPUSH_KEY", "\"XfTVc6iw1yNgRQpCxTWNwrCuLHngNJn1D0Dx7\""
+        }
+
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", "\"aQvbV1sYiJYYb1giWIaU_7Vez3RiNJn1D0Dx7\""
         }
     }
     // applicationVariants are e.g. debug, release
@@ -138,6 +143,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-device-info')
     compile project(':react-native-code-push')
     compile project(':react-native-vector-icons')
     compile project(':react-native-contacts')
@@ -146,10 +153,10 @@ dependencies {
     compile project(':react-native-permissions')
     compile project(':react-native-share')
     compile project(':react-native-android-location-services-dialog-box')
-    compile 'com.google.android.gms:play-services-location:10.0.1'
-    compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'com.google.android.gms:play-services-location:11.0.1'
+    compile 'com.google.android.gms:play-services-gcm:11.0.1'
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.3.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 

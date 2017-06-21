@@ -1,5 +1,5 @@
 <resources>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">aQvbV1sYiJYYb1giWIaU_7Vez3RiNJn1D0Dx7</string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">XfTVc6iw1yNgRQpCxTWNwrCuLHngNJn1D0Dx7</string>
     <string name="app_name">Elliot</string>
     <string name="fb_login_protocol_scheme">fb1591073697851633</string>
     <string name="fb_app_id">1591073697851633</string>

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       bottom: 0
     },
     backArrow: {
-      width: 25,
-      height: 25,
+      width: 30,
+      height: 30,
     },
 });

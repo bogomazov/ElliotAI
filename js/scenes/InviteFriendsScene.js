@@ -9,16 +9,23 @@ import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
+import CustomButton from '../components/CustomButton'
+import CustomModal from '../components/CustomModal'
+import AlertDialog from '../components/AlertDialog'
 import InviteTabs from '../containers/InviteTabs'
 import strings, {format} from '../res/values/strings'
 import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
+
 // import SendSMS from 'react-native-send-sms'
 import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
 import PhoneAccess from '../utils/PhoneNumberModule';
+import ShareAccess from '../utils/ShareModule';
+import {IS_IOS} from '../settings.js';
+import InAppNotification from '../components/InAppNotification';
 
 // ...
 
@@ -30,7 +37,7 @@ import PhoneAccess from '../utils/PhoneNumberModule';
 // Share the link using the share dialog.
 
 const mapStateToProps = (state) => {
-	return {state}
+	return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -38,6 +45,8 @@ const mapDispatchToProps = (dispatch) => {
 		appActions: bindActionCreators(appActions, dispatch),
 	}
 }
+
+ELLIOT_LINK = "http://elliot.ai"
 
 TYPE_SMS = "sms"
 TYPE_EMAIL = "email"
@@ -65,45 +74,19 @@ export default class InviteFriendsScene extends Component {
 	state = {
 		activeTab: 0,
 		emails: [],
-		numbers: []
+		numbers: [],
+		isAlertOpen: false,
+		alertContact: null
 	}
 
-	_reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
-		if (item[field].length > 0) {
-					newArray.push({
-						id: i,
-						firstName: item.givenName,
-						middleName: item.middleName,
-						lastName: item.familyName,
-						contact: item[field][0][secondField]})
-			}
-			return newArray
-	}, []);
-
 	componentWillMount = () => {
-		Contacts.getAll((err, contacts) => {
-			console.log(err)
-			if(err === 'denied'){
-				// x.x
-				console.log('Contacts denied')
 
-				this.props.appActions.switchPermissionsOff()
-			} else {
-				console.log('Contacts')
-				console.log(contacts)
-
-				emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
-				numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
-				console.log(emails)
-				this.setState({emails, numbers})
-			}
-		})
 	}
 
 	_inviteFacebook = (dailog) => {
 		const shareLinkContent = {
 		  contentType: 'link',
-		  contentUrl: "http://elliot.ai",
+		  contentUrl: ELLIOT_LINK,
 		  contentDescription: strings.inviteFacebook,
 		};
 	  var tmp = this;
@@ -130,15 +113,27 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_inviteTwitter = () => {
+    if (IS_IOS) {
+      ShareAccess.shareOnTwitter(ELLIOT_LINK, strings.inviteTwitter);
+      return;
+    }
 		let shareOptions = {
-			title: "React Native",
+			title: "Try out Elliot!",
 			message: strings.inviteTwitter,
-			url: "http://elliot.ai"
+			url: ELLIOT_LINK
 		};
 		Share.shareSingle(Object.assign(shareOptions, {
 					"social": "twitter"
 				}));
 	}
+
+  _inviteMessenger = () => {
+    if (IS_IOS) {
+      ShareAccess.shareOnMessenger(ELLIOT_LINK, strings.inviteFacebook);
+    } else {
+      this._inviteFacebook(MessageDialog);
+    }
+  }
 
 	_onTabPress = (i) => {
 		if (i >= 0 && i <= 1) {
@@ -146,13 +141,14 @@ export default class InviteFriendsScene extends Component {
 		} else {
 			switch(i) {
 				case TAB_MESSENGER:
-					this._inviteFacebook(MessageDialog)
+					this._inviteMessenger()
 					break;
 				case TAB_FACEBOOK:
 					this._inviteFacebook(ShareDialog)
+          break;
 				case TAB_TWITTER:
 					this._inviteTwitter()
-        break;
+          break;
 			}
 		}
 	}
@@ -161,30 +157,62 @@ export default class InviteFriendsScene extends Component {
 		console.log(this.state.activeTab)
 		if (this.state.activeTab) {
 			console.log('email')
-			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      if (IS_IOS) {
+        ShareAccess.sendMail([contact.contact], "Try out Elliot!", format(strings.inviteDirected, contact.firstName)).then((res) => {
+          console.log(res);
+          this._showInAppNotif(contact);
+        }).catch((err) => {
+          console.log(err);
+        });
+      } else {
+			  email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      }
 		} else {
 			console.log('text')
-			PhoneAccess.sendSMS(contact.contact, format(strings.inviteDirected, contact.firstName)).then(() => {
-				Alert.alert(
-				  `${contact.firstName} was successfuly invited.`,
-				  'Tell more friends about Elliot to stay in touch!',
-				  [
-				    {text: 'OK', onPress: () => console.log('OK Pressed')},
-				  ],
-				  { cancelable: true }
-				)
-				// alert(contact.firstName + ' was invited!')
-			})
-			// textWithoutEncoding(contact.contact, format(strings.inviteDirected, contact.firstName))
-
-		}
+      if (IS_IOS) {
+        this._sendSMSIOS(contact);
+      } else {
+        this.setState({alertContact: contact, isConfirmationOpen: true})
+      }
+    }
 	}
+
+	_sendSMS = () => {
+		PhoneAccess.sendSMS(this.state.alertContact.contact, strings.inviteDirectedSMS).then(() => {
+			this.setState({isAlertOpen: true})
+		})
+	}
+
+  _showInAppNotif = (contact) => {
+    this.notification.show(
+      `${contact.firstName} was successfuly invited.`,
+      'Tell more friends about Elliot to stay in touch!'
+    );
+  }
+
+  _sendSMSIOS = (contact) => {
+    console.log(contact);
+    const number = contact.contact;
+    const content = strings.inviteDirectedSMS;
+    console.log(number);
+    ShareAccess.sendSMS([number], content).then((res) => {
+      console.log(res);
+      this._showInAppNotif(contact);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 
 	_renderItem = ({item, index}) => {
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
 			<View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
-				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
-				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
+        {item.hasThumbnail &&
+          <Image style={styles.contactAvatar} source={{uri: item.thumbnailPath}}/>
+        }
+        {!item.hasThumbnail &&
+          <Text style={[styles.contactAvatar, styles.contactInitials]}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
+        }
+				<Text style={[s.flex, styles.nameText]}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
@@ -193,9 +221,8 @@ export default class InviteFriendsScene extends Component {
 	}
 
   render() {
-		const data = this.state.activeTab? this.state.emails: this.state.numbers
-		console.log(data)
-    return (
+		const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
+		return (
       <View style={styles.container}>
         <TopBar isMainScene>
           <Text
@@ -213,6 +240,22 @@ export default class InviteFriendsScene extends Component {
 					filterByFields={['firstName', 'middleName', 'lastName']}
 					renderItem={this._renderItem}
         />
+				<AlertDialog isOpen={this.state.isConfirmationOpen}
+										 onClosed={() => this.setState({isConfirmationOpen: false})}
+									 		title="Are you sure?"
+											description={`You are about to send a SMS invitation to ${this.state.isConfirmationOpen && this.state.alertContact.firstName}`}
+											onSuccessTitle='Invite'
+											onCancelTitle='Cancel'
+											onSuccess={() => {
+												this.setState({isConfirmationOpen: false})
+												this._sendSMS()
+											}}/>
+				<AlertDialog isOpen={this.state.isAlertOpen}
+										 onClosed={() => this.setState({isAlertOpen: false})}
+									 		title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
+											description='Tell more friends about Elliot to stay in touch!'
+											onCancelTitle='Ok'/>
+        <InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }
@@ -228,18 +271,28 @@ const styles = StyleSheet.create({
 
   topBarText: {
     color: themeColor,
-    fontFamily: 'OpenSans-Bold'
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 16,
   },
-	contactAvatar: {
-		width: 30,
-		height: 30,
-		margin: 10,
+  contactAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    overflow: 'hidden',
+    margin: 10,
+  },
+	contactInitials: {
 		justifyContent: 'center',
 		textAlign: 'center',
-		borderRadius: 100,
 		color: 'white',
 		backgroundColor: '#B4BBBE',
-		padding: 5
-	}
-
+		padding: 5,
+    fontSize: 19,
+	},
+	invitedModalButton: {
+		width: 200
+	},
+  nameText: {
+    fontSize: 17,
+  }
 });

@@ -11,9 +11,9 @@ export default CatchUpCard = ({onPress}) => {
           <Card style={styles.container}>
             <TouchableWithoutFeedback onPress={onPress}>
               <View>
-                <View style={[s.column, s.padding10]} >
-                  <Text style={[s.bold, s.textColorTheme]}>I want to catch up with...</Text>
-                  <Text style={[s.textColorGrey, s.marginTop5]}>Select the friend you would like to see</Text>
+                <View style={[s.column, s.padding15]} >
+                  <Text style={[s.bold, s.textColorTheme, {fontSize: 17}]}>I want to catch up with...</Text>
+                  <Text style={[s.textColorGrey, s.marginTop5, {fontSize: 16}]}>{"Select the friend you'd like to see"}</Text>
                 </View>
                 <Arrow/>
             </View>

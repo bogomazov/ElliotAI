@@ -4,8 +4,10 @@
 3. `npm install` <br/>
 4. Check `js/settings.js` for `IS_DEV=true` if you are in the development mode (points to `staging` server).<br/>
 5. Go to `node_modules/react-native-fbsdk/android/build.gradle` and change the last compile to `compile('com.facebook.android:facebook-android-sdk:4.22.1')` (will be removed once facebook resolves the issue) <br/>
+
 # Run: <br/>
-`react-native run-android` with an emulator/device connected. <br/>
+1. Create the device with Play Store pre-installed
+2. `react-native run-android` with an emulator/device connected. <br/>
 
 # Elliot-iOS | React Native
 
@@ -17,5 +19,13 @@
 5. `react-native run-ios`
 
 ## Running on a device (on dev-merge only)
-Connect the device and run the app via Xcode in the same way.
-Codepush will automatically fetch the latest 'staging' JS code.
+1. Run `npm install` to make sure your local packages are up to date.
+2. Connect the device and run the app via Xcode in the same way.
+3. Codepush will automatically fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`).
+
+# Codepush Deployment
+1. Install code-push cli: `npm install -g code-push-cli`
+2. Make sure you have access to the previously added code-push app.
+3. `sh deploy.sh <environment> <unique-app-name> <platform>`
+    - `<environment>` should be either `Staging` or `Production`.
+    - `platform` should be either `ios` or `android`.

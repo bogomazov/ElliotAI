@@ -6,7 +6,7 @@ export default TopBar = ({isMainScene, isNavBar, children}) => {
     const container = [styles.container]
     if (isMainScene) {
       container.push(styles.mainScene)
-    }  
+    }
     if (isNavBar) {
       container.push(styles.navBar)
     }
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#F9F9F9',
-      borderBottomColor: '#CBCBCF',
-      borderBottomWidth: 1,
+      backgroundColor: '#FFFFFF',
+      borderBottomColor: '#CEC19B',
+      borderBottomWidth: 2,
       borderStyle: 'solid',
   },
   navBar: {
