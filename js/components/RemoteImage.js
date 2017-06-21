@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {CachedImage} from "react-native-img-cache";
+import {Image} from 'react-native';
 
+// Keep this wrapper for now, in case we decide to cache images again.
 export default RemoteImage = ({style, source}) => {
-  return <CachedImage style={style} source={source}/>
+  return <Image style={style} source={source}/>
 }

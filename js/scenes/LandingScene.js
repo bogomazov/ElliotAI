@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import Permissions from 'react-native-permissions';
 import MainScene from './MainScene';
 import ScheduleScene from './ScheduleScene';
+import LoginScene from './LoginScene';
 import UserSuggestionsScene from './UserSuggestionsScene';
 import FriendsScene from './FriendsScene';
 import PermissionsScene from './PermissionsScene';
@@ -11,7 +12,6 @@ import {IS_ANDROID} from '../settings';
 import {StackNavigator} from 'react-navigation';
 import * as appActions from '../state/actions/app';
 import {AppState} from 'react-native';
-import LoginScene from './LoginScene';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}

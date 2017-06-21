@@ -37,7 +37,6 @@ target 'Elliot' do
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
   pod 'RNShare', :path => '../node_modules/react-native-share'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
-  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
 end
 
 # Explicitly set the Swift version for Swift pods 

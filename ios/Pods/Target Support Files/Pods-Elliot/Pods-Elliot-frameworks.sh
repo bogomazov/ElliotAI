@@ -115,7 +115,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -144,7 +143,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -173,7 +171,6 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/react-native-calendar-events/react_native_calendar_events.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-contacts/react_native_contacts.framework"
   install_framework "$BUILT_PRODUCTS_DIR/react-native-fbsdk/react_native_fbsdk.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/react-native-fetch-blob/react_native_fetch_blob.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
