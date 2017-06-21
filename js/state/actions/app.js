@@ -28,6 +28,7 @@ export const NEW_PHONE_NUMBER = "NEW_PHONE_NUMBER"
 export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
+export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -147,6 +148,12 @@ export const migrateIOSCalendar = (iosCalendarMap) => {
   return {
     type: MIGRATE_IOS_CALENDAR,
     iosCalendarMap,
+  }
+}
+export const showAcceptedBanner = (shouldShow) => {
+  return {
+    type: SHOW_ACCEPTED_BANNER,
+    shouldShow
   }
 }
 

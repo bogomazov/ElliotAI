@@ -26,6 +26,7 @@ const defaultState = {
   isCalendarLoading: false,
   isContactsLoaded: false,
   didMigrateIOSCalendar: false,
+  shouldShowAcceptedBanner: false,
 }
 
 const app = (state = defaultState, action) => {
@@ -59,6 +60,7 @@ const app = (state = defaultState, action) => {
           suggestions: [],
           upcomingMeetings: [],
           pastMeetings: [],
+          shouldShowAcceptedBanner: false,
         }
     case actionType.NEW_LOCATION:
       return {
@@ -158,6 +160,11 @@ const app = (state = defaultState, action) => {
         ...state,
         calendarMap: {...state.calendarMap, ...action.iosCalendarMap},
         didMigrateIOSCalendar: true,
+      }
+    case actionType.SHOW_ACCEPTED_BANNER:
+      return {
+        ...state,
+        shouldShowAcceptedBanner: action.shouldShow
       }
     default:
       return state
