@@ -30,7 +30,6 @@ import {IS_IOS, IS_REDUX_LOGGER_ENABLED, IS_DEV} from './settings'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import {ImageCache} from 'react-native-img-cache';
 
 import {newAccessToken} from './state/actions/app';
 import * as appActions from './state/actions/app';
@@ -53,9 +52,6 @@ if (IS_IOS) {
   Entypo.loadFont()
   EvilIcons.loadFont()
 }
-
-// Clear image cache on launch.
-ImageCache.get().clear();
 
 DeepLinking.addScheme('elliot://');
 
