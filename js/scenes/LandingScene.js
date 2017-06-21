@@ -12,7 +12,6 @@ import {IS_ANDROID} from '../settings';
 import {StackNavigator} from 'react-navigation';
 import * as appActions from '../state/actions/app';
 import {AppState} from 'react-native';
-import LoginScene from './LoginScene';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
