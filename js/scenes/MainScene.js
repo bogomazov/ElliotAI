@@ -63,7 +63,13 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-
+const CalendarNavigation = StackNavigator({
+  CalendarScene: {screen: CalendarScene},
+  MeetingDetailsScene: {screen: MeetingDetailsScene},
+}, {
+  headerMode: 'none',
+  transitionConfig: () => {duration: 500}
+})
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
@@ -213,16 +219,6 @@ export default class MainScene extends Component {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 			}
 		}
-
-
-		// Placed to rendered due to unresolved circular dependency with CalendarScene
-		const CalendarNavigation = StackNavigator({
-			CalendarScene: {screen: CalendarScene},
-			MeetingDetailsScene: {screen: MeetingDetailsScene},
-		}, {
-			headerMode: 'none',
-			transitionConfig: () => {duration: 500}
-		})
 
 		return (<View style={styles.container}>
 				{IS_ANDROID && IS_DEV && <Button
