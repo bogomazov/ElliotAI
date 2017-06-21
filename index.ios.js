@@ -2,7 +2,7 @@
 
 import App from './js/index'
 
-import React from 'react';
+/*import React from 'react';
 import codePush from "react-native-code-push";
 
 import {
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
 });
 
 // Module name
-AppRegistry.registerComponent('ReactTest', () => ReactTest);
+AppRegistry.registerComponent('ReactTest', () => ReactTest);*/

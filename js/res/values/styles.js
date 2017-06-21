@@ -2,6 +2,7 @@ import { StyleSheet, Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 export const themeColor = '#B3A784'
+export const themeColorThird = '#3F9696'
 export const themeColorLight = '#CEC19B'
 export const mainBackgroundColor = '#F1F1F1'
 
@@ -30,6 +31,9 @@ export default s = StyleSheet.create({
   },
   alignItemsCenter: {
     alignItems: 'center'
+  },
+  justifyContentCenter: {
+    justifyContent: 'center'
   },
 
   // TEXT
@@ -61,14 +65,14 @@ export default s = StyleSheet.create({
   },
 
   avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 100,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
   },
   avatar30: {
       width: 30,
       height: 30,
-      borderRadius: 100,
+      borderRadius: 15,
   },
   borderTopGrey: {
     borderTopColor: '#E4E3E6',
@@ -98,6 +102,8 @@ export default s = StyleSheet.create({
   padding10: {
     padding: 10
   },
-
+  padding15: {
+    padding: 15
+  }
 
 });

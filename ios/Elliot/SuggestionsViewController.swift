@@ -11,6 +11,7 @@ import Nuke
 import BRYXBanner
 import SwiftyUserDefaults
 import Presentr
+import React
 
 protocol SuggestionRemover: class {
     func remove(suggestion: Suggestion, senderTag: Int)
@@ -45,10 +46,12 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     var isGettingRejected: [Bool] = []
     var shouldShowFriendSearch = false
     
+    var reactView: RCTRootView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        Timer.scheduledTimer(timeInterval: 300.0, target: self, selector: #selector(self.refreshData),
-                             userInfo: nil, repeats: true)
+        //Timer.scheduledTimer(timeInterval: 300.0, target: self, selector: #selector(self.refreshData),
+        //                     userInfo: nil, repeats: true)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 220
@@ -65,7 +68,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
         loadingIndicator.color = UIColor.elliotBeige()
         loadingIndicator.center = self.view.center
         self.view.addSubview(loadingIndicator)
-        
+        /*
         informThenRefresh()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.informThenRefresh),
@@ -74,6 +77,39 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
                                                name: NotificationNames.newMeetingPushNotif, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData),
                                                name: NotificationNames.refreshSuggestions, object: nil)
+        */
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        initReactView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hideBottomBar),
+                                               name: NSNotification.Name.init("hide-bottom-bar"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showBottomBar),
+                                               name: NSNotification.Name.init("show-bottom-bar"), object: nil)
+    }
+    
+    func initReactView() {
+        ReactFactory.rootViewController = self
+        reactView = ReactFactory.shared.createView(name: "Elliot",
+                                                       props: ["nativeIOS": ["accessToken": AuthorizationManager.shared.serverAuthToken!]])
+        guard let bottomBarHeight = tabBarController?.tabBar.frame.height else { return }
+        reactView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: view.frame.height - bottomBarHeight - 20)
+        hideBottomBar()
+        view.addSubview(reactView!)
+        
+        let barView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        barView.backgroundColor = UIColor.navigationAndTabBar()
+        view.addSubview(barView)
+    }
+    
+    func hideBottomBar() {
+        reactView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: view.frame.height - 20)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func showBottomBar() {
+        guard let bottomBarHeight = tabBarController?.tabBar.frame.height else { return }
+        reactView?.frame = CGRect(x: 0, y: 20, width: view.frame.width, height: view.frame.height - 20 - bottomBarHeight)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     func onNewMeeting(notif: NSNotification) {
@@ -85,6 +121,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     // Ensures the order of requests.
     // i.e. provides back-end with location and calendar data before loading suggestions.
     func informThenRefresh() {
+        return
         print("[LocationSync] \(#function)")
         if suggestions.count == 0 {
             loadingIndicator.startAnimating()
@@ -118,6 +155,7 @@ class SuggestionsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func refreshData() {
+        return
         print("[LocationSync] Refreshing Suggestions")
         let request = Request(method: .get, path: "/suggestions")
         NetworkManager.shared.make(request: request) { (json, success) in

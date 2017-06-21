@@ -28,11 +28,6 @@ class SMSNotifManager {
                                                 userInfo: ["token": paths[2]])
             }
             return true
-        case "open-tab":
-            if paths.count > 2, let type = Int(paths[2]) {
-                NotificationsManager.shared.handleSMSOpenTab(notifyType: type)
-            }
-            return true
         default:
             return false
         }
@@ -43,9 +38,6 @@ class SMSNotifManager {
     }
     
     class func hasVerifiedNumber() -> Bool {
-        #if DEBUG
-            return true
-        #endif
         return Defaults[.hasVerifiedNumber]
     }
 }

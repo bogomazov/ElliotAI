@@ -19,11 +19,13 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //initForReactNative()
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.tabBarVC = self
         
         tabBar.barTintColor = UIColor.navigationAndTabBar()
-        
+        /*
         for i in 0 ..< iconNames.count {
             let item = tabBar.items![i]
             item.image = UIImage(named: iconNames[i] + "-passive")?.withRenderingMode(.alwaysOriginal)
@@ -34,15 +36,24 @@ class MainTabBarController: UITabBarController {
         
         // Show suggestions page first
         self.selectedIndex = MainTabBarController.suggestionTab
-        
+ 
         UsageStats.reportSession()
         
         // Touch to meetings page's view to make it load
         if let meetingNavController = self.viewControllers?[MainTabBarController.meetingsTab] as? UINavigationController {
             meetingNavController.topViewController?.view
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)
+ 
+        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)*/
+    }
+    
+    func initForReactNative() {
+        tabBar.isHidden = true
+        guard let authToken = AuthorizationManager.shared.serverAuthToken else { return }
+        let reactRoot = ReactFactory.shared.createView(name: "Elliot",
+                                                       props: ["nativeIOS": ["accessToken": authToken]])
+        reactRoot.frame = view.frame
+        view.addSubview(reactRoot)
     }
     
     func showInviteTab() {

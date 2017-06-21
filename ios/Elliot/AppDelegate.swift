@@ -11,6 +11,7 @@ import FacebookLogin
 import FacebookCore
 import OpenSansSwift
 import SwiftyJSON
+import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -52,9 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if shouldLogin() {
             doLogin()
         } else {
-            if !AccessStatus.hasEnabledAll() {
-                showViewController(identifier: "permissions-vc")
-            } else if !SMSNotifManager.hasVerifiedNumber() {
+            if !SMSNotifManager.hasVerifiedNumber() {
                 showViewController(identifier: "verify-phone-vc")
             } else {
                 showViewController(identifier: "main-vc")
@@ -74,7 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if SMSNotifManager.handle(url: url) {
             return true
         }
-        return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        if SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        return RCTLinkingManager.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -97,10 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             doLogin()
             return
         }
-        if !AccessStatus.hasEnabledAll() {
-            // redirect back to permissions screen if user changes iphone privacy settings
-            showViewController(identifier: "permissions-vc")
-        } else if !SMSNotifManager.hasVerifiedNumber() {
+        if !SMSNotifManager.hasVerifiedNumber() {
             // redirect to phone-verification screen if needed
             showViewController(identifier: "verify-phone-vc")
         } else {

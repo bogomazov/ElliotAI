@@ -66,33 +66,17 @@ export default class PhoneVerificationScene extends Component {
           selectionColor='#000'
           onChangeText={(phoneNumber) => this.setState({phoneNumber})}
           value={this.state.phoneNumber}></TextInput>
-
         {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>You will receive an SMS message that will have a link to continue so you can start using Elliot!</Text>}
         {!this.state.isSent && <Button
             onPress={this._onVerifyPressed}
             title="VERIFY"
             color={themeColor}
           />}
-
-
         <Text style={[s.light, s.textColorTheme, s.textAlignCenter]}>{strings.phoneDisclaimer}</Text>
       </View>
     );
   }
 }
-
-{/* <Button
-    onPress={() => Linking.openURL('elliot://actions/phone-verification/34')}
-    title="Open elliot://actions/phone-verification"
-  />
-  <Button
-    onPress={() => Linking.openURL('example://test/23')}
-    title="Open example://test/23"
-  />
-  <Button
-    onPress={() => Linking.openURL('example://test/100/details')}
-    title="Open example://test/100/details"
-  /> */}
 
 const styles = StyleSheet.create({
   container: {
@@ -115,13 +99,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     color: 'black',
-    // borderColor: 'white',
-    // borderWidth: 1,
-    // borderRadius: 50
   },
 
   button: {
-    // height: 50,
     width: 300,
     alignSelf: 'stretch',
   },

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
+		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -54,9 +56,16 @@
 		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
 		03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */; };
 		03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */; };
+		03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
+		03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
 		03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */; };
 		03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E739321E6A0B4800525383 /* UIViewController+Banner.swift */; };
 		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
+		03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7A81EE821A000DC815C /* LocationAccess.swift */; };
+		03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
+		03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
+		03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
+		03F9E7B91EE9AD3900DC815C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 03F9E7B81EE9AD3900DC815C /* assets */; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -104,6 +113,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
+		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -152,9 +163,16 @@
 		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
 		03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationCell.swift; sourceTree = "<group>"; };
+		03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccess.swift; sourceTree = "<group>"; };
+		03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccessBridge.m; sourceTree = "<group>"; };
 		03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardToInviteCell.swift; sourceTree = "<group>"; };
 		03E739321E6A0B4800525383 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
 		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
+		03F9E7A81EE821A000DC815C /* LocationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccess.swift; sourceTree = "<group>"; };
+		03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAccessBridge.m; sourceTree = "<group>"; };
+		03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationAccess.swift; sourceTree = "<group>"; };
+		03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSNotificationAccessBridge.m; sourceTree = "<group>"; };
+		03F9E7B81EE9AD3900DC815C /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = SOURCE_ROOT; };
 		0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.staging.xcconfig"; sourceTree = "<group>"; };
 		208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.debug.xcconfig"; sourceTree = "<group>"; };
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +210,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0300FC921EF2B3BA0043BD43 /* CalendarMigration */ = {
+			isa = PBXGroup;
+			children = (
+				0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */,
+				0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */,
+			);
+			name = CalendarMigration;
+			sourceTree = "<group>";
+		};
 		031DD2CB1EBCE1C2001881B7 /* FriendSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +252,10 @@
 				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
 				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
+				0300FC921EF2B3BA0043BD43 /* CalendarMigration */,
+				03C1BCE01EEEBFEC003246F3 /* ShareAccess */,
+				03F9E7B11EE97F5500DC815C /* NSNotificationAccess */,
+				03F9E7AC1EE822BF00DC815C /* LocationAccess */,
 			);
 			name = ReactNative;
 			sourceTree = "<group>";
@@ -257,6 +288,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		03C1BCE01EEEBFEC003246F3 /* ShareAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */,
+				03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */,
+			);
+			name = ShareAccess;
+			sourceTree = "<group>";
+		};
 		03E7392F1E6A0B0D00525383 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +307,24 @@
 				03E739321E6A0B4800525383 /* UIViewController+Banner.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		03F9E7AC1EE822BF00DC815C /* LocationAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03F9E7A81EE821A000DC815C /* LocationAccess.swift */,
+				03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */,
+			);
+			name = LocationAccess;
+			sourceTree = "<group>";
+		};
+		03F9E7B11EE97F5500DC815C /* NSNotificationAccess */ = {
+			isa = PBXGroup;
+			children = (
+				03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */,
+				03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */,
+			);
+			name = NSNotificationAccess;
 			sourceTree = "<group>";
 		};
 		471DB5F868120E522A051585 /* Pods */ = {
@@ -315,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				0370AF751EDD86B4000D376B /* main.jsbundle */,
+				03F9E7B81EE9AD3900DC815C /* assets */,
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
 				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
 				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
@@ -475,6 +534,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F9E7B91EE9AD3900DC815C /* assets in Resources */,
 				FBB60E681E1E0F050035D841 /* LaunchScreen.storyboard in Resources */,
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
@@ -595,11 +655,14 @@
 				03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */,
 				031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */,
 				03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */,
+				0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */,
 				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
 				03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
 				03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */,
+				03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */,
 				03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */,
+				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,
 				031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */,
 				037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */,
 				037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */,
@@ -607,6 +670,7 @@
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
 				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
 				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
 				0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */,
@@ -620,20 +684,24 @@
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
 				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
 				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
+				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
 				03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */,
 				03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */,
 				0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */,
 				03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */,
 				0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */,
+				0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */,
 				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
 				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
 				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
 				0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */,
 				0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */,
 				FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */,
+				03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */,
 				0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */,
 				03755F631E28E780003EDAD9 /* Models.swift in Sources */,
 				0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */,
+				03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */,
 				0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */,
 				033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */,
 			);
@@ -984,7 +1052,7 @@
 				0370AF7C1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FBB60E771E1E0F050035D841 /* Build configuration list for PBXNativeTarget "Elliot" */ = {
 			isa = XCConfigurationList;
@@ -994,7 +1062,7 @@
 				0370AF7D1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		FBB60E7A1E1E0F050035D841 /* Build configuration list for PBXNativeTarget "ElliotTests" */ = {
 			isa = XCConfigurationList;
@@ -1004,7 +1072,7 @@
 				0370AF7E1EDDC489000D376B /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

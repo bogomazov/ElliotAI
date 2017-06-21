@@ -5,34 +5,37 @@ import Card from './Card'
 import CustomButton from './CustomButton'
 import strings from '../res/values/strings'
 
-export default TellFriendsCard = ({onPress}) => {
+export default TellFriendsCard = ({onPress, isMoreFriends}) => {
   console.log(onPress)
       return (
-        <Card>
+        <Card style={{marginBottom: 15}}>
           <View style={styles.container}>
-            <View style={styles.iconsWrapper}>
-              <Image
-                style={styles.icon}
-                source={require('../res/images/dinner-66px.png')}/>
-              <Image
-                style={styles.icon}
-                source={require('../res/images/lunch-66px.png')}/>
-              <Image
-                style={styles.icon}
-                source={require('../res/images/coffee-66px.png')}/>
-              <Image
-                style={styles.icon}
-                source={require('../res/images/call-66px.png')}/>
-            </View>
+            {!isMoreFriends &&
+              <View style={styles.iconsWrapper}>
+                <Image
+                  style={styles.icon}
+                  source={require('../res/images/dinner-66px.png')}/>
+                <Image
+                  style={styles.icon}
+                  source={require('../res/images/lunch-66px.png')}/>
+                <Image
+                  style={styles.icon}
+                  source={require('../res/images/coffee-66px.png')}/>
+                <Image
+                  style={styles.icon}
+                  source={require('../res/images/call-66px.png')}/>
+              </View>
+            }
+            {isMoreFriends &&
+              <Text style={styles.moreFriends}>
+                {strings.tellMoreFriends}
+              </Text>
+            }
             <CustomButton
               style={styles.button}
               onPress={onPress}
               title={strings.tellFriends}
             />
-            {/* <View style={styles.button}>
-
-            </View> */}
-
           </View>
         </Card>
       );
@@ -57,6 +60,14 @@ const styles = StyleSheet.create({
       // margin: 10
     },
     button: {
-      marginBottom: 25
+      marginBottom: 15,
+      fontSize: 17,
+    },
+    moreFriends: {
+      margin: 10,
+      marginTop: 15,
+      textAlign: 'center',
+      fontFamily: 'OpenSans-SemiBold',
+      fontSize: 17,
     }
 });

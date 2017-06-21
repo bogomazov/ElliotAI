@@ -22,6 +22,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -45,6 +46,7 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
     private static final String FAIL_SETTING_CHANGE_UNAVAILABLE = "SETTING_CHANGE_UNAVAILABLE";
     private static final String FAIL_USER_CANCELED = "FAIL_USER_CANCELED";
     private static final int REQUEST_CHECK_SETTINGS = 777;
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     private GoogleApiClient mGoogleApiClient;
     private Promise promise;
@@ -83,6 +85,16 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed");
+        Log.e(TAG, connectionResult.getErrorCode() + " " + connectionResult.getErrorMessage());
+        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
+        int result = googleAPI.isGooglePlayServicesAvailable(getReactApplicationContext());
+
+        if(result != ConnectionResult.SUCCESS) {
+            if(googleAPI.isUserResolvableError(result)) {
+                //prompt the dialog to update google play
+                googleAPI.getErrorDialog(getCurrentActivity(), result, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            }
+        }
     }
 
     @Override
@@ -203,7 +215,10 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
                         // All location settings are satisfied. The client can
                         // initialize location requests here.
                         Log.d("LocationSettingsSat", "true");
-                        promise.resolve(SUCCESS);
+                        if (promise != null) {
+                            promise.resolve(SUCCESS);
+                            promise = null;
+                        }
 
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
@@ -247,6 +262,12 @@ public class LocationAccessModule extends ReactContextBaseJavaModule implements 
                         promptToEnableLocationServices();//keep asking if imp or do whatever
                         break;
                 }
+                break;
+            case PLAY_SERVICES_RESOLUTION_REQUEST:
+                Intent i = getReactApplicationContext().getPackageManager()
+                        .getLaunchIntentForPackage(getReactApplicationContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getReactApplicationContext().startActivity(i);
                 break;
         }
     }

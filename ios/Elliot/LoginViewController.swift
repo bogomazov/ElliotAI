@@ -20,6 +20,8 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     @IBOutlet weak var nextButton: UIButton!
     
     var loginButton: LoginButton!
+    var loadingIndicator: UIActivityIndicatorView!
+    let loginManager = LoginManager()
     
     let previewNames = ["login1", "login2", "login3"]
     let previewTexts = ["Elliot suggests people and times for you to meet",
@@ -37,6 +39,11 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         loginButton.isHidden = true
         
         self.view.addSubview(loginButton)
+        
+        loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        loadingIndicator.color = UIColor.elliotBeige()
+        loadingIndicator.center = center
+        self.view.addSubview(loadingIndicator)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.goLeft))
         swipeLeft.direction = .right
@@ -89,12 +96,26 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
             print(grantedPermissions.description)
             print(declinedPermissions.description)
             print("-------------")
-            AuthorizationManager.shared.loadToken()
-            if AccessStatus.hasEnabledAll() {
-                performSegue(withIdentifier: "login-main", sender: self)
-            } else {
-                performSegue(withIdentifier: "login-permissions", sender: self)
-            }
+            loadingIndicator.startAnimating()
+            loginButton.isHidden = true
+            loginButton.isUserInteractionEnabled = false
+            AuthorizationManager.shared.loadToken(completion: { (json, success) in
+                if success {
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                    }
+                    if SMSNotifManager.hasVerifiedNumber() {
+                        appDelegate.showViewController(identifier: "main-vc")
+                    } else {
+                        appDelegate.showViewController(identifier: "verify-phone-vc")
+                    }
+                } else {
+                    self.loginManager.logOut()
+                    self.loginButton.isHidden = false
+                    self.loginButton.isUserInteractionEnabled = true
+                }
+                self.loadingIndicator.stopAnimating()
+            })
         }
     }
     

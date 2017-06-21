@@ -66,7 +66,7 @@ export default class SearchContainer extends Component {
 
      return this.props.filterByFields.reduce((isChosen, field) => {
         // console.log(field)
-        return isChosen || (item[field] && item[field].toLowerCase().startsWith(this.state.currentText))
+        return isChosen || (item[field] && item[field].toLowerCase().includes(this.state.currentText.toLowerCase()))
       }, false)})
 
   render() {
@@ -79,6 +79,8 @@ export default class SearchContainer extends Component {
 						backgroundColor="#fff"
 						titleCancelColor={themeColor}
 						onChangeText={this._onChangeText}
+            onDelete={() => this._onChangeText("")}
+            onCancel={() => this._onChangeText("")}
 	        />
           <FlatList
             data={this._getFilteredData()}

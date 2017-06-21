@@ -9,8 +9,9 @@ import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
+import s from '../res/values/styles';
 import Permissions from 'react-native-permissions'
-
+import {IS_IOS} from '../settings';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -78,6 +79,13 @@ export default class PermissionsScene extends Component {
       })
   }
 
+  onPressSkip = () => {
+    // On iOS, only calendar permission is obligatory.
+    if (this.state.isCalendarGranted) {
+      this.props.appActions.switchPermissionsOn();
+    }
+  }
+
   componentDidUpdate = () => {
     console.log('componentWillUpdate')
     console.log(this.state)
@@ -113,17 +121,26 @@ export default class PermissionsScene extends Component {
             style={styles.button}
             isWhite
           />}
-          {!this.state.isLocationGranted && <CustomButton
+          {!this.state.isContactsGranted && <CustomButton
             onPress={this.requestContactPermissions}
             title={strings.enableContacts}
             style={styles.button}
             isWhite
           />}
-
-
         </View>
-        <Text style={styles.description}>{strings.disclaimer}</Text>
-
+        <View style={s.col}>
+          {IS_IOS &&
+            <View style={[s.row, styles.skipWrapper]}>
+              <CustomButton
+                onPress={this.onPressSkip}
+                title={"Continue"}
+                style={styles.button}
+                isWhite={this.state.isCalendarGranted}
+              />
+            </View>
+          }
+          <Text style={styles.description}>{strings.disclaimer}</Text>
+        </View>
       </View>);
   }
 }
@@ -153,7 +170,10 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 10,
-    // flex: 3
-    // flex: 1,
+    fontSize: 17,
+    padding: 10,
+  },
+  skipWrapper: {
+    justifyContent: 'flex-end',
   }
 });

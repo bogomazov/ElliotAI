@@ -16,13 +16,13 @@ export default NavigationTopBar = ({navigation, title}) => {
         <TopBar isNavBar>
           <View style={[s.row, styles.row]}>
             <View style={styles.iconWrapper}>
-            <IconIon.Button style={styles.topBarIcon} name="ios-arrow-back" size={30} color='grey' backgroundColor="white" onPress={this._onBackPress}>
+            <IconIon.Button style={styles.topBarIcon} name="ios-arrow-back" size={26} color='grey' backgroundColor="white" onPress={this._onBackPress}>
                 {/* <Image
                 style={styles.topBarIcon}
                 source={require('../res/images/back.png')}/> */}
             </IconIon.Button>
           </View>
-            <Text style={[s.alignItemsCenter, s.bold, s.textColorTheme]}>{title}</Text>
+            <Text style={[s.alignItemsCenter, s.bold, s.textColorTheme, {fontSize: 16}]}>{title}</Text>
           </View>
         </TopBar>
       );

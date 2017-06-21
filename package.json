@@ -4,10 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "build-ios-dev": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.ios.js' --bundle-output='./ios/main.jsbundle' --dev=true --platform='ios' --assets-dest='./ios'",
+    "build-ios-prod": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.ios.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
+    "test": "jest",
+    "flow": "flow"
   },
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.24.1",
     "dateformat": "^2.0.0",
     "immutable": "^3.8.1",
     "install": "^0.9.6",
@@ -21,24 +25,31 @@
     "react-native-communications": "^2.2.1",
     "react-native-contacts": "^0.8.1",
     "react-native-deep-linking": "^2.1.0",
-    "react-native-fbsdk": "^0.5.0",
+    "react-native-device-info": "^0.10.2",
+    "react-native-fbsdk": "0.6.0",
+    "react-native-fetch-blob": "^0.10.5",
     "react-native-global-props": "^1.1.1",
+    "react-native-img-cache": "^1.4.0",
+    "react-native-in-app-notification": "^1.0.3",
     "react-native-localization": "^0.1.30",
     "react-native-permissions": "^0.2.7",
     "react-native-search-box": "0.0.8",
     "react-native-share": "^1.0.20",
+    "react-native-simple-modal": "^5.1.1",
     "react-native-swiper": "^1.5.4",
-    "react-native-vector-icons": "^4.1.1",
+    "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.9",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
     "redux-persist": "^4.8.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "turf": "^3.0.14"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",
     "babel-preset-react-native": "1.9.1",
+    "flow-bin": "^0.47.0",
     "jest": "19.0.2",
     "react-test-renderer": "16.0.0-alpha.6"
   },

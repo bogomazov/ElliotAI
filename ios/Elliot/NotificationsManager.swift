@@ -146,7 +146,14 @@ class NotificationsManager: NSObject {
             NotificationsManager.shared.setShownTab(target: MainTabBarController.suggestionTab)
             NotificationCenter.default.post(name: NotificationNames.refreshSuggestions, object: self)
         }))
-        let navController = self.getActiveNavController()
-        navController?.visibleViewController?.present(alert, animated: true, completion: nil)
+        if let navController = self.getActiveNavController() {
+            navController.visibleViewController?.present(alert, animated: true, completion: nil)
+        } else {
+            // fall back to tab-bar controller
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            if let tabBarVC = appDelegate.tabBarVC {
+                tabBarVC.present(alert, animated: true, completion: nil)
+            }
+        }
     }
 }

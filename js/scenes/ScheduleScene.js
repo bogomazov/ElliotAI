@@ -2,7 +2,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { View, TouchableWithoutFeedback, Image, ScrollView, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, ActivityIndicator } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -17,7 +17,10 @@ import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavigationTopBar from '../components/NavigationTopBar';
 import IconEntypo from 'react-native-vector-icons/Entypo';
-import s from '../res/values/styles'
+import { NavigationActions } from 'react-navigation'
+import s, { themeColorThird } from '../res/values/styles'
+import {IS_TEST_SUGGESTIONS, IS_IOS} from '../settings'
+import RemoteImage from '../components/RemoteImage';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -38,28 +41,58 @@ export default class ScheduleScene extends Component {
     state = {
       calendarEvents: [],
       isCalendarEventsLoaded: false,
-      selected: []
+      selected: [],
+			isAcceptLoading: false
     }
-
-	componentWillMount = () => {
-//       if (!this.state.isUserSuggestionsLoaded) {
-//       this.props.appActions.loadUserSuggestions(this.props.suggestion.friend.fb_id).then((data) => {
-//           console.log(data)
-//           this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
-//         }).catch((err) => console.log(err))
-    }
-
 
     _onConfirmPress = () => {
+      if (this.state.isConfirming) {
+        return;
+      }
+			const rootSuggestion = this.props.rootSuggestion
       if (this.state.selected.length > 0) {
         startTimes = this._getStartTimes()
-        times = this.state.selected.map((i) => startTimes[i]._i)
+        times = this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
         console.log(times)
+				if (IS_TEST_SUGGESTIONS) {
+					this.props.navigation.goBack()
+          this.props.appActions.showAcceptedBanner(true);
+					return
+				}
+				if (this.state.isAcceptLoading) {
+					return
+				}
+
+				this.setState({isAcceptLoading: true})
         this.props.appActions.acceptSuggestion(this.props.suggestion, times).then((data) => {
+          this.setState({isAcceptLoading: false})
           this.props.appActions.removeSuggestion(this.props.suggestion)
-          this.props.navigation.goBack()
+					// Refresh confirmed-meetings
+          this.props.appActions.calendarLoading();
+          this.props.appActions.loadScheduledMeetings();
+          // If we came here via 'more options', reject the root suggestion.
+          if (rootSuggestion) {
+            this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
+              this.props.appActions.loadSuggestions()
+            })
+          } else {
+            this.props.appActions.loadSuggestions()
+          }
+          setTimeout(() => {
+            this.props.appActions.showAcceptedBanner(true);
+          }, 300);
+          this._navigateBack();
+        }).catch((err) => {
+          this.setState({isConfirming: false})
         })
       }
+    }
+
+    _navigateBack = () => {
+      const skipBack = this.props.skipBack
+      this.props.navigation.dispatch(NavigationActions.back({
+        key: skipBack
+      }))
     }
 
     _getStartTimes = () => {
@@ -75,13 +108,15 @@ export default class ScheduleScene extends Component {
     _loadCalendarEvents = () => {
       console.log('_loadCalendarEvents')
       console.log(this.props.suggestion.meeting_time)
-      dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE, 'h')
+			dateStart = this.props.suggestion.meeting_time.clone().subtract(1, 'h')
+      dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE + 1, 'h')
       console.log(dateEnd)
-      getEvents(this.props.suggestion.meeting_time, dateEnd).then(events => {
+      getEvents(dateStart, dateEnd).then(events => {
             // handle events
             console.log('Calendar')
             console.log(events)
-            this.setState({calendarEvents: events,
+						const filteredEvents = events.filter((event) => !event.allDay)
+            this.setState({calendarEvents: filteredEvents,
                           isCalendarEventsLoaded: true})
           })
           .catch(error => {
@@ -103,19 +138,25 @@ export default class ScheduleScene extends Component {
 
     }
 
+  componentDidUpdate() {
+    // Prevent accepting an expired suggestion.
+    if (this.props.app.isSuggestionsLoading) {
+      this._navigateBack();
+    }
+  }
+
   render() {
     this.props = {...this.props, ...this.props.navigation.state.params}
-
+		console.log(this.props)
     if (!this.state.isCalendarEventsLoaded) {
       this._loadCalendarEvents()
     }
-	console.log(this.props)
 
     const suggestion = this.props.suggestion
     console.log(suggestion)
     let buttonStyles = [styles.confirmButtonWrapper]
 
-    if (this.state.selected.length > 0) {
+    if (this.state.selected.length > 0 && !this.state.isAcceptLoading) {
       buttonStyles.push(styles.buttonActive)
     }
     return (
@@ -126,7 +167,7 @@ export default class ScheduleScene extends Component {
             <Text style={[styles.title, styles.textSize]}>
               {suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}{"\n"}When works for you?
             </Text>
-            <Image
+            <RemoteImage
                 style={styles.avatar}
                 source={{ uri: suggestion.friend.image}}/>
           </View>
@@ -147,11 +188,11 @@ export default class ScheduleScene extends Component {
               endTime = moment(event.endDate).format("h:mm A")
               return <View key={i} style={[styles.timeWrapper]}>
                 <IconEntypo name="dot-single" style={{justifyContent: 'flex-start', borderWidth: 0, margin: -8}} size={35} color={themeColor} />
-                <View style={styles.column}>
+                <View style={[styles.column]}>
                   <Text style={[s.bold]}>
                       {startTime} - {endTime}
                   </Text>
-                  <Text style={[]}>
+                  <Text style={[s.marginRight10]}>
                     {event.title}
                   </Text>
                  </View>
@@ -172,10 +213,10 @@ export default class ScheduleScene extends Component {
               }
               return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
                 <View style={[styles.row, styles.timeRow]}>
-                  <Text style={[style]}>
+									<Icon style={styles.checkmark} name="md-checkmark" size={22} color={isSelected? "#139A9C": "#fff"} />
+									<Text style={[style]}>
                     {time.format("h:mm A")}
                   </Text>
-                  <Icon style={styles.checkmark} name="md-checkmark" size={20} color={isSelected? "#139A9C": "#fff"} />
                 </View>
               </TouchableWithoutFeedback>
             })
@@ -184,11 +225,15 @@ export default class ScheduleScene extends Component {
           </View>
         </View>
 
-         <TouchableHighlight  style={styles.row} onPress={this._onConfirmPress}>
-           <View style={buttonStyles}>
+        <TouchableHighlight  style={styles.row} onPress={this._onConfirmPress}>
+          <View style={buttonStyles}>
+            {!this.state.isConfirming &&
               <Text style={styles.confirmButton}>Sounds Good!</Text>
-            </View>
-
+            }
+            {this.state.isConfirming &&
+              <ActivityIndicator animating={true} color="white" size="small"/>
+            }
+          </View>
           </TouchableHighlight>
       </View>
     );
@@ -198,7 +243,7 @@ export default class ScheduleScene extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    // flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'white'
@@ -215,6 +260,7 @@ const styles = StyleSheet.create({
     },
 	timeRow: {
 		width: 130,
+		marginLeft: 20,
 		justifyContent: 'center',
 	},
   title: {
@@ -230,9 +276,9 @@ const styles = StyleSheet.create({
     marginBottom: 13
   },
   avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 100,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
       marginRight: 10,
     },
   scheduleWrapper: {
@@ -266,9 +312,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     margin: 10,
+		marginLeft: 20,
     padding: 7,
 		paddingLeft: 10,
 		paddingRight: 10,
+
   },
   column: {
     flexDirection: 'column',
@@ -278,9 +326,10 @@ const styles = StyleSheet.create({
   selectedTime: {
     backgroundColor: '#BADFDF',
     borderColor: '#139A9C',
+		overflow: 'hidden',
   },
 	confirmButtonWrapper: {
-    height: 40,
+    height: 50,
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
@@ -289,13 +338,25 @@ const styles = StyleSheet.create({
   },
 	checkmark: {
 		position: 'absolute',
-		right: 0
+		left: 0,
+		borderRadius: 0,
+		borderStyle: 'solid',
+		borderColor: 'grey',
+		borderWidth: 1,
+		paddingLeft: 2,
+		// paddingRight: 0,
+		// padding: 0
 	},
   confirmButton: {
     color: 'white',
     fontSize: 16,
   },
   buttonActive: {
-     backgroundColor: '#3F9696'
-  }
+     backgroundColor: themeColorThird
+  },
+	box: {
+		borderRadius: 0,
+		borderStyle: 'solid',
+		borderColor: mainBackgroundColor
+	}
 });
