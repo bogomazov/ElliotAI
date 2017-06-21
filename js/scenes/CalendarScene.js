@@ -95,7 +95,7 @@ export default class CalendarScene extends Component {
   render() {
     let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
     // let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
-    // meetings = TEST_MEETINGS.data.map((item) => new Meeting(item));
+    meetings = TEST_MEETINGS.data.map((item) => new Meeting(item));
     return (
       <View style={styles.container}>
         <TopBar isMainScene>

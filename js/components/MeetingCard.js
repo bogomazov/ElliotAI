@@ -19,15 +19,16 @@ export default MeetingCard = ({meeting, onPress}) => {
           <View style={styles.container}>
             <TouchableWithoutFeedback onPress={() => onPress(meeting)}>
                 <View style={[s.row, s.stretch, s.alignItemsCenter, {marginTop: 5, marginBottom: 5}]}>
-                  <Arrow />
+
                   <RemoteImage
                     style={styles.avatar}
                     source={{ uri: meeting.friend.image}}/>
-                  <View style={s.column}>
+                  <View style={[s.column, {marginRight: 50}]}>
                     <Text style={[s.bold, styles.title]}>{meeting.meeting_type} with {meeting.friend.first_name} {meeting.friend.last_name}</Text>
                     <Text style={[s.light, styles.subtitle]}>{meeting.getDateStr()}</Text>
                     <Text style={[s.light, styles.subtitle]}>{meeting.meeting_time.format("h:mm A")}</Text>
                   </View>
+                  <Arrow />
 
                 </View>
             </TouchableWithoutFeedback>
