@@ -88,6 +88,7 @@ const BottomTabNavigation = TabNavigator({
   InviteFriendsTab: {screen: InviteFriendsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
+  lazy: true,
   tabBarOptions: {
     showLabel: false,
     style: {
@@ -238,7 +239,7 @@ export default class MainScene extends Component {
 
   render() {
     console.log(this.props)
-		
+
 		if (IS_ANDROID) {
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
