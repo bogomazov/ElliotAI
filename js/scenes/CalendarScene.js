@@ -5,8 +5,6 @@ import { bindActionCreators } from 'redux'
 import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
 import InviteTabs from '../containers/InviteTabs'
@@ -15,7 +13,6 @@ import {themeColor} from '../res/values/styles'
 import IntroLabel from '../components/IntroLabel'
 import MeetingCard from '../components/MeetingCard'
 import Meeting from '../state/models/meeting'
-import MeetingDetailsScene from './MeetingDetailsScene'
 import moment from 'moment'
 import {saveEvent, removeEvent} from '../utils/Calendar';
 
