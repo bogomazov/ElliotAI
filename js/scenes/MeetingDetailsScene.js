@@ -125,7 +125,13 @@ export default class MeetingDetailsScene extends Component {
 	}
 
 	_call = () => {
-		phonecall(this.state.number.contact, true)
+    const number = this.state.number.contact;
+    Alert.alert('Calling', number, [
+      {text: 'Cancel', onPress: () => console.log('Cancelled the call')},
+      {text: 'Call', onPress: () => phonecall(number, false)}
+    ], {
+      cancelable: true
+    });
 	}
 
   render() {
