@@ -92,7 +92,7 @@ export default class SuggestionsCard extends Component {
         this._loadCalendarEvents()
       }
 
-      const allowedStyle = this._isAllowed() ? {} : s.textColorGrey;
+      const allowedStyle = this._isAllowed() ? {color: themeColorThird} : s.textColorGrey;
 
       const timeButtons = this._getStartTimes().map((time, i) => {
           let style = [styles.timeWrapper, styles.timeSlot]
@@ -135,7 +135,7 @@ export default class SuggestionsCard extends Component {
                     isInvite ?
                     <Text style={[styles.smallTitle, {color: themeColorThird, fontWeight: "600"}]}>Invite from</Text>
                       :
-                    <Text style={styles.smallTitle}>Try inviting</Text>
+                    <Text style={styles.smallTitle}>Send invite to</Text>
                   }
                   <Text style={styles.nameTitle}>{suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
                 </View>
@@ -242,7 +242,7 @@ export default class SuggestionsCard extends Component {
                                 onPress={() => this._onConfirmPress()}>
               <View>
                 <Text style={[styles.optionButton, allowedStyle]}>
-                  {isInvite ? "YES" : "INVITE"}
+                  {isInvite ? "YES" : "SEND"}
                 </Text>
               </View>
             </TouchableHighlight>
