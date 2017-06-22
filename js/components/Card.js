@@ -12,11 +12,18 @@ export default Card = ({children, style}) => {
 
 const styles = StyleSheet.create({
     container: {
-      borderRadius: 10,
+      borderRadius: 5,
       backgroundColor: 'white',
       alignSelf: 'stretch',
-      marginLeft: 15,
-      marginRight: 15,
-      marginTop: 15,
+      marginLeft: 12,
+      marginRight: 12,
+      marginTop: 12,
+      shadowColor: "#e8e8e8",
+      shadowOffset: {
+        width: 0,
+        height: 0
+      },
+      shadowRadius: 25,
+      shadowOpacity: 1
     },
 });
