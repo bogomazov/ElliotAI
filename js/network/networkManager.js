@@ -4,10 +4,7 @@ import { bindActionCreators } from 'redux'
 import DeviceInfo from 'react-native-device-info'
 import { IS_DEV, APP_VERSION } from '../settings'
 
-const subdomain = 'staging'
-if (!IS_DEV) {
-  subdomain = 'prod'
-}
+const subdomain = (!IS_DEV) ? 'prod' : 'staging'
 
 const rootURL = `https://${subdomain}.elliot.ai/control`
 
@@ -40,10 +37,11 @@ class API {
       "suggestion_id" : suggestionId,
       "response_type" : responseType
     })
-  accept = (suggestionId, times) =>
+  accept = (suggestionId, times, message) =>
     this.post('/accept', {
       "suggestion_id" : suggestionId,
-      "times" : times
+      "times" : times,
+      "message": message || null
     })
   cancel = (suggestionId) =>
     this.post('/cancel', {

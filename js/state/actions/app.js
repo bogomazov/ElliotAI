@@ -247,9 +247,9 @@ export const sendEvents = (events) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendEvents(events)
   }
 
-export const acceptSuggestion = (suggestion, times) => {
+export const acceptSuggestion = (suggestion, times, message) => {
   return (dispatch, getState, getAPI) =>
-      getAPI(getState, dispatch).accept(suggestion.id, times)
+      getAPI(getState, dispatch).accept(suggestion.id, times, message)
   }
 
   export const resetBadges = () => {
