@@ -10,6 +10,7 @@ import {getEvents} from '../utils/Calendar'
 import strings from '../res/values/strings'
 import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight } from '../res/values/styles'
 import RemoteImage from './RemoteImage';
+import IconEvil from 'react-native-vector-icons/EvilIcons';
 
 const borderWidth = 2
 
@@ -81,8 +82,24 @@ export default class SuggestionsCard extends Component {
               <View style={styles.row}>
                 <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
                 <RemoteImage
-                  style={styles.avatar}
+                  style={[styles.avatar, withOptions ? styles.avatarWithOptions : {}]}
                   source={{ uri: suggestion.friend.image}}/>
+                { withOptions &&
+                  <View style={styles.showLessWrapper}>
+                    {animateShowLess &&
+                      <ActivityIndicator animating={true} color={themeColor} size="small" style={styles.activityIndicator}/>
+                    }
+                    {!animateShowLess &&
+                      <IconEvil.Button
+                        name="close"
+                        backgroundColor="#fff"
+                        size={22}
+                        color="#BBBBBB"
+                        onPress={() => this.props.onShowLessPress(suggestion)}
+                      />
+                    }
+                  </View>
+                }
               </View>
               <View style={styles.row}>
                 <Image
@@ -163,21 +180,6 @@ export default class SuggestionsCard extends Component {
             </TouchableHighlight>
             }
             { withOptions && < View style={styles.verticalBorder} ></View> }
-            { withOptions &&
-              <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
-                                  onPress={() => onShowLessPress(suggestion)}>
-                <View>
-                  {animateShowLess &&
-                  <ActivityIndicator animating={true} color={themeColor} size="small" style={styles.activityIndicator}/>
-                  }
-                  {!animateShowLess &&
-                  <Text style={styles.optionButton}>
-                    Show Less of {suggestion.friend.first_name}
-                  </Text>
-                  }
-                </View>
-              </TouchableHighlight>
-            }
             { withOptions && < View style={styles.verticalBorder} ></View> }
             <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
                                 onPress={() => onConfirmPress(suggestion, this._getSelectedTimes())}>
@@ -221,8 +223,8 @@ const styles = StyleSheet.create({
       width: 50,
       height: 50,
       borderRadius: 25,
-      marginTop: 10,
-      marginRight: 30,
+      marginTop: 15,
+      marginRight: 15,
     },
     type: {
       width: 50,
@@ -315,6 +317,8 @@ const styles = StyleSheet.create({
       flex: 1,
   		justifyContent: 'center',
   		alignItems: 'center',
+      marginRight: 10,
+      padding: 9,
     },
     highlight: {
       height: 6,
@@ -328,4 +332,12 @@ const styles = StyleSheet.create({
     messageWrapper: {
       padding: 20,
     },
+    showLessWrapper: {
+      marginTop: -30,
+      marginRight: -10,
+    },
+    avatarWithOptions: {
+      marginRight: 0,
+      marginTop: 20,
+    }
 });
