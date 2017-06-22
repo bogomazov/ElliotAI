@@ -150,9 +150,9 @@ export default class SuggestionsCard extends Component {
                   </View>
                 }
               </View>
-              <View style={[styles.header], {marginBottom: 10, marginLeft: 15, marginTop: 5}}>
+              <View style={[styles.header, s.col], {marginBottom: 10, marginLeft: 15, marginTop: 5}}>
                 <Text style={styles.smallTitle}>For</Text>
-                <View style={s.row}>
+                <View style={[s.row, s.marginTop5]}>
                   <Image
                     style={styles.type}
                     source={suggestion.getIcon()}
@@ -176,20 +176,19 @@ export default class SuggestionsCard extends Component {
               </View>
             </View>
             <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
-              <Text style={[styles.calendarTextSize, s.textColorGrey, s.marginLeft10]}>Your calendar</Text>
+              <Text style={[styles.calendarTextSize, s.textColorGrey, s.marginLeft10, {marginBottom: 5}]}>Your calendar</Text>
               <ScrollView>
                 {
                   this.state.calendarEvents.map((event, i) => {
                     console.log(event)
                     startTime = moment(event.startDate).format("h:mm A")
                     endTime = moment(event.endDate).format("h:mm A")
-                    return <View key={i} style={[styles.timeWrapper]}>
-                      <IconEntypo name="dot-single" style={{justifyContent: 'flex-start', borderWidth: 0, margin: -8}} size={35} color={themeColor} />
+                    return <View key={i} style={[styles.calendarWrapper]}>
                       <View style={[styles.column]}>
                         <Text style={[s.bold]}>
                           {startTime} - {endTime}
                         </Text>
-                        <Text style={[s.marginRight10]}>
+                        <Text style={[s.textColorGrey, s.marginRight10]}>
                           {event.title}
                         </Text>
                       </View>
@@ -336,6 +335,16 @@ const styles = StyleSheet.create({
       paddingRight: 20,
       textAlign: 'center'
 
+    },
+    calendarWrapper: {
+      backgroundColor: greyColorLight,
+      borderColor: greyColorLight,
+      borderWidth: 2,
+      borderStyle: 'solid',
+      borderRadius: 8,
+      margin: 10,
+      padding: 10
+      // fontSize: 14,
     },
     column: {
       flexDirection: 'column',
