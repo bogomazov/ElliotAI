@@ -119,6 +119,7 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_inviteTwitter = () => {
+
     if (IS_IOS) {
       ShareAccess.shareOnTwitter(ELLIOT_LINK, strings.inviteTwitter);
       return;
@@ -134,6 +135,7 @@ export default class InviteFriendsScene extends Component {
 	}
 
   _inviteMessenger = () => {
+
     if (IS_IOS) {
       ShareAccess.shareOnMessenger(ELLIOT_LINK, strings.inviteFacebook);
     } else {
@@ -147,12 +149,15 @@ export default class InviteFriendsScene extends Component {
 		} else {
 			switch(i) {
 				case TAB_MESSENGER:
+					this.props.appActions.logShare("fb-messenger", ``)
 					this._inviteMessenger()
 					break;
 				case TAB_FACEBOOK:
+					this.props.appActions.logShare("fb-share", ``)
 					this._inviteFacebook(ShareDialog)
           break;
 				case TAB_TWITTER:
+					this.props.appActions.logShare("twitter", ``)
 					this._inviteTwitter()
           break;
 			}
@@ -161,6 +166,8 @@ export default class InviteFriendsScene extends Component {
 
 	_onContactPress = (contact) => {
 		console.log(this.state.activeTab)
+		this.props.appActions.logShare(this.state.activeTab? "email": "sms", `${contact.firstName} ${contact.lastName}`)
+
 		if (this.state.activeTab) {
 			console.log('email')
       if (IS_IOS) {
