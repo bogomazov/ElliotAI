@@ -98,9 +98,8 @@ export default class UserSuggestionsScene extends Component {
         <FlatList
           data={[...this.state.userSuggestions]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}, i) => {
+          renderItem={({item}) => {
             return <SuggestionCard
-                      key={i}
                       suggestion={item}
                       onConfirmPress={this._onSuggestionPress}/>}}
             />

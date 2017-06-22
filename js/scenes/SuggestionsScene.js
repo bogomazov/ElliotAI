@@ -163,7 +163,7 @@ export default class SuggestionsScene extends Component {
 					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}, i) => {
+          renderItem={({item}) => {
 						if (item.isCatchUp) {
 							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
 								return <CatchUpCard onPress={this._onCatchUpPress} />
@@ -177,7 +177,6 @@ export default class SuggestionsScene extends Component {
 							}} />
             }
             return <SuggestionCard
-              				key={i}
                       suggestion={item}
                       onConfirmPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
