@@ -76,7 +76,7 @@ const CalendarNavigation = StackNavigator({
 class TabBarIcon extends Component {
   render = () => <View>
     <Image style={s.tabIcon} source={this.props.focused? require('../res/images/calendar_active_1.5-66px.png'): require('../res/images/calenar_grey-66px.png')}/>
-    {Store.getState().app.calendarBadges > 0 && <Text style={styles.badge}>{Store.getState().app.calendarBadges}</Text>}
+    {this.props.app.calendarBadges > 0 && <Text style={styles.badge}>{this.props.app.calendarBadges}</Text>}
   </View>
 }
 
@@ -93,7 +93,7 @@ const BottomTabNavigation = TabNavigator({
   InviteFriendsTab: {screen: InviteFriendsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
-  lazy: true,
+  // lazy: true,
   tabBarOptions: {
     showLabel: false,
     style: {
@@ -258,15 +258,16 @@ export default class MainScene extends Component {
           title="Log out"
           color="#841584"
         />}
-        <BottomTabNavigation screenProps={{mainNav: this.props.navigation}}
-        onNavigationStateChange={(prevState, currentState) => {
-          console.log(currentState)
-          if (currentState == CALENDAR_TAB) {
-            if (this.props.app.calendarBadges > 0) {
-              this.props.appActions.setCalendarBadges(0)
-              this.props.appActions.resetBadges()
+        <BottomTabNavigation
+          screenProps={{mainNav: this.props.navigation}}
+          onNavigationStateChange={(prevState, currentState) => {
+            console.log(currentState)
+            if (currentState.index == CALENDAR_TAB) {
+              if (this.props.app.calendarBadges > 0) {
+                this.props.appActions.setCalendarBadges(0)
+                this.props.appActions.resetBadges()
+              }
             }
-          }
         }}/>
       </View>
     );
