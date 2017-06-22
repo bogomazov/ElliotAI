@@ -43,12 +43,13 @@ export default class UserSuggestionsScene extends Component {
     }
     if (IS_TEST_SUGGESTIONS) {
       this.props.appActions.showAcceptedBanner(true);
+      this._navigateHome();
       return
     }
     if (this.state.isAcceptLoading) {
       return
     }
-
+    const rootSuggestion = this.props.navigation.state.params.rootSuggestion;
     this.setState({isAcceptLoading: true})
     this.props.appActions.acceptSuggestion(suggestion, times).then((data) => {
       this.setState({isAcceptLoading: false})
@@ -56,12 +57,12 @@ export default class UserSuggestionsScene extends Component {
       // Refresh confirmed-meetings
       this.props.appActions.calendarLoading();
       this.props.appActions.loadScheduledMeetings();
-      this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
-        this.props.appActions.loadSuggestions()
-      })
-      const ownSkipBack = this.props.navigation.state.params.skipBack;
-      const skipBack = ownSkipBack ? ownSkipBack : this.props.navigation.state.key;
-      // TODO: HOW DO YOU GO BACK TO THE MAIN PAGE
+      if (rootSuggestion) {
+        this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
+          this.props.appActions.loadSuggestions()
+        })
+      }
+      this._navigateHome();
       setTimeout(() => {
         this.props.appActions.showAcceptedBanner(true);
       }, 300);
@@ -69,6 +70,14 @@ export default class UserSuggestionsScene extends Component {
       this.setState({isAcceptLoading: false})
     })
 	}
+
+  _navigateHome = () => {
+    console.log(this.props);
+    const skipBack = this.props.navigation.state.params.skipBack;
+    this.props.navigation.dispatch(NavigationActions.back({
+      key: skipBack
+    }))
+  }
 
 	componentWillMount = () => {
         this.props = {...this.props, ...this.props.navigation.state.params}
