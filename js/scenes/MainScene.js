@@ -73,16 +73,21 @@ const CalendarNavigation = StackNavigator({
   transitionConfig: () => {duration: 500}
 })
 
+class TabBarIcon extends Component {
+  render = () => <View>
+    <Image style={s.tabIcon} source={this.props.focused? require('../res/images/calendar_active_1.5-66px.png'): require('../res/images/calenar_grey-66px.png')}/>
+    {Store.getState().app.calendarBadges > 0 && <Text style={styles.badge}>{Store.getState().app.calendarBadges}</Text>}
+  </View>
+}
+
+const TabIcon = connect(mapStateToProps)(TabBarIcon);
+
 const BottomTabNavigation = TabNavigator({
   SuggestionsTab: {screen: SuggestionsScene},
   CalendarTab: {
     screen: CalendarNavigation,
     navigationOptions: {
-      tabBarIcon: ({tintColor, focused}) =>
-				<View>
-	        <Image style={s.tabIcon} source={focused? require('../res/images/calendar_active_1.5-66px.png'): require('../res/images/calenar_grey-66px.png')}/>
-					{Store.getState().app.calendarBadges > 0 && <Text style={styles.badge}>{Store.getState().app.calendarBadges}</Text>}
-				</View>
+      tabBarIcon: ({tintColor, focused}) => <TabIcon focused={focused} />
     }
   },
   InviteFriendsTab: {screen: InviteFriendsScene},
