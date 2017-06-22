@@ -57,7 +57,11 @@ export default class SuggestionsCard extends Component {
         if (index != -1) {
             this.setState({selected: this.state.selected.filter((item) => item != i)})
         } else {
-            this.setState({selected: [...this.state.selected, i]})
+            if (this.props.suggestion.is_invite) {
+              this.setState({selected: [i]})
+            } else {
+              this.setState({selected: [...this.state.selected, i]})
+            }
         }
     }
     _isAllowed = () => {
