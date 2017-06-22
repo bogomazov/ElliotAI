@@ -93,8 +93,11 @@ export default class SuggestionsCard extends Component {
           <View style={styles.container}>
             {isInvite && <View style={styles.highlight}></View>}
             <View>
-              <View style={styles.row}>
-                <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
+              <View style={[styles.row]}>
+                <View style={styles.header}>
+                  <Text style={styles.smallTitle}>{isInvite ? "Invite from" : "Invite"}</Text>
+                  <Text style={styles.nameTitle}>{suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
+                </View>
                 <RemoteImage
                   style={[styles.avatar, withOptions ? styles.avatarWithOptions : {}]}
                   source={{ uri: suggestion.friend.image}}/>
@@ -115,17 +118,23 @@ export default class SuggestionsCard extends Component {
                   </View>
                 }
               </View>
-              <View style={styles.row}>
-                <Image
-                  style={styles.type}
-                  source={suggestion.getIcon()}/>
-                <Text style={styles.date}>{suggestion.getDateStr()}</Text>
+              <View style={[styles.header], {marginBottom: 10, marginLeft: 15, marginTop: 5}}>
+                <Text style={styles.smallTitle}>For</Text>
+                <View style={s.row}>
+                  <Image
+                    style={styles.type}
+                    source={suggestion.getIcon()}
+                  />
+                  <Text style={styles.typeTitle}>{suggestion.meeting_type}</Text>
+                </View>
               </View>
             </View>
           </View>
           <View style={[styles.row, s.borderTop, s.flex, s.border]}>
             <View style={styles.scheduleWrapper}>
-              <Text style={[styles.textSize, s.bold, s.textColorBlack]}>start times</Text>
+              <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
+                On {suggestion.getDateStr()} at
+              </Text>
               <ScrollView>
                 {
                   this._getStartTimes().map((time, i) => {
@@ -194,7 +203,6 @@ export default class SuggestionsCard extends Component {
             </TouchableHighlight>
             }
             { withOptions && < View style={styles.verticalBorder} ></View> }
-            { withOptions && < View style={styles.verticalBorder} ></View> }
             <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
                                 onPress={() => this._onConfirmPress()}>
               <View>
@@ -224,14 +232,29 @@ const styles = StyleSheet.create({
       fontFamily: "OpenSans-Light",
       fontSize: 17
     },
-    title: {
+    nameTitle: {
+      fontSize: 22,
+      fontFamily: 'OpenSans-ExtraBold',
+      color: 'rgb(74, 74, 74)',
+    },
+    smallTitle: {
+      fontSize: 14,
+      fontFamily: 'OpenSans-SemiBold',
+      color: themeColor,
+    },
+    typeTitle: {
+      fontSize: 22,
+      fontFamily: 'OpenSans-ExtraBold',
+      color: 'rgb(74, 74, 74)',
+      alignSelf: 'center',
+      marginLeft: 10,
+    },
+    header: {
       flex: 1,
-      margin: 10,
-      marginLeft: 15,
+      alignItems: 'stretch',
       marginRight: 20,
-      fontSize: 17,
-      fontFamily: 'OpenSans-Bold',
-      color: 'black'
+      marginLeft: 15,
+      marginTop: 10,
     },
     avatar: {
       width: 50,
@@ -241,9 +264,8 @@ const styles = StyleSheet.create({
       marginRight: 15,
     },
     type: {
-      width: 50,
-      height: 50,
-      margin: 10
+      width: 40,
+      height: 40,
     },
     scheduleWrapper: {
       flex: 1,
