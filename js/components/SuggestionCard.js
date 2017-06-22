@@ -59,6 +59,18 @@ export default class SuggestionsCard extends Component {
             this.setState({selected: [...this.state.selected, i]})
         }
     }
+    _isAllowed = () => {
+      if (this.props.suggestion.is_invite) {
+        return this.state.selected.length == 1
+      }
+      return this.state.selected.length > 0
+    }
+    _onConfirmPress = () => {
+      if (!this._isAllowed()) {
+        return
+      }
+      this.props.onConfirmPress(suggestion, this._getSelectedTimes())
+    }
 
     render () {
       var suggestion = this.props.suggestion
@@ -73,6 +85,8 @@ export default class SuggestionsCard extends Component {
       if (!this.state.isCalendarEventsLoaded) {
         this._loadCalendarEvents()
       }
+
+      const allowedStyle = this._isAllowed() ? {} : s.textColorGrey;
 
       return (
         <Card>
@@ -182,10 +196,10 @@ export default class SuggestionsCard extends Component {
             { withOptions && < View style={styles.verticalBorder} ></View> }
             { withOptions && < View style={styles.verticalBorder} ></View> }
             <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
-                                onPress={() => onConfirmPress(suggestion, this._getSelectedTimes())}>
+                                onPress={() => this._onConfirmPress()}>
               <View>
-                <Text style={styles.optionButton}>
-                  YES!
+                <Text style={[styles.optionButton, allowedStyle]}>
+                  {isInvite ? "YES" : "INVITE"}
                 </Text>
               </View>
             </TouchableHighlight>
@@ -301,7 +315,8 @@ const styles = StyleSheet.create({
       color: themeColor,
       textAlign: 'center',
       padding: 10,
-      fontFamily: 'OpenSans-Bold'
+      fontFamily: 'OpenSans-ExtraBold',
+      fontSize: 16,
     },
     verticalBorder: {
       width: borderWidth,
