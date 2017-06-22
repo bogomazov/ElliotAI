@@ -2,9 +2,12 @@ import { StyleSheet, Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 export const themeColor = '#B3A784'
-export const themeColorThird = '#3F9696'
+export const themeColorThird = '#14a5a7'
 export const themeColorLight = '#CEC19B'
 export const mainBackgroundColor = '#F1F1F1'
+export const greyColor = '#9b9b9b'
+export const greyColorLight = '#fafafa'
+
 
 const customTextProps = {
   style: {
@@ -44,7 +47,7 @@ export default s = StyleSheet.create({
     color: themeColor
   },
   textColorGrey: {
-    color: '#BBBBBB'
+    color: greyColor
   },
   textColorBlack: {
     color: 'black'

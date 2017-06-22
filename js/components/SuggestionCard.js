@@ -8,7 +8,7 @@ import Card from './Card'
 import CustomButton from './CustomButton'
 import {getEvents} from '../utils/Calendar'
 import strings from '../res/values/strings'
-import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight } from '../res/values/styles'
+import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight, greyColorLight, greyColor } from '../res/values/styles'
 import RemoteImage from './RemoteImage';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
 
@@ -90,6 +90,36 @@ export default class SuggestionsCard extends Component {
 
       const allowedStyle = this._isAllowed() ? {} : s.textColorGrey;
 
+      const timeButtons = this._getStartTimes().map((time, i) => {
+          let style = [styles.timeWrapper, styles.timeSlot]
+          const isSelected = this.state.selected.includes(i)
+          if (isSelected) {
+            style.push(styles.selectedTime)
+          }
+          return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
+            <View style={[styles.row]}>
+              <Text style={[style]}>
+                {/* A - to add AM/PM */}
+                {time.format("h:mm")}
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+        })
+
+      const TIME_SLOTS_ROWS = 3
+      timeButtonsCols = timeButtons.reduce((currentCols, timeButton) => {
+        if (currentCols.length > 0
+          && currentCols[currentCols.length-1].length < TIME_SLOTS_ROWS) {
+          currentCols[currentCols.length-1].push(timeButton)
+        } else {
+          currentCols.push([timeButton])
+        }
+        return currentCols
+      }, []);
+
+      console.log(timeButtonsCols)
+
+
       return (
         <Card>
           <View style={styles.container}>
@@ -132,33 +162,21 @@ export default class SuggestionsCard extends Component {
               </View>
             </View>
           </View>
-          <View style={[styles.row, s.borderTop, s.flex, s.border]}>
+          <View style={[styles.row, s.flex, s.border]}>
             <View style={styles.scheduleWrapper}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
                 On {suggestion.getDateStr()} at
               </Text>
-              <ScrollView>
-                {
-                  this._getStartTimes().map((time, i) => {
-                    let style = [styles.timeWrapper, styles.timeBorder]
-                    const isSelected = this.state.selected.includes(i)
-                    if (isSelected) {
-                      style.push(styles.selectedTime)
-                    }
-                    return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
-                      <View style={[styles.row]}>
-                        <Icon style={styles.checkmark} name="md-checkmark" size={22} color={isSelected? "#139A9C": "#fff"} />
-                        <Text style={[style]}>
-                          {time.format("h:mm A")}
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback>
-                  })
-                }
-              </ScrollView>
+              <View style={[s.row, s.margin10]}>
+                {timeButtonsCols.map((col, i) =>
+                  <View key={i} style={[s.col, styles.timeSlotsCol]}>
+                    {col}
+                  </View>
+                )}
+              </View>
             </View>
             <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
-              <Text style={[styles.calendarTitle, styles.textSize]}>my calendar</Text>
+              <Text style={[styles.calendarTextSize, s.textColorGrey, s.marginLeft10]}>Your calendar</Text>
               <ScrollView>
                 {
                   this.state.calendarEvents.map((event, i) => {
@@ -195,6 +213,7 @@ export default class SuggestionsCard extends Component {
           {!isInvite &&
             <TextInput
               style={styles.messageInput}
+              underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({message: text})}
               value={this.state.message}
               placeholder={"  Add comment..."}
@@ -281,37 +300,41 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       alignSelf: 'stretch',
       paddingTop: 5
     },
     textSize: {
-      fontSize: 17
+      fontSize: 8
     },
     calendarTitle: {
       color: themeColor,
       fontFamily: 'OpenSans-Bold',
     },
     calendarStyle: {
-      backgroundColor: '#F8F8F8'
+      borderLeftWidth: 1,
+      borderLeftColor: greyColorLight,
+      borderStyle: 'solid'
     },
 
-    timeBorder: {
-      borderColor: 'white',
-      borderWidth: 1,
+    timeSlot: {
+      borderColor: greyColorLight,
+      borderWidth: 2,
       borderStyle: 'solid',
       borderRadius: 20,
-      fontSize: 16
+      fontSize: 14,
+      fontFamily: 'OpenSans-ExtraBold'
     },
 
     timeWrapper: {
       flexDirection: 'row',
-      alignItems: 'flex-start',
-      margin: 10,
-      marginLeft: 20,
-      padding: 7,
-      paddingLeft: 10,
-      paddingRight: 10,
+      alignItems: 'center',
+      margin: 5,
+      marginLeft: 0,
+      padding: 10,
+      paddingLeft: 20,
+      paddingRight: 20,
+      textAlign: 'center'
 
     },
     column: {
@@ -320,9 +343,10 @@ const styles = StyleSheet.create({
 
     },
     selectedTime: {
-      backgroundColor: '#BADFDF',
-      borderColor: '#139A9C',
+      backgroundColor: themeColorThird,
+      borderColor: themeColorThird,
       overflow: 'hidden',
+      color: 'white'
     },
     checkmark: {
       position: 'absolute',
