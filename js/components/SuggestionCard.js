@@ -75,6 +75,7 @@ export default class SuggestionsCard extends Component {
       return (
         <Card>
           <View style={styles.container}>
+            {suggestion.is_invite == true && <View style={styles.highlight}></View>}
             <View>
               <View style={styles.row}>
                 <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
@@ -302,5 +303,9 @@ const styles = StyleSheet.create({
       flex: 1,
   		justifyContent: 'center',
   		alignItems: 'center',
+    },
+    highlight: {
+      height: 6,
+      backgroundColor: themeColorThird,
     }
 });
