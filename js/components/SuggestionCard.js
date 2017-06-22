@@ -61,6 +61,7 @@ export default class SuggestionsCard extends Component {
 
     render () {
       var suggestion = this.props.suggestion
+      const isInvite = (suggestion.is_invite == true)
       var onMoreOptionsPress = this.props.onMoreOptionsPress
       var onShowLessPress = this.props.onShowLessPress
       var onConfirmPress = this.props.onConfirmPress
@@ -75,7 +76,7 @@ export default class SuggestionsCard extends Component {
       return (
         <Card>
           <View style={styles.container}>
-            {suggestion.is_invite == true && <View style={styles.highlight}></View>}
+            {isInvite && <View style={styles.highlight}></View>}
             <View>
               <View style={styles.row}>
                 <Text style={styles.title}>{suggestion.meeting_type} with {suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
@@ -138,6 +139,17 @@ export default class SuggestionsCard extends Component {
               </ScrollView>
             </View>
           </View>
+          {isInvite && suggestion.message &&
+            <View style={[s.row, s.padding15]}>
+              <RemoteImage
+                style={styles.smallAvatar}
+                source={{uri: suggestion.friend.image}}
+              />
+              <Text style={[s.semibold, s.textColorGrey, s.marginLeft10, {fontSize: 12}]}>
+                {suggestion.message}
+              </Text>
+            </View>
+          }
           <View style={[styles.row, styles.buttonOptionsWrapper]}>
             { withOptions &&
             <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
@@ -307,5 +319,13 @@ const styles = StyleSheet.create({
     highlight: {
       height: 6,
       backgroundColor: themeColorThird,
-    }
+    },
+    smallAvatar: {
+      width: 20,
+      height: 20,
+      borderRadius: 10,
+    },
+    messageWrapper: {
+      padding: 20,
+    },
 });
