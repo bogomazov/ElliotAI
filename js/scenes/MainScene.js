@@ -258,7 +258,16 @@ export default class MainScene extends Component {
           title="Log out"
           color="#841584"
         />}
-        <BottomTabNavigation screenProps={{mainNav: this.props.navigation}}/>
+        <BottomTabNavigation screenProps={{mainNav: this.props.navigation}}
+        onNavigationStateChange={(prevState, currentState) => {
+          console.log(currentState)
+          if (currentState == CALENDAR_TAB) {
+            if (this.props.app.calendarBadges > 0) {
+              this.props.appActions.setCalendarBadges(0)
+              this.props.appActions.resetBadges()
+            }
+          }
+        }}/>
       </View>
     );
   }
