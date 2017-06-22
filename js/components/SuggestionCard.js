@@ -21,7 +21,8 @@ export default class SuggestionsCard extends Component {
         calendarEvents: [],
         isCalendarEventsLoaded: false,
         selected: [],
-        isAcceptLoading: false
+        isAcceptLoading: false,
+        message: "",
     }
 
     _getStartTimes = () => {
@@ -69,7 +70,8 @@ export default class SuggestionsCard extends Component {
       if (!this._isAllowed()) {
         return
       }
-      this.props.onConfirmPress(suggestion, this._getSelectedTimes())
+      const message = this.state.message.length > 0 ? this.state.message : null;
+      this.props.onConfirmPress(this.props.suggestion, this._getSelectedTimes(), message);
     }
 
     render () {
@@ -189,6 +191,14 @@ export default class SuggestionsCard extends Component {
                 {suggestion.message}
               </Text>
             </View>
+          }
+          {!isInvite &&
+            <TextInput
+              style={styles.messageInput}
+              onChangeText={(text) => this.setState({message: text})}
+              value={this.state.message}
+              placeholder={"  Add comment..."}
+            />
           }
           <View style={[styles.row, styles.buttonOptionsWrapper]}>
             { withOptions &&
@@ -376,5 +386,16 @@ const styles = StyleSheet.create({
     avatarWithOptions: {
       marginRight: 0,
       marginTop: 20,
+    },
+    messageInput: {
+      height: 40,
+      borderRadius: 10,
+      backgroundColor: 'rgb(248, 248, 248)',
+      marginLeft: 15,
+      marginRight: 15,
+      marginTop: 10,
+      marginBottom: 10,
+      fontFamily: 'OpenSans-SemiBold',
+      fontSize: 12,
     }
 });

@@ -34,7 +34,8 @@ export default class UserSuggestionsScene extends Component {
       isUserSuggestionsLoaded: false
     }
 
-	_onSuggestionPress = (suggestion, times) => {
+  // TODO: Refactor this part to prevent code duplication.
+	_onSuggestionPress = (suggestion, times, message) => {
     console.log(this.props);
     console.log(suggestion);
     console.log(times);
@@ -51,7 +52,7 @@ export default class UserSuggestionsScene extends Component {
     }
     const rootSuggestion = this.props.navigation.state.params.rootSuggestion;
     this.setState({isAcceptLoading: true})
-    this.props.appActions.acceptSuggestion(suggestion, times).then((data) => {
+    this.props.appActions.acceptSuggestion(suggestion, times, message).then((data) => {
       this.setState({isAcceptLoading: false})
       this.props.appActions.removeSuggestion(suggestion)
       // Refresh confirmed-meetings

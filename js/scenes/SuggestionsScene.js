@@ -51,7 +51,7 @@ export default class SuggestionsScene extends Component {
 		rejectingIds: [],
 	}
 
-	_onSuggestionPress = (suggestion, times) => {
+	_onSuggestionPress = (suggestion, times, message) => {
     console.log(this.props);
     console.log(suggestion);
     console.log(times);
@@ -67,7 +67,7 @@ export default class SuggestionsScene extends Component {
     }
 
     this.setState({isAcceptLoading: true})
-    this.props.appActions.acceptSuggestion(suggestion, times).then((data) => {
+    this.props.appActions.acceptSuggestion(suggestion, times, message).then((data) => {
       this.setState({isAcceptLoading: false})
       this.props.appActions.removeSuggestion(suggestion)
       // Refresh confirmed-meetings
