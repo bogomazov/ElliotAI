@@ -133,6 +133,8 @@ export default class MeetingDetailsScene extends Component {
 	}
 
   render() {
+    // TODO: Avoid combining navigation params to prevent bugs like this.
+    this.props = {...this.props, ...this.props.navigation.state.params}
     const meeting = this.props.meeting
     console.log(this.props)
     console.log(this.state)
