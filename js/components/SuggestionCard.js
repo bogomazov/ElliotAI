@@ -131,7 +131,12 @@ export default class SuggestionsCard extends Component {
             <View>
               <View style={[styles.row]}>
                 <View style={styles.header}>
-                  <Text style={styles.smallTitle}>{isInvite ? "Invite from" : "Invite"}</Text>
+                  {
+                    isInvite ?
+                    <Text style={[styles.smallTitle, {color: themeColorThird, fontWeight: "600"}]}>Invite from</Text>
+                      :
+                    <Text style={styles.smallTitle}>Try inviting</Text>
+                  }
                   <Text style={styles.nameTitle}>{suggestion.friend.first_name} {suggestion.friend.last_name}</Text>
                 </View>
                 <RemoteImage
