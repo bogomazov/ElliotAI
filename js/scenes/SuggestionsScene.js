@@ -44,15 +44,42 @@ export default class SuggestionsScene extends Component {
   };
 
 	state = {
+	  isAcceptLoading: false,
 		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
 		rejectingIds: [],
 	}
 
-	_onSuggestionPress = (suggestion) => {
+	_onSuggestionPress = (suggestion, times) => {
     console.log(this.props);
-    this.props.screenProps.mainNav.navigate('ScheduleScene', {suggestion})
+    console.log(suggestion);
+    console.log(times);
+    if (times.length == 0) {
+      return
+    }
+    if (IS_TEST_SUGGESTIONS) {
+      this.props.appActions.showAcceptedBanner(true);
+      return
+    }
+    if (this.state.isAcceptLoading) {
+      return
+    }
+
+    this.setState({isAcceptLoading: true})
+    this.props.appActions.acceptSuggestion(suggestion, times).then((data) => {
+      this.setState({isAcceptLoading: false})
+      this.props.appActions.removeSuggestion(suggestion)
+      // Refresh confirmed-meetings
+      this.props.appActions.calendarLoading();
+      this.props.appActions.loadScheduledMeetings();
+      this.props.appActions.loadSuggestions()
+      setTimeout(() => {
+        this.props.appActions.showAcceptedBanner(true);
+      }, 300);
+    }).catch((err) => {
+      this.setState({isAcceptLoading: false})
+    })
 	}
 
 	_onMoreOptionsPress = (suggestion) => {
@@ -136,7 +163,7 @@ export default class SuggestionsScene extends Component {
 					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => {
+          renderItem={({item}, i) => {
 						if (item.isCatchUp) {
 							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
 								return <CatchUpCard onPress={this._onCatchUpPress} />
@@ -150,8 +177,9 @@ export default class SuggestionsScene extends Component {
 							}} />
             }
             return <SuggestionCard
+              				key={i}
                       suggestion={item}
-                      onPress={this._onSuggestionPress}
+                      onConfirmPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
 											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>

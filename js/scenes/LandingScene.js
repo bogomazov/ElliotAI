@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import Permissions from 'react-native-permissions';
 import MainScene from './MainScene';
-import ScheduleScene from './ScheduleScene';
 import LoginScene from './LoginScene';
 import UserSuggestionsScene from './UserSuggestionsScene';
 import FriendsScene from './FriendsScene';
@@ -25,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 
 const Navigation = StackNavigator({
   MainScene: {screen: MainScene},
-  ScheduleScene: {screen: ScheduleScene},
   UserSuggestionsScene: {screen: UserSuggestionsScene},
   FriendsScene: {screen: FriendsScene},
 }, {

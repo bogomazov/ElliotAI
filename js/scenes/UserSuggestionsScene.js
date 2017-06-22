@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -13,6 +14,7 @@ import IntroLabel from '../components/IntroLabel'
 import strings from '../res/values/strings'
 import NavigationTopBar from '../components/NavigationTopBar';
 import Suggestion from '../state/models/suggestion';
+import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -27,18 +29,45 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class UserSuggestionsScene extends Component {
     state = {
+      isAcceptLoading: false,
       userSuggestions: [],
       isUserSuggestionsLoaded: false
     }
 
-	_onSuggestionPress = (suggestion) => {
-		const ownSkipBack = this.props.navigation.state.params.skipBack;
-		const skipBack = ownSkipBack ? ownSkipBack : this.props.navigation.state.key;
-		this.props.navigation.navigate('ScheduleScene', {
-			suggestion: suggestion,
-		 	skipBack: skipBack,
-			rootSuggestion: this.props.navigation.state.params.rootSuggestion
-		})
+	_onSuggestionPress = (suggestion, times) => {
+    console.log(this.props);
+    console.log(suggestion);
+    console.log(times);
+    if (times.length == 0) {
+      return
+    }
+    if (IS_TEST_SUGGESTIONS) {
+      this.props.appActions.showAcceptedBanner(true);
+      return
+    }
+    if (this.state.isAcceptLoading) {
+      return
+    }
+
+    this.setState({isAcceptLoading: true})
+    this.props.appActions.acceptSuggestion(suggestion, times).then((data) => {
+      this.setState({isAcceptLoading: false})
+      this.props.appActions.removeSuggestion(suggestion)
+      // Refresh confirmed-meetings
+      this.props.appActions.calendarLoading();
+      this.props.appActions.loadScheduledMeetings();
+      this.props.appActions.rejectSuggestion(rootSuggestion, 'another-time').then(() => {
+        this.props.appActions.loadSuggestions()
+      })
+      const ownSkipBack = this.props.navigation.state.params.skipBack;
+      const skipBack = ownSkipBack ? ownSkipBack : this.props.navigation.state.key;
+      // TODO: HOW DO YOU GO BACK TO THE MAIN PAGE
+      setTimeout(() => {
+        this.props.appActions.showAcceptedBanner(true);
+      }, 300);
+    }).catch((err) => {
+      this.setState({isAcceptLoading: false})
+    })
 	}
 
 	componentWillMount = () => {
@@ -63,7 +92,7 @@ export default class UserSuggestionsScene extends Component {
             return <SuggestionCard
                       key={i}
                       suggestion={item}
-                      onPress={this._onSuggestionPress}/>}}
+                      onConfirmPress={this._onSuggestionPress}/>}}
             />
       </View>
     );
