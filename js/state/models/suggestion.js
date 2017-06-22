@@ -26,7 +26,7 @@ class Suggestion extends SuggestionRecord {
   
   getIcon = () => getMeetingTypeIcon(this.meeting_type)
   
-  getDateStr = () => this.meeting_time.format('dddd, MMM Do')
+  getDateStr = () => this.meeting_time.format('ddd, MMM Do')
 //   `${getDay(this.meeting_time)}, ${getMonth(this.meeting_time)} ${this.meeting_time.getDate()}`
 }
 

@@ -13,7 +13,6 @@ import RemoteImage from './RemoteImage';
 
 const borderWidth = 2
 
-const TOTAL_OPTIONS = 6
 const CALENDAR_TIME_RANGE = 3 // hours
 
 export default class SuggestionsCard extends Component {
@@ -25,13 +24,7 @@ export default class SuggestionsCard extends Component {
     }
 
     _getStartTimes = () => {
-        var result = []
-        let currentDate = this.props.suggestion.meeting_time
-        for (var i = 0; i < TOTAL_OPTIONS; i++) {
-            result.push(currentDate)
-            currentDate = currentDate.clone().add(30, 'm')
-        }
-        return result
+        return this.props.suggestion.meeting_times
     }
     _getSelectedTimes = () => {
         var startTimes = this._getStartTimes()
@@ -98,6 +91,28 @@ export default class SuggestionsCard extends Component {
             </View>
           </View>
           <View style={[styles.row, s.borderTop, s.flex, s.border]}>
+            <View style={styles.scheduleWrapper}>
+              <Text style={[styles.textSize, s.bold, s.textColorBlack]}>start times</Text>
+              <ScrollView>
+                {
+                  this._getStartTimes().map((time, i) => {
+                    let style = [styles.timeWrapper, styles.timeBorder]
+                    const isSelected = this.state.selected.includes(i)
+                    if (isSelected) {
+                      style.push(styles.selectedTime)
+                    }
+                    return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
+                      <View style={[styles.row]}>
+                        <Icon style={styles.checkmark} name="md-checkmark" size={22} color={isSelected? "#139A9C": "#fff"} />
+                        <Text style={[style]}>
+                          {time.format("h:mm A")}
+                        </Text>
+                      </View>
+                    </TouchableWithoutFeedback>
+                  })
+                }
+              </ScrollView>
+            </View>
             <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
               <Text style={[styles.calendarTitle, styles.textSize]}>my calendar</Text>
               <ScrollView>
@@ -117,28 +132,6 @@ export default class SuggestionsCard extends Component {
                         </Text>
                       </View>
                     </View>
-                  })
-                }
-              </ScrollView>
-            </View>
-            <View style={styles.scheduleWrapper}>
-              <Text style={[styles.timesTitle, styles.textSize, s.bold, s.textColorBlack]}>start times</Text>
-              <ScrollView>
-                {
-                  this._getStartTimes().map((time, i) => {
-                    let style = [styles.timeWrapper, styles.timeBorder]
-                    const isSelected = this.state.selected.includes(i)
-                    if (isSelected) {
-                      style.push(styles.selectedTime)
-                    }
-                    return <TouchableWithoutFeedback key={i} onPress={() => this._onTimeSelect(i)}>
-                      <View style={[styles.row, styles.timeRow]}>
-                        <Icon style={styles.checkmark} name="md-checkmark" size={22} color={isSelected? "#139A9C": "#fff"} />
-                        <Text style={[style]}>
-                          {time.format("h:mm A")}
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback>
                   })
                 }
               </ScrollView>
