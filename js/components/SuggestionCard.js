@@ -150,15 +150,13 @@ export default class SuggestionsCard extends Component {
                   </View>
                 }
               </View>
-              <View style={[styles.header, s.col], {marginBottom: 10, marginLeft: 15, marginTop: 5}}>
+              <View style={[styles.header, s.row, {marginBottom: 10, marginLeft: 15, marginTop: 5, alignItems: 'baseline'}]}>
                 <Text style={styles.smallTitle}>For</Text>
-                <View style={[s.row, s.marginTop5]}>
-                  <Image
-                    style={styles.type}
-                    source={suggestion.getIcon()}
-                  />
-                  <Text style={styles.typeTitle}>{suggestion.meeting_type}</Text>
-                </View>
+                <Image
+                  style={styles.type}
+                  source={suggestion.getIcon()}
+                />
+                <Text style={styles.typeTitle}>{suggestion.meeting_type}</Text>
               </View>
             </View>
           </View>
@@ -274,8 +272,6 @@ const styles = StyleSheet.create({
       fontSize: 22,
       fontFamily: 'OpenSans-ExtraBold',
       color: 'rgb(74, 74, 74)',
-      alignSelf: 'center',
-      marginLeft: 10,
     },
     header: {
       flex: 1,
@@ -294,6 +290,8 @@ const styles = StyleSheet.create({
     type: {
       width: 40,
       height: 40,
+      marginLeft: 10,
+      marginRight: 10,
     },
     scheduleWrapper: {
       flex: 1,
@@ -413,7 +411,8 @@ const styles = StyleSheet.create({
       padding: 20,
     },
     showLessWrapper: {
-      marginTop: -30,
+      alignSelf: 'flex-start',
+      //marginTop: -30,
       marginRight: -10,
     },
     avatarWithOptions: {
