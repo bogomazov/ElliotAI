@@ -95,7 +95,7 @@ export default class SuggestionsCard extends Component {
       const allowedStyle = this._isAllowed() ? {color: themeColorThird} : s.textColorGrey;
 
       const timeButtons = this._getStartTimes().map((time, i) => {
-          let style = [styles.timeWrapper, styles.timeSlot]
+          let style = [styles.timeSlot]
           const isSelected = this.state.selected.includes(i)
           if (isSelected) {
             style.push(styles.selectedTime)
@@ -104,14 +104,14 @@ export default class SuggestionsCard extends Component {
             <View style={[styles.row]}>
               <Text style={[style]}>
                 {/* A - to add AM/PM */}
-                {time.format("h:mm")}
+                {time.format("h:mm A")}
               </Text>
             </View>
           </TouchableWithoutFeedback>
         })
 
       const TIME_SLOTS_ROWS = 3
-      timeButtonsCols = timeButtons.reduce((currentCols, timeButton) => {
+      let timeButtonsCols = timeButtons.reduce((currentCols, timeButton) => {
         if (currentCols.length > 0
           && currentCols[currentCols.length-1].length < TIME_SLOTS_ROWS) {
           currentCols[currentCols.length-1].push(timeButton)
@@ -120,6 +120,10 @@ export default class SuggestionsCard extends Component {
         }
         return currentCols
       }, []);
+
+      while (timeButtonsCols.length < 2) {
+        timeButtonsCols.push([])
+      }
 
       console.log(timeButtonsCols)
 
@@ -170,7 +174,7 @@ export default class SuggestionsCard extends Component {
             </View>
           </View>
           <View style={[styles.row, s.flex, s.border]}>
-            <View style={styles.scheduleWrapper}>
+            <View style={[styles.scheduleWrapper, {flex: 0, width: 180}]}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
                 On {suggestion.getDateStr()} at
               </Text>
@@ -183,13 +187,13 @@ export default class SuggestionsCard extends Component {
               </View>
             </View>
             <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
-              <Text style={[styles.calendarTextSize, s.textColorGrey, s.marginLeft10, {marginBottom: 5}]}>Your calendar</Text>
+              <Text style={[styles.calendarTextSize, s.textColorGrey, {marginLeft: 20, marginBottom: 5}]}>Your calendar</Text>
               <ScrollView>
                 {
                   this.state.calendarEvents.map((event, i) => {
                     console.log(event)
-                    startTime = moment(event.startDate).format("h:mm A")
-                    endTime = moment(event.endDate).format("h:mm A")
+                    const startTime = moment(event.startDate).format("h:mm")
+                    const endTime = moment(event.endDate).format("h:mm A")
                     return <View key={i} style={[styles.calendarWrapper]}>
                       <View style={[styles.column]}>
                         <Text style={[s.bold]}>
@@ -323,26 +327,28 @@ const styles = StyleSheet.create({
       borderStyle: 'solid'
     },
 
+    timeSlotsCol: {
+      flex: 1,
+      alignItems: "stretch"
+    },
+
     timeSlot: {
-      borderColor: greyColorLight,
-      borderWidth: 2,
+      borderColor: greyColor,
+      borderWidth: 1,
       borderStyle: 'solid',
       borderRadius: 20,
       fontSize: 14,
-      fontFamily: 'OpenSans-ExtraBold'
-    },
-
-    timeWrapper: {
-      flexDirection: 'row',
+      fontFamily: 'OpenSans-ExtraBold',
+      width: 78,
       alignItems: 'center',
       margin: 5,
       marginLeft: 0,
       padding: 10,
-      paddingLeft: 20,
-      paddingRight: 20,
+      paddingLeft: 0,
+      paddingRight: 0,
       textAlign: 'center'
-
     },
+
     calendarWrapper: {
       backgroundColor: greyColorLight,
       borderColor: greyColorLight,
