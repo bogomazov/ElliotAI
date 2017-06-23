@@ -45,7 +45,7 @@ export default class MeetingDetailsScene extends Component {
 		_onReschedulePress = () => {
 			Alert.alert(
 				'Are you sure?',
-				'Once you reschedule, you will have to schedule a meeting again!',
+				'This will cancel the meeting and notify ' + this.props.meeting.friend.first_name + '.',
 				[
 					{text: 'Never mind', onPress: () => console.log('Never mind')},
 					{text: 'Reschedule', onPress: () => {
