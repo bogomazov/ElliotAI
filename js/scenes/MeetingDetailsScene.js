@@ -205,7 +205,7 @@ export default class MeetingDetailsScene extends Component {
 	                source={require('../res/images/messageicon.png')}/>
 	            </View>
 						</TouchableHighlight>}
-						{[0, 0, 0, 0].map((item, i) => <View key={i} style={[s.row, s.borderTopGrey, styles.bottom]}></View>)}
+						<View style={[s.row, s.borderTopGrey, styles.bottomLine]}></View>
 						</ScrollView>
           </View>
 					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
@@ -236,6 +236,9 @@ const styles = StyleSheet.create({
 	bottomIcon: {
 		padding: 0
 	},
+  bottomLine: {
+    height: 1,
+  },
   icon: {
     height: 30,
     width: 30
