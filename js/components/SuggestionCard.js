@@ -110,8 +110,6 @@ export default class SuggestionsCard extends Component {
         this._loadCalendarEvents()
       }
 
-      const allowedStyle = this._isAllowed() ? {color: themeColorThird} : s.textColorGrey;
-
       const timeButtons = this._getStartTimes().map((time, i) => {
           let style = [styles.timeSlot]
           const isSelected = this.state.selected.includes(i)
@@ -192,13 +190,13 @@ export default class SuggestionsCard extends Component {
             </View>
           </View>
           <View style={[styles.row, s.flex, s.border]}>
-            <View style={[styles.scheduleWrapper, {flex: 0, width: 180}]}>
+            <View style={[styles.scheduleWrapper]}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
                 On {suggestion.getDateStr()} at
               </Text>
               <View style={[s.row, s.margin10]}>
                 {timeButtonsCols.map((col, i) =>
-                  <View key={i} style={[s.col, styles.timeSlotsCol]}>
+                  <View key={i} style={[s.col, styles.timeSlotsCol, i > 0? s.marginLeft10: null]}>
                     {col}
                   </View>
                 )}
@@ -267,7 +265,7 @@ export default class SuggestionsCard extends Component {
             <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
                                 onPress={() => this._onConfirmPress()}>
               <View>
-                <Text style={[styles.optionButton, allowedStyle]}>
+                <Text style={[styles.optionButton, this._isAllowed() ? {color: themeColorThird} : s.textColorGrey]}>
                   {isInvite ? "YES" : "SEND"}
                 </Text>
               </View>
