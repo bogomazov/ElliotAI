@@ -51,7 +51,8 @@ export default class MeetingDetailsScene extends Component {
 					{text: 'Reschedule', onPress: () => {
 						this.props.appActions.cancelMeeting(this.props.meeting).then((response) => {
 							this.props.onMeetingCancel(this.props.meeting)
-              this.props.navigation.goBack();
+                            this.props.navigation.goBack();
+                            this.props.appActions.loadScheduledMeetings()
 						})
 					}},
 				],
