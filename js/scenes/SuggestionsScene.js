@@ -131,6 +131,7 @@ export default class SuggestionsScene extends Component {
 				}
 				{this.props.app.isSuggestionsLoaded &&
 				<FlatList
+          removeClippedSubviews={false}
 					onRefresh={this._refresh}
 					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}

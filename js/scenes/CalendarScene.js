@@ -116,6 +116,7 @@ export default class CalendarScene extends Component {
                                                     onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
 
         <FlatList
+          removeClippedSubviews={false}
           onRefresh={this._refresh}
 					refreshing={this.props.app.isCalendarLoading}
           data={meetings}
