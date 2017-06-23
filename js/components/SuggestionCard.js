@@ -196,7 +196,7 @@ export default class SuggestionsCard extends Component {
               </Text>
               <View style={[s.row, s.margin10]}>
                 {timeButtonsCols.map((col, i) =>
-                  <View key={i} style={[s.col, styles.timeSlotsCol, i > 0? s.marginLeft10: null]}>
+                  <View key={i} style={[s.col, styles.timeSlotsCol]}>
                     {col}
                   </View>
                 )}
