@@ -138,7 +138,7 @@ export default class SuggestionsCard extends Component {
       }, []);
 
       while (timeButtonsCols.length < 2) {
-        timeButtonsCols.push([])
+        timeButtonsCols.push([<View key={"phantom"} style={styles.row}><Text style={[styles.timeSlot, {opacity: 0}]}/></View>])
       }
 
       console.log(timeButtonsCols)
@@ -190,11 +190,11 @@ export default class SuggestionsCard extends Component {
             </View>
           </View>
           <View style={[styles.row, s.flex, s.border]}>
-            <View style={[styles.scheduleWrapper, {flex: 0, width: 180}]}>
+            <View style={[styles.scheduleWrapper]}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
                 On {suggestion.getDateStr()} at
               </Text>
-              <View style={[s.row, s.margin10]}>
+              <View style={[s.row, s.margin10, {marginRight: 5}]}>
                 {timeButtonsCols.map((col, i) =>
                   <View key={i} style={[s.col, styles.timeSlotsCol]}>
                     {col}
@@ -327,7 +327,6 @@ const styles = StyleSheet.create({
       marginRight: 10,
     },
     scheduleWrapper: {
-      flex: 1,
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'flex-start',
@@ -342,13 +341,13 @@ const styles = StyleSheet.create({
       fontFamily: 'OpenSans-Bold',
     },
     calendarStyle: {
+      flex: 1,
       borderLeftWidth: 1,
       borderLeftColor: greyColorLight,
       borderStyle: 'solid'
     },
 
     timeSlotsCol: {
-      flex: 1,
       alignItems: "stretch"
     },
 
