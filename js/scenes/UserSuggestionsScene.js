@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
@@ -88,6 +88,16 @@ export default class UserSuggestionsScene extends Component {
         }).catch((err) => console.log(err))
 	}
 
+  _onInputFocus = () => {
+    if (IS_IOS) {
+      const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
+      const focusedField = TextInput.State.currentlyFocusedField();
+      const inputHandle = ReactNative.findNodeHandle(focusedField);
+      const OFFSET = 145;
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, OFFSET, true);
+    }
+  }
+
     _keyExtractor = (item, index) => item.id;
 
   render() {
@@ -96,11 +106,13 @@ export default class UserSuggestionsScene extends Component {
       <View style={styles.container}>
         <NavigationTopBar navigation={this.props.navigation} />
         <FlatList
+          ref={(ref) => this.flatList = ref}
           data={[...this.state.userSuggestions]}
           keyExtractor={this._keyExtractor}
           renderItem={({item}) => {
             return <SuggestionCard
                       suggestion={item}
+                      onInputFocus={this._onInputFocus}
                       onConfirmPress={this._onSuggestionPress}/>}}
             />
       </View>

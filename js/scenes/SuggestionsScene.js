@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
+import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
@@ -140,6 +140,16 @@ export default class SuggestionsScene extends Component {
 		)
 	}
 
+  _onInputFocus = () => {
+    if (IS_IOS) {
+      const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
+      const focusedField = TextInput.State.currentlyFocusedField();
+      const inputHandle = ReactNative.findNodeHandle(focusedField);
+      const OFFSET = 145;
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, OFFSET, true);
+    }
+  }
+
   render() {
 
 		console.log(this.props)
@@ -158,6 +168,7 @@ export default class SuggestionsScene extends Component {
 				}
 				{this.props.app.isSuggestionsLoaded &&
 				<FlatList
+          ref={(ref) => this.flatList = ref}
           removeClippedSubviews={false}
 					onRefresh={this._refresh}
 					refreshing={this.state.isRefreshing}
@@ -181,6 +192,7 @@ export default class SuggestionsScene extends Component {
                       onConfirmPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
+                      onInputFocus={this._onInputFocus}
 											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
 						}}
             />}

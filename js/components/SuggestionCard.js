@@ -245,6 +245,7 @@ export default class SuggestionsCard extends Component {
               style={styles.messageInput}
               underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({message: text})}
+              onFocus={() => this.props.onInputFocus()}
               value={this.state.message}
               placeholder={"  Add comment..."}
             />
