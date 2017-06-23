@@ -190,7 +190,7 @@ export default class SuggestionsCard extends Component {
             </View>
           </View>
           <View style={[styles.row, s.flex, s.border]}>
-            <View style={[styles.scheduleWrapper]}>
+            <View style={[styles.scheduleWrapper, {flex: 0, width: 180}]}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
                 On {suggestion.getDateStr()} at
               </Text>
