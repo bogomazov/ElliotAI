@@ -206,8 +206,9 @@ export default class SuggestionsCard extends Component {
             </View>
             <View style={[styles.scheduleWrapper, styles.calendarStyle]}>
               <Text style={[styles.calendarTextSize, s.textColorGrey, {marginLeft: 20, marginBottom: 5}]}>Your calendar</Text>
-              <ScrollView>
+              <View style={styles.column}>
                 {
+                  this.state.calendarEvents.length > 0 ?
                   this.state.calendarEvents.map((event, i) => {
                     console.log(event)
                     const startTime = moment(event.startDate).format("h:mm")
@@ -223,8 +224,11 @@ export default class SuggestionsCard extends Component {
                       </View>
                     </View>
                   })
+                  : <View key={"No events"} style={[styles.calendarWrapper]}>
+                    <Text style={[s.textColorGrey]}>No events</Text>
+                  </View>
                 }
-              </ScrollView>
+              </View>
             </View>
           </View>
           {isInvite && suggestion.message &&
