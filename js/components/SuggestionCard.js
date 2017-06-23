@@ -35,15 +35,33 @@ export default class SuggestionsCard extends Component {
     _loadCalendarEvents = () => {
         console.log('_loadCalendarEvents')
         console.log(this.props.suggestion.meeting_time)
-        dateStart = this.props.suggestion.meeting_time.clone().subtract(1, 'h')
-        dateEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE + 1, 'h')
+        const meetingStart = this.props.suggestion.meeting_time.clone()
+        const meetingEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE, 'h')
+        const dateStart = this.props.suggestion.meeting_time.clone().startOf('date')
+        const dateEnd = this.props.suggestion.meeting_time.clone().endOf('date')
         console.log(dateEnd)
         getEvents(dateStart, dateEnd).then(events => {
             // handle events
             console.log('Calendar')
             console.log(events)
-            const filteredEvents = events.filter((event) => !event.allDay)
-            this.setState({calendarEvents: filteredEvents,
+            const filteredEvents = events.filter((event) => !event.allDay).sort((e1, e2) => {
+              const m1 = moment(e1.startDate)
+              const m2 = moment(e2.startDate)
+              if (m1.isSame(m2)) return 0;
+              return m1.isBefore(m2) ? -1 : 1;
+            })
+            const beforeEvents = filteredEvents.filter((event) => (moment(event.startDate).isBefore(meetingStart)))
+            const duringEvents = filteredEvents.filter((event) => (moment(event.startDate).isBetween(meetingStart, meetingEnd, null, '[]')))
+            const afterEvents = filteredEvents.filter((event) => (moment(event.startDate).isAfter(meetingEnd)))
+            let resultEvents = []
+            if (beforeEvents.length > 0) {
+              resultEvents.push(beforeEvents[beforeEvents.length - 1])
+            }
+            resultEvents.push(...duringEvents)
+            if (afterEvents.length > 0) {
+              resultEvents.push(afterEvents[0])
+            }
+            this.setState({calendarEvents: resultEvents,
                 isCalendarEventsLoaded: true})
         })
             .catch(error => {
