@@ -45,10 +45,6 @@ export default class CalendarScene extends Component {
 
   componentWillMount = () => {
     console.log('Calendar Will Mount');
-    if (this.props.app.calendarBadges > 0) {
-      this.props.appActions.setCalendarBadges(0)
-      this.props.appActions.resetBadges()
-    }
   }
 
   // MARK - on-resume detection
