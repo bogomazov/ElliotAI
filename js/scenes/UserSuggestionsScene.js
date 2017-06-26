@@ -8,6 +8,7 @@ import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
+import CustomListView from '../containers/CustomListView'
 import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
@@ -88,16 +89,6 @@ export default class UserSuggestionsScene extends Component {
         }).catch((err) => console.log(err))
 	}
 
-  _onInputFocus = () => {
-    if (IS_IOS) {
-      const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
-      const focusedField = TextInput.State.currentlyFocusedField();
-      const inputHandle = ReactNative.findNodeHandle(focusedField);
-      const OFFSET = 145;
-      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, OFFSET, true);
-    }
-  }
-
     _keyExtractor = (item, index) => item.id;
 
   render() {
@@ -105,14 +96,13 @@ export default class UserSuggestionsScene extends Component {
     return (
       <View style={styles.container}>
         <NavigationTopBar navigation={this.props.navigation} />
-        <FlatList
-          ref={(ref) => this.flatList = ref}
+        <CustomListView
           data={[...this.state.userSuggestions]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => {
+          renderItem={({item, onInputFocus}) => {
             return <SuggestionCard
                       suggestion={item}
-                      onInputFocus={this._onInputFocus}
+                      onInputFocus={onInputFocus}
                       onConfirmPress={this._onSuggestionPress}/>}}
             />
       </View>

@@ -91,9 +91,9 @@ class API {
       body: JSON.stringify(data)
     }).then((response) => {
       console.log(response)
-        if (response.status == 401) {
-          this.appActions.logOut()
-        }
+        // if (response.status == 401) {
+        //   this.appActions.logOut()
+        // }
         return response.json()
     }).catch((error) => {
       console.log(error);

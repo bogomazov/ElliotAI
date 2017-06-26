@@ -12,6 +12,7 @@ import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
+import CustomListView from '../containers/CustomListView'
 import strings from '../res/values/strings'
 import s from '../res/values/styles'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
@@ -140,16 +141,6 @@ export default class SuggestionsScene extends Component {
 		)
 	}
 
-  _onInputFocus = () => {
-    if (IS_IOS) {
-      const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
-      const focusedField = TextInput.State.currentlyFocusedField();
-      const inputHandle = ReactNative.findNodeHandle(focusedField);
-      const OFFSET = 145;
-      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, OFFSET, true);
-    }
-  }
-
   render() {
 
 		console.log(this.props)
@@ -167,14 +158,12 @@ export default class SuggestionsScene extends Component {
 					<ActivityIndicator animating={true} color={themeColor} size="large" style={styles.activityIndicator}/>
 				}
 				{this.props.app.isSuggestionsLoaded &&
-				<FlatList
-          ref={(ref) => this.flatList = ref}
-          removeClippedSubviews={false}
+				<CustomListView
 					onRefresh={this._refresh}
 					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => {
+          renderItem={({item, onInputFocus}) => {
 						if (item.isCatchUp) {
 							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
 								return <CatchUpCard onPress={this._onCatchUpPress} />
@@ -192,7 +181,7 @@ export default class SuggestionsScene extends Component {
                       onConfirmPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
-                      onInputFocus={this._onInputFocus}
+                      onInputFocus={onInputFocus}
 											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
 						}}
             />}
