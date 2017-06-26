@@ -29,6 +29,6 @@
 3. `sh deploy.sh <environment> <unique-app-name> <platform>`
     - `<environment>` should be either `Staging` or `Production`.
     - `platform` should be either `ios` or `android`.
-  Android: 
-  sh deploy.sh Staging elliot android
-  sh deploy.sh Production elliot android
+  Android:.
+  sh deploy.sh Staging elliot android.
+  sh deploy.sh Production elliot android.
