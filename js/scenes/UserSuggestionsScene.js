@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
 import TellFriendsCard from '../components/TellFriendsCard'
+import CustomListView from '../containers/CustomListView'
 import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
@@ -95,12 +96,13 @@ export default class UserSuggestionsScene extends Component {
     return (
       <View style={styles.container}>
         <NavigationTopBar navigation={this.props.navigation} />
-        <FlatList
+        <CustomListView
           data={[...this.state.userSuggestions]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => {
+          renderItem={({item, onInputFocus}) => {
             return <SuggestionCard
                       suggestion={item}
+                      onInputFocus={onInputFocus}
                       onConfirmPress={this._onSuggestionPress}/>}}
             />
       </View>

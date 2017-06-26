@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
+import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
@@ -12,6 +12,7 @@ import TopBar from '../components/TopBar'
 import SuggestionCard from '../components/SuggestionCard'
 import IntroLabel from '../components/IntroLabel'
 import CatchUpCard from '../components/CatchUpCard'
+import CustomListView from '../containers/CustomListView'
 import strings from '../res/values/strings'
 import s from '../res/values/styles'
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
@@ -157,13 +158,12 @@ export default class SuggestionsScene extends Component {
 					<ActivityIndicator animating={true} color={themeColor} size="large" style={styles.activityIndicator}/>
 				}
 				{this.props.app.isSuggestionsLoaded &&
-				<FlatList
-          removeClippedSubviews={false}
+				<CustomListView
 					onRefresh={this._refresh}
 					refreshing={this.state.isRefreshing}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => {
+          renderItem={({item, onInputFocus}) => {
 						if (item.isCatchUp) {
 							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
 								return <CatchUpCard onPress={this._onCatchUpPress} />
@@ -181,6 +181,7 @@ export default class SuggestionsScene extends Component {
                       onConfirmPress={this._onSuggestionPress}
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
+                      onInputFocus={onInputFocus}
 											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
 						}}
             />}
