@@ -16,6 +16,8 @@ const borderWidth = 2
 
 const CALENDAR_TIME_RANGE = 3 // hours
 
+const KEYBOARD_OFFSET = 145 // keyboard offset for message input
+
 export default class SuggestionsCard extends Component {
     state = {
         calendarEvents: [],
@@ -245,7 +247,7 @@ export default class SuggestionsCard extends Component {
               style={styles.messageInput}
               underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({message: text})}
-              onFocus={() => this.props.onInputFocus()}
+              onFocus={() => this.props.onInputFocus(KEYBOARD_OFFSET)}
               value={this.state.message}
               placeholder={"  Add comment..."}
             />

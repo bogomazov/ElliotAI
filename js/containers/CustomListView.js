@@ -7,13 +7,16 @@ import Notification from 'react-native-in-app-notification'
 
 
 export default class CustomListView extends Component {
-  onInputFocus = () => {
+  onInputFocus = (offset) => {
     if (IS_IOS) {
       const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
       const focusedField = TextInput.State.currentlyFocusedField();
       const inputHandle = ReactNative.findNodeHandle(focusedField);
-      const OFFSET = 145;
-      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, OFFSET, true);
+      // Delay scrolling until keyboard fully appears to make this work on device:
+      // https://github.com/facebook/react-native/issues/3195#issuecomment-146563568
+      setTimeout(() => {
+        scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, offset, true);
+      }, 300);
     }
   }
 
