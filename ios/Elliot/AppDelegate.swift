@@ -15,7 +15,8 @@ import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let facebookLogoutNotifName = "facebookLogoutNotif"
+    
     var window: UIWindow?
     weak var tabBarVC: MainTabBarController?
     
@@ -41,6 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         showViewController(identifier: "login-vc")
     }
     
+    func observeLogoutEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.doLogin),
+                                               name: NSNotification.Name.init(facebookLogoutNotifName), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -49,6 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OpenSans.registerFonts()
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        
+        observeLogoutEvent()
         
         if shouldLogin() {
             doLogin()

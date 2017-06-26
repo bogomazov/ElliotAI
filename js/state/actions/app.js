@@ -8,6 +8,8 @@ import Suggestion from '../models/suggestion'
 import {saveEvent, removeEvent} from '../../utils/Calendar';
 import turf from 'turf'
 import {TEST_MEETINGS} from '../../scenes/CalendarScene'
+import {IS_IOS} from '../../settings';
+import {NativeModules} from 'react-native';
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
@@ -69,6 +71,9 @@ export const removeEventCalendar = (meetingId) => {
 }
 export const logOut = () => {
   LoginManager.logOut()
+  if (IS_IOS) {
+    NativeModules.NSNotificationAccess.post("facebookLogoutNotif", null);
+  }
   return {
     type: LOG_OUT,
   }
