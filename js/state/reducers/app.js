@@ -6,6 +6,8 @@ const defaultState = {
   accessToken: null,
   isLoggedIn: false,
   isPermissionsGranted: false,
+  isCalendarGranted: false,
+  didSeeCalendarPermissionScene: false,
   isLocationGiven: false,
   isPhoneNumberVerified: false,
   location: {lat: 0.0, lng: 0.0, updatedAt: 0},
@@ -164,6 +166,16 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         shouldShowAcceptedBanner: action.shouldShow
+      }
+    case actionType.SET_IS_CALENDAR_GRANTED:
+      return {
+        ...state,
+        isCalendarGranted: action.granted
+      }
+    case actionType.DID_SEE_CALENDAR_PERMISSION_SCENE:
+      return {
+        ...state,
+        didSeeCalendarPermissionScene: true,
       }
     default:
       return state

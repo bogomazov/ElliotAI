@@ -7,6 +7,7 @@ import LoginScene from './LoginScene';
 import UserSuggestionsScene from './UserSuggestionsScene';
 import FriendsScene from './FriendsScene';
 import PermissionsScene from './PermissionsScene';
+import CalendarPermissionScene from './CalendarPermissionScene';
 import {IS_ANDROID} from '../settings';
 import {StackNavigator} from 'react-navigation';
 import * as appActions from '../state/actions/app';
@@ -53,10 +54,9 @@ export default class LandingScene extends Component {
   _checkPermissions = () => {
     Permissions.checkMultiplePermissions(['location', 'contacts', 'event']).then(
       (response) => {
+        this.props.appActions.setIsCalendarGranted(response.event == 'authorized');
         if (response.location != 'authorized' ||
-            response.contacts != 'authorized' ||
-            response.event != 'authorized') {
-          console.log(response);
+            response.contacts != 'authorized') {
           this.props.appActions.switchPermissionsOff();
         }
       }
@@ -68,6 +68,10 @@ export default class LandingScene extends Component {
       if (!this.props.app.isLoggedIn) {
         return <LoginScene/>
       }
+    }
+    if (!this.props.app.isCalendarGranted
+      || !this.props.app.didSeeCalendarPermissionScene) {
+      return <CalendarPermissionScene/>
     }
     if (!this.props.app.isPermissionsGranted) {
       return <PermissionsScene/>
