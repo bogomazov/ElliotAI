@@ -71,12 +71,14 @@ export default class SuggestionsScene extends Component {
       this.setState({isAcceptLoading: false})
       this.props.appActions.removeSuggestion(suggestion)
       // Refresh confirmed-meetings
-      this.props.appActions.calendarLoading();
-      this.props.appActions.loadScheduledMeetings();
+      this.props.appActions.calendarLoading()
+      this.props.appActions.loadScheduledMeetings()
       this.props.appActions.loadSuggestions()
-      setTimeout(() => {
-        this.props.appActions.showAcceptedBanner(true);
-      }, 300);
+      if (!suggestion.is_invite) {
+          setTimeout(() => {
+              this.props.appActions.showAcceptedBanner(true);
+          }, 300);
+      }
     }).catch((err) => {
       this.setState({isAcceptLoading: false})
     })
