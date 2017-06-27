@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native'
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
@@ -8,6 +14,8 @@ import strings from '../res/values/strings'
 import s from '../res/values/styles';
 import Permissions from 'react-native-permissions'
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import {getCalendars} from '../utils/Calendar';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 GoogleSignin.configure({
    scopes: ["https://www.googleapis.com/auth/calendar.readonly"], // what API you want to access on behalf of the user, default is email and profile
@@ -26,9 +34,19 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarPermissionScene extends Component {
+  state = {
+    calendars: [],
+    isSelected: [],
+  }
 
   componentWillMount() {
-    GoogleSignin.signOut();
+    getCalendars().then((calendars) => {
+      console.log(calendars);
+      this.setState({
+        calendars: calendars,
+        isSelected: calendars.map((cal) => true),
+      });
+    })
     Permissions.getPermissionStatus('event').then((response) => {
       this.props.appActions.setIsCalendarGranted(response == 'authorized');
     });
@@ -69,7 +87,15 @@ export default class CalendarPermissionScene extends Component {
     }
   }
 
+  _toggleSelected = (index) => {
+    console.log('toggle selected : ' + index);
+    var newIsSelected = this.state.isSelected;
+    newIsSelected[index] = !newIsSelected[index];
+    this.setState({isSelected: newIsSelected});
+  }
+
   render() {
+    console.log(this.state);
     return (
       <View style={styles.container}>
         <View style={styles.topWrapper}>
@@ -77,7 +103,25 @@ export default class CalendarPermissionScene extends Component {
           <Text style={styles.description}> Elliot needs access to your calendars</Text>
         </View>
         <View style={styles.middleWrapper}>
-          {!this.props.app.isCalendarGranted &&
+          {this.props.app.isCalendarGranted ?
+            <View style={[s.col, {height: 100, marginBottom: 20}]}>
+              <Text style={[s.textColorWhite, styles.calendarTitle]}>Select Calendars</Text>
+              <ScrollView>
+                {
+                  this.state.calendars.map((calendar, i) =>
+                    <View key={i}>
+                      <TouchableWithoutFeedback onPress={() => this._toggleSelected(i)}>
+                        <View style={[s.row]}>
+                          {this.state.isSelected[i] && <Icon name="md-checkmark" size={20} color="white"/>}
+                          <Text style={[s.textColorWhite, styles.calendarTitle]}>{calendar.title}</Text>
+                        </View>
+                      </TouchableWithoutFeedback>
+                    </View>
+                  )
+                }
+              </ScrollView>
+            </View>
+            :
             <CustomButton
               onPress={this.requestCalendarPermissions}
               title={strings.enableCalendar}
@@ -139,5 +183,14 @@ const styles = StyleSheet.create({
   },
   skipWrapper: {
     justifyContent: 'flex-end',
+  },
+  calendarTitle: {
+    fontSize: 17,
+    textAlign: 'left',
+    marginLeft: 15,
+  },
+  calendarRow: {
+    backgroundColor: 'green',
+    justifyContent: 'flex-start',
   }
 });
