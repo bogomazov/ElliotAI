@@ -11,10 +11,12 @@ import FacebookLogin
 import FacebookCore
 import OpenSansSwift
 import SwiftyJSON
+import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let facebookLogoutNotifName = "facebookLogoutNotif"
+    
     var window: UIWindow?
     weak var tabBarVC: MainTabBarController?
     
@@ -40,6 +42,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         showViewController(identifier: "login-vc")
     }
     
+    func observeLogoutEvent() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.doLogin),
+                                               name: NSNotification.Name.init(facebookLogoutNotifName), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
@@ -55,12 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
+        observeLogoutEvent()
+        
         if shouldLogin() {
             doLogin()
         } else {
-            if !AccessStatus.hasEnabledAll() {
-                showViewController(identifier: "permissions-vc")
-            } else if !SMSNotifManager.hasVerifiedNumber() {
+            if !SMSNotifManager.hasVerifiedNumber() {
                 showViewController(identifier: "verify-phone-vc")
             } else {
                 showViewController(identifier: "main-vc")
@@ -83,7 +94,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
-        return SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        if SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) {
+            return true
+        }
+        return RCTLinkingManager.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -106,10 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             doLogin()
             return
         }
-        if !AccessStatus.hasEnabledAll() {
-            // redirect back to permissions screen if user changes iphone privacy settings
-            showViewController(identifier: "permissions-vc")
-        } else if !SMSNotifManager.hasVerifiedNumber() {
+        if !SMSNotifManager.hasVerifiedNumber() {
             // redirect to phone-verification screen if needed
             showViewController(identifier: "verify-phone-vc")
         } else {

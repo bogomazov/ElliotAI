@@ -11,10 +11,10 @@
 
 @interface RCT_EXTERN_MODULE(ShareAccess, NSObject)
     
-RCT_EXTERN_METHOD(sendSMS:(NSNumber*)reactTag numbers:(NSArray*)numbers content:(NSString*)content resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(sendMail:(NSNumber*)reactTag addresses:(NSArray*)addresses subject:(NSString*)subject content:(NSString*)content resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(shareOnMessenger:(NSNumber*)reactTag link:(NSString*)link initialText:(NSString*)initialText)
-RCT_EXTERN_METHOD(shareOnFacebook:(NSNumber*)reactTag link:(NSString*)link title:(NSString*)title text:(NSString*)text)
-RCT_EXTERN_METHOD(shareOnTwitter:(NSNumber*)reactTag link:(NSString*)link initialText:(NSString*)initialText)
+RCT_EXTERN_METHOD(sendSMS:(NSArray*)numbers content:(NSString*)content resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(sendMail:(NSArray*)addresses subject:(NSString*)subject content:(NSString*)content resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+RCT_EXTERN_METHOD(shareOnMessenger:(NSString*)link initialText:(NSString*)initialText)
+RCT_EXTERN_METHOD(shareOnFacebook:(NSString*)link title:(NSString*)title text:(NSString*)text)
+RCT_EXTERN_METHOD(shareOnTwitter:(NSString*)link initialText:(NSString*)initialText)
 
 @end

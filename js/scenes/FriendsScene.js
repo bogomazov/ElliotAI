@@ -20,6 +20,7 @@ import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import NavigationTopBar from '../components/NavigationTopBar';
 import User from '../state/models/user';
 import Arrow from '../components/Arrow';
+import RemoteImage from '../components/RemoteImage';
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -56,7 +57,7 @@ export default class FriendsScene extends Component {
 		const friend = item
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onFriendPress(friend)}>
 			<View style={[...[s.row, s.stretch, s.alignItemsCenter, s.padding10], index? s.borderTopGrey: null]}>
-				<Image
+				<RemoteImage
 					style={s.avatar30}
 					source={{ uri: friend.image}}/>
 				<Text style={[s.marginLeft10, {fontSize: 17}]}>{friend.first_name} {friend.last_name}</Text>

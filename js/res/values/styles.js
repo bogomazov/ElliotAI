@@ -2,9 +2,12 @@ import { StyleSheet, Platform } from 'react-native';
 import { setCustomText } from 'react-native-global-props';
 
 export const themeColor = '#B3A784'
-export const themeColorThird = '#3F9696'
+export const themeColorThird = '#14a5a7'
 export const themeColorLight = '#CEC19B'
 export const mainBackgroundColor = '#F1F1F1'
+export const greyColor = '#9b9b9b'
+export const greyColorLight = '#fafafa'
+
 
 const customTextProps = {
   style: {
@@ -26,6 +29,9 @@ export default s = StyleSheet.create({
   light: {
     fontFamily: 'OpenSans-Light'
   },
+  semibold: {
+    fontFamily: 'OpenSans-SemiBold',
+  },
   stretch: {
     alignSelf: 'stretch',
   },
@@ -41,7 +47,7 @@ export default s = StyleSheet.create({
     color: themeColor
   },
   textColorGrey: {
-    color: '#BBBBBB'
+    color: greyColor
   },
   textColorBlack: {
     color: 'black'
@@ -63,11 +69,14 @@ export default s = StyleSheet.create({
     width: 40,
     height: 40,
   },
-
+  tabIcon: {
+    width: 32,
+    height: 32,
+  },
   avatar: {
-      width: 45,
-      height: 45,
-      borderRadius: 22,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
   },
   avatar30: {
       width: 30,

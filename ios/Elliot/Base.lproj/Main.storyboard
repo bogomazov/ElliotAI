@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-9p-vaY">
-                                <rect key="frame" x="0.0" y="168" width="375" height="450"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="inviteCell" id="s4d-1M-itN" customClass="ContactTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -348,7 +348,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XVv-83-WoK">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="meetingCell" id="WT6-UT-3i0" customClass="MeetingsTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -517,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Adp-yA-TG7">
-                                <rect key="frame" x="16" y="30" width="343" height="575"/>
+                                <rect key="frame" x="16" y="30" width="343" height="624"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQd-L6-Mqn">
                                         <rect key="frame" x="15" y="15" width="30" height="30"/>
@@ -564,7 +564,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hTd-CU-uhM">
-                                        <rect key="frame" x="0.0" y="153" width="343" height="360"/>
+                                        <rect key="frame" x="0.0" y="153" width="343" height="409"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="meetingDetailCell" id="68Q-Xu-67H" customClass="MeetingDetailTableViewCell" customModule="Elliot" customModuleProvider="target">
@@ -611,7 +611,7 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZe-GI-xbR">
-                                        <rect key="frame" x="0.0" y="513" width="343" height="3"/>
+                                        <rect key="frame" x="0.0" y="562" width="343" height="3"/>
                                         <color key="backgroundColor" red="0.56862745100000001" green="0.51372549020000002" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.56862745100000001" green="0.51372549020000002" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -619,7 +619,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6P-1E-yho">
-                                        <rect key="frame" x="0.0" y="516" width="343" height="59"/>
+                                        <rect key="frame" x="0.0" y="565" width="343" height="59"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reschedule" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r77-1T-JSa">
                                                 <rect key="frame" x="18" y="19" width="141" height="21"/>
@@ -1788,8 +1788,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've sent you a text message, follow the link to start using Elliot!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EY-ME-4lQ">
-                                <rect key="frame" x="40" y="227" width="295" height="82"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text message sent. Follow the link to start using Elliot!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EY-ME-4lQ">
+                                <rect key="frame" x="40" y="227" width="295" height="54.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1806,7 +1806,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duE-iO-Sdk" customClass="BasicHighlightedButton" customModule="Elliot" customModuleProvider="target">
-                                <rect key="frame" x="195" y="349" width="140" height="44"/>
+                                <rect key="frame" x="195" y="321.5" width="140" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="2yU-AT-uI2"/>
                                     <constraint firstAttribute="height" constant="44" id="RSj-ts-ERT"/>
@@ -1875,8 +1875,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="apG-96-gIP" kind="relationship" relationship="viewControllers" id="xlu-b3-rSK"/>
-                        <segue destination="C61-th-q3y" kind="relationship" relationship="viewControllers" id="ph3-Wh-XJA"/>
-                        <segue destination="d3T-Vf-7iA" kind="relationship" relationship="viewControllers" id="gOH-qj-q93"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbK-QK-Doj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1889,7 +1887,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d3T-Vf-7iA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Invite" id="4AZ-Ww-nVr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="VJW-zY-75v">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VJW-zY-75v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1908,7 +1906,7 @@
                 <navigationController title="Meetings" automaticallyAdjustsScrollViewInsets="NO" id="C61-th-q3y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Meetings" id="ZKe-Pe-Fei"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Htc-Rt-eP8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Htc-Rt-eP8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1927,7 +1925,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zx4-Yu-qbo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Suggestions" id="Qtq-Xe-m1B"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yio-SR-fjI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yio-SR-fjI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

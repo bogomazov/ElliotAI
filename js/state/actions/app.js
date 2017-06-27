@@ -8,6 +8,8 @@ import Suggestion from '../models/suggestion'
 import {saveEvent, removeEvent} from '../../utils/Calendar';
 import turf from 'turf'
 import {TEST_MEETINGS} from '../../scenes/CalendarScene'
+import {IS_IOS} from '../../settings';
+import {NativeModules} from 'react-native';
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
 export const FINISH_INTRO = "FINISH_INTRO"
@@ -27,6 +29,8 @@ export const INTRO_CALENDAR_SEEN = "INTRO_CALENDAR_SEEN"
 export const NEW_PHONE_NUMBER = "NEW_PHONE_NUMBER"
 export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
+export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
+export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
 
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -67,6 +71,9 @@ export const removeEventCalendar = (meetingId) => {
 }
 export const logOut = () => {
   LoginManager.logOut()
+  if (IS_IOS) {
+    NativeModules.NSNotificationAccess.post("facebookLogoutNotif", null);
+  }
   return {
     type: LOG_OUT,
   }
@@ -142,6 +149,18 @@ export const newLocation = (lon, lat, timestamp) => {
     metroId
   }
 }
+export const migrateIOSCalendar = (iosCalendarMap) => {
+  return {
+    type: MIGRATE_IOS_CALENDAR,
+    iosCalendarMap,
+  }
+}
+export const showAcceptedBanner = (shouldShow) => {
+  return {
+    type: SHOW_ACCEPTED_BANNER,
+    shouldShow
+  }
+}
 
 export const sendLocation = (lon, lat, timestamp) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendLocation(lon, lat, timestamp)
@@ -182,9 +201,9 @@ export const loadScheduledMeetings = () => {
 
     data = meetings.filter((meeting) => meeting.canceled == 0)
     const pastMeetings = data.filter((meeting) => meeting.isPast())
-    pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((b.meeting_time > a.meeting_time) ? -1 : 0);} );
+    pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((a.meeting_time > b.meeting_time) ? -1 : 0);} );
     const upcomingMeetings = data.filter((meeting) => !meeting.isPast())
-    upcomingMeetings.sort(function(a,b) {return (a.meeting_time > b.meeting_time)? 1 : ((b.meeting_time < a.meeting_time) ? -1 : 0);} );
+    upcomingMeetings.sort((a,b) => (a.meeting_time > b.meeting_time)? 1 : ((a.meeting_time < b.meeting_time) ? -1 : 0) );
     // this.setState({upcomingMeetings, pastMeetings})
     console.log('loadScheduledMeetings3')
     dispatch(newCalendar(upcomingMeetings, pastMeetings, badges))
@@ -199,12 +218,12 @@ const _updateDeviceCalendar = (dispatch, meetings) => {
         removeEvent(calendarMap[meeting.suggestion_id]).then((success) => dispatch(removeEventCalendar(meeting.suggestion_id)))
       }
     } else if (meeting.canceled == 0) {
-      saveEvent(meeting.getTitle(), meeting.meeting_time, meeting.meeting_time.clone().add(1, 'h')).then((id) => {
+      const end_time = meeting.meeting_time.clone().add(meeting.getDuration(), 'm');
+      saveEvent(meeting.getTitle(), meeting.meeting_time, end_time).then((id) => {
         dispatch(addEventCalendar({[meeting.suggestion_id]: id}))
       })
     }
   });
-  // meetings
 }
 
 export const loadSuggestions = () => {
@@ -233,9 +252,9 @@ export const sendEvents = (events) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendEvents(events)
   }
 
-export const acceptSuggestion = (suggestion, times) => {
+export const acceptSuggestion = (suggestion, times, message) => {
   return (dispatch, getState, getAPI) =>
-      getAPI(getState, dispatch).accept(suggestion.id, times)
+      getAPI(getState, dispatch).accept(suggestion.id, times, message)
   }
 
   export const resetBadges = () => {

@@ -23,6 +23,9 @@ import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
 import PhoneAccess from '../utils/PhoneNumberModule';
+import ShareAccess from '../utils/ShareModule';
+import {IS_IOS} from '../settings.js';
+import InAppNotification from '../components/InAppNotification';
 
 // ...
 
@@ -42,6 +45,8 @@ const mapDispatchToProps = (dispatch) => {
 		appActions: bindActionCreators(appActions, dispatch),
 	}
 }
+
+ELLIOT_LINK = "http://elliot.ai"
 
 TYPE_SMS = "sms"
 TYPE_EMAIL = "email"
@@ -66,6 +71,12 @@ const icons = [
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class InviteFriendsScene extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor, focused}) =>
+      focused ? <Image style={s.tabIcon} source={require('../res/images/invite_active.png')}/>
+        : <Image style={s.tabIcon} source={require('../res/images/invite_grey.png')}/>,
+  };
+
 	state = {
 		activeTab: 0,
 		emails: [],
@@ -81,7 +92,7 @@ export default class InviteFriendsScene extends Component {
 	_inviteFacebook = (dailog) => {
 		const shareLinkContent = {
 		  contentType: 'link',
-		  contentUrl: "http://elliot.ai",
+		  contentUrl: ELLIOT_LINK,
 		  contentDescription: strings.inviteFacebook,
 		};
 	  var tmp = this;
@@ -108,15 +119,29 @@ export default class InviteFriendsScene extends Component {
 	}
 
 	_inviteTwitter = () => {
+
+    if (IS_IOS) {
+      ShareAccess.shareOnTwitter(ELLIOT_LINK, strings.inviteTwitter);
+      return;
+    }
 		let shareOptions = {
-			title: "React Native",
+			title: "Try out Elliot!",
 			message: strings.inviteTwitter,
-			url: "http://elliot.ai"
+			url: ELLIOT_LINK
 		};
 		Share.shareSingle(Object.assign(shareOptions, {
 					"social": "twitter"
 				}));
 	}
+
+  _inviteMessenger = () => {
+
+    if (IS_IOS) {
+      ShareAccess.shareOnMessenger(ELLIOT_LINK, strings.inviteFacebook);
+    } else {
+      this._inviteFacebook(MessageDialog);
+    }
+  }
 
 	_onTabPress = (i) => {
 		if (i >= 0 && i <= 1) {
@@ -124,12 +149,15 @@ export default class InviteFriendsScene extends Component {
 		} else {
 			switch(i) {
 				case TAB_MESSENGER:
-					this._inviteFacebook(MessageDialog)
+					this.props.appActions.logShare("fb-messenger", ``)
+					this._inviteMessenger()
 					break;
 				case TAB_FACEBOOK:
+					this.props.appActions.logShare("fb-share", ``)
 					this._inviteFacebook(ShareDialog)
           break;
 				case TAB_TWITTER:
+					this.props.appActions.logShare("twitter", ``)
 					this._inviteTwitter()
           break;
 			}
@@ -138,13 +166,28 @@ export default class InviteFriendsScene extends Component {
 
 	_onContactPress = (contact) => {
 		console.log(this.state.activeTab)
+		this.props.appActions.logShare(this.state.activeTab? "email": "sms", `${contact.firstName} ${contact.lastName}`)
+
 		if (this.state.activeTab) {
 			console.log('email')
-			email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      if (IS_IOS) {
+        ShareAccess.sendMail([contact.contact], "Try out Elliot!", format(strings.inviteDirected, contact.firstName)).then((res) => {
+          console.log(res);
+          this._showInAppNotif(contact);
+        }).catch((err) => {
+          console.log(err);
+        });
+      } else {
+			  email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+      }
 		} else {
 			console.log('text')
-			this.setState({alertContact: contact, isConfirmationOpen: true})
-		}
+      if (IS_IOS) {
+        this._sendSMSIOS(contact);
+      } else {
+        this.setState({alertContact: contact, isConfirmationOpen: true})
+      }
+    }
 	}
 
 	_sendSMS = () => {
@@ -153,12 +196,36 @@ export default class InviteFriendsScene extends Component {
 		})
 	}
 
+  _showInAppNotif = (contact) => {
+    this.notification.show(
+      `${contact.firstName} was successfuly invited.`,
+      'Tell more friends about Elliot to stay in touch!'
+    );
+  }
+
+  _sendSMSIOS = (contact) => {
+    console.log(contact);
+    const number = contact.contact;
+    const content = strings.inviteDirectedSMS;
+    console.log(number);
+    ShareAccess.sendSMS([number], content).then((res) => {
+      console.log(res);
+      this._showInAppNotif(contact);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 
 	_renderItem = ({item, index}) => {
 		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
 			<View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
-				<Text style={styles.contactAvatar}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
-				<Text style={s.flex}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
+        {item.hasThumbnail &&
+          <Image style={styles.contactAvatar} source={{uri: item.thumbnailPath}}/>
+        }
+        {!item.hasThumbnail &&
+          <Text style={[styles.contactAvatar, styles.contactInitials]}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
+        }
+				<Text style={[s.flex, styles.nameText]}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
 				<Image
 					style={[s.icon40, s.marginRight10]}
 					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
@@ -168,8 +235,7 @@ export default class InviteFriendsScene extends Component {
 
   render() {
 		const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
-		console.log(data)
-    return (
+		return (
       <View style={styles.container}>
         <TopBar isMainScene>
           <Text
@@ -202,6 +268,7 @@ export default class InviteFriendsScene extends Component {
 									 		title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
 											description='Tell more friends about Elliot to stay in touch!'
 											onCancelTitle='Ok'/>
+        <InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }
@@ -217,20 +284,28 @@ const styles = StyleSheet.create({
 
   topBarText: {
     color: themeColor,
-    fontFamily: 'OpenSans-Bold'
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 16,
   },
-	contactAvatar: {
-		width: 30,
-		height: 30,
-		margin: 10,
+  contactAvatar: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    overflow: 'hidden',
+    margin: 10,
+  },
+	contactInitials: {
 		justifyContent: 'center',
 		textAlign: 'center',
-		borderRadius: 100,
 		color: 'white',
 		backgroundColor: '#B4BBBE',
-		padding: 5
+		padding: 5,
+    fontSize: 19,
 	},
 	invitedModalButton: {
 		width: 200
-	}
+	},
+  nameText: {
+    fontSize: 17,
+  }
 });

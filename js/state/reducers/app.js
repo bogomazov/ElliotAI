@@ -25,6 +25,8 @@ const defaultState = {
   isCalendarLoaded: false,
   isCalendarLoading: false,
   isContactsLoaded: false,
+  didMigrateIOSCalendar: false,
+  shouldShowAcceptedBanner: false,
 }
 
 const app = (state = defaultState, action) => {
@@ -58,6 +60,7 @@ const app = (state = defaultState, action) => {
           suggestions: [],
           upcomingMeetings: [],
           pastMeetings: [],
+          shouldShowAcceptedBanner: false,
         }
     case actionType.NEW_LOCATION:
       return {
@@ -71,7 +74,6 @@ const app = (state = defaultState, action) => {
         ...state,
         isLoggedIn: false,
         accessToken: null,
-        isPermissionsGranted: false,
       }
     case actionType.PERMISSIONS_SWITCH_ON:
       return {
@@ -152,6 +154,17 @@ const app = (state = defaultState, action) => {
           ...state,
           suggestions: state.suggestions.filter((item) => item.id != action.suggestion.id)
         }
+    case actionType.MIGRATE_IOS_CALENDAR:
+      return {
+        ...state,
+        calendarMap: {...state.calendarMap, ...action.iosCalendarMap},
+        didMigrateIOSCalendar: true,
+      }
+    case actionType.SHOW_ACCEPTED_BANNER:
+      return {
+        ...state,
+        shouldShowAcceptedBanner: action.shouldShow
+      }
     default:
       return state
   }

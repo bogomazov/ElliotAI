@@ -13,7 +13,8 @@ import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
 import { getEvents } from '../utils/Calendar'
 import moment from 'moment'
-import {IS_DEV} from '../settings'
+import {IS_DEV, IS_IOS, IS_ANDROID} from '../settings'
+import {mainBackgroundColor} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -25,28 +26,15 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
-
-
-  // _requestCurrentLocation = () => {
-	// 	console.log('request Location')
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         console.log(position)
-  //         this.props.appActions.sendLocation(position.coords.longitude, position.coords.latitude, position.timestamp)
-  //       },
-  //       (error) => alert(JSON.stringify(error))
-  //       // {enableHighAccuracy: false, timeout: 10000, maximumAge: 25000}
-  //     );
-	// }
-
   render() {
-			if (IS_DEV) {
+			if (IS_DEV && IS_ANDROID) {
 				alert('Staging server!')
 			}
+      if (IS_IOS) {
+        return (<View style={styles.iosContainer}></View>);
+      }
 			return (<View style={styles.container}>
         <Image
           style={styles.image}
@@ -62,6 +50,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+  },
+  iosContainer: {
+    flex: 1,
+    backgroundColor: mainBackgroundColor
   },
   swiper: {
   },

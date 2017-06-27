@@ -79,8 +79,11 @@ export default class SearchContainer extends Component {
 						backgroundColor="#fff"
 						titleCancelColor={themeColor}
 						onChangeText={this._onChangeText}
+            onDelete={() => this._onChangeText("")}
+            onCancel={() => this._onChangeText("")}
 	        />
           <FlatList
+            removeClippedSubviews={false}
             data={this._getFilteredData()}
             keyExtractor={this._keyExtractor}
             renderItem={this.props.renderItem}/>

@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
       position: 'absolute',
       right: 0,
   		top: 0,
-      bottom: 0
+      bottom: 0,
+      // backgroundColor: 'black'
     },
     backArrow: {
       width: 30,

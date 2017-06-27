@@ -1,12 +1,16 @@
 import Contacts from 'react-native-contacts'
 import { Store } from '../index'
 import { switchPermissionsOff, newContacts } from '../state/actions/app'
+import {IS_IOS} from '../settings';
 
 export const loadContacts = () => {
   Contacts.checkPermission( (err, permission) => {
     console.log(permission)
     if(permission != 'authorized'){
-      Store.dispatch(switchPermissionsOff())
+      // Contacts permission is optional on iOS.
+      if (!IS_IOS) {
+        Store.dispatch(switchPermissionsOff())
+      }
       return
     }
     Contacts.getAll((err, contacts) => {
@@ -17,11 +21,10 @@ export const loadContacts = () => {
 
       } else {
         console.log('Contacts')
-        console.log(contacts)
 
         emails = this._reduceContacts(contacts, 'emailAddresses', 'email')
         numbers = this._reduceContacts(contacts, 'phoneNumbers', 'number')
-        console.log(emails)
+
         Store.dispatch(newContacts(numbers, emails))
       }
     })
@@ -30,7 +33,6 @@ export const loadContacts = () => {
 }
 
 _reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, item, i) => {
-  console.log(item[field])
   if (item[field].length > 0) {
     let contact = item[field][0][secondField]
     if (field == 'phoneNumbers') {
@@ -44,7 +46,9 @@ _reduceContacts = (contacts, field, secondField) => contacts.reduce((newArray, i
       firstName: item.givenName,
       middleName: item.middleName,
       lastName: item.familyName,
-      contact: contact
+      contact: contact,
+      thumbnailPath: item.thumbnailPath,
+      hasThumbnail: item.hasThumbnail
     })
   }
   return newArray

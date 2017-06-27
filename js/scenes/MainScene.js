@@ -3,7 +3,22 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Linking, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, Platform } from 'react-native'
+import {
+  AppRegistry,
+  Linking,
+  Button,
+  View,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Navigator,
+  ListView,
+  Modal,
+  Platform,
+  NativeModules,
+  AppState,
+  Image,
+} from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
@@ -13,15 +28,21 @@ import SplashScene from './SplashScene'
 import RNCalendarEvents from 'react-native-calendar-events';
 import Contacts from 'react-native-contacts'
 import { LoginManager } from 'react-native-fbsdk'
-import { mainBackgroundColor } from '../res/values/styles'
+import { mainBackgroundColor, themeColorThird } from '../res/values/styles'
 import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
+import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
 import {loadContacts} from '../utils/Contacts'
+import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
+import LocationAccess from '../utils/LocationAccessModule'
+import moment from 'moment'
+import {StackNavigator, TabNavigator} from 'react-navigation';
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
+import {Store} from '../index'
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
@@ -44,30 +65,71 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
+const CalendarNavigation = StackNavigator({
+  CalendarScene: {screen: CalendarScene},
+  MeetingDetailsScene: {screen: MeetingDetailsScene},
+}, {
+  headerMode: 'none',
+  transitionConfig: () => {duration: 500}
+})
+
+class TabBarIcon extends Component {
+  render = () => <View>
+    <Image style={s.tabIcon} source={this.props.focused? require('../res/images/calendar_active_1.5-66px.png'): require('../res/images/calenar_grey-66px.png')}/>
+    {this.props.app.calendarBadges > 0 && <Text style={styles.badge}>{this.props.app.calendarBadges}</Text>}
+  </View>
+}
+
+const TabIcon = connect(mapStateToProps)(TabBarIcon);
+
+const BottomTabNavigation = TabNavigator({
+  SuggestionsTab: {screen: SuggestionsScene},
+  CalendarTab: {
+    screen: CalendarNavigation,
+    navigationOptions: {
+      tabBarIcon: ({tintColor, focused}) => <TabIcon focused={focused} />
+    }
+  },
+  InviteFriendsTab: {screen: InviteFriendsScene},
+}, {
+  ...TabNavigator.Presets.iOSBottomTabs,
+  // lazy: true,
+  tabBarOptions: {
+    showLabel: false,
+    style: {
+      backgroundColor: 'white',
+    }
+  }
+})
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
 
 	state = {
 		activeTab: 0,
-		phoneVerificationCode: null
+		phoneVerificationCode: null,
+    appState: AppState.currentState
 	}
 
+  componentWillMount() {
+    this._onResume();
+  }
+
 	componentDidMount() {
-		// console.log('Andreyyy')
 		console.log('componentDidMount')
+    AppState.addEventListener('change', this._onAppStateChange)
+
     DeepLinking.addScheme('https://');
     DeepLinking.addScheme('http://');
     DeepLinking.addScheme('elliot://');
     Linking.addEventListener('url', this._handleUrl);
 		DeepLinking.addRoute('/phone-verification/:code', (response) => {
-      // example://test
 			console.log(response)
 			if (this.state.phoneVerificationCode == response.code) {
 				this.props.appActions.phoneVerified()
 			}
     });
 		DeepLinking.addRoute('/open-tab/:code', (response) => {
-      // example://test/23
       console.log(response)
       switch (parseInt(response.code)) {
         case weekly:
@@ -84,19 +146,24 @@ export default class MainScene extends Component {
 					break;
       }
     });
-
-
-
-		// Linking.getInitialURL().then((url) => {
-    //   if (url) {
-    //     Linking.openURL(url);
-    //   }
-    // }).catch(err => console.error('An error occurred', err));
-
 	}
 
 	componentWillUnmount() {
     Linking.removeEventListener('url', this._handleUrl);
+    AppState.removeEventListener('change', this._onAppStateChange);
+  }
+
+  componentDidUpdate() {
+    console.log('Did Update MainScene');
+    console.log('isRehydrated:' + this.props.app.isRehydrated);
+  }
+
+  _onAppStateChange = (nextAppState) => {
+  	const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
+  	if (wasOnBackground && nextAppState === 'active') {
+      this._onResume();
+    }
+  	this.setState({appState: nextAppState});
   }
 
 	_setPhoneVerificationCode = (code) => this.setState({phoneVerificationCode: code})
@@ -114,76 +181,120 @@ export default class MainScene extends Component {
     this.setState({activeTab: sceneId})
   }
 
+  _onResume = () => {
+    this._refreshFeed();
+    this._loadScheduledMeetings();
+    loadContacts();
+  }
+
+  _loadScheduledMeetings = () => {
+    this.props.appActions.calendarLoading();
+    if (IS_IOS && !this.props.app.didMigrateIOSCalendar) {
+      NativeModules.CalendarMigration.getAllStored().then((dict) => {
+        this.props.appActions.migrateIOSCalendar(dict);
+        this.props.appActions.loadScheduledMeetings();
+      });
+      return;
+    }
+    this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
+  }
+
+  _refreshFeed = () => {
+    LocationAccess.checkLocationAccess().then((response) => {
+      console.log(response)
+      if (response == 'success') {
+        LocationAccess.requestLocation().then((location) => {
+          console.log(location)
+          this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
+            this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+            this._updateCalendarEvents()
+          })
+        })
+      }
+    }).catch((error) => {
+      console.log(error)
+      // On iOS location permission is optional.
+      // So if access hasn't been granted, move on with calendar events.
+      if (IS_IOS) {
+        this._updateCalendarEvents()
+      }
+    })
+  }
+
+	_updateCalendarEvents = () => {
+    console.log('getting events')
+    checkCalendarPermissions().then(status => {
+      console.log(status)
+      if (status != 'authorized') {
+        this.props.appActions.switchPermissionsOff()
+        return
+      }
+      getEvents(moment(), moment().add(1, 'months')).then(events => {
+        console.log(events)
+        this.props.appActions.sendEvents(events).then(data=> {
+          this.props.appActions.loadSuggestions()
+        })
+      }).catch(error => {
+        console.log(error)
+      });
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
   render() {
-	console.log(this.props)
+    console.log(this.props)
 
-
-		if (true || IS_ANDROID) {
-			if (!this.props.app.isRehydrated) {
-				return <SplashScene />
-			}
-
-			if (!this.props.app.isLoggedIn) {
-				return <LoginScene/>
-			}
-
-			// if (!this.props.app.isPermissionsGranted) {
-			// 	return <PermissionsScene/>
-			// }
-			return <PermissionsScene/>
-
-
+		if (IS_ANDROID) {
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 			}
 
 		}
 
-		if (IS_IOS) {
-	    if (!this.props.app.isRehydrated) {
-	      return <View style={styles.container}></View>
-	    }
-			return (
-				<SuggestionsScene navigation={this.props.navigation}/>
-			);
-		}
-			if (!this.props.app.isCalendarLoaded && !this.props.app.isCalendarLoading) {
-				if (!this.props.app.isContactsLoaded) {
-					loadContacts()
-				}
-				this.props.appActions.calendarLoading()
-				this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
-			}
-
-			return (<View style={styles.container}>
-				{IS_ANDROID && IS_DEV && <Button
+    return (
+      <View style={styles.container}>
+        {IS_ANDROID && IS_DEV && <Button
           onPress={this.props.appActions.logOut}
           title="Log out"
           color="#841584"
         />}
-        <BottomNav
-					navigation={this.props.navigation}
-					activeTab={this.state.activeTab}
-					onTabSelect={this._switchTab}
-					badges={[0, this.props.app.calendarBadges, 0]}>
-          <SuggestionsScene
-            iconActive={require('../res/images/home_active_1.5-66px.png')}
-            icon={require('../res/images/home_gray-66px.png')}/>
-          <CalendarScene
-            iconActive={require('../res/images/calendar_active_1.5-66px.png')}
-            icon={require('../res/images/calenar_grey-66px.png')}/>
-          <InviteFriendsScene
-            iconActive={require('../res/images/invite_active.png')}
-            icon={require('../res/images/invite_grey.png')}/>
-        </BottomNav>
-      </View>);
-
+        <BottomTabNavigation
+          screenProps={{mainNav: this.props.navigation}}
+          onNavigationStateChange={(prevState, currentState) => {
+            console.log(currentState)
+            if (currentState.index == CALENDAR_TAB) {
+              if (this.props.app.calendarBadges > 0) {
+                this.props.appActions.setCalendarBadges(0)
+                this.props.appActions.resetBadges()
+              }
+            }
+        }}/>
+      </View>
+    );
   }
 }
+
+
+
+
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: mainBackgroundColor
   },
+	badge: {
+    position: 'absolute',
+		width: 20,
+		height: 20,
+    top: -5,
+    right: -5,
+		justifyContent: 'center',
+		textAlign: 'center',
+		borderRadius: 10,
+    overflow: 'hidden',
+		color: 'white',
+		backgroundColor: themeColorThird,
+	}
 });
