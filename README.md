@@ -28,7 +28,7 @@
 2. Make sure you have access to the previously added code-push app.
 3. `sh deploy.sh <environment> <unique-app-name> <platform>`
     - `<environment>` should be either `Staging` or `Production`.
-    - `platform` should be either `ios` or `android`. <br/>
+    - `platform` should be either `ios` or `android`.
  
 Android:<br/>
 `sh deploy.sh Staging elliot android`<br/>
@@ -36,7 +36,7 @@ Android:<br/>
 
 # Build Android apk
 
-1. Open `android/app/build.gradle` <br/>
+1. Open `android/app/build.gradle`
 2. Change 
 ```
 defaultConfig {
@@ -46,16 +46,16 @@ defaultConfig {
     ...
 }
 ```
-<br/>
-3. Make sure `IS_DEV=true` for Staging and `IS_DEV=false` for Prod in `settings.js` <br/>
-4. cd `android` <br/>
-5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
-<br/>
-Find apk in: `android/app/build/outputs/apk/` <br/>
-<br/>
+
+3. Make sure `IS_DEV=true` for Staging Server and `IS_DEV=false` for Prod Server in `settings.js`
+4. cd `android`
+5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` for Production vs Staging CodePush
+
+Find apk in: `android/app/build/outputs/apk/`
+
 Check build by:
  - `react-native run-android --variant=release` 
- - `react-native run-android --variant=releaseStaging` <br/>
+ - `react-native run-android --variant=releaseStaging`
  - dragging and dropping an apk from `android/app/build/outputs/apk/` to an emulator
  
  
