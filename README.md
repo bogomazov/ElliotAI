@@ -51,7 +51,7 @@ defaultConfig {
 4. cd `android` <br/>
 5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
 
-Find apk in: `android/app/build/outputs/apk/`
+Find apk in: `android/app/build/outputs/apk/` <br/>
 Check build by:
  - `react-native run-android --variant=release` 
  - `react-native run-android --variant=releaseStaging` <br/>
