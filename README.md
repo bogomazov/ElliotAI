@@ -39,7 +39,7 @@ Android:<br/>
 1. Open `android/app/build.gradle` <br/>
 2. Change ```defaultConfig {
         ...
-        versionCode 18 <-- to higher then whatever is currently in PlayStore
+        versionCode 18 <-- to higher version then whatever is currently in PlayStore
         ...
     }``` <br/>
 3. Make sure `IS_DEV=false` in `settings.js` <br/>
