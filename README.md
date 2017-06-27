@@ -47,8 +47,9 @@ Android:<br/>
 5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
 
 Check build by:
-1. `react-native run-android --variant=release` or `react-native run-android --variant=releaseStaging` <br/>
-or dragging and dropping an apk from `android/app/build/outputs/apk/` to an emulator
+ - `react-native run-android --variant=release` 
+ - `react-native run-android --variant=releaseStaging` <br/>
+ - dragging and dropping an apk from `android/app/build/outputs/apk/` to an emulator
 
 
 
