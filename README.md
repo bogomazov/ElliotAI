@@ -37,12 +37,17 @@ Android:<br/>
 # Build Android apk
 
 1. Open `android/app/build.gradle` <br/>
-2. Change ```defaultConfig {
-        ...
-        versionCode 18 <-- to higher version then whatever is currently in PlayStore
-        ...
-    }``` <br/>
-3. Make sure `IS_DEV=false` in `settings.js` <br/>
+2. Change 
+```
+defaultConfig {
+    ...
+    versionCode 18 <-- to higher version then whatever is currently in PlayStore \n
+    versionName "1.0.7" <- also needs to be updated. Used by code-push. (Play store allows to publish the same versionName but versionCode is an ultimate identifier of the release version)
+    ...
+}
+```
+<br/>
+3. Make sure `IS_DEV=true` for Staging and `IS_DEV=false` for Prod in `settings.js` <br/>
 4. cd `android` <br/>
 5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
 
