@@ -41,7 +41,7 @@ Android:<br/>
 ```
 defaultConfig {
     ...
-    versionCode 18 <-- to higher version then whatever is currently in PlayStore \n
+    versionCode 18 <-- to higher version then whatever is currently in PlayStore
     versionName "1.0.7" <- also needs to be updated. Used by code-push. (Play store allows to publish the same versionName but versionCode is an ultimate identifier of the release version)
     ...
 }
@@ -51,10 +51,13 @@ defaultConfig {
 4. cd `android` <br/>
 5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
 
+Find apk in: `android/app/build/outputs/apk/`
 Check build by:
  - `react-native run-android --variant=release` 
  - `react-native run-android --variant=releaseStaging` <br/>
  - dragging and dropping an apk from `android/app/build/outputs/apk/` to an emulator
+ 
+ 
 
 
 
