@@ -11,6 +11,7 @@ import strings from '../res/values/strings'
 import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight, greyColorLight, greyColor } from '../res/values/styles'
 import RemoteImage from './RemoteImage';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
+import {connect} from 'react-redux';
 
 const borderWidth = 2
 
@@ -18,10 +19,13 @@ const CALENDAR_TIME_RANGE = 3 // hours
 
 const KEYBOARD_OFFSET = 145 // keyboard offset for message input
 
+const mapStateToProps = (state) => {
+	return {appDeviceEvents: state.app.deviceEvents}
+}
+
+@connect(mapStateToProps)
 export default class SuggestionsCard extends Component {
     state = {
-        calendarEvents: [],
-        isCalendarEventsLoaded: false,
         selected: [],
         isAcceptLoading: false,
         message: "",
@@ -34,44 +38,36 @@ export default class SuggestionsCard extends Component {
         var startTimes = this._getStartTimes()
         return this.state.selected.map((i) => startTimes[i].format("YYYY-MM-DD HH:mm:ss"))
     }
-    _loadCalendarEvents = () => {
+    _getRelatedEvents = () => {
         console.log('_loadCalendarEvents')
         console.log(this.props.suggestion.meeting_time)
         const meetingStart = this.props.suggestion.meeting_time.clone()
         const meetingEnd = this.props.suggestion.meeting_time.clone().add(CALENDAR_TIME_RANGE, 'h')
-        const dateStart = this.props.suggestion.meeting_time.clone().startOf('date')
-        const dateEnd = this.props.suggestion.meeting_time.clone().endOf('date')
-        console.log(dateEnd)
-        getEvents(dateStart, dateEnd).then(events => {
-            // handle events
-            console.log('Calendar')
-            console.log(events)
-            const filteredEvents = events.filter((event) => !event.allDay).sort((e1, e2) => {
-              const m1 = moment(e1.startDate)
-              const m2 = moment(e2.startDate)
-              if (m1.isSame(m2)) return 0;
-              return m1.isBefore(m2) ? -1 : 1;
-            })
-            const beforeEvents = filteredEvents.filter((event) => (moment(event.startDate).isBefore(meetingStart)))
-            const duringEvents = filteredEvents.filter((event) => (moment(event.startDate).isBetween(meetingStart, meetingEnd, null, '[]')))
-            const afterEvents = filteredEvents.filter((event) => (moment(event.startDate).isAfter(meetingEnd)))
-            let resultEvents = []
-            if (beforeEvents.length > 0) {
-              resultEvents.push(beforeEvents[beforeEvents.length - 1])
-            }
-            resultEvents.push(...duringEvents)
-            if (afterEvents.length > 0) {
-              resultEvents.push(afterEvents[0])
-            }
-            this.setState({calendarEvents: resultEvents,
-                isCalendarEventsLoaded: true})
+        const events = this.props.appDeviceEvents;
+        console.log('Calendar')
+        console.log(events)
+        const filteredEvents = events.filter((event) => {
+          return !event.allDay && moment(event.startDate).isSame(meetingStart, 'day')
+        }).sort((e1, e2) => {
+          const m1 = moment(e1.startDate)
+          const m2 = moment(e2.startDate)
+          if (m1.isSame(m2)) return 0;
+          return m1.isBefore(m2) ? -1 : 1;
         })
-            .catch(error => {
-                console.log(error)
-                this.props.appActions.switchPermissionsOff()
-                // handle error
-            });
+        const beforeEvents = filteredEvents.filter((event) => (moment(event.startDate).isBefore(meetingStart)))
+        const duringEvents = filteredEvents.filter((event) => (moment(event.startDate).isBetween(meetingStart, meetingEnd, null, '[]')))
+        const afterEvents = filteredEvents.filter((event) => (moment(event.startDate).isAfter(meetingEnd)))
+        let resultEvents = []
+        if (beforeEvents.length > 0) {
+          resultEvents.push(beforeEvents[beforeEvents.length - 1])
+        }
+        resultEvents.push(...duringEvents)
+        if (afterEvents.length > 0) {
+          resultEvents.push(afterEvents[0])
+        }
+        return resultEvents;
     }
+
     _onTimeSelect = (i) => {
         let index = this.state.selected.indexOf(i);
         if (index != -1) {
@@ -107,10 +103,8 @@ export default class SuggestionsCard extends Component {
       var withOptions = this.props.withOptions
       var animateShowLess = this.props.animateShowLess
       console.log(suggestion)
-
-      if (!this.state.isCalendarEventsLoaded) {
-        this._loadCalendarEvents()
-      }
+      console.log(this.props);
+      const calendarEvents = this._getRelatedEvents();
 
       const timeButtons = this._getStartTimes().map((time, i) => {
           let style = [styles.timeSlot]
@@ -208,8 +202,8 @@ export default class SuggestionsCard extends Component {
               <Text style={[styles.calendarTextSize, s.textColorGrey, {marginLeft: 20, marginBottom: 5}]}>Your calendar</Text>
               <View style={styles.column}>
                 {
-                  this.state.calendarEvents.length > 0 ?
-                  this.state.calendarEvents.map((event, i) => {
+                  calendarEvents.length > 0 ?
+                  calendarEvents.map((event, i) => {
                     console.log(event)
                     const startTime = moment(event.startDate).format("h:mm")
                     const endTime = moment(event.endDate).format("h:mm A")

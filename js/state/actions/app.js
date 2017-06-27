@@ -31,7 +31,7 @@ export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
-
+export const STORE_DEVICE_EVENTS = "STORE_DEVICE_EVENTS"
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
 export const newAccessToken = (accessToken) => {
@@ -239,6 +239,13 @@ export const loadSuggestions = () => {
       });
     }
   }
+
+export const storeDeviceEvents = (events) => {
+  return {
+    type: STORE_DEVICE_EVENTS,
+    events,
+  }
+}
 
 export const sendEvents = (events) => {
   events = events.map((event) => {

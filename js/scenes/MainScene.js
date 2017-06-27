@@ -231,6 +231,7 @@ export default class MainScene extends Component {
       }
       getEvents(moment(), moment().add(1, 'months')).then(events => {
         console.log(events)
+        this.props.appActions.storeDeviceEvents(events);
         this.props.appActions.sendEvents(events).then(data=> {
           this.props.appActions.loadSuggestions()
         })
