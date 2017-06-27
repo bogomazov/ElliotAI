@@ -50,8 +50,9 @@ defaultConfig {
 3. Make sure `IS_DEV=true` for Staging and `IS_DEV=false` for Prod in `settings.js` <br/>
 4. cd `android` <br/>
 5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
-
+<br/>
 Find apk in: `android/app/build/outputs/apk/` <br/>
+<br/>
 Check build by:
  - `react-native run-android --variant=release` 
  - `react-native run-android --variant=releaseStaging` <br/>
