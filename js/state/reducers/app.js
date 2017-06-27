@@ -29,6 +29,7 @@ const defaultState = {
   isContactsLoaded: false,
   didMigrateIOSCalendar: false,
   shouldShowAcceptedBanner: false,
+  deviceCalendarBlacklist: [],
 }
 
 const app = (state = defaultState, action) => {
@@ -176,6 +177,11 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         didSeeCalendarPermissionScene: true,
+      }
+    case actionType.SET_DEVICE_CALENDAR_BLACKLIST:
+      return {
+        ...state,
+        deviceCalendarBlacklist: action.calendarIds
       }
     default:
       return state

@@ -33,6 +33,8 @@ export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
 export const SET_IS_CALENDAR_GRANTED = "SET_IS_CALENDAR_GRANTED"
 export const DID_SEE_CALENDAR_PERMISSION_SCENE = "DID_SEE_CALENDAR_PERMISSION_SCENE"
+export const SET_DEVICE_CALENDAR_BLACKLIST = "SET_DEVICE_CALENDAR_BLACKLIST"
+
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
 export const newAccessToken = (accessToken) => {
@@ -171,6 +173,12 @@ export const setIsCalendarGranted = (granted) => {
 export const didSeeCalendarPermissionScene = () => {
   return {
     type: DID_SEE_CALENDAR_PERMISSION_SCENE,
+  }
+}
+export const setDeviceCalendarBlacklist = (calendarIds) => {
+  return {
+    type: SET_DEVICE_CALENDAR_BLACKLIST,
+    calendarIds,
   }
 }
 
