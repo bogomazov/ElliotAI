@@ -205,7 +205,7 @@ export default class SuggestionsCard extends Component {
                   calendarEvents.length > 0 ?
                   calendarEvents.map((event, i) => {
                     console.log(event)
-                    const startTime = moment(event.startDate).format("h:mm")
+                    const startTime = moment(event.startDate).format("h:mm A")
                     const endTime = moment(event.endDate).format("h:mm A")
                     return <View key={i} style={[styles.calendarWrapper]}>
                       <View style={[styles.column]}>
