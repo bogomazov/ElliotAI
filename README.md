@@ -33,3 +33,18 @@
 Android:<br/>
 `sh deploy.sh Staging elliot android`<br/>
 `sh deploy.sh Production elliot android`<br/>
+
+# Build Android apk
+
+1. Open `android/app/build.gradle` <br/>
+2. Change ```defaultConfig {
+        ...
+        versionCode 18 <-- to higher then whatever is currently in PlayStore
+        ...
+    }``` <br/>
+3. Make sure `IS_DEV=false` in `settings.js` <br/>
+4. cd `android` <br/>
+5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` <br/>
+
+
+
