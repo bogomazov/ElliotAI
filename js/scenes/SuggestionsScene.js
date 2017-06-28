@@ -46,7 +46,6 @@ export default class SuggestionsScene extends Component {
 
 	state = {
 	  isAcceptLoading: false,
-		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
 		rejectingIds: [],
@@ -103,10 +102,6 @@ export default class SuggestionsScene extends Component {
 		})
 	}
 
-	componentWillReceiveProps = (nextProps) => {
-		this.setState({isRefreshing: false})
-	}
-
 	componentWillMount = () => {
 		console.log(this.props)
     console.log(this.props.appActions.newSuggestions);
@@ -124,7 +119,6 @@ export default class SuggestionsScene extends Component {
 			this.props.appActions.newSuggestions(suggestions)
 			return
 		}
-		this.setState({isRefreshing: true})
 		this.props.appActions.loadSuggestions()
 	}
 
@@ -160,7 +154,7 @@ export default class SuggestionsScene extends Component {
 				{this.props.app.isSuggestionsLoaded &&
 				<CustomListView
 					onRefresh={this._refresh}
-					refreshing={this.state.isRefreshing}
+					refreshing={this.props.app.isSuggestionsLoading}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
           renderItem={({item, onInputFocus}) => {
