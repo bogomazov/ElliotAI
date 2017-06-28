@@ -231,11 +231,7 @@ export default class MainScene extends Component {
       }
       getEvents(moment(), moment().add(1, 'months')).then(events => {
         console.log(events)
-        const filteredEvents = events.filter(event =>
-          this.props.app.deviceCalendarBlacklist.indexOf(event.calendar.id) == -1
-        );
-        console.log(filteredEvents);
-        this.props.appActions.sendEvents(filteredEvents).then(data=> {
+        this.props.appActions.sendEvents(events).then(data=> {
           this.props.appActions.loadSuggestions()
         })
       }).catch(error => {
