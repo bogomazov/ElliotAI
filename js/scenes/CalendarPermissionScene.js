@@ -12,10 +12,7 @@ import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s from '../res/values/styles';
-import Permissions from 'react-native-permissions'
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-import {getCalendars} from '../utils/Calendar';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 GoogleSignin.configure({
    scopes: ["https://www.googleapis.com/auth/calendar.readonly"], // what API you want to access on behalf of the user, default is email and profile
@@ -34,32 +31,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarPermissionScene extends Component {
-  state = {
-    calendars: [],
-    isSelected: [],
-  }
-
-  componentWillMount() {
-    getCalendars().then((calendars) => {
-      console.log(calendars);
-      this.setState({
-        calendars: calendars,
-        isSelected: calendars.map((cal) => true),
-      });
-    })
-    Permissions.getPermissionStatus('event').then((response) => {
-      this.props.appActions.setIsCalendarGranted(response == 'authorized');
-    });
-  }
-
-  requestCalendarPermissions = () => {
-    Permissions.requestPermission('event').then((response) => {
-      if (response !== 'authorized') {
-        Permissions.openSettings();
-      }
-      this.props.appActions.setIsCalendarGranted(response === 'authorized');
-    });
-  }
 
 	_googleSignIn = () => {
 		GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
@@ -81,19 +52,6 @@ export default class CalendarPermissionScene extends Component {
 		})
 	}
 
-  onPressContinue = () => {
-    if (this.props.app.isCalendarGranted) {
-      this.props.appActions.didSeeCalendarPermissionScene();
-    }
-  }
-
-  _toggleSelected = (index) => {
-    console.log('toggle selected : ' + index);
-    var newIsSelected = this.state.isSelected;
-    newIsSelected[index] = !newIsSelected[index];
-    this.setState({isSelected: newIsSelected});
-  }
-
   render() {
     console.log(this.state);
     return (
@@ -103,32 +61,6 @@ export default class CalendarPermissionScene extends Component {
           <Text style={styles.description}> Elliot needs access to your calendars</Text>
         </View>
         <View style={styles.middleWrapper}>
-          {this.props.app.isCalendarGranted ?
-            <View style={[s.col, {height: 100, marginBottom: 20}]}>
-              <Text style={[s.textColorWhite, styles.calendarTitle]}>Select Calendars</Text>
-              <ScrollView>
-                {
-                  this.state.calendars.map((calendar, i) =>
-                    <View key={i}>
-                      <TouchableWithoutFeedback onPress={() => this._toggleSelected(i)}>
-                        <View style={[s.row]}>
-                          {this.state.isSelected[i] && <Icon name="md-checkmark" size={20} color="white"/>}
-                          <Text style={[s.textColorWhite, styles.calendarTitle]}>{calendar.title}</Text>
-                        </View>
-                      </TouchableWithoutFeedback>
-                    </View>
-                  )
-                }
-              </ScrollView>
-            </View>
-            :
-            <CustomButton
-              onPress={this.requestCalendarPermissions}
-              title={strings.enableCalendar}
-              style={styles.button}
-              isWhite
-            />
-          }
           <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
           <GoogleSigninButton
             style={{width: 212, height: 48}}
@@ -137,17 +69,7 @@ export default class CalendarPermissionScene extends Component {
             onPress={this._googleSignIn}
           />
         </View>
-        <View style={s.col}>
-          <View style={[s.row, styles.skipWrapper]}>
-            <CustomButton
-              onPress={this.onPressContinue}
-              title={"Continue"}
-              style={styles.button}
-              isWhite={this.props.app.isCalendarGranted}
-            />
-          </View>
-          <Text style={styles.description}>{strings.disclaimer}</Text>
-        </View>
+        <Text style={styles.description}>{strings.disclaimer}</Text>
       </View>
     );
   }
@@ -181,16 +103,4 @@ const styles = StyleSheet.create({
     fontSize: 17,
     padding: 10,
   },
-  skipWrapper: {
-    justifyContent: 'flex-end',
-  },
-  calendarTitle: {
-    fontSize: 17,
-    textAlign: 'left',
-    marginLeft: 15,
-  },
-  calendarRow: {
-    backgroundColor: 'green',
-    justifyContent: 'flex-start',
-  }
 });
