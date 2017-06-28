@@ -31,7 +31,6 @@ export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
-export const SET_IS_CALENDAR_GRANTED = "SET_IS_CALENDAR_GRANTED"
 export const DID_SEE_CALENDAR_PERMISSION_SCENE = "DID_SEE_CALENDAR_PERMISSION_SCENE"
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
@@ -160,12 +159,6 @@ export const showAcceptedBanner = (shouldShow) => {
   return {
     type: SHOW_ACCEPTED_BANNER,
     shouldShow
-  }
-}
-export const setIsCalendarGranted = (granted) => {
-  return {
-    type: SET_IS_CALENDAR_GRANTED,
-    granted,
   }
 }
 export const didSeeCalendarPermissionScene = () => {

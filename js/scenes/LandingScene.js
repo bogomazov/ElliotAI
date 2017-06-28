@@ -55,7 +55,6 @@ export default class LandingScene extends Component {
   _checkPermissions = () => {
     Permissions.checkMultiplePermissions(['location', 'contacts', 'event']).then(
       (response) => {
-        this.props.appActions.setIsCalendarGranted(response.event == 'authorized');
         if (response.location != 'authorized' ||
             response.contacts != 'authorized') {
           this.props.appActions.switchPermissionsOff();
@@ -70,8 +69,7 @@ export default class LandingScene extends Component {
         return <LoginScene/>
       }
     }
-    if (!this.props.app.isCalendarGranted
-      || !this.props.app.didSeeCalendarPermissionScene) {
+    if (!this.props.app.didSeeCalendarPermissionScene) {
       return <CalendarPermissionScene/>
     }
     if (!this.props.app.isPermissionsGranted) {
