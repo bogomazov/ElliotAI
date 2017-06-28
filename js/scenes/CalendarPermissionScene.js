@@ -12,14 +12,8 @@ import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s from '../res/values/styles';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
-
-GoogleSignin.configure({
-   scopes: ["https://www.googleapis.com/auth/calendar.readonly"], // what API you want to access on behalf of the user, default is email and profile
-   iosClientId: "112753570022-pvgppqdcq3ej00hj6jarphalsu1i1p3r.apps.googleusercontent.com", // only for iOS
-   webClientId: "", // client ID of type WEB for your server (needed to verify user ID and offline access)
-   offlineAccess: false // if you want to access Google API on behalf of the user FROM YOUR SERVER
-})
+import CalendarSettingsScene from './CalendarSettingsScene';
+import GoogleLoginButton from '../containers/GoogleLoginButton';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -31,29 +25,20 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarPermissionScene extends Component {
+  state = {
+    loggedIn: false,
+  }
 
-	_googleSignIn = () => {
-		GoogleSignin.hasPlayServices({ autoResolve: true }).then(() => {
-      console.log('has play services');
-			console.log('signing in');
-			GoogleSignin.signIn()
-				.then((user) => {
-				  console.log(user);
-          // TODO: send the token to back-end,
-          // store this action in the app state to remember not to show google sign-in next time.
-				})
-				.catch((err) => {
-				  console.log('WRONG SIGNIN', err);
-				})
-				.done();
-		})
-		.catch((err) => {
-		  console.log("Play services error", err.code, err.message);
-		})
-	}
+  _onLogin = (googleUser) => {
+    console.log(googleUser);
+    this.setState({loggedIn: true});
+  }
 
   render() {
     console.log(this.state);
+    if (this.state.loggedIn) {
+      return <CalendarSettingsScene/>
+    }
     return (
       <View style={styles.container}>
         <View style={styles.topWrapper}>
@@ -62,12 +47,7 @@ export default class CalendarPermissionScene extends Component {
         </View>
         <View style={styles.middleWrapper}>
           <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
-          <GoogleSigninButton
-            style={{width: 212, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Light}
-            onPress={this._googleSignIn}
-          />
+          <GoogleLoginButton onLogin={this._onLogin} />
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
       </View>

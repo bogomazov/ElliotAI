@@ -18,6 +18,10 @@ export default class CalendarSettingsScene extends Component {
     this.setState({accounts: TEST_ACCOUNTS});
   }
 
+  _onLogin = (googleUser) => {
+    console.log(googleUser);
+  }
+
   render() {
     console.log(this.state);
     const {accounts} = this.state;
@@ -52,12 +56,7 @@ export default class CalendarSettingsScene extends Component {
         />
         <View style={[s.col, {alignItems: 'center', marginBottom: 30}]}>
           <Text style={[s.textColorTheme, s.bold]}>Add another account?</Text>
-          <GoogleSigninButton
-            style={{width: 212, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Light}
-            onPress={this._googleSignIn}
-          />
+          <GoogleLoginButton onLogin={this._onLogin} />
         </View>
       </View>
     );
