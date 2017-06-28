@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
+import ReactNative, { Linking, TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
@@ -20,6 +20,7 @@ import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
 import InAppNotification from '../components/InAppNotification';
+import DeepLinking from 'react-native-deep-linking'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -34,7 +35,13 @@ const mapDispatchToProps = (dispatch) => {
 
 const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 
-
+// open-tab notif constants
+const weekly = 0
+const friendJoined = 1
+const confirmed = 2
+const reschedule = 3
+const update = 4
+const openInvite = 5
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
@@ -106,6 +113,30 @@ export default class SuggestionsScene extends Component {
 		console.log(this.props)
     console.log(this.props.appActions.newSuggestions);
 	}
+
+  componentDidMount() {
+    this._handleOpenTabNotifs();
+  }
+
+  _handleOpenTabNotifs = () => {
+    DeepLinking.addRoute('/open-tab/:code', (response) => {
+      console.log(response)
+      switch (parseInt(response.code)) {
+        case weekly:
+        case friendJoined:
+        case reschedule:
+        case update:
+          this.props.navigation.navigate('SuggestionsTab');
+	        break;
+        case openInvite:
+          this.props.navigation.navigate('InviteFriendsTab');
+					break;
+        case confirmed:
+          this.props.navigation.navigate('CalendarTab');
+					break;
+      }
+    });
+  }
 
   componentDidUpdate() {
     this._showBannerIfNeeded();

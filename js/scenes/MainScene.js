@@ -48,13 +48,6 @@ export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
 export const INVITE_FRIENDS_TAB = 2
 
-const weekly = 0
-const friendJoined = 1
-const confirmed = 2
-const reschedule = 3
-const update = 4
-const openInvite = 5
-
 const mapStateToProps = (state) => {
 	return {app: state.app}
 }
@@ -106,7 +99,6 @@ const BottomTabNavigation = TabNavigator({
 export default class MainScene extends Component {
 
 	state = {
-		activeTab: 0,
 		phoneVerificationCode: null,
     appState: AppState.currentState
 	}
@@ -128,23 +120,6 @@ export default class MainScene extends Component {
 			if (this.state.phoneVerificationCode == response.code) {
 				this.props.appActions.phoneVerified()
 			}
-    });
-		DeepLinking.addRoute('/open-tab/:code', (response) => {
-      console.log(response)
-      switch (parseInt(response.code)) {
-        case weekly:
-        case friendJoined:
-        case reschedule:
-        case update:
-	        this._switchTab(MAIN_TAB)
-	        break;
-				case openInvite:
-					this._switchTab(INVITE_FRIENDS_TAB)
-					break;
-				case confirmed:
-					this._switchTab(CALENDAR_TAB)
-					break;
-      }
     });
 	}
 
@@ -175,10 +150,6 @@ export default class MainScene extends Component {
         DeepLinking.evaluateUrl(url);
       }
     });
-  }
-
-  _switchTab = (sceneId) => {
-    this.setState({activeTab: sceneId})
   }
 
   _onResume = () => {
