@@ -69,7 +69,7 @@ export default class LandingScene extends Component {
         return <LoginScene/>
       }
     }
-    if (!this.props.app.didSeeCalendarPermissionScene) {
+    if (!this.props.app.didFinishCalendarIntro) {
       return <CalendarPermissionScene/>
     }
     if (!this.props.app.isPermissionsGranted) {
