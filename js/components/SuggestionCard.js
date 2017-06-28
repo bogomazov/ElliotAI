@@ -243,7 +243,7 @@ export default class SuggestionsCard extends Component {
               onChangeText={(text) => this.setState({message: text})}
               onFocus={() => this.props.onInputFocus(KEYBOARD_OFFSET)}
               value={this.state.message}
-              placeholder={"  Add comment..."}
+              placeholder={"  Write a message..."}
             />
           }
           <View style={[styles.row, styles.buttonOptionsWrapper]}>
