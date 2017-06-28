@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight} from 'react-native';
+import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import TopBar from '../components/TopBar';
-import s from '../res/values/styles';
+import s, {themeColorLight} from '../res/values/styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -13,6 +14,7 @@ export default class CalendarSettingsScene extends Component {
   state = {
     accounts: [],
     selected: new Map(),
+    calendarToAdd: null,
   }
 
   componentWillMount() {
@@ -35,17 +37,30 @@ export default class CalendarSettingsScene extends Component {
 
   _onPressNext = () => {
     console.log('on press next');
+    if (!this.state.calendarToAdd) {
+      Alert.alert("Can't continue", 'Please select a calendar for us to add scheduled meetings first.', [
+        {text: 'OK', onPress: () => console.log('Pressed ok')},
+      ], {
+        cancelable: true
+      });
+      return;
+    }
     // TODO: post settings to back-end then dispatch didFinishCalendarIntro
+  }
+
+  _onDropdownSelect = (calendar) => {
+    this.setState({calendarToAdd: calendar})
   }
 
   render() {
     console.log(this.state);
     const {accounts, selected} = this.state;
     const sections = accounts.map(acc => {
-      const calendars = acc.calendars.map(cal => ({data: cal, type: CALENDAR, key: cal.calendar_id}));
+      const calendars = acc.calendars.map(cal => ({data: cal, type: CALENDAR, key: cal.calendar_id, account: acc}));
       return [{data: acc, type: ACCOUNT, key: acc.id}, ...calendars];
     });
     const listData = sections.reduce((a, b) => [...a, ...b], []);
+    const dropDownData = listData.filter(item => item.type == CALENDAR);
     return (
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <TopBar isMainScene>
@@ -57,6 +72,17 @@ export default class CalendarSettingsScene extends Component {
             </TouchableHighlight>
           </View>
         </TopBar>
+        <View style={[s.row, s.margin10, {alignItems: 'center'}]}>
+          <Text style={[s.textColorTheme, s.bold, {fontSize: 15}]}>Add meetings to: </Text>
+          <View style={[s.row, styles.dropdown, {alignItems: 'center'}]}>
+            <ModalDropdown
+              onSelect={(index) => this._onDropdownSelect(dropDownData[index].data)}
+              options={dropDownData.map(item => item.account.name + ' ' + item.data.name)}
+              defaultValue="Please select a calendar"
+            />
+            <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5,}}/>
+          </View>
+        </View>
         <Text style={[s.textColorTheme, {fontSize: 15, margin: 10}, s.bold]}>Select Calendars</Text>
         <FlatList
           data={listData}
@@ -102,6 +128,14 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 15,
     padding: 5,
+  },
+  dropdown: {
+    backgroundColor: themeColorLight,
+    paddingLeft: 5,
+    paddingRight: 5,
+    marginLeft: 5,
+    marginTop: 5,
+    borderRadius: 10,
   }
 });
 
