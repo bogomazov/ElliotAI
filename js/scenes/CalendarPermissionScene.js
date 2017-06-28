@@ -83,11 +83,6 @@ export default class CalendarPermissionScene extends Component {
 
   onPressContinue = () => {
     if (this.props.app.isCalendarGranted) {
-      const blacklistedIds = this.state.calendars
-        .filter((item, i) => !this.state.isSelected[i])
-        .map(cal => cal.id);
-      console.log(blacklistedIds);
-      this.props.appActions.setDeviceCalendarBlacklist(blacklistedIds);
       this.props.appActions.didSeeCalendarPermissionScene();
     }
   }
