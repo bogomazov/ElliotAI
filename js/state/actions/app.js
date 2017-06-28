@@ -31,7 +31,7 @@ export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
-export const DID_SEE_CALENDAR_PERMISSION_SCENE = "DID_SEE_CALENDAR_PERMISSION_SCENE"
+export const DID_FINISH_CALENDAR_INTRO = "DID_FINISH_CALENDAR_INTRO"
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
 export const newAccessToken = (accessToken) => {
@@ -161,9 +161,9 @@ export const showAcceptedBanner = (shouldShow) => {
     shouldShow
   }
 }
-export const didSeeCalendarPermissionScene = () => {
+export const didFinishCalendarIntro = () => {
   return {
-    type: DID_SEE_CALENDAR_PERMISSION_SCENE,
+    type: DID_FINISH_CALENDAR_INTRO,
   }
 }
 
