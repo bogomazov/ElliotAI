@@ -64,12 +64,13 @@ export default class CalendarSettingsScene extends Component {
     return (
       <View style={{flex: 1, justifyContent: 'space-between'}}>
         <TopBar isMainScene>
-          <View style={[s.row, {flex: 1, justifyContent: 'space-between'}]}>
-            <Text style={[s.textColorWhite, {fontSize: 16, marginRight: 10}, s.bold]}>Next</Text>
+          <View style={[s.row, {flex: 1, justifyContent: 'center'}]}>
             <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Manage Calendars</Text>
-            <TouchableHighlight onPress={this._onPressNext} underlayColor="white">
-              <Text style={[s.textColorTheme, {fontSize: 16, marginRight: 10}, s.bold]}>Next</Text>
-            </TouchableHighlight>
+            <View style={styles.next}>
+              <TouchableHighlight onPress={this._onPressNext} underlayColor="white">
+                <Text style={[s.textColorTheme, {fontSize: 16, marginRight: 10}, s.bold]}>{this.props.isIntro ? "Next" : "Save"}</Text>
+              </TouchableHighlight>
+            </View>
           </View>
         </TopBar>
         <View style={[s.row, s.margin10, {alignItems: 'center'}]}>
@@ -136,6 +137,10 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginTop: 5,
     borderRadius: 10,
+  },
+  next: {
+    position: 'absolute',
+    right: 5,
   }
 });
 

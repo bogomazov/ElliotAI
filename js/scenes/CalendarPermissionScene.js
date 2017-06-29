@@ -37,7 +37,7 @@ export default class CalendarPermissionScene extends Component {
   render() {
     console.log(this.state);
     if (this.state.loggedIn) {
-      return <CalendarSettingsScene/>
+      return <CalendarSettingsScene isIntro={true}/>
     }
     return (
       <View style={styles.container}>
