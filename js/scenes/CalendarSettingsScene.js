@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert} from 'react-native';
+import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import {connect} from 'react-redux';
 import TopBar from '../components/TopBar';
 import s, {themeColorLight} from '../res/values/styles';
@@ -13,13 +13,23 @@ const CALENDAR = 1;
 export default class CalendarSettingsScene extends Component {
   state = {
     accounts: [],
-    selected: new Map(),
+    enabled: {},
     calendarToAdd: null,
   }
 
   componentWillMount() {
-    this.setState({accounts: TEST_ACCOUNTS});
+    this.setAccounts(TEST_ACCOUNTS);
     // TODO: load calendars.
+  }
+
+  setAccounts = (accounts) => {
+    const calendars = accounts
+      .map(acc => acc.calendars)
+      .reduce((a, b) => [...a, ...b], []);
+    const enabled = calendars.reduce((res, cal) => {
+      return {...res, [cal.calendar_id]: cal.enabled}
+    }, {});
+    this.setState({accounts, enabled});
   }
 
   _onLogin = (googleUser) => {
@@ -27,12 +37,17 @@ export default class CalendarSettingsScene extends Component {
     // TODO: send google api token, load calendars for the new account.
   }
 
-  _onPressCalendar = (calendar) => {
-    const id = calendar.calendar_id;
-    const selected = new Map(this.state.selected);
-    const prevSelected = selected.has(id) ? selected.get(id) : true;
-    selected.set(id, !prevSelected);
-    this.setState({selected});
+  setIsEnabled = (calendar, value) => {
+    this.setState({
+      enabled: {
+        ...this.state.enabled,
+        [calendar.calendar_id]: value,
+      }
+    });
+  }
+
+  getIsEnabled = (calendar) => {
+    return this.state.enabled[calendar.calendar_id];
   }
 
   _onPressNext = () => {
@@ -99,10 +114,10 @@ export default class CalendarSettingsScene extends Component {
                 <TouchableWithoutFeedback onPress={() => this._onPressCalendar(item.data)}>
                   <View style={styles.calendar}>
                     <Text style={{fontSize: 15}}>{item.data.name}</Text>
-                    {(!selected.has(item.data.calendar_id) ||
-                      selected.get(item.data.calendar_id)) &&
-                      <Icon name="md-checkmark" size={16} color="green"/>
-                    }
+                    <Switch
+                      onValueChange={(value) => this.setIsEnabled(item.data, value)}
+                      value={this.getIsEnabled(item.data)}
+                    />
                   </View>
                 </TouchableWithoutFeedback>
             )
@@ -168,7 +183,7 @@ const TEST_ACCOUNTS = [
       {
         calendar_id: "950",
         name: "work",
-        enabled: true,
+        enabled: false,
       },
       {
         calendar_id: "354960",
