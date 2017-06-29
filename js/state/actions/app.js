@@ -161,7 +161,7 @@ export const showAcceptedBanner = (shouldShow) => {
     shouldShow
   }
 }
-export const didFinishCalendarIntro = () => {
+export const finishCalendarIntro = () => {
   return {
     type: DID_FINISH_CALENDAR_INTRO,
   }

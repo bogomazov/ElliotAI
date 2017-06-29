@@ -1,15 +1,28 @@
 import React, {Component} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
-import {connect} from 'react-redux';
 import TopBar from '../components/TopBar';
 import s, {themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ModalDropdown from 'react-native-modal-dropdown';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import * as appActions from '../state/actions/app';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
 
+const mapStateToProps = (state) => {
+	return {state}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		appActions: bindActionCreators(appActions, dispatch),
+	}
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarSettingsScene extends Component {
   state = {
     accounts: [],
@@ -60,7 +73,10 @@ export default class CalendarSettingsScene extends Component {
       });
       return;
     }
+
     // TODO: post settings to back-end then dispatch didFinishCalendarIntro
+    this.props.appActions.finishCalendarIntro()
+
   }
 
   _onDropdownSelect = (calendar) => {
