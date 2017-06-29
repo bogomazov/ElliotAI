@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import {connect} from 'react-redux';
 import TopBar from '../components/TopBar';
-import s, {themeColorLight} from '../res/values/styles';
+import s, {themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -77,13 +77,13 @@ export default class CalendarSettingsScene extends Component {
     const listData = sections.reduce((a, b) => [...a, ...b], []);
     const dropDownData = listData.filter(item => item.type == CALENDAR);
     return (
-      <View style={{flex: 1, justifyContent: 'space-between'}}>
+      <View style={styles.container}>
         <TopBar isMainScene>
           <View style={[s.row, {flex: 1, justifyContent: 'center'}]}>
             <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Manage Calendars</Text>
             <View style={styles.next}>
               <TouchableHighlight onPress={this._onPressNext} underlayColor="white">
-                <Text style={[s.textColorTheme, {fontSize: 16, marginRight: 10}, s.bold]}>{this.props.isIntro ? "Next" : "Save"}</Text>
+                <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>{this.props.isIntro ? "Next" : "Save"}</Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -99,31 +99,31 @@ export default class CalendarSettingsScene extends Component {
             <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5,}}/>
           </View>
         </View>
-        <Text style={[s.textColorTheme, {fontSize: 15, margin: 10}, s.bold]}>Select Calendars</Text>
+        <View style={[s.row, styles.enableTitleWrapper]}>
+          <Text style={[s.textColorTheme, s.bold, styles.enableTitle]}>Enable/Disable Calendars</Text>
+        </View>
         <FlatList
           data={listData}
           renderItem={({item}) => {
             if (item.type == ACCOUNT) {
               return (
                 <View style={styles.account}>
-                  <Text style={{fontSize: 15}}>{item.data.name}</Text>
+                  <Text style={styles.accountTitle}>{item.data.name}</Text>
                 </View>
               )
             }
             return (
-                <TouchableWithoutFeedback onPress={() => this._onPressCalendar(item.data)}>
-                  <View style={styles.calendar}>
-                    <Text style={{fontSize: 15}}>{item.data.name}</Text>
-                    <Switch
-                      onValueChange={(value) => this.setIsEnabled(item.data, value)}
-                      value={this.getIsEnabled(item.data)}
-                    />
-                  </View>
-                </TouchableWithoutFeedback>
+              <View style={styles.calendar}>
+                <Text style={styles.calendarTitle}>{item.data.name}</Text>
+                <Switch
+                  onValueChange={(value) => this.setIsEnabled(item.data, value)}
+                  value={this.getIsEnabled(item.data)}
+                />
+              </View>
             )
           }}
         />
-        <View style={[s.col, {alignItems: 'center', marginBottom: 30}]}>
+        <View style={[s.col, styles.anotherAccountWrapper]}>
           <Text style={[s.textColorTheme, s.bold]}>Add another account?</Text>
           <GoogleLoginButton onLogin={this._onLogin} />
         </View>
@@ -133,17 +133,44 @@ export default class CalendarSettingsScene extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    backgroundColor: mainBackgroundColor,
+  },
+  enableTitleWrapper: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: themeColorLight
+  },
+  enableTitle: {
+    fontSize: 15,
+    padding: 10,
+    paddingBottom: 5,
+  },
   account: {
+    marginTop: 5,
     marginLeft: 10,
-    borderTopWidth: 1,
     padding: 5,
+  },
+  accountTitle: {
+    fontSize: 15,
+    color: 'grey',
   },
   calendar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 20,
-    marginRight: 15,
+    alignItems: 'center',
+    backgroundColor: 'white',
     padding: 5,
+    paddingRight: 10,
+    paddingLeft: 25,
+    borderTopWidth: 2,
+    borderTopColor: mainBackgroundColor,
+  },
+  calendarTitle: {
+    fontSize: 15,
   },
   dropdown: {
     backgroundColor: themeColorLight,
@@ -155,7 +182,14 @@ const styles = StyleSheet.create({
   },
   next: {
     position: 'absolute',
-    right: 5,
+    right: 10,
+  },
+  anotherAccountWrapper: {
+    alignItems: 'center',
+    marginBottom: 30,
+    borderTopWidth: 1,
+    borderTopColor: themeColorLight,
+    paddingTop: 10,
   }
 });
 
@@ -174,6 +208,16 @@ const TEST_ACCOUNTS = [
         name: "school",
         enabled: true,
       },
+      {
+        calendar_id: "734851",
+        name: "other",
+        enabled: true,
+      },
+      {
+        calendar_id: "458691",
+        name: "holidays",
+        enabled: false,
+      },
     ]
   },
   {
@@ -188,6 +232,22 @@ const TEST_ACCOUNTS = [
       {
         calendar_id: "354960",
         name: "club",
+        enabled: true,
+      },
+    ]
+  },
+  {
+    id: "46366",
+    name: "raytom2@domain.com",
+    calendars: [
+      {
+        calendar_id: "44950",
+        name: "meetings",
+        enabled: false,
+      },
+      {
+        calendar_id: "3547960",
+        name: "sport",
         enabled: true,
       },
     ]
