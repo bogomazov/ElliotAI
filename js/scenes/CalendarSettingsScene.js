@@ -8,6 +8,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as appActions from '../state/actions/app';
+import DropdownPicker from '../containers/DropdownPicker';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -27,7 +28,8 @@ export default class CalendarSettingsScene extends Component {
   state = {
     accounts: [],
     enabled: {},
-    calendarToAdd: null,
+    defaultAccount: "",
+    defaultCalendar: "",
   }
 
   componentWillMount() {
@@ -42,7 +44,12 @@ export default class CalendarSettingsScene extends Component {
     const enabled = calendars.reduce((res, cal) => {
       return {...res, [cal.calendar_id]: cal.enabled}
     }, {});
-    this.setState({accounts, enabled});
+    this.setState({
+      accounts,
+      enabled,
+      defaultCalendar: calendars[0],
+      defaultAccount: accounts[0],
+    });
   }
 
   _onLogin = (googleUser) => {
@@ -79,13 +86,16 @@ export default class CalendarSettingsScene extends Component {
 
   }
 
-  _onDropdownSelect = (calendar) => {
-    this.setState({calendarToAdd: calendar})
+  _onDropdownSelect = (item) => {
+    this.setState({
+      defaultAccount: item.account,
+      defaultCalendar: item.data,
+    });
   }
 
   render() {
     console.log(this.state);
-    const {accounts, selected} = this.state;
+    const {accounts} = this.state;
     const sections = accounts.map(acc => {
       const calendars = acc.calendars.map(cal => ({data: cal, type: CALENDAR, key: cal.calendar_id, account: acc}));
       return [{data: acc, type: ACCOUNT, key: acc.id}, ...calendars];
@@ -104,16 +114,29 @@ export default class CalendarSettingsScene extends Component {
             </View>
           </View>
         </TopBar>
-        <View style={[s.row, s.margin10, {alignItems: 'center'}]}>
+        <View style={[s.row, s.margin10, {alignItems: 'center', justifyContent: 'flex-start'}]}>
           <Text style={[s.textColorTheme, s.bold, {fontSize: 15}]}>Add meetings to: </Text>
-          <View style={[s.row, styles.dropdown, {alignItems: 'center'}]}>
-            <ModalDropdown
-              onSelect={(index) => this._onDropdownSelect(dropDownData[index].data)}
-              options={dropDownData.map(item => item.account.name + ' ' + item.data.name)}
-              defaultValue="Please select a calendar"
-            />
-            <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5,}}/>
-          </View>
+          <DropdownPicker
+            style={{flex: 1, alignSelf: 'stretch', marginLeft: 5}}
+            dropdownStyle={styles.dropdownList}
+            onSelect={(index) => this._onDropdownSelect(dropDownData[index])}
+            options={dropDownData}
+            renderRow={(item, id, highlighted) => {
+              return (
+                <View style={{backgroundColor: mainBackgroundColor}}>
+                  <Text style={{fontSize: 15, paddingLeft: 10, color: 'grey'}}>{item.account.name}</Text>
+                  <Text style={{fontSize: 14, paddingLeft: 20, color: 'black'}}>{item.data.name}</Text>
+                </View>
+              );
+            }}>
+            <View style={[s.row, styles.dropdown]}>
+              <View>
+                <Text style={{fontSize: 15, paddingLeft: 5, color: 'grey'}}>{this.state.defaultAccount.name}</Text>
+                <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>{this.state.defaultCalendar.name}</Text>
+              </View>
+              <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+            </View>
+          </DropdownPicker>
         </View>
         <View style={[s.row, styles.enableTitleWrapper]}>
           <Text style={[s.textColorTheme, s.bold, styles.enableTitle]}>Enable/Disable Calendars</Text>
@@ -189,12 +212,14 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   dropdown: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: themeColorLight,
-    paddingLeft: 5,
-    paddingRight: 5,
-    marginLeft: 5,
     marginTop: 5,
     borderRadius: 10,
+    padding: 2,
+    paddingLeft: 10,
+    paddingRight: 10
   },
   next: {
     position: 'absolute',
@@ -206,6 +231,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: themeColorLight,
     paddingTop: 10,
+  },
+  dropdownList: {
+    borderWidth: 5,
+    borderRadius: 10,
+    padding: 5,
+    borderColor:
+    themeColorLight,
+    backgroundColor:
+    mainBackgroundColor
   }
 });
 
