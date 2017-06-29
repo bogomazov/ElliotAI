@@ -28,8 +28,8 @@ export default class CalendarSettingsScene extends Component {
   state = {
     accounts: [],
     enabled: {},
-    defaultAccount: "",
-    defaultCalendar: "",
+    defaultAccount: null,
+    defaultCalendar: null,
   }
 
   componentWillMount() {
@@ -72,18 +72,9 @@ export default class CalendarSettingsScene extends Component {
 
   _onPressNext = () => {
     console.log('on press next');
-    if (!this.state.calendarToAdd) {
-      Alert.alert("Can't continue", 'Please select a calendar for us to add scheduled meetings first.', [
-        {text: 'OK', onPress: () => console.log('Pressed ok')},
-      ], {
-        cancelable: true
-      });
-      return;
-    }
 
     // TODO: post settings to back-end then dispatch didFinishCalendarIntro
     this.props.appActions.finishCalendarIntro()
-
   }
 
   _onDropdownSelect = (item) => {
@@ -95,7 +86,11 @@ export default class CalendarSettingsScene extends Component {
 
   render() {
     console.log(this.state);
-    const {accounts} = this.state;
+    const {
+      accounts,
+      defaultCalendar,
+      defaultAccount
+    } = this.state;
     const sections = accounts.map(acc => {
       const calendars = acc.calendars.map(cal => ({data: cal, type: CALENDAR, key: cal.calendar_id, account: acc}));
       return [{data: acc, type: ACCOUNT, key: acc.id}, ...calendars];
@@ -131,8 +126,12 @@ export default class CalendarSettingsScene extends Component {
             }}>
             <View style={[s.row, styles.dropdown]}>
               <View>
-                <Text style={{fontSize: 15, paddingLeft: 5, color: 'grey'}}>{this.state.defaultAccount.name}</Text>
-                <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>{this.state.defaultCalendar.name}</Text>
+                <Text style={{fontSize: 15, paddingLeft: 5, color: 'grey'}}>
+                  {defaultAccount ? defaultAccount.name : ""}
+                </Text>
+                <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
+                  {defaultCalendar ? defaultCalendar.name : ""}
+                </Text>
               </View>
               <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
             </View>
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: themeColorLight,
     marginTop: 5,
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 2,
     paddingLeft: 10,
     paddingRight: 10
@@ -234,12 +233,11 @@ const styles = StyleSheet.create({
   },
   dropdownList: {
     borderWidth: 5,
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 5,
-    borderColor:
-    themeColorLight,
-    backgroundColor:
-    mainBackgroundColor
+    borderColor: themeColorLight,
+    backgroundColor: mainBackgroundColor,
+    marginTop: -25,
   }
 });
 
