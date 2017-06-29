@@ -48,6 +48,14 @@ export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
 export const INVITE_FRIENDS_TAB = 2
 
+// open-tab notif constants
+const weekly = 0
+const friendJoined = 1
+const confirmed = 2
+const reschedule = 3
+const update = 4
+const openInvite = 5
+
 const mapStateToProps = (state) => {
 	return {app: state.app}
 }
@@ -120,6 +128,23 @@ export default class MainScene extends Component {
 			if (this.state.phoneVerificationCode == response.code) {
 				this.props.appActions.phoneVerified()
 			}
+    });
+    DeepLinking.addRoute('/open-tab/:code', (response) => {
+      console.log(response)
+      switch (parseInt(response.code)) {
+        case weekly:
+        case friendJoined:
+        case reschedule:
+        case update:
+          this.tabNavigator._navigation.navigate('SuggestionsTab');
+          break;
+        case openInvite:
+          this.tabNavigator._navigation.navigate('InviteFriendsTab');
+          break;
+        case confirmed:
+          this.tabNavigator._navigation.navigate('CalendarTab');
+          break;
+      }
     });
 	}
 
@@ -216,7 +241,7 @@ export default class MainScene extends Component {
 
   render() {
     console.log(this.props)
-
+    console.log(this.tabNavigator);
 		if (IS_ANDROID) {
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
@@ -231,6 +256,7 @@ export default class MainScene extends Component {
           color="#841584"
         />}
         <BottomTabNavigation
+          ref={(ref) => this.tabNavigator = ref}
           screenProps={{mainNav: this.props.navigation}}
           onNavigationStateChange={(prevState, currentState) => {
             console.log(currentState)
