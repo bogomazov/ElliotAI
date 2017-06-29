@@ -35,7 +35,6 @@ const mapDispatchToProps = (dispatch) => {
 const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 
 
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
   static navigationOptions = {
