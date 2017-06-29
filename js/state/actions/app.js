@@ -270,6 +270,11 @@ export const cancelMeeting = (meeting) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).cancel(meeting.suggestion_id)
   }
+
+export const sendGoogleAuthToken = (serverAuthToken) => {
+  return (dispatch, getState, getAPI) =>
+      getAPI(getState, dispatch).sendGoogleAccessToken(serverAuthToken)
+  }
 export const rejectSuggestion = (suggestion, responseType) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).reject(suggestion.id, responseType).then((data) => {
@@ -294,37 +299,6 @@ export const sendSocialMediaAccessToken = (accessToken, type) => {
       };
     }
 }
-
-// func determineMetroArea(location: CLLocation) {
-//         if (location.distance(from: CLLocation(latitude: 42.36, longitude: -71.05)) < 100000) {
-//             metroIdOpenTable = "7"
-//             metroName = "Boston Area"
-//         } else if (location.distance(from: CLLocation(latitude: 37.56, longitude: -122.32)) < 100000) {
-//             metroIdOpenTable = "4"
-//             metroName = "San Francisco Bay Area"
-//         } else if (location.distance(from: CLLocation(latitude: 40.71, longitude: -74.00)) < 100000) {
-//             metroIdOpenTable = "8"
-//             metroName = "New York Area"
-//         } else if (location.distance(from: CLLocation(latitude: 41.87, longitude: -87.62)) < 100000) {
-//             metroIdOpenTable = "3"
-//             metroName = "Chicago Area"
-//         } else if (location.distance(from: CLLocation(latitude: 47.60, longitude: -122.33)) < 100000) {
-//             metroIdOpenTable = "2"
-//             metroName = "Seattle Area"
-//         } else if (location.distance(from: CLLocation(latitude: 34.05, longitude: -118.24)) < 100000) {
-//             metroIdOpenTable = "6"
-//             metroName = "Los Angeles Area"
-//         } else if (location.distance(from: CLLocation(latitude: 26.12, longitude: -80.13)) < 100000) {
-//             metroIdOpenTable = "17"
-//             metroName = "Miami Area"
-//         } else if (location.distance(from: CLLocation(latitude: 43.65, longitude: -79.38)) < 100000) {
-//             metroIdOpenTable = "74"
-//             metroName = "Toronto Area"
-//         } else if (location.distance(from: CLLocation(latitude: 45.50, longitude: -73.56)) < 100000) {
-//             metroIdOpenTable = "75"
-//             metroName = "Montreal Area"
-//         }
-//     }
 
 const getPoint = (lat, lng) => {
   return {
