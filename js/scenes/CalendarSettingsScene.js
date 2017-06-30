@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import TopBar from '../components/TopBar';
-import s, {themeColorLight, mainBackgroundColor} from '../res/values/styles';
-import Icon from 'react-native-vector-icons/Ionicons';
+import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as appActions from '../state/actions/app';
 import DropdownPicker from '../containers/DropdownPicker';
+import IconIon from 'react-native-vector-icons/Ionicons';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -25,6 +25,11 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarSettingsScene extends Component {
+  static navigationOptions = {
+    tabBarIcon: ({tintColor, focused}) =>
+       <IconIon name="ios-settings-outline" color={focused? themeColor: 'grey'} size={focused? 42: 38} />
+  };
+
   state = {
     accounts: [],
     enabled: {},
@@ -133,7 +138,7 @@ export default class CalendarSettingsScene extends Component {
                   {defaultCalendar ? defaultCalendar.name : ""}
                 </Text>
               </View>
-              <Icon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+              <IconIon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
             </View>
           </DropdownPicker>
         </View>

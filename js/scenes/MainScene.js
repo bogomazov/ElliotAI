@@ -33,6 +33,8 @@ import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
+import SettingsScene from '../scenes/SettingsScene'
+import CalendarSettingsScene from '../scenes/CalendarSettingsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
@@ -91,6 +93,7 @@ const BottomTabNavigation = TabNavigator({
     }
   },
   InviteFriendsTab: {screen: InviteFriendsScene},
+  SettingsTab: {screen: CalendarSettingsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
   // lazy: true,
@@ -254,11 +257,6 @@ export default class MainScene extends Component {
 
     return (
       <View style={styles.container}>
-        {IS_ANDROID && IS_DEV && <Button
-          onPress={this.props.appActions.logOut}
-          title="Log out"
-          color="#841584"
-        />}
         <BottomTabNavigation
           screenProps={{mainNav: this.props.navigation}}
           onNavigationStateChange={(prevState, currentState) => {
