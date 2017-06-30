@@ -33,7 +33,6 @@ import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
-import SettingsScene from '../scenes/SettingsScene'
 import CalendarSettingsScene from '../scenes/CalendarSettingsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
@@ -210,7 +209,7 @@ export default class MainScene extends Component {
           console.log(location)
           this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
             this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-            this._updateCalendarEvents()
+            this.props.appActions.loadSuggestions();
           })
         })
       }
@@ -219,30 +218,9 @@ export default class MainScene extends Component {
       // On iOS location permission is optional.
       // So if access hasn't been granted, move on with calendar events.
       if (IS_IOS) {
-        this._updateCalendarEvents()
+        this.props.appActions.loadSuggestions();
       }
     })
-  }
-
-	_updateCalendarEvents = () => {
-    console.log('getting events')
-    checkCalendarPermissions().then(status => {
-      console.log(status)
-      if (status != 'authorized') {
-        this.props.appActions.switchPermissionsOff()
-        return
-      }
-      getEvents(moment(), moment().add(1, 'months')).then(events => {
-        console.log(events)
-        this.props.appActions.sendEvents(events).then(data=> {
-          this.props.appActions.loadSuggestions()
-        })
-      }).catch(error => {
-        console.log(error)
-      });
-    }).catch(error => {
-      console.log(error);
-    });
   }
 
   render() {
