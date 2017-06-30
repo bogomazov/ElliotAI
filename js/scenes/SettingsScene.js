@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
+import {FlatList, SectionList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import TopBar from '../components/TopBar';
 import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
@@ -9,9 +9,16 @@ import { bindActionCreators } from 'redux';
 import * as appActions from '../state/actions/app';
 import DropdownPicker from '../containers/DropdownPicker';
 import IconIon from 'react-native-vector-icons/Ionicons';
+import SettingsRow from '../components/SettingsRow';
+import SettingsAccountRow from '../components/SettingsAccountRow';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
+
+const ACCOUNTS = 0
+const ADD_EVENTS = 1
+const ADD_ACCOUNT = 2
+const LOGOUT = 3
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -35,6 +42,7 @@ export default class SettingsScene extends Component {
     enabled: {},
     defaultAccount: null,
     defaultCalendar: null,
+    expandedAccountId: -1,
   }
 
   componentWillMount() {
@@ -82,6 +90,14 @@ export default class SettingsScene extends Component {
     });
   }
 
+  _onAddAccountPress = () => {
+    // TODO: Sign-in to google, post to back-end
+  }
+
+  _onLogoutPress = () => {
+    this.props.appActions.logOut()
+  }
+
   render() {
     console.log(this.state);
     const {
@@ -89,73 +105,87 @@ export default class SettingsScene extends Component {
       defaultCalendar,
       defaultAccount
     } = this.state;
-    const sections = accounts.map(acc => {
-      const calendars = acc.calendars.map(cal => ({data: cal, type: CALENDAR, key: cal.calendar_id, account: acc}));
-      return [{data: acc, type: ACCOUNT, key: acc.id}, ...calendars];
-    });
-    const listData = sections.reduce((a, b) => [...a, ...b], []);
-    const dropDownData = listData.filter(item => item.type == CALENDAR);
+    const accountsData = accounts.map(acc => ({account: acc, key: acc.id}))
+    const createSection = (type, data = [{key: 0}]) => {
+      return {
+        type,
+        key: type,
+        data: data.map((item) => ({...item, section: type}))
+      }
+    }
+    const sections2 = [
+      createSection(ACCOUNTS, accountsData),
+      createSection(ADD_EVENTS),
+      createSection(ADD_ACCOUNT),
+      createSection(LOGOUT)
+    ];
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
           <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Settings</Text>
         </TopBar>
-        <View style={[s.row, s.margin10, {alignItems: 'center', justifyContent: 'flex-start'}]}>
-          <Text style={[s.textColorTheme, s.bold, {fontSize: 15}]}>Add meetings to: </Text>
-          <DropdownPicker
-            style={{flex: 1, alignSelf: 'stretch', marginLeft: 5}}
-            dropdownStyle={styles.dropdownList}
-            onSelect={(index) => this._onDropdownSelect(dropDownData[index])}
-            options={dropDownData}
-            renderRow={(item, id, highlighted) => {
-              return (
-                <View style={{backgroundColor: mainBackgroundColor}}>
-                  <Text style={{fontSize: 15, paddingLeft: 10, color: 'grey'}}>{item.account.name}</Text>
-                  <Text style={{fontSize: 14, paddingLeft: 20, color: 'black'}}>{item.data.name}</Text>
-                </View>
-              );
-            }}>
-            <View style={[s.row, styles.dropdown]}>
-              <View>
-                <Text style={{fontSize: 15, paddingLeft: 5, color: 'grey'}}>
-                  {defaultAccount ? defaultAccount.name : ""}
-                </Text>
-                <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
-                  {defaultCalendar ? defaultCalendar.name : ""}
-                </Text>
-              </View>
-              <IconIon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
-            </View>
-          </DropdownPicker>
-        </View>
-        <View style={[s.row, styles.enableTitleWrapper]}>
-          <Text style={[s.textColorTheme, s.bold, styles.enableTitle]}>Enable/Disable Calendars</Text>
-        </View>
-        <FlatList
-          data={listData}
+        <SectionList
+          removeClippedSubviews={false}
+          ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: mainBackgroundColor}}></View>}
           renderItem={({item}) => {
-            if (item.type == ACCOUNT) {
-              return (
-                <View style={styles.account}>
-                  <Text style={styles.accountTitle}>{item.data.name}</Text>
-                </View>
-              )
+            switch (item.section) {
+              case ACCOUNTS:
+                return (
+                  <SettingsAccountRow
+                    account={item.account}
+                    isExpanded={this.state.expandedAccountId === item.account.id}
+                    onExpand={() => {
+                      if (this.state.expandedAccountId === item.account.id) {
+                        this.setState({expandedAccountId: -1})
+                      } else {
+                        this.setState({expandedAccountId: item.account.id})
+                      }
+                    }}
+                    setIsEnabled={this.setIsEnabled}
+                    getIsEnabled={this.getIsEnabled}
+                  />
+                )
+              case ADD_EVENTS:
+                return (
+                  <SettingsRow onPress={this._onAddEventsPress}>
+                    <View>
+                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
+                      <View style={[s.row, {marginTop: 5}]}>
+                        <Text style={{fontSize: 15, color: 'grey'}}>
+                          {defaultAccount ? defaultAccount.name : ""}
+                        </Text>
+                        <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
+                          {defaultCalendar ? defaultCalendar.name : ""}
+                        </Text>
+                      </View>
+                    </View>
+                    <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                  </SettingsRow>
+                )
+              case ADD_ACCOUNT:
+                return (
+                  <SettingsRow onPress={this._onAddAccountPress}>
+                    <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Add another account</Text>
+                    <IconIon name="logo-googleplus" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                  </SettingsRow>
+                )
+              case LOGOUT:
+                return (
+                  <SettingsRow onPress={this._onLogoutPress}>
+                    <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Logout</Text>
+                    <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                  </SettingsRow>
+                )
             }
-            return (
-              <View style={styles.calendar}>
-                <Text style={styles.calendarTitle}>{item.data.name}</Text>
-                <Switch
-                  onValueChange={(value) => this.setIsEnabled(item.data, value)}
-                  value={this.getIsEnabled(item.data)}
-                />
-              </View>
-            )
           }}
+          renderSectionHeader={({section}) => {
+            if (section.type == ACCOUNTS) {
+              return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 14, color: 'grey'}]}>Calendar Accounts</Text></View>
+            }
+            return <View style={{margin: 7}}></View>
+          }}
+          sections={sections2}
         />
-        <View style={[s.col, styles.anotherAccountWrapper]}>
-          <Text style={[s.textColorTheme, s.bold]}>Add another account?</Text>
-          <GoogleLoginButton onLogin={this._onLogin} />
-        </View>
       </View>
     );
   }
@@ -167,65 +197,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: mainBackgroundColor,
   },
-  enableTitleWrapper: {
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    borderColor: themeColorLight
-  },
-  enableTitle: {
-    fontSize: 15,
-    padding: 10,
-    paddingBottom: 5,
-  },
-  account: {
-    marginTop: 5,
-    marginLeft: 10,
-    padding: 5,
-  },
-  accountTitle: {
-    fontSize: 15,
-    color: 'grey',
-  },
-  calendar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 5,
-    paddingRight: 10,
-    paddingLeft: 25,
-    borderTopWidth: 2,
-    borderTopColor: mainBackgroundColor,
-  },
-  calendarTitle: {
-    fontSize: 15,
-  },
-  dropdown: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: themeColorLight,
-    marginTop: 5,
-    borderRadius: 5,
-    padding: 2,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  anotherAccountWrapper: {
-    alignItems: 'center',
-    marginBottom: 30,
-    borderTopWidth: 1,
-    borderTopColor: themeColorLight,
-    paddingTop: 10,
-  },
-  dropdownList: {
-    borderWidth: 5,
-    borderRadius: 5,
-    padding: 5,
-    borderColor: themeColorLight,
-    backgroundColor: mainBackgroundColor,
-    marginTop: -25,
-  }
 });
 
 const TEST_ACCOUNTS = [
