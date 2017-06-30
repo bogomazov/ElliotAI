@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, SectionList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
+import {ActionSheetIOS, FlatList, SectionList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import TopBar from '../components/TopBar';
 import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
@@ -90,6 +90,25 @@ export default class SettingsScene extends Component {
     });
   }
 
+  _onAddEventsPress = () => {
+    const calendars = this.state.accounts
+      .map(acc => acc.calendars.map(cal => ({acc, cal})))
+      .reduce((a, b) => [...a, ...b], [])
+    const calendarNames = calendars.map(item => item.acc.name + ' ' + item.cal.name)
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: 'Select calendar',
+      options: [...calendarNames, 'Cancel'],
+      cancelButtonIndex: calendars.length,
+    }, (index) => {
+      if (index != calendars.length) {
+        this.setState({
+          defaultCalendar: calendars[index].cal,
+          defaultAccount: calendars[index].acc,
+        })
+      }
+    })
+  }
+
   _onAddAccountPress = () => {
     // TODO: Sign-in to google, post to back-end
 		if (this.googleButton) {
@@ -98,7 +117,17 @@ export default class SettingsScene extends Component {
   }
 
   _onLogoutPress = () => {
-    this.props.appActions.logOut()
+    // TODO: use cross platform action-sheet of expo instead
+    ActionSheetIOS.showActionSheetWithOptions({
+      title: 'Are you sure?',
+      options: ['Logout', 'Cancel'],
+      destructiveButtonIndex: 0,
+      cancelButtonIndex: 1,
+    }, (index) => {
+      if (index == 0) {
+        this.props.appActions.logOut()
+      }
+    })
   }
 
   render() {
@@ -188,7 +217,7 @@ export default class SettingsScene extends Component {
           }}
           renderSectionHeader={({section}) => {
             if (section.type == ACCOUNTS) {
-              return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 14, color: 'grey'}]}>Calendar Accounts</Text></View>
+              return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 16, color: 'grey'}]}>Calendar Accounts</Text></View>
             }
             return <View style={{margin: 7}}></View>
           }}
