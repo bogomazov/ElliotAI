@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {ActionSheetIOS, FlatList, SectionList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
 import TopBar from '../components/TopBar';
 import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
-import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -11,6 +10,7 @@ import DropdownPicker from '../containers/DropdownPicker';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import SettingsRow from '../components/SettingsRow';
 import SettingsAccountRow from '../components/SettingsAccountRow';
+import {loginToGoogle} from '../utils/GoogleLogin';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -110,10 +110,13 @@ export default class SettingsScene extends Component {
   }
 
   _onAddAccountPress = () => {
-    // TODO: Sign-in to google, post to back-end
-		if (this.googleButton) {
-			this.googleButton.googleSignIn()
-		}
+    // TODO: if successful, refresh calendars
+    loginToGoogle().then(user => {
+      console.log(user)
+      this.props.appActions.sendGoogleAuthToken(user.serverAuthCode)
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   _onLogoutPress = () => {
@@ -199,11 +202,6 @@ export default class SettingsScene extends Component {
                   <SettingsRow onPress={this._onAddAccountPress}>
                     <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Add another account</Text>
                     <IconIon name="logo-googleplus" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
-										<GoogleLoginButton ref={(googleButton) => {
-											if (googleButton) {
-												this.googleButton = googleButton.wrappedInstance
-											}
-										}} onLogin={this._onLogin} isHidden/>
                   </SettingsRow>
                 )
               case LOGOUT:
