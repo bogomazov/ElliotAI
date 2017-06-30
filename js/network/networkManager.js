@@ -38,7 +38,7 @@ class API {
       "response_type" : responseType
     })
   sendGoogleAccessToken = (google_auth_code) =>
-    this.post('/calendar_accounts/', {
+    this.post('/calendar_accounts', {
       google_auth_code
     })
   editCalendar = (calendar_id, enable, is_default) =>
