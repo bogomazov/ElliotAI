@@ -44,7 +44,8 @@ class MainTabBarController: UITabBarController {
             meetingNavController.topViewController?.view
         }
  
-        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)*/
+        NotificationCenter.default.addObserver(self, selector: #selector(showInviteTab), name: NotificationNames.showInvite, object: nil)
+         */
     }
     
     func initForReactNative() {
