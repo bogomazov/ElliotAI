@@ -24,6 +24,7 @@ target 'Elliot' do
     'RCTImage',
     'RCTLinkingIOS',
     'RCTActionSheet',
+    'RCTAnimation',
     'DevSupport',
   ]
   

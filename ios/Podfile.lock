@@ -109,6 +109,8 @@ PODS:
   - React/jschelpers (0.44.0)
   - React/RCTActionSheet (0.44.0):
     - React/Core
+  - React/RCTAnimation (0.44.0):
+    - React/Core
   - React/RCTImage (0.44.0):
     - React/Core
     - React/RCTNetwork
@@ -152,6 +154,7 @@ DEPENDENCIES:
   - React/Core (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
+  - React/RCTAnimation (from `../node_modules/react-native`)
   - React/RCTImage (from `../node_modules/react-native`)
   - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
@@ -226,6 +229,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Yoga: a92a5d8e128905bf9f29c82f870192a6e873dd98
 
-PODFILE CHECKSUM: 5d0f3d7027e6da554feab608f9ff75c57f8deaac
+PODFILE CHECKSUM: 573dddd8e8a667fbb29318d82d090d32e532e11c
 
 COCOAPODS: 1.2.1
