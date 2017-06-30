@@ -68,6 +68,7 @@
 		03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
 		03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
 		03F9E7B91EE9AD3900DC815C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 03F9E7B81EE9AD3900DC815C /* assets */; };
+		FB7FB7EF1F06FAD600940037 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FB7FB7EE1F06FAD600940037 /* GoogleService-Info.plist */; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -184,6 +185,7 @@
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.release.xcconfig"; sourceTree = "<group>"; };
 		EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elliot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB7FB7EE1F06FAD600940037 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Elliot/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FBB60E5A1E1E0F050035D841 /* Elliot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elliot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB60E621E1E0F050035D841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 		FBB60E511E1E0F050035D841 = {
 			isa = PBXGroup;
 			children = (
+				FB7FB7EE1F06FAD600940037 /* GoogleService-Info.plist */,
 				0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */,
 				03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */,
 				0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */,
@@ -549,6 +552,7 @@
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
 				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
+				FB7FB7EF1F06FAD600940037 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,7 +834,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -979,7 +983,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1018,7 +1022,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
