@@ -10,5 +10,19 @@
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.elliottech.elliotios</string>
+	<key>PROJECT_ID</key>
+	<string>elliot-tech</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<false/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:245808737532:ios:fadd6dec8c6826c9</string>
 </dict>
 </plist>
