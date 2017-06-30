@@ -12,7 +12,6 @@ import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s from '../res/values/styles';
-import CalendarSettingsScene from './CalendarSettingsScene';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 
 const mapStateToProps = (state) => {
@@ -32,13 +31,11 @@ export default class CalendarPermissionScene extends Component {
   _onLogin = (googleUser) => {
     console.log(googleUser);
     this.setState({loggedIn: true});
+    this.props.appActions.finishCalendarIntro()
   }
 
   render() {
     console.log(this.state);
-    if (this.state.loggedIn) {
-      return <CalendarSettingsScene isIntro={true}/>
-    }
     return (
       <View style={styles.container}>
         <View style={styles.topWrapper}>

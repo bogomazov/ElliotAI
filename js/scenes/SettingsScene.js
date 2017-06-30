@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class CalendarSettingsScene extends Component {
+export default class SettingsScene extends Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor, focused}) =>
        <IconIon name="ios-settings-outline" color={focused? themeColor: 'grey'} size={focused? 42: 38} />
@@ -75,13 +75,6 @@ export default class CalendarSettingsScene extends Component {
     return this.state.enabled[calendar.calendar_id];
   }
 
-  _onPressNext = () => {
-    console.log('on press next');
-
-    // TODO: post settings to back-end then dispatch didFinishCalendarIntro
-    this.props.appActions.finishCalendarIntro()
-  }
-
   _onDropdownSelect = (item) => {
     this.setState({
       defaultAccount: item.account,
@@ -105,14 +98,7 @@ export default class CalendarSettingsScene extends Component {
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
-          <View style={[s.row, {flex: 1, justifyContent: 'center'}]}>
-            <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Manage Calendars</Text>
-            <View style={styles.next}>
-              <TouchableHighlight onPress={this._onPressNext} underlayColor="white">
-                <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>{this.props.isIntro ? "Next" : "Save"}</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
+          <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Settings</Text>
         </TopBar>
         <View style={[s.row, s.margin10, {alignItems: 'center', justifyContent: 'flex-start'}]}>
           <Text style={[s.textColorTheme, s.bold, {fontSize: 15}]}>Add meetings to: </Text>
@@ -224,10 +210,6 @@ const styles = StyleSheet.create({
     padding: 2,
     paddingLeft: 10,
     paddingRight: 10
-  },
-  next: {
-    position: 'absolute',
-    right: 10,
   },
   anotherAccountWrapper: {
     alignItems: 'center',

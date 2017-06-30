@@ -8,7 +8,6 @@ import UserSuggestionsScene from './UserSuggestionsScene';
 import FriendsScene from './FriendsScene';
 import PermissionsScene from './PermissionsScene';
 import CalendarPermissionScene from './CalendarPermissionScene';
-import CalendarSettingsScene from './CalendarSettingsScene';
 import {IS_ANDROID} from '../settings';
 import {StackNavigator} from 'react-navigation';
 import * as appActions from '../state/actions/app';

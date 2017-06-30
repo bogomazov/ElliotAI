@@ -33,7 +33,7 @@ import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
-import CalendarSettingsScene from '../scenes/CalendarSettingsScene'
+import SettingsScene from '../scenes/SettingsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
@@ -92,7 +92,7 @@ const BottomTabNavigation = TabNavigator({
     }
   },
   InviteFriendsTab: {screen: InviteFriendsScene},
-  SettingsTab: {screen: CalendarSettingsScene},
+  SettingsTab: {screen: SettingsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
   // lazy: true,
@@ -232,7 +232,6 @@ export default class MainScene extends Component {
 			}
 
 		}
-
     return (
       <View style={styles.container}>
         <BottomTabNavigation
