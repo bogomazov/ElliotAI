@@ -81,9 +81,6 @@ export default class SuggestionsCard extends Component {
         }
     }
     _isAllowed = () => {
-      if (this.props.suggestion.is_invite) {
-        return this.state.selected.length == 1
-      }
       return this.state.selected.length > 0
     }
     _onConfirmPress = () => {
@@ -259,10 +256,13 @@ export default class SuggestionsCard extends Component {
             </TouchableHighlight>
             }
             { withOptions && < View style={styles.verticalBorder} ></View> }
-            <TouchableHighlight style={styles.buttonWrapper} underlayColor={themeColorLight}
-                                onPress={() => this._onConfirmPress()}>
+            <TouchableHighlight
+              style={styles.buttonWrapper}
+              underlayColor={themeColorLight}
+              disabled={!this._isAllowed()}
+              onPress={() => this._onConfirmPress()}>
               <View>
-                <Text style={[styles.optionButton, this._isAllowed() ? {color: themeColorThird} : s.textColorGrey]}>
+                <Text style={[styles.optionButton,  {color: this._isAllowed()? themeColorThird: '#C0C0C0'} ]}>
                   {isInvite ? "YES" : "SEND"}
                 </Text>
               </View>
