@@ -92,6 +92,9 @@ export default class SettingsScene extends Component {
 
   _onAddAccountPress = () => {
     // TODO: Sign-in to google, post to back-end
+		if (this.googleButton) {
+			this.googleButton.googleSignIn()
+		}
   }
 
   _onLogoutPress = () => {
@@ -167,6 +170,11 @@ export default class SettingsScene extends Component {
                   <SettingsRow onPress={this._onAddAccountPress}>
                     <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Add another account</Text>
                     <IconIon name="logo-googleplus" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+										<GoogleLoginButton ref={(googleButton) => {
+											if (googleButton) {
+												this.googleButton = googleButton.wrappedInstance
+											}
+										}} onLogin={this._onLogin} isHidden/>
                   </SettingsRow>
                 )
               case LOGOUT:
