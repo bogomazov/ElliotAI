@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let facebookLogoutNotifName = "facebookLogoutNotif"
     
     var window: UIWindow?
-    weak var tabBarVC: MainTabBarController?
     
     func shouldLogin() -> Bool {
         if let fbToken = AccessToken.current {
@@ -74,10 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        if let notifData = launchOptions?[.remoteNotification] as? [AnyHashable: Any] {
-            NotificationsManager.shared.handleNotificationTap(data: JSON(notifData))
-        }
-        
         UIApplication.shared.registerForRemoteNotifications()
         
         return true
@@ -118,7 +113,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             showViewController(identifier: "verify-phone-vc")
         } else {
             NotificationCenter.default.post(name: NotificationNames.foregroundUpdate, object: self)
-            UsageStats.reportSession()
         }
     }
 
@@ -130,45 +124,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-    // MARK Remote Notifications
-    
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        print("User gave response with the following settings: \(notificationSettings.description)")
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Send deviceToken to server.
-        var token: String = ""
-        for i in 0..<deviceToken.count {
-            token += String(format: "%02.2hhx", deviceToken[i] as CVarArg)
-        }
-        
-        let deviceTokenRequet = DeviceTokenRequest(token: token)
-        NetworkManager.shared.make(request: deviceTokenRequet) { (json, success) in
-            print("Device token post success = \(success)")
-        }
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Could not register for remote notifications: \(error.localizedDescription)")
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        let json = JSON(userInfo)
-        print("PUSHLOG: Did receive remote notification...")
-        switch application.applicationState {
-        case .inactive:
-            print("PUSHLOG: Handling notification tap")
-            NotificationsManager.shared.handleNotificationTap(data: json)
-        case .active:
-            print("PUSHLOG: Handle in-app notification")
-            NotificationsManager.shared.handleInAppNotification(data: json)
-        default:
-            break
-        }
-    }
-    
-    
 }
 
