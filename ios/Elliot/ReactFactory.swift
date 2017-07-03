@@ -14,9 +14,10 @@ import CodePush
 // Keeps a reference to the common RCTBridge.
 class ReactFactory: NSObject, RCTBridgeDelegate {
     static let shared = ReactFactory()
+    var appLaunchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil
     
     lazy var bridge: RCTBridge = {
-        return RCTBridge(delegate: self, launchOptions: nil)
+        return RCTBridge(delegate: self, launchOptions: self.appLaunchOptions)
     }()
     
     static weak var rootViewController: UIViewController?
