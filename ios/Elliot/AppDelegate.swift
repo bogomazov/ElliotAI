@@ -56,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserProfile.updatesOnAccessTokenChange = true
         
+        ReactFactory.shared.appLaunchOptions = launchOptions
+        
         OpenSans.registerFonts()
         
         window = UIWindow(frame: UIScreen.main.bounds)
