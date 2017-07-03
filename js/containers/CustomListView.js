@@ -22,6 +22,8 @@ export default class CustomListView extends Component {
 
   render = () => <FlatList
     ref={(ref) => this.flatList = ref}
+    keyboardShouldPersistTaps="handled"
+    keyboardDismissMode="on-drag"
     removeClippedSubviews={false}
     onRefresh={this.props.onRefresh}
     refreshing={this.props.refreshing}
