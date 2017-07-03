@@ -9,57 +9,24 @@
 /* Begin PBXBuildFile section */
 		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
 		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
-		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
-		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
-		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
-		031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D71EBD28F5001881B7 /* SearchController.swift */; };
+		030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C881A1F0A7B9A009B25EA /* MainViewController.swift */; };
 		0322D5411E2115C500239A3A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5401E2115C500239A3A /* LocationManager.swift */; };
-		0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5441E22393E00239A3A /* PermissionsViewController.swift */; };
 		0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */; };
-		0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54C1E22539C00239A3A /* CalendarManager.swift */; };
-		0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54E1E2256E600239A3A /* AccessRequired.swift */; };
-		0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5501E2272F000239A3A /* InviteViewController.swift */; };
 		0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; };
 		0328E9121E2F9CF8003427C3 /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */; };
-		0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A41A1E3E550D006E8DCF /* UsageStats.swift */; };
 		033375A51E256079000A5C21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A41E256079000A5C21 /* NetworkManager.swift */; };
-		033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A71E2685ED000A5C21 /* MeetingsViewController.swift */; };
-		033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */; };
-		033375B01E268D0A000A5C21 /* MeetingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */; };
-		03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */; };
 		03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
 		03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
 		034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
 		034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
 		034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
-		037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037047601E3124B5007912B6 /* NotificationsManager.swift */; };
-		0370AF671EDD642A000D376B /* ReactTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF661EDD642A000D376B /* ReactTestViewController.swift */; };
 		0370AF761EDD86B5000D376B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0370AF751EDD86B4000D376B /* main.jsbundle */; };
 		0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7A1EDDBE59000D376B /* ReactFactory.swift */; };
-		0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */; };
-		0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */; };
-		03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */; };
-		03755F631E28E780003EDAD9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03755F621E28E780003EDAD9 /* Models.swift */; };
-		03785F6E1E300E8000A452F3 /* MeetingDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */; };
-		03785F701E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */; };
-		03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */; };
-		03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */; };
-		037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037E52181E77536500F2738D /* DifferentTimeViewController.swift */; };
 		0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
-		0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */; };
-		03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */; };
-		03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393CC1E29239100661CEA /* MainTabBarController.swift */; };
-		03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */; };
-		03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */; };
-		03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */; };
 		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
-		03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */; };
-		03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */; };
 		03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
 		03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
-		03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */; };
-		03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E739321E6A0B4800525383 /* UIViewController+Banner.swift */; };
 		03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
 		03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7A81EE821A000DC815C /* LocationAccess.swift */; };
 		03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
@@ -115,58 +82,25 @@
 /* Begin PBXFileReference section */
 		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
 		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
-		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
-		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
-		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
-		031DD2D71EBD28F5001881B7 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		030C881A1F0A7B9A009B25EA /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0322D5401E2115C500239A3A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		0322D5441E22393E00239A3A /* PermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
 		0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultsKeysExtension.swift; sourceTree = "<group>"; };
-		0322D54C1E22539C00239A3A /* CalendarManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
-		0322D54E1E2256E600239A3A /* AccessRequired.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessRequired.swift; sourceTree = "<group>"; };
-		0322D5501E2272F000239A3A /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenSansSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHighlightedButton.swift; sourceTree = "<group>"; };
-		0332A41A1E3E550D006E8DCF /* UsageStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageStats.swift; sourceTree = "<group>"; };
 		033375A41E256079000A5C21 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		033375A71E2685ED000A5C21 /* MeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsViewController.swift; sourceTree = "<group>"; };
-		033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingsTableViewCell.swift; sourceTree = "<group>"; };
-		033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDetailViewController.swift; sourceTree = "<group>"; };
-		03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+BottomBorder.swift"; sourceTree = "<group>"; };
 		03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
 		03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSNotifManager.swift; sourceTree = "<group>"; };
 		034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Elliot.swift"; sourceTree = "<group>"; };
 		034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenSansSwift.framework; path = "../../../../Downloads/OpenSansSwift-master 2/build/Debug-iphoneos/OpenSansSwift.framework"; sourceTree = "<group>"; };
 		0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Elliot.entitlements; sourceTree = "<group>"; };
-		037047601E3124B5007912B6 /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
-		0370AF661EDD642A000D376B /* ReactTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactTestViewController.swift; sourceTree = "<group>"; };
 		0370AF751EDD86B4000D376B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = SOURCE_ROOT; };
 		0370AF7A1EDDBE59000D376B /* ReactFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactFactory.swift; sourceTree = "<group>"; };
-		0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactTestConnector.swift; sourceTree = "<group>"; };
-		0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactTestConnectorBridge.m; sourceTree = "<group>"; };
-		03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+FormatUtil.swift"; sourceTree = "<group>"; };
-		03755F621E28E780003EDAD9 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "OpenSansSwift-master 2/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
-		03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingDetailTableViewCell.swift; sourceTree = "<group>"; };
-		03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeclineSuggestionTableViewCell.swift; sourceTree = "<group>"; };
-		03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarEventTableViewCell.swift; sourceTree = "<group>"; };
-		03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlockTableViewCell.swift; sourceTree = "<group>"; };
-		037E52181E77536500F2738D /* DifferentTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifferentTimeViewController.swift; sourceTree = "<group>"; };
 		0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
-		03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifferentTimeCell.swift; sourceTree = "<group>"; };
-		03A393CC1E29239100661CEA /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
-		03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
-		03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptSuggestionViewController.swift; sourceTree = "<group>"; };
 		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
-		03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
-		03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationCell.swift; sourceTree = "<group>"; };
 		03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccess.swift; sourceTree = "<group>"; };
 		03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccessBridge.m; sourceTree = "<group>"; };
-		03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardToInviteCell.swift; sourceTree = "<group>"; };
-		03E739321E6A0B4800525383 /* UIViewController+Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Banner.swift"; sourceTree = "<group>"; };
 		03F909C41E39F4C9002D24CE /* NotificationNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		03F9E7A81EE821A000DC815C /* LocationAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAccess.swift; sourceTree = "<group>"; };
 		03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationAccessBridge.m; sourceTree = "<group>"; };
@@ -219,28 +153,12 @@
 			name = CalendarMigration;
 			sourceTree = "<group>";
 		};
-		031DD2CB1EBCE1C2001881B7 /* FriendSearch */ = {
-			isa = PBXGroup;
-			children = (
-				031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */,
-				031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */,
-			);
-			name = FriendSearch;
-			sourceTree = "<group>";
-		};
 		0322D5471E223A6600239A3A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */,
 				03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */,
-				0322D5441E22393E00239A3A /* PermissionsViewController.swift */,
-				0322D5501E2272F000239A3A /* InviteViewController.swift */,
-				033375A71E2685ED000A5C21 /* MeetingsViewController.swift */,
-				03A393CE1E2A89DA00661CEA /* SuggestionsViewController.swift */,
-				037E52181E77536500F2738D /* DifferentTimeViewController.swift */,
-				03A393D41E2AC3A500661CEA /* AcceptSuggestionViewController.swift */,
-				033375AF1E268D0A000A5C21 /* MeetingDetailViewController.swift */,
-				03A393CC1E29239100661CEA /* MainTabBarController.swift */,
+				030C881A1F0A7B9A009B25EA /* MainViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -248,9 +166,6 @@
 		0370AF791EDDBC25000D376B /* ReactNative */ = {
 			isa = PBXGroup;
 			children = (
-				0370AF661EDD642A000D376B /* ReactTestViewController.swift */,
-				0370AF7F1EDDC7D5000D376B /* ReactTestConnector.swift */,
-				0370AF811EDDC9FC000D376B /* ReactTestConnectorBridge.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
 				0300FC921EF2B3BA0043BD43 /* CalendarMigration */,
 				03C1BCE01EEEBFEC003246F3 /* ShareAccess */,
@@ -272,17 +187,6 @@
 		03AD35A51E240505002F9D6A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				03AD35A31E2404FA002F9D6A /* ContactTableViewCell.swift */,
-				031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */,
-				033375A91E268646000A5C21 /* MeetingsTableViewCell.swift */,
-				03A393D01E2A8B6100661CEA /* SuggestionTableViewCell.swift */,
-				03A1E5951EAF431B00F21CE7 /* DifferentTimeCell.swift */,
-				03785F6D1E300E8000A452F3 /* MeetingDetailTableViewCell.swift */,
-				03785F6F1E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift */,
-				03785F721E30C0B300A452F3 /* CalendarEventTableViewCell.swift */,
-				03785F761E30C1D000A452F3 /* TimeBlockTableViewCell.swift */,
-				03C4B7491E320B49000F1E60 /* ForwardToInviteCell.swift */,
-				03B0D81C1E81B3EE00E5E8D4 /* ExplanationCell.swift */,
 				0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */,
 			);
 			name = Views;
@@ -300,11 +204,8 @@
 		03E7392F1E6A0B0D00525383 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				03755F601E28E17D003EDAD9 /* Date+FormatUtil.swift */,
 				03A393D61E2B9EE800661CEA /* AlertController+Util.swift */,
 				034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */,
-				03422D321ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift */,
-				03E739321E6A0B4800525383 /* UIViewController+Banner.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -377,20 +278,12 @@
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
 				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
 				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
-				0322D54C1E22539C00239A3A /* CalendarManager.swift */,
-				037047601E3124B5007912B6 /* NotificationsManager.swift */,
 				03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */,
-				0332A41A1E3E550D006E8DCF /* UsageStats.swift */,
-				0395E9CE1E20FC7600A7CFD2 /* ContactsManager.swift */,
 				0322D5401E2115C500239A3A /* LocationManager.swift */,
 				03F909C41E39F4C9002D24CE /* NotificationNames.swift */,
-				0322D54E1E2256E600239A3A /* AccessRequired.swift */,
 				033375A41E256079000A5C21 /* NetworkManager.swift */,
 				034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */,
-				03755F621E28E780003EDAD9 /* Models.swift */,
-				031DD2D71EBD28F5001881B7 /* SearchController.swift */,
 				0370AF791EDDBC25000D376B /* ReactNative */,
-				031DD2CB1EBCE1C2001881B7 /* FriendSearch */,
 				03E7392F1E6A0B0D00525383 /* Extensions */,
 				03AD35A51E240505002F9D6A /* Views */,
 				0322D5471E223A6600239A3A /* ViewControllers */,
@@ -649,61 +542,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03785F701E30A7CB00A452F3 /* DeclineSuggestionTableViewCell.swift in Sources */,
-				03C4B74A1E320B49000F1E60 /* ForwardToInviteCell.swift in Sources */,
-				03785F6E1E300E8000A452F3 /* MeetingDetailTableViewCell.swift in Sources */,
-				03A1E5961EAF431B00F21CE7 /* DifferentTimeCell.swift in Sources */,
-				031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */,
-				03E739331E6A0B4800525383 /* UIViewController+Banner.swift in Sources */,
 				0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */,
 				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
-				03785F771E30C1D000A452F3 /* TimeBlockTableViewCell.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
-				03A393CD1E29239100661CEA /* MainTabBarController.swift in Sources */,
 				03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */,
-				03422D331ED2E7EF009BB3F0 /* UINavigationBar+BottomBorder.swift in Sources */,
 				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,
-				031DD2D81EBD28F5001881B7 /* SearchController.swift in Sources */,
-				037E52191E77536500F2738D /* DifferentTimeViewController.swift in Sources */,
-				037047611E3124B5007912B6 /* NotificationsManager.swift in Sources */,
-				031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */,
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
-				03785F731E30C0B300A452F3 /* CalendarEventTableViewCell.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
 				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
-				03AD35A41E2404FA002F9D6A /* ContactTableViewCell.swift in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
-				0332A41B1E3E550D006E8DCF /* UsageStats.swift in Sources */,
 				0322D5411E2115C500239A3A /* LocationManager.swift in Sources */,
-				0370AF671EDD642A000D376B /* ReactTestViewController.swift in Sources */,
-				033375B01E268D0A000A5C21 /* MeetingDetailViewController.swift in Sources */,
 				03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */,
 				0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */,
-				03A393D11E2A8B6100661CEA /* SuggestionTableViewCell.swift in Sources */,
-				033375A81E2685ED000A5C21 /* MeetingsViewController.swift in Sources */,
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
-				031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */,
-				03B0D81D1E81B3EE00E5E8D4 /* ExplanationCell.swift in Sources */,
 				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
-				03755F611E28E17D003EDAD9 /* Date+FormatUtil.swift in Sources */,
-				03A393D51E2AC3A500661CEA /* AcceptSuggestionViewController.swift in Sources */,
-				0395E9CF1E20FC7600A7CFD2 /* ContactsManager.swift in Sources */,
-				03A393CF1E2A89DA00661CEA /* SuggestionsViewController.swift in Sources */,
-				0322D54D1E22539C00239A3A /* CalendarManager.swift in Sources */,
+				030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */,
 				0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */,
 				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
 				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
 				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
-				0370AF801EDDC7D5000D376B /* ReactTestConnector.swift in Sources */,
-				0370AF821EDDC9FC000D376B /* ReactTestConnectorBridge.m in Sources */,
 				FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */,
 				03F9E7A91EE821A000DC815C /* LocationAccess.swift in Sources */,
-				0322D5451E22393E00239A3A /* PermissionsViewController.swift in Sources */,
-				03755F631E28E780003EDAD9 /* Models.swift in Sources */,
-				0322D54F1E2256E600239A3A /* AccessRequired.swift in Sources */,
 				03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */,
-				0322D5511E2272F000239A3A /* InviteViewController.swift in Sources */,
-				033375AA1E268646000A5C21 /* MeetingsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
