@@ -4,23 +4,30 @@ import React, {Component} from 'react';
 import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import Notification from 'react-native-in-app-notification'
 
-
+const IOS_STATUS_BAR_HEIGHT = 20
 
 export default class CustomListView extends Component {
-  onInputFocus = (offset) => {
+  onInputFocus = (bottomSpacing) => {
     if (IS_IOS) {
       const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
       const focusedField = TextInput.State.currentlyFocusedField();
       const inputHandle = ReactNative.findNodeHandle(focusedField);
       // Delay scrolling until keyboard fully appears to make this work on device:
       // https://github.com/facebook/react-native/issues/3195#issuecomment-146563568
+      const offset = (this.listMarginTop || 0) + bottomSpacing
       setTimeout(() => {
         scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, offset, true);
       }, 300);
     }
   }
 
+  _onLayout = (event) => {
+    const {layout} = event.nativeEvent
+    this.listMarginTop = layout.y + (IS_IOS ? IOS_STATUS_BAR_HEIGHT : 0)
+  }
+
   render = () => <FlatList
+    onLayout={this._onLayout}
     ref={(ref) => this.flatList = ref}
     keyboardShouldPersistTaps="handled"
     keyboardDismissMode="on-drag"
