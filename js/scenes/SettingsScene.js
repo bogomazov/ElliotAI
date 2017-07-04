@@ -22,6 +22,7 @@ import IconIon from 'react-native-vector-icons/Ionicons';
 import SettingsRow from '../components/SettingsRow';
 import SettingsAccountRow from '../components/SettingsAccountRow';
 import {loginToGoogle} from '../utils/GoogleLogin';
+import ActionSheet from '@expo/react-native-action-sheet';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -127,7 +128,7 @@ export default class SettingsScene extends Component {
       .map(acc => acc.calendars.map(cal => ({acc, cal})))
       .reduce((a, b) => [...a, ...b], [])
     const calendarNames = calendars.map(item => item.acc.name + ' ' + item.cal.name)
-    ActionSheetIOS.showActionSheetWithOptions({
+    this.actionSheet.showActionSheetWithOptions({
       title: 'Select calendar',
       options: [...calendarNames, 'Cancel'],
       cancelButtonIndex: calendars.length,
@@ -167,8 +168,7 @@ export default class SettingsScene extends Component {
   }
 
   _onLogoutPress = () => {
-    // TODO: use cross platform action-sheet of expo instead
-    ActionSheetIOS.showActionSheetWithOptions({
+    this.actionSheet.showActionSheetWithOptions({
       title: 'Are you sure?',
       options: ['Logout', 'Cancel'],
       destructiveButtonIndex: 0,
@@ -202,75 +202,77 @@ export default class SettingsScene extends Component {
       createSection(LOGOUT)
     ];
     return (
-      <View style={styles.container}>
-        <TopBar isMainScene>
-          <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Settings</Text>
-        </TopBar>
-        <SectionList
-          onRefresh={this.loadCalendarAccounts}
-          refreshing={this.state.isLoading}
-          removeClippedSubviews={false}
-          ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: mainBackgroundColor}}></View>}
-          renderItem={({item}) => {
-            switch (item.section) {
-              case ACCOUNTS:
-                return (
-                  <SettingsAccountRow
-                    account={item.account}
-                    isExpanded={this.state.expandedAccountId === item.account.id}
-                    onExpand={() => {
-                      if (this.state.expandedAccountId === item.account.id) {
-                        this.setState({expandedAccountId: -1})
-                      } else {
-                        this.setState({expandedAccountId: item.account.id})
-                      }
-                    }}
-                    setIsEnabled={this.setIsEnabled}
-                    getIsEnabled={this.getIsEnabled}
-                  />
-                )
-              case ADD_EVENTS:
-                return (
-                  <SettingsRow onPress={this._onAddEventsPress}>
-                    <View>
-                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
-                      <View style={[s.row, {marginTop: 5}]}>
-                        <Text style={{fontSize: 15, color: 'grey'}}>
-                          {defaultAccount ? defaultAccount.name : ""}
-                        </Text>
-                        <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
-                          {defaultCalendar ? defaultCalendar.name : ""}
-                        </Text>
+      <ActionSheet ref={(ref) => this.actionSheet = ref}>
+        <View style={styles.container}>
+          <TopBar isMainScene>
+            <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Settings</Text>
+          </TopBar>
+          <SectionList
+            onRefresh={this.loadCalendarAccounts}
+            refreshing={this.state.isLoading}
+            removeClippedSubviews={false}
+            ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: mainBackgroundColor}}></View>}
+            renderItem={({item}) => {
+              switch (item.section) {
+                case ACCOUNTS:
+                  return (
+                    <SettingsAccountRow
+                      account={item.account}
+                      isExpanded={this.state.expandedAccountId === item.account.id}
+                      onExpand={() => {
+                        if (this.state.expandedAccountId === item.account.id) {
+                          this.setState({expandedAccountId: -1})
+                        } else {
+                          this.setState({expandedAccountId: item.account.id})
+                        }
+                      }}
+                      setIsEnabled={this.setIsEnabled}
+                      getIsEnabled={this.getIsEnabled}
+                    />
+                  )
+                case ADD_EVENTS:
+                  return (
+                    <SettingsRow onPress={this._onAddEventsPress}>
+                      <View>
+                        <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
+                        <View style={[s.row, {marginTop: 5}]}>
+                          <Text style={{fontSize: 15, color: 'grey'}}>
+                            {defaultAccount ? defaultAccount.name : ""}
+                          </Text>
+                          <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
+                            {defaultCalendar ? defaultCalendar.name : ""}
+                          </Text>
+                        </View>
                       </View>
-                    </View>
-                    <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
-                  </SettingsRow>
-                )
-              case ADD_ACCOUNT:
-                return (
-                  <SettingsRow onPress={this._onAddAccountPress}>
-                    <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Add another account</Text>
-                    <IconIon name="logo-googleplus" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
-                  </SettingsRow>
-                )
-              case LOGOUT:
-                return (
-                  <SettingsRow onPress={this._onLogoutPress}>
-                    <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Logout</Text>
-                    <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
-                  </SettingsRow>
-                )
-            }
-          }}
-          renderSectionHeader={({section}) => {
-            if (section.type == ACCOUNTS) {
-              return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 16, color: 'grey'}]}>Calendar Accounts</Text></View>
-            }
-            return <View style={{margin: 7}}></View>
-          }}
-          sections={sections2}
-        />
-      </View>
+                      <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                    </SettingsRow>
+                  )
+                case ADD_ACCOUNT:
+                  return (
+                    <SettingsRow onPress={this._onAddAccountPress}>
+                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Add another account</Text>
+                      <IconIon name="logo-googleplus" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                    </SettingsRow>
+                  )
+                case LOGOUT:
+                  return (
+                    <SettingsRow onPress={this._onLogoutPress}>
+                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Logout</Text>
+                      <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+                    </SettingsRow>
+                  )
+              }
+            }}
+            renderSectionHeader={({section}) => {
+              if (section.type == ACCOUNTS) {
+                return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 16, color: 'grey'}]}>Calendar Accounts</Text></View>
+              }
+              return <View style={{margin: 7}}></View>
+            }}
+            sections={sections2}
+          />
+        </View>
+      </ActionSheet>
     );
   }
 }
