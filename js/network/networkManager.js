@@ -41,9 +41,9 @@ class API {
     this.post('/calendar_accounts', {
       google_auth_code
     })
-  editCalendar = (calendar_id, enable, is_default) =>
+  editCalendar = (calendar_id, enabled, is_default) =>
     this.post(`/calendar/${calendar_id}`, {
-      enable,
+      enabled,
       "default": is_default
     })
   getCalendarAccounts = () => this.get('/calendar_accounts')

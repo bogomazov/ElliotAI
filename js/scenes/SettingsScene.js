@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
-import {ActionSheetIOS, FlatList, SectionList, Text, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, Alert, Switch} from 'react-native';
+import {
+  ActionSheetIOS,
+  FlatList,
+  SectionList,
+  Text,
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableHighlight,
+  Alert,
+  Switch
+} from 'react-native';
 import TopBar from '../components/TopBar';
 import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import ModalDropdown from 'react-native-modal-dropdown';
@@ -43,52 +54,72 @@ export default class SettingsScene extends Component {
     defaultAccount: null,
     defaultCalendar: null,
     expandedAccountId: -1,
+    isLoading: false,
   }
 
   componentWillMount() {
     this.loadCalendarAccounts()
   }
 
+  showTryAgainAlert = () => {
+    Alert.alert('Connection Error', 'Please try again', [
+      {text: 'OK'},
+    ], {
+      cancelable: true
+    });
+  }
+
   loadCalendarAccounts = () => {
+    this.setState({isLoading: true})
     this.props.appActions.loadCalendarAccounts()
-      .then(this.setAccounts)
-      .catch(err => console.log(err))
+      .then((accounts) => {
+        this.setState({isLoading: false})
+        this.setAccounts(accounts)
+      }).catch(err => {
+        console.log(err)
+        this.setState({isLoading: false})
+      })
   }
 
   setAccounts = (accounts) => {
     const calendars = accounts
-      .map(acc => acc.calendars)
-      .reduce((a, b) => [...a, ...b], []);
+      .map(acc =>
+        acc.calendars.map(cal => ({...cal, account: acc}))
+      ).reduce((a, b) => [...a, ...b], []);
     const enabled = calendars.reduce((res, cal) => {
       return {...res, [cal.calendar_id]: cal.enabled}
     }, {});
+    const defaultCalendar = calendars.filter(cal => cal.default)[0]
+    const defaultAccount = defaultCalendar.account
     this.setState({
       accounts,
       enabled,
-      defaultCalendar: calendars[0],
-      defaultAccount: accounts[0],
+      defaultCalendar,
+      defaultAccount,
     });
   }
 
   setIsEnabled = (calendar, value) => {
+    const oldState = this.state
     this.setState({
       enabled: {
         ...this.state.enabled,
         [calendar.calendar_id]: value,
       }
     });
-
+    this.props.appActions.editCalendar(
+      calendar.calendar_id,
+      value,
+      calendar.default
+    ).catch((err) => {
+      console.log(err);
+      this.setState(oldState)
+      this.showTryAgainAlert()
+    })
   }
 
   getIsEnabled = (calendar) => {
     return this.state.enabled[calendar.calendar_id];
-  }
-
-  _onDropdownSelect = (item) => {
-    this.setState({
-      defaultAccount: item.account,
-      defaultCalendar: item.data,
-    });
   }
 
   _onAddEventsPress = () => {
@@ -102,9 +133,19 @@ export default class SettingsScene extends Component {
       cancelButtonIndex: calendars.length,
     }, (index) => {
       if (index != calendars.length) {
+        const oldState = this.state
         this.setState({
           defaultCalendar: calendars[index].cal,
           defaultAccount: calendars[index].acc,
+        })
+        this.props.appActions.editCalendar(
+          calendars[index].cal.calendar_id,
+          this.getIsEnabled(calendars[index].cal),
+          true,
+        ).catch(err => {
+          console.log(err)
+          this.setState(oldState)
+          this.showTryAgainAlert()
         })
       }
     })
@@ -166,6 +207,8 @@ export default class SettingsScene extends Component {
           <Text style={[s.textColorTheme, {fontSize: 16}, s.bold]}>Settings</Text>
         </TopBar>
         <SectionList
+          onRefresh={this.loadCalendarAccounts}
+          refreshing={this.state.isLoading}
           removeClippedSubviews={false}
           ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: mainBackgroundColor}}></View>}
           renderItem={({item}) => {
