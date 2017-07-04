@@ -275,6 +275,10 @@ export const sendGoogleAuthToken = (serverAuthToken) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).sendGoogleAccessToken(serverAuthToken)
   }
+
+export const loadCalendarAccounts = () =>
+  (dispatch, getState, getAPI) => getAPI(getState, dispatch).getCalendarAccounts()
+
 export const rejectSuggestion = (suggestion, responseType) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).reject(suggestion.id, responseType).then((data) => {

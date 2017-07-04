@@ -46,8 +46,13 @@ export default class SettingsScene extends Component {
   }
 
   componentWillMount() {
-    this.setAccounts(TEST_ACCOUNTS);
-    // TODO: load calendars.
+    this.loadCalendarAccounts()
+  }
+
+  loadCalendarAccounts = () => {
+    this.props.appActions.loadCalendarAccounts()
+      .then(this.setAccounts)
+      .catch(err => console.log(err))
   }
 
   setAccounts = (accounts) => {
@@ -65,11 +70,6 @@ export default class SettingsScene extends Component {
     });
   }
 
-  _onLogin = (googleUser) => {
-    console.log(googleUser);
-    // TODO: send google api token, load calendars for the new account.
-  }
-
   setIsEnabled = (calendar, value) => {
     this.setState({
       enabled: {
@@ -77,6 +77,7 @@ export default class SettingsScene extends Component {
         [calendar.calendar_id]: value,
       }
     });
+
   }
 
   getIsEnabled = (calendar) => {
@@ -110,10 +111,15 @@ export default class SettingsScene extends Component {
   }
 
   _onAddAccountPress = () => {
-    // TODO: if successful, refresh calendars
     loginToGoogle().then(user => {
       console.log(user)
       this.props.appActions.sendGoogleAuthToken(user.serverAuthCode)
+        .then(() => {
+          this.loadCalendarAccounts()
+        }).catch((err) => {
+          console.log(err)
+          // TODO: show an alert or in-app notif to let user retry
+        })
     }).catch(err => {
       console.log(err)
     })
@@ -233,64 +239,3 @@ const styles = StyleSheet.create({
     backgroundColor: mainBackgroundColor,
   },
 });
-
-const TEST_ACCOUNTS = [
-  {
-    id: "2399402",
-    name: "tomray@gmail.com",
-    calendars: [
-      {
-        calendar_id: "73485",
-        name: "personal",
-        enabled: true,
-      },
-      {
-        calendar_id: "45869",
-        name: "school",
-        enabled: true,
-      },
-      {
-        calendar_id: "734851",
-        name: "other",
-        enabled: true,
-      },
-      {
-        calendar_id: "458691",
-        name: "holidays",
-        enabled: false,
-      },
-    ]
-  },
-  {
-    id: "8459",
-    name: "raytom@domain.com",
-    calendars: [
-      {
-        calendar_id: "950",
-        name: "work",
-        enabled: false,
-      },
-      {
-        calendar_id: "354960",
-        name: "club",
-        enabled: true,
-      },
-    ]
-  },
-  {
-    id: "46366",
-    name: "raytom2@domain.com",
-    calendars: [
-      {
-        calendar_id: "44950",
-        name: "meetings",
-        enabled: false,
-      },
-      {
-        calendar_id: "3547960",
-        name: "sport",
-        enabled: true,
-      },
-    ]
-  },
-]
