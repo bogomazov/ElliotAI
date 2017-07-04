@@ -24,14 +24,12 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarPermissionScene extends Component {
-  state = {
-    loggedIn: false,
-  }
 
   _onLogin = (googleUser) => {
     console.log(googleUser);
-    this.setState({loggedIn: true});
-    this.props.appActions.finishCalendarIntro()
+    this.props.appActions.sendGoogleAuthToken(googleUser.serverAuthCode).then(() => {
+      this.props.appActions.finishCalendarIntro()
+    })
   }
 
   render() {
