@@ -3,8 +3,18 @@ import {View, Text, StyleSheet, Switch} from 'react-native'
 import SettingsRow from './SettingsRow'
 import s, {mainBackgroundColor} from '../res/values/styles'
 import IconIon from 'react-native-vector-icons/Ionicons'
+import Collapsible from 'react-native-collapsible';
 
 export default SettingsAccountRow = ({account, isExpanded, setIsEnabled, getIsEnabled, onExpand}) => {
+  const calendarRows = account.calendars.map(cal =>
+    <View style={styles.calendar} key={cal.calendar_id}>
+      <Text style={styles.calendarTitle}>{cal.name}</Text>
+      <Switch
+        onValueChange={(value) => setIsEnabled(cal, value)}
+        value={getIsEnabled(cal)}
+      />
+    </View>
+  )
   return (
     <View>
       <SettingsRow onPress={onExpand}>
@@ -16,17 +26,9 @@ export default SettingsAccountRow = ({account, isExpanded, setIsEnabled, getIsEn
           style={{marginLeft: 5, marginTop: 5, marginRight: 3}}
         />
       </SettingsRow>
-      {isExpanded &&
-        account.calendars.map(cal =>
-          <View style={styles.calendar} key={cal.calendar_id}>
-            <Text style={styles.calendarTitle}>{cal.name}</Text>
-            <Switch
-              onValueChange={(value) => setIsEnabled(cal, value)}
-              value={getIsEnabled(cal)}
-            />
-          </View>
-        )
-      }
+      <Collapsible collapsed={!isExpanded}>
+        {calendarRows}  
+      </Collapsible>
     </View>
   )
 }
