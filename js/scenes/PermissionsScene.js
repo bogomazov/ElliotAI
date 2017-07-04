@@ -95,18 +95,20 @@ export default class PermissionsScene extends Component {
           <Text style={styles.description}> Elliot needs permissions</Text>
         </View>
         <View style={styles.middleWrapper}>
-          {!this.state.isLocationGranted && <CustomButton
+          <CustomButton
             onPress={this.requestLocationPermissions}
             title={strings.enableLocation}
             style={styles.button}
             isWhite
-          />}
-          {!this.state.isContactsGranted && <CustomButton
+            isFilled={this.state.isLocationGranted}
+          />
+          <CustomButton
             onPress={this.requestContactPermissions}
             title={strings.enableContacts}
             style={styles.button}
             isWhite
-          />}
+            isFilled={this.state.isContactsGranted}
+          />
         </View>
         <View style={s.col}>
           {IS_IOS &&

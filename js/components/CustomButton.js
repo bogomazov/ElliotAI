@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
       borderColor: themeColor,
       color: themeColor,
       fontSize: 16,
-      padding: 5
+      padding: 5,
+      overflow: 'hidden',
     },
 
     white: {
