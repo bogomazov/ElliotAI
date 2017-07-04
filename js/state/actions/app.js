@@ -32,6 +32,7 @@ export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
 export const DID_FINISH_CALENDAR_INTRO = "DID_FINISH_CALENDAR_INTRO"
+export const STORE_DEVICE_EVENTS = "STORE_DEVICE_EVENTS"
 export const SOCIAL_MEDIA_FB = 'Facebook'
 
 export const newAccessToken = (accessToken) => {
@@ -201,7 +202,6 @@ export const loadScheduledMeetings = () => {
     const meetings = data.data.map((meeting) => new Meeting(meeting))
     console.log('loadScheduledMeetings1')
 
-    _updateDeviceCalendar(dispatch, meetings)
     console.log('loadScheduledMeetings2')
 
     data = meetings.filter((meeting) => meeting.canceled == 0)
@@ -209,6 +209,8 @@ export const loadScheduledMeetings = () => {
     pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((a.meeting_time > b.meeting_time) ? -1 : 0);} );
     const upcomingMeetings = data.filter((meeting) => !meeting.isPast())
     upcomingMeetings.sort((a,b) => (a.meeting_time > b.meeting_time)? 1 : ((a.meeting_time < b.meeting_time) ? -1 : 0) );
+    _updateDeviceCalendar(dispatch, upcomingMeetings)
+
     // this.setState({upcomingMeetings, pastMeetings})
     console.log('loadScheduledMeetings3')
     dispatch(newCalendar(upcomingMeetings, pastMeetings, badges))
@@ -244,6 +246,13 @@ export const loadSuggestions = () => {
       });
     }
   }
+
+export const storeDeviceEvents = (events) => {
+  return {
+    type: STORE_DEVICE_EVENTS,
+    events,
+  }
+}
 
 export const sendEvents = (events) => {
   events = events.map((event) => {

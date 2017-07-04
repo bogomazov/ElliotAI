@@ -49,6 +49,7 @@ export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
 export const INVITE_FRIENDS_TAB = 2
 
+// open-tab notif constants
 const weekly = 0
 const friendJoined = 1
 const confirmed = 2
@@ -108,7 +109,6 @@ const BottomTabNavigation = TabNavigator({
 export default class MainScene extends Component {
 
 	state = {
-		activeTab: 0,
 		phoneVerificationCode: null,
     appState: AppState.currentState
 	}
@@ -131,21 +131,21 @@ export default class MainScene extends Component {
 				this.props.appActions.phoneVerified()
 			}
     });
-		DeepLinking.addRoute('/open-tab/:code', (response) => {
+    DeepLinking.addRoute('/open-tab/:code', (response) => {
       console.log(response)
       switch (parseInt(response.code)) {
         case weekly:
         case friendJoined:
         case reschedule:
         case update:
-	        this._switchTab(MAIN_TAB)
-	        break;
-				case openInvite:
-					this._switchTab(INVITE_FRIENDS_TAB)
-					break;
-				case confirmed:
-					this._switchTab(CALENDAR_TAB)
-					break;
+          this.tabNavigator._navigation.navigate('SuggestionsTab');
+          break;
+        case openInvite:
+          this.tabNavigator._navigation.navigate('InviteFriendsTab');
+          break;
+        case confirmed:
+          this.tabNavigator._navigation.navigate('CalendarTab');
+          break;
       }
     });
 	}
@@ -177,10 +177,6 @@ export default class MainScene extends Component {
         DeepLinking.evaluateUrl(url);
       }
     });
-  }
-
-  _switchTab = (sceneId) => {
-    this.setState({activeTab: sceneId})
   }
 
   _onResume = () => {
@@ -225,7 +221,7 @@ export default class MainScene extends Component {
 
   render() {
     console.log(this.props)
-
+    console.log(this.tabNavigator);
 		if (IS_ANDROID) {
 			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
 				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
@@ -235,6 +231,7 @@ export default class MainScene extends Component {
     return (
       <View style={styles.container}>
         <BottomTabNavigation
+          ref={(ref) => this.tabNavigator = ref}
           screenProps={{mainNav: this.props.navigation}}
           onNavigationStateChange={(prevState, currentState) => {
             console.log(currentState)

@@ -58,7 +58,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNGoogleSigninPackage(),
             new RNDeviceInfo(),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
+              new CodePush(BuildConfig.CODEPUSH_KEY, MainApplication.this, BuildConfig.DEBUG),
             new VectorIconsPackage(),
           new ReactNativeContacts(),
           new FBSDKPackage(mCallbackManager),

@@ -35,7 +35,6 @@ const mapDispatchToProps = (dispatch) => {
 const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 
 
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SuggestionsScene extends Component {
   static navigationOptions = {
@@ -46,7 +45,6 @@ export default class SuggestionsScene extends Component {
 
 	state = {
 	  isAcceptLoading: false,
-		isRefreshing: false,
 		isLocationSent: false,
 		isEventsSent: false,
 		rejectingIds: [],
@@ -72,12 +70,14 @@ export default class SuggestionsScene extends Component {
       this.setState({isAcceptLoading: false})
       this.props.appActions.removeSuggestion(suggestion)
       // Refresh confirmed-meetings
-      this.props.appActions.calendarLoading();
-      this.props.appActions.loadScheduledMeetings();
+      this.props.appActions.calendarLoading()
+      this.props.appActions.loadScheduledMeetings()
       this.props.appActions.loadSuggestions()
-      setTimeout(() => {
-        this.props.appActions.showAcceptedBanner(true);
-      }, 300);
+      if (!suggestion.is_invite) {
+          setTimeout(() => {
+              this.props.appActions.showAcceptedBanner(true);
+          }, 300);
+      }
     }).catch((err) => {
       this.setState({isAcceptLoading: false})
     })
@@ -103,10 +103,6 @@ export default class SuggestionsScene extends Component {
 		})
 	}
 
-	componentWillReceiveProps = (nextProps) => {
-		this.setState({isRefreshing: false})
-	}
-
 	componentWillMount = () => {
 		console.log(this.props)
     console.log(this.props.appActions.newSuggestions);
@@ -124,7 +120,6 @@ export default class SuggestionsScene extends Component {
 			this.props.appActions.newSuggestions(suggestions)
 			return
 		}
-		this.setState({isRefreshing: true})
 		this.props.appActions.loadSuggestions()
 	}
 
@@ -160,7 +155,7 @@ export default class SuggestionsScene extends Component {
 				{this.props.app.isSuggestionsLoaded &&
 				<CustomListView
 					onRefresh={this._refresh}
-					refreshing={this.state.isRefreshing}
+					refreshing={this.props.app.isSuggestionsLoading}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
           renderItem={({item, onInputFocus}) => {
@@ -223,7 +218,9 @@ const TEST_SUGGESTIONS  = { data: [
       last_name: "andrey"
     },
     meeting_time: "2017-05-19 17:00:00",
+		meeting_times: ["2017-07-03 18:00:00"],
     meeting_type: "Call",
+		is_invite: 1
   },
 ]
 }
