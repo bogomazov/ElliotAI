@@ -9,7 +9,12 @@ export default SettingsAccountRow = ({account, isExpanded, setIsEnabled, getIsEn
     <View>
       <SettingsRow onPress={onExpand}>
         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>{account.name}</Text>
-        <IconIon name="ios-arrow-down" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
+        <IconIon
+          name={isExpanded ? "ios-arrow-down" : "ios-arrow-forward"}
+          size={20}
+          color="black"
+          style={{marginLeft: 5, marginTop: 5, marginRight: 3}}
+        />
       </SettingsRow>
       {isExpanded &&
         account.calendars.map(cal =>

@@ -195,7 +195,7 @@ export default class SettingsScene extends Component {
         data: data.map((item) => ({...item, section: type}))
       }
     }
-    const sections2 = [
+    const sections = [
       createSection(ACCOUNTS, accountsData),
       createSection(ADD_EVENTS),
       createSection(ADD_ACCOUNT),
@@ -211,6 +211,7 @@ export default class SettingsScene extends Component {
             onRefresh={this.loadCalendarAccounts}
             refreshing={this.state.isLoading}
             removeClippedSubviews={false}
+            sections={sections}
             ItemSeparatorComponent={() => <View style={{height: 1, backgroundColor: mainBackgroundColor}}></View>}
             renderItem={({item}) => {
               switch (item.section) {
@@ -269,7 +270,6 @@ export default class SettingsScene extends Component {
               }
               return <View style={{margin: 7}}></View>
             }}
-            sections={sections2}
           />
         </View>
       </ActionSheet>
