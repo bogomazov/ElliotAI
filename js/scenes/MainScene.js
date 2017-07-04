@@ -39,7 +39,7 @@ import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
 import {loadContacts} from '../utils/Contacts'
 import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
-import LocationAccess from '../utils/LocationAccessModule'
+import {getLocation, checkLocationAccess} from '../utils/Location'
 import moment from 'moment'
 import {StackNavigator, TabNavigator} from 'react-navigation';
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
@@ -198,24 +198,17 @@ export default class MainScene extends Component {
   }
 
   _refreshFeed = () => {
-    LocationAccess.checkLocationAccess().then((response) => {
-      console.log(response)
-      if (response == 'success') {
-        LocationAccess.requestLocation().then((location) => {
-          console.log(location)
-          this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
-            this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-            this.props.appActions.loadSuggestions();
-          })
+    checkLocationAccess().then(() => {
+      return getLocation().then(location => {
+        console.log(location);
+        this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
+          this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
+          this.props.appActions.loadSuggestions();
         })
-      }
-    }).catch((error) => {
-      console.log(error)
-      // On iOS location permission is optional.
-      // So if access hasn't been granted, move on with calendar events.
-      if (IS_IOS) {
-        this.props.appActions.loadSuggestions();
-      }
+      })
+    }).catch(error => {
+      console.log(error);
+      this.props.appActions.loadSuggestions();
     })
   }
 
