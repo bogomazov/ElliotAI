@@ -237,10 +237,10 @@ export default class SettingsScene extends Component {
                       <View>
                         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
                         <View style={[s.row, {marginTop: 5}]}>
-                          <Text style={{fontSize: 15, color: 'grey'}}>
+                          <Text style={{fontSize: 14, color: 'black'}}>
                             {defaultAccount ? defaultAccount.name : ""}
                           </Text>
-                          <Text style={{fontSize: 14, paddingLeft: 15, color: 'black'}}>
+                          <Text style={{fontSize: 14, paddingLeft: 5, color: 'gray'}}>
                             {defaultCalendar ? defaultCalendar.name : ""}
                           </Text>
                         </View>
@@ -266,7 +266,7 @@ export default class SettingsScene extends Component {
             }}
             renderSectionHeader={({section}) => {
               if (section.type == ACCOUNTS) {
-                return <View><Text style={[s.bold, {padding: 10, paddingLeft: 20, fontSize: 16, color: 'grey'}]}>Calendar Accounts</Text></View>
+                return <View><Text style={[s.bold, {padding: 5, paddingLeft: 20, fontSize: 16, color: themeColor}]}>Calendar Accounts</Text></View>
               }
               return <View style={{margin: 7}}></View>
             }}
