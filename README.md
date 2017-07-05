@@ -34,6 +34,10 @@ Android:<br/>
 `sh deploy.sh Staging elliot android`<br/>
 `sh deploy.sh Production elliot android`<br/>
 
+iOS:<br/>
+`sh deploy.sh Staging Elliot-iOS ios`<br/>
+`sh deploy.sh Production Elliot-iOS ios`<br/>
+
 # Build Android apk
 
 1. Open `android/app/build.gradle`

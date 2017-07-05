@@ -77,14 +77,7 @@ class VerifyPhoneViewController: UIViewController {
     }
     
     func configureTextField() {
-        // Try to guess the number of the user only if this is the first try
-        if numberOfTries <= 1,
-            let fullName = UserProfile.current?.fullName,
-            let number = ContactsManager.findNumberForFullName(fullName: fullName) {
-            numberTextField.text = number
-            return
-        }
-        // If failed to guess, pre-populate with country-code
+        // Pre-populate with country-code
         let regionCode = PhoneNumberKit.defaultRegionCode()
         if let countryCode = phoneNumberKit.countryCode(for: regionCode) {
             numberTextField.text = "+\(countryCode) "

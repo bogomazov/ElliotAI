@@ -22,61 +22,10 @@ class Request {
     }
 }
 
-class LocationRequest: Request {
-    init(longitude: Double, latitude: Double) {
-        super.init(method: .post, path: "/location")
-        self.data = ["longitude": longitude, "latitude": latitude, "time_zone": TimeZone.current.secondsFromGMT()]
-    }
-}
-
-class EventsRequest: Request {
-    init(events: [Event]) {
-        super.init(method: .post, path: "/calendar_events")
-        let serializedArray = events.map { (event) -> [String: Any] in
-            return event.serialize()
-        }
-        self.data = ["data": serializedArray]
-    }
-}
-
-class AcceptRequest: Request {
-    init(suggestionId: Int, times: [String]) {
-        super.init(method: .post, path: "/accept")
-        self.data = ["suggestion_id": suggestionId, "times": times]
-    }
-}
-
-class RejectRequest: Request {
-    init(suggestionId: Int, responseType: String) {
-        super.init(method: .post, path: "/reject")
-        self.data = ["suggestion_id": suggestionId, "response_type": responseType]
-    }
-}
-
 class DeviceTokenRequest: Request {
     init(token: String) {
         super.init(method: .post, path: "/device_token")
         self.data = ["device_token": token]
-    }
-}
-
-class GrowthLogRequest : Request {
-    init(channel: String, person: String) {
-        super.init(method: .post, path: "/growth_log")
-        self.data = ["channel": channel, "person": person]
-    }
-}
-
-class CancelRequest: Request {
-    init(suggestionId: Int) {
-        super.init(method: .post, path: "/cancel")
-        self.data = ["suggestion_id": suggestionId]
-    }
-}
-
-class AnotherTimeRequest: Request {
-    init(friendFBId: String) {
-        super.init(method: .get, path: "/suggestions?friend=\(friendFBId)")
     }
 }
 

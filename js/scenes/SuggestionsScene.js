@@ -218,7 +218,9 @@ const TEST_SUGGESTIONS  = { data: [
       last_name: "andrey"
     },
     meeting_time: "2017-05-19 17:00:00",
+		meeting_times: ["2017-07-03 18:00:00"],
     meeting_type: "Call",
+		is_invite: 1
   },
 ]
 }
