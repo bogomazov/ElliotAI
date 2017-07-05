@@ -236,7 +236,7 @@ export default class SettingsScene extends Component {
                     <SettingsRow onPress={this._onAddEventsPress}>
                       <View>
                         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
-                        <View style={[s.col, {marginTop: 5}]}>
+                        <View style={[s.col, {marginTop: 0}]}>
                           <Text style={{fontSize: 14, color: 'black'}}>
                             {defaultAccount ? defaultAccount.name : ""}
                           </Text>
