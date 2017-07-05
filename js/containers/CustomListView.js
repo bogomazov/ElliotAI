@@ -1,24 +1,26 @@
-import {IS_IOS} from '../settings.js';
+import {IS_IOS, IS_ANDROID} from '../settings.js';
 import s, {themeColorThird} from '../res/values/styles.js';
 import React, {Component} from 'react';
 import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import Notification from 'react-native-in-app-notification'
 
 const IOS_STATUS_BAR_HEIGHT = 20
+const EXTRA_SPACING = IS_ANDROID? -20: 0
 
 export default class CustomListView extends Component {
   onInputFocus = (bottomSpacing) => {
-    if (IS_IOS) {
-      const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
-      const focusedField = TextInput.State.currentlyFocusedField();
-      const inputHandle = ReactNative.findNodeHandle(focusedField);
-      // Delay scrolling until keyboard fully appears to make this work on device:
-      // https://github.com/facebook/react-native/issues/3195#issuecomment-146563568
-      const offset = (this.listMarginTop || 0) + bottomSpacing
-      setTimeout(() => {
-        scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, offset, true);
-      }, 300);
-    }
+    // if (IS_IOS) {
+    const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
+    const focusedField = TextInput.State.currentlyFocusedField();
+    const inputHandle = ReactNative.findNodeHandle(focusedField);
+    // Delay scrolling until keyboard fully appears to make this work on device:
+    // https://github.com/facebook/react-native/issues/3195#issuecomment-146563568
+    const offset = (this.listMarginTop || 0) + bottomSpacing + EXTRA_SPACING
+    setTimeout(() => {
+      // console.log('single-tap-sen')
+      scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, offset, true);
+    }, 500);
+    // }
   }
 
   _onLayout = (event) => {
@@ -30,7 +32,7 @@ export default class CustomListView extends Component {
     onLayout={this._onLayout}
     ref={(ref) => this.flatList = ref}
     keyboardShouldPersistTaps="handled"
-    keyboardDismissMode="on-drag"
+    // keyboardDismissMode="on-drag"
     removeClippedSubviews={false}
     onRefresh={this.props.onRefresh}
     refreshing={this.props.refreshing}
