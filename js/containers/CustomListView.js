@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
 import Notification from 'react-native-in-app-notification'
 
-const IOS_STATUS_BAR_HEIGHT = 20
 const EXTRA_SPACING = IS_ANDROID? -20: 0
 
 export default class CustomListView extends Component {
@@ -22,7 +21,7 @@ export default class CustomListView extends Component {
 
   _onLayout = (event) => {
     const {layout} = event.nativeEvent
-    this.listMarginTop = layout.y + (IS_IOS ? IOS_STATUS_BAR_HEIGHT : 0)
+    this.listMarginTop = layout.y
   }
 
   render = () => <FlatList
