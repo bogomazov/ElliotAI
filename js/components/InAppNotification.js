@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import Notification from 'react-native-in-app-notification'
 
-const notificationBodyComponent = ({title, message}) => <View style={[s.padding10, {backgroundColor: themeColorThird}, IS_IOS ? {marginTop: -20} : null]}>
+const notificationBodyComponent = ({title, message}) => <View style={[s.padding10, {backgroundColor: themeColorThird}, IS_IOS ? {marginTop: -20, paddingTop: 20} : null]}>
   <Text style={[s.textColorWhite, s.bold]}>{title}</Text>
   <Text style={[s.textColorWhite]}>{message}</Text>
 </View>
