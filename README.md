@@ -28,8 +28,41 @@
 2. Make sure you have access to the previously added code-push app.
 3. `sh deploy.sh <environment> <unique-app-name> <platform>`
     - `<environment>` should be either `Staging` or `Production`.
-    - `platform` should be either `ios` or `android`. <br/>
+    - `platform` should be either `ios` or `android`.
  
 Android:<br/>
 `sh deploy.sh Staging elliot android`<br/>
 `sh deploy.sh Production elliot android`<br/>
+
+iOS:<br/>
+`sh deploy.sh Staging Elliot-iOS ios`<br/>
+`sh deploy.sh Production Elliot-iOS ios`<br/>
+
+# Build Android apk
+
+1. Open `android/app/build.gradle`
+2. Change 
+```
+defaultConfig {
+    ...
+    versionCode 18 <-- to higher version then whatever is currently in PlayStore
+    versionName "1.0.7" <- also needs to be updated. Used by code-push. (Play store allows to publish the same versionName but versionCode is an ultimate identifier of the release version)
+    ...
+}
+```
+
+3. Make sure `IS_DEV=true` for Staging Server and `IS_DEV=false` for Prod Server in `settings.js`
+4. cd `android`
+5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` for Production vs Staging CodePush
+
+Find apk in: `android/app/build/outputs/apk/`
+
+Check build by:
+ - `react-native run-android --variant=release` 
+ - `react-native run-android --variant=releaseStaging`
+ - dragging and dropping an apk from `android/app/build/outputs/apk/` to an emulator
+ 
+ 
+
+
+

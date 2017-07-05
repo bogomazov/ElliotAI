@@ -28,6 +28,7 @@ const defaultState = {
   isContactsLoaded: false,
   didMigrateIOSCalendar: false,
   shouldShowAcceptedBanner: false,
+  deviceEvents: [],
 }
 
 const app = (state = defaultState, action) => {
@@ -62,6 +63,7 @@ const app = (state = defaultState, action) => {
           upcomingMeetings: [],
           pastMeetings: [],
           shouldShowAcceptedBanner: false,
+          deviceEvents: [],
         }
     case actionType.NEW_LOCATION:
       return {
@@ -169,7 +171,12 @@ const app = (state = defaultState, action) => {
     case actionType.DID_FINISH_CALENDAR_INTRO:
       return {
         ...state,
-        didFinishCalendarIntro: true,
+        didFinishCalendarIntro: true
+      }
+    case actionType.STORE_DEVICE_EVENTS:
+      return {
+        ...state,
+        deviceEvents: action.events
       }
     default:
       return state

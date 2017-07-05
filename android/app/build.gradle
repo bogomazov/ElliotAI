@@ -91,8 +91,8 @@ android {
         applicationId "com.elliot"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 18
-        versionName "1.0.7"
+        versionCode 9999
+        versionName "dev"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -118,6 +118,8 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.release
+            // Note: CodePush updates should not be tested in Debug mode as they are overriden by the RN packager. However, because CodePush checks for updates in all modes, we must supply a key.
+            buildConfigField "String", "CODEPUSH_KEY", '""'
         }
 
         releaseStaging {
