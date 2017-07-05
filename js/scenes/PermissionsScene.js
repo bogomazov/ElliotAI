@@ -100,14 +100,14 @@ export default class PermissionsScene extends Component {
             title={strings.enableLocation}
             style={styles.button}
             isWhite
-            isFilled={this.state.isLocationGranted}
+            isFilled={!this.state.isLocationGranted}
           />
           <CustomButton
             onPress={this.requestContactPermissions}
             title={strings.enableContacts}
             style={styles.button}
             isWhite
-            isFilled={this.state.isContactsGranted}
+            isFilled={!this.state.isContactsGranted}
           />
         </View>
         <View style={s.col}>
