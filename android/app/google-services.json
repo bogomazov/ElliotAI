@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1019421776523",
-    "project_id": "elliot-170913"
+    "project_number": "245808737532",
+    "project_id": "elliot-tech"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1019421776523:android:f610c87f4a49c3c8",
+        "mobilesdk_app_id": "1:245808737532:android:f610c87f4a49c3c8",
         "android_client_info": {
           "package_name": "com.elliot"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1019421776523-jmpbgvr1aciqmhq85hbgiv9ek0bkruhk.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1019421776523-sfus3emi13e2vvqeaku23dqe61jhtkvm.apps.googleusercontent.com",
+          "client_id": "245808737532-7ee8g1b08med80pe75890qgm1sqq0tb7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.elliot",
-            "certificate_hash": "8db065f67b74a28467366febaddd97f4712f507c"
+            "certificate_hash": "88ef1b40854c71ef6cfbc3bb0c5be4fb6a57126b"
           }
+        },
+        {
+          "client_id": "245808737532-k2hpl4mmrov6257fc36rp74040r21hhc.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "245808737532-0hl28tp7jsfsqcgr4fvvlu0mmb08ecia.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "245808737532-ch1af9npbnnrova04gi752au3j74agia.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD4fjjP37hZ61GMWmUgmAagz3YIx-mKhEs"
+          "current_key": "AIzaSyDfrLTKLhep_96ymrnkLWuEdjNlCveYIrI"
         }
       ],
       "services": {

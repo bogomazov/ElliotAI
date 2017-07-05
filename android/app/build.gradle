@@ -116,6 +116,10 @@ android {
         }
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+
         releaseStaging {
             signingConfig signingConfigs.release
             buildConfigField "String", "CODEPUSH_KEY", "\"XfTVc6iw1yNgRQpCxTWNwrCuLHngNJn1D0Dx7\""
@@ -144,7 +148,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-signin')
     compile project(':react-native-device-info')
     compile project(':react-native-code-push')
     compile project(':react-native-vector-icons')
@@ -156,6 +159,10 @@ dependencies {
     compile project(':react-native-android-location-services-dialog-box')
     compile 'com.google.android.gms:play-services-location:11.0.1'
     compile 'com.google.android.gms:play-services-gcm:11.0.1'
+    compile(project(":react-native-google-signin")){         
+        exclude group: "com.google.android.gms" // very important
+    }
+    compile 'com.google.android.gms:play-services-auth:11.0.1' // should be at least 9.0.0
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:25.3.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
@@ -167,3 +174,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services' // <--- this should be the last line
