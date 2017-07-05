@@ -9,7 +9,6 @@ const EXTRA_SPACING = IS_ANDROID? -20: 0
 
 export default class CustomListView extends Component {
   onInputFocus = (bottomSpacing) => {
-    // if (IS_IOS) {
     const scrollResponder = this.flatList._listRef._scrollRef.getScrollResponder();
     const focusedField = TextInput.State.currentlyFocusedField();
     const inputHandle = ReactNative.findNodeHandle(focusedField);
@@ -17,10 +16,8 @@ export default class CustomListView extends Component {
     // https://github.com/facebook/react-native/issues/3195#issuecomment-146563568
     const offset = (this.listMarginTop || 0) + bottomSpacing + EXTRA_SPACING
     setTimeout(() => {
-      // console.log('single-tap-sen')
       scrollResponder.scrollResponderScrollNativeHandleToKeyboard(inputHandle, offset, true);
     }, 500);
-    // }
   }
 
   _onLayout = (event) => {
@@ -32,7 +29,6 @@ export default class CustomListView extends Component {
     onLayout={this._onLayout}
     ref={(ref) => this.flatList = ref}
     keyboardShouldPersistTaps="handled"
-    // keyboardDismissMode="on-drag"
     removeClippedSubviews={false}
     onRefresh={this.props.onRefresh}
     refreshing={this.props.refreshing}
