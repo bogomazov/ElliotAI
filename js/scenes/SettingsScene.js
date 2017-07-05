@@ -127,7 +127,7 @@ export default class SettingsScene extends Component {
     const calendars = this.state.accounts
       .map(acc => acc.calendars.map(cal => ({acc, cal})))
       .reduce((a, b) => [...a, ...b], [])
-    const calendarNames = calendars.map(item => item.acc.name + ' ' + item.cal.name)
+    const calendarNames = calendars.map(item => item.cal.name)
     this.actionSheet.showActionSheetWithOptions({
       title: 'Select calendar',
       options: [...calendarNames, 'Cancel'],
@@ -236,10 +236,7 @@ export default class SettingsScene extends Component {
                     <SettingsRow onPress={this._onAddEventsPress}>
                       <View>
                         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
-                        <View style={[s.col, {marginTop: 0}]}>
-                          <Text style={{fontSize: 14, color: 'black'}}>
-                            {defaultAccount ? defaultAccount.name : ""}
-                          </Text>
+                        <View style={[s.col, {marginTop: 5}]}>
                           <Text style={{fontSize: 14, color: 'gray'}}>
                             {defaultCalendar ? defaultCalendar.name : ""}
                           </Text>
