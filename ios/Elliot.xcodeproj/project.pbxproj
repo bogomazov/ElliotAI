@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
 		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
+		030C88341F0CF087009B25EA /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030C88331F0CF087009B25EA /* Dev-Info.plist */; };
 		031DD2CD1EBCE20E001881B7 /* FriendSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */; };
 		031DD2CF1EBCE230001881B7 /* FriendSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */; };
 		031DD2D11EBCE875001881B7 /* FindFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */; };
@@ -190,6 +191,7 @@
 /* Begin PBXFileReference section */
 		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
 		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
+		030C88331F0CF087009B25EA /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		031DD2CC1EBCE20E001881B7 /* FriendSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchViewController.swift; sourceTree = "<group>"; };
 		031DD2CE1EBCE230001881B7 /* FriendSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchCell.swift; sourceTree = "<group>"; };
 		031DD2D01EBCE875001881B7 /* FindFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsCell.swift; sourceTree = "<group>"; };
@@ -254,7 +256,6 @@
 		70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.release.xcconfig"; sourceTree = "<group>"; };
 		EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elliot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB8C4FDA1F06CD0800E14B3F /* Elliot-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elliot-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB8C4FDB1F06CD0800E14B3F /* Elliot-Dev-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Elliot-Dev-Info.plist"; path = "/Users/scottwu/Documents/elliot-mobile/ios/Elliot-Dev-Info.plist"; sourceTree = "<absolute>"; };
 		FBB60E5A1E1E0F050035D841 /* Elliot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elliot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB60E621E1E0F050035D841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -444,7 +445,6 @@
 				FBB60E5B1E1E0F050035D841 /* Products */,
 				471DB5F868120E522A051585 /* Pods */,
 				8B46A17F51B4D478A11CB98A /* Frameworks */,
-				FB8C4FDB1F06CD0800E14B3F /* Elliot-Dev-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -487,6 +487,7 @@
 				FBB60E641E1E0F050035D841 /* Assets.xcassets */,
 				FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */,
 				FBB60E691E1E0F050035D841 /* Info.plist */,
+				030C88331F0CF087009B25EA /* Dev-Info.plist */,
 			);
 			path = Elliot;
 			sourceTree = "<group>";
@@ -668,6 +669,7 @@
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
 				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
+				030C88341F0CF087009B25EA /* Dev-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1099,7 +1101,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1147,7 +1149,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
 					"$(SRCROOT)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Elliot-Dev-Info.plist";
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
@@ -1185,7 +1187,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
 					"$(SRCROOT)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Elliot-Dev-Info.plist";
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
@@ -1222,7 +1224,7 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
 					"$(SRCROOT)",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Elliot-Dev-Info.plist";
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
@@ -1359,7 +1361,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1397,7 +1399,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
