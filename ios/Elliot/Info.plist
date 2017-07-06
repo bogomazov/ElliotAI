@@ -50,7 +50,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.elliottech.elliot-debug</string>
+				<string>com.elliottech.elliotios</string>
 			</array>
 		</dict>
 	</array>
