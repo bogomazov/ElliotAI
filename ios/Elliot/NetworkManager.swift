@@ -41,7 +41,7 @@ typealias Completion = ((JSON, Bool) -> ())
 class NetworkManager: NSObject {
     static let shared = NetworkManager()
     
-    let host: String = "https://staging.elliot.ai/control"
+    let host: String = Bundle.main.infoDictionary!["ElliotAPIURL"] as! String
     
     func make(request: Request, retry: Bool = true, completion: @escaping Completion) {
         let url = host + request.path

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.babisoft.ReactNativeLocalization.ReactNativeLocalizationPackage;
 import com.elliot.calendarevents.CalendarEventsPackage;
+import com.elliot.config.RNConfig;
+import com.elliot.config.RNConfigPackage;
 import com.elliot.location.LocationReactPackage;
 import com.elliot.phonenumber.PhoneNumberReactPackage;
 import com.facebook.CallbackManager;
@@ -68,7 +70,8 @@ public class MainApplication extends Application implements ReactApplication {
           new ReactNativePermissionsPackage(),
           new LocationReactPackage(),
           new RNSharePackage(),
-          new PhoneNumberReactPackage()
+          new PhoneNumberReactPackage(),
+          new RNConfigPackage()
       );
     }
   };

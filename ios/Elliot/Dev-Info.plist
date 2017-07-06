@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Elliot</string>
+	<string>ElliotDev</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,9 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>dev</string>
-	<key>ElliotAPIURL</key>
-	<string>https://prod.elliot.ai/control</string>
+	<string>1.5.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -37,27 +35,13 @@
 				<string>elliot</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.245808737532-gpqc29f2ifmvqprmetmmtr60gaoq0cfg</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.elliottech.elliot-debug</string>
-			</array>
-		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODE_PUSH_KEY)</string>
+	<key>ElliotAPIURL</key>
+	<string>https://staging.elliot.ai/control</string>
 	<key>FacebookAppID</key>
 	<string>1591073697851633</string>
 	<key>FacebookDisplayName</key>
