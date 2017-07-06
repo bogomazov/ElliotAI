@@ -10,8 +10,12 @@
 		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
 		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
 		030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C881A1F0A7B9A009B25EA /* MainViewController.swift */; };
+		030C88341F0CF087009B25EA /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030C88331F0CF087009B25EA /* Dev-Info.plist */; };
+		030C883D1F0D064E009B25EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C881A1F0A7B9A009B25EA /* MainViewController.swift */; };
 		030C88501F0E4C2F009B25EA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C884F1F0E4C2F009B25EA /* Config.swift */; };
 		030C88541F0E4DF8009B25EA /* ConfigBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C88531F0E4DF8009B25EA /* ConfigBridge.m */; };
+		030C885D1F0E70CD009B25EA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C884F1F0E4C2F009B25EA /* Config.swift */; };
+		030C88601F0E70D0009B25EA /* ConfigBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C88531F0E4DF8009B25EA /* ConfigBridge.m */; };
 		0322D5411E2115C500239A3A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5401E2115C500239A3A /* LocationManager.swift */; };
 		0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */; };
 		0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; };
@@ -35,6 +39,70 @@
 		03F9E7B51EE9806900DC815C /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
 		03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
 		03F9E7B91EE9AD3900DC815C /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 03F9E7B81EE9AD3900DC815C /* assets */; };
+		FB8C4F8F1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F901F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F911F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F921F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F931F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F941F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
+		FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
+		FB8C4F971F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
+		FB8C4F991F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F9A1F06CD0800E14B3F /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
+		FB8C4F9B1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F9C1F06CD0800E14B3F /* NSNotificationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B61EE9808000DC815C /* NSNotificationAccessBridge.m */; };
+		FB8C4F9D1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F9E1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4F9F1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FA01F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FA11F06CD0800E14B3F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A41E256079000A5C21 /* NetworkManager.swift */; };
+		FB8C4FA21F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FA31F06CD0800E14B3F /* BasicHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */; };
+		FB8C4FA41F06CD0800E14B3F /* LocationAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7AD1EE822E800DC815C /* LocationAccessBridge.m */; };
+		FB8C4FA51F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FA61F06CD0800E14B3F /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F909C41E39F4C9002D24CE /* NotificationNames.swift */; };
+		FB8C4FA71F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FA81F06CD0800E14B3F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5401E2115C500239A3A /* LocationManager.swift */; };
+		FB8C4FA91F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FAA1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FAB1F06CD0800E14B3F /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
+		FB8C4FAC1F06CD0800E14B3F /* ReactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7A1EDDBE59000D376B /* ReactFactory.swift */; };
+		FB8C4FAD1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FAE1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FAF1F06CD0800E14B3F /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */; };
+		FB8C4FB01F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB11F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB21F06CD0800E14B3F /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
+		FB8C4FB31F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB41F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB51F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB61F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB71F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
+		FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
+		FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
+		FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
+		FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FBE1F06CD0800E14B3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
+		FB8C4FBF1F06CD0800E14B3F /* LocationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7A81EE821A000DC815C /* LocationAccess.swift */; };
+		FB8C4FC01F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FC11F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FC21F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FC31F06CD0800E14B3F /* NSNotificationAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9E7B41EE9806900DC815C /* NSNotificationAccess.swift */; };
+		FB8C4FC41F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FC51F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
+		FB8C4FC71F06CD0800E14B3F /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
+		FB8C4FC81F06CD0800E14B3F /* Pods_Elliot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */; };
+		FB8C4FC91F06CD0800E14B3F /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; };
+		FB8C4FCB1F06CD0800E14B3F /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 03F9E7B81EE9AD3900DC815C /* assets */; };
+		FB8C4FCC1F06CD0800E14B3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */; };
+		FB8C4FCD1F06CD0800E14B3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
+		FB8C4FCE1F06CD0800E14B3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
+		FB8C4FCF1F06CD0800E14B3F /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0370AF751EDD86B4000D376B /* main.jsbundle */; };
+		FB8C4FD51F06CD0800E14B3F /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FBB60E5E1E1E0F050035D841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */; };
 		FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E611E1E0F050035D841 /* Main.storyboard */; };
 		FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB60E641E1E0F050035D841 /* Assets.xcassets */; };
@@ -79,12 +147,24 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FB8C4FD41F06CD0800E14B3F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FB8C4FD51F06CD0800E14B3F /* OpenSansSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
 		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
 		030C881A1F0A7B9A009B25EA /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		030C88331F0CF087009B25EA /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		030C884F1F0E4C2F009B25EA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		030C88531F0E4DF8009B25EA /* ConfigBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigBridge.m; sourceTree = "<group>"; };
 		0322D5401E2115C500239A3A /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -116,6 +196,7 @@
 		5150174B44AF7308FBAC53E2 /* Pods_ElliotTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElliotTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Elliot.release.xcconfig"; path = "Pods/Target Support Files/Pods-Elliot/Pods-Elliot.release.xcconfig"; sourceTree = "<group>"; };
 		EC472425BB75DB1E65A75BB8 /* Pods_Elliot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Elliot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB8C4FDA1F06CD0800E14B3F /* Elliot-Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elliot-Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E5A1E1E0F050035D841 /* Elliot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Elliot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBB60E621E1E0F050035D841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -128,6 +209,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FB8C4FC61F06CD0800E14B3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB8C4FC71F06CD0800E14B3F /* OpenSansSwift.framework in Frameworks */,
+				FB8C4FC81F06CD0800E14B3F /* Pods_Elliot.framework in Frameworks */,
+				FB8C4FC91F06CD0800E14B3F /* OpenSansSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBB60E571E1E0F050035D841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -280,6 +371,7 @@
 			children = (
 				FBB60E5A1E1E0F050035D841 /* Elliot.app */,
 				FBB60E6E1E1E0F050035D841 /* ElliotTests.xctest */,
+				FB8C4FDA1F06CD0800E14B3F /* Elliot-Dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,6 +397,7 @@
 				FBB60E641E1E0F050035D841 /* Assets.xcassets */,
 				FBB60E661E1E0F050035D841 /* LaunchScreen.storyboard */,
 				FBB60E691E1E0F050035D841 /* Info.plist */,
+				030C88331F0CF087009B25EA /* Dev-Info.plist */,
 			);
 			path = Elliot;
 			sourceTree = "<group>";
@@ -321,6 +414,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FB8C4F8B1F06CD0800E14B3F /* Elliot-Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB8C4FD61F06CD0800E14B3F /* Build configuration list for PBXNativeTarget "Elliot-Dev" */;
+			buildPhases = (
+				FB8C4F8C1F06CD0800E14B3F /* [CP] Check Pods Manifest.lock */,
+				FB8C4F8D1F06CD0800E14B3F /* [CP] Check Pods Manifest.lock */,
+				FB8C4F8E1F06CD0800E14B3F /* Sources */,
+				FB8C4FC61F06CD0800E14B3F /* Frameworks */,
+				FB8C4FCA1F06CD0800E14B3F /* Resources */,
+				FB8C4FD01F06CD0800E14B3F /* [CP] Embed Pods Frameworks */,
+				FB8C4FD11F06CD0800E14B3F /* [CP] Copy Pods Resources */,
+				FB8C4FD21F06CD0800E14B3F /* 📦 Embed Pods Frameworks */,
+				FB8C4FD31F06CD0800E14B3F /* 📦 Copy Pods Resources */,
+				FB8C4FD41F06CD0800E14B3F /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Elliot-Dev";
+			productName = Elliot;
+			productReference = FB8C4FDA1F06CD0800E14B3F /* Elliot-Dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		FBB60E591E1E0F050035D841 /* Elliot */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBB60E771E1E0F050035D841 /* Build configuration list for PBXNativeTarget "Elliot" */;
@@ -373,6 +490,9 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Elliot Technologies";
 				TargetAttributes = {
+					FB8C4F8B1F06CD0800E14B3F = {
+						DevelopmentTeam = ZN3S5P8EPC;
+					};
 					FBB60E591E1E0F050035D841 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZN3S5P8EPC;
@@ -415,6 +535,7 @@
 			targets = (
 				FBB60E591E1E0F050035D841 /* Elliot */,
 				FBB60E6D1E1E0F050035D841 /* ElliotTests */,
+				FB8C4F8B1F06CD0800E14B3F /* Elliot-Dev */,
 			);
 		};
 /* End PBXProject section */
@@ -437,6 +558,18 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FB8C4FCA1F06CD0800E14B3F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB8C4FCB1F06CD0800E14B3F /* assets in Resources */,
+				FB8C4FCC1F06CD0800E14B3F /* LaunchScreen.storyboard in Resources */,
+				FB8C4FCD1F06CD0800E14B3F /* Assets.xcassets in Resources */,
+				FB8C4FCE1F06CD0800E14B3F /* Main.storyboard in Resources */,
+				FB8C4FCF1F06CD0800E14B3F /* main.jsbundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBB60E581E1E0F050035D841 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -446,6 +579,7 @@
 				FBB60E651E1E0F050035D841 /* Assets.xcassets in Resources */,
 				FBB60E631E1E0F050035D841 /* Main.storyboard in Resources */,
 				0370AF761EDD86B5000D376B /* main.jsbundle in Resources */,
+				030C88341F0CF087009B25EA /* Dev-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +668,96 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FB8C4F8C1F06CD0800E14B3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C4F8D1F06CD0800E14B3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C4FD01F06CD0800E14B3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C4FD11F06CD0800E14B3F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C4FD21F06CD0800E14B3F /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8C4FD31F06CD0800E14B3F /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Elliot/Pods-Elliot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD6C97965F97846635AD97B1 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -552,6 +776,71 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FB8C4F8E1F06CD0800E14B3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB8C4F8F1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F901F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F911F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F921F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F931F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F941F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */,
+				030C883D1F0D064E009B25EA /* MainViewController.swift in Sources */,
+				FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */,
+				FB8C4F971F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */,
+				FB8C4F991F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F9A1F06CD0800E14B3F /* ShareAccessBridge.m in Sources */,
+				FB8C4F9B1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F9C1F06CD0800E14B3F /* NSNotificationAccessBridge.m in Sources */,
+				FB8C4F9D1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F9E1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4F9F1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FA01F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FA11F06CD0800E14B3F /* NetworkManager.swift in Sources */,
+				FB8C4FA21F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FA31F06CD0800E14B3F /* BasicHighlightedButton.swift in Sources */,
+				FB8C4FA41F06CD0800E14B3F /* LocationAccessBridge.m in Sources */,
+				030C885D1F0E70CD009B25EA /* Config.swift in Sources */,
+				FB8C4FA51F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FA61F06CD0800E14B3F /* NotificationNames.swift in Sources */,
+				FB8C4FA71F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FA81F06CD0800E14B3F /* LocationManager.swift in Sources */,
+				030C88601F0E70D0009B25EA /* ConfigBridge.m in Sources */,
+				FB8C4FA91F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FAA1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FAB1F06CD0800E14B3F /* AlertController+Util.swift in Sources */,
+				FB8C4FAC1F06CD0800E14B3F /* ReactFactory.swift in Sources */,
+				FB8C4FAD1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FAE1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FAF1F06CD0800E14B3F /* DefaultsKeysExtension.swift in Sources */,
+				FB8C4FB01F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB11F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB21F06CD0800E14B3F /* ShareAccess.swift in Sources */,
+				FB8C4FB31F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB41F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB51F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB61F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB71F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */,
+				FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */,
+				FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */,
+				FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */,
+				FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FBE1F06CD0800E14B3F /* AppDelegate.swift in Sources */,
+				FB8C4FBF1F06CD0800E14B3F /* LocationAccess.swift in Sources */,
+				FB8C4FC01F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FC11F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FC21F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FC31F06CD0800E14B3F /* NSNotificationAccess.swift in Sources */,
+				FB8C4FC41F06CD0800E14B3F /* (null) in Sources */,
+				FB8C4FC51F06CD0800E14B3F /* (null) in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FBB60E561E1E0F050035D841 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -694,7 +983,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -714,6 +1003,118 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elliot.app/Elliot";
+			};
+			name = Staging;
+		};
+		FB8C4FD71F06CD0800E14B3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 208C3AF429C16137E7CD2ED6 /* Pods-Elliot.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FB8C4FD81F06CD0800E14B3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70B7F05C9FC1F0E17A025FBE /* Pods-Elliot.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		FB8C4FD91F06CD0800E14B3F /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0435F4315BE5D3FC4BE6C9D9 /* Pods-Elliot.staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Elliot/Elliot.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = ZN3S5P8EPC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Bolts\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKCoreKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKLoginKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FBSDKShareKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookCore\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookLogin\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FacebookShare\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/KeychainAccess\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Nuke\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyUserDefaults\"",
+					"$(SRCROOT)",
+				);
+				INFOPLIST_FILE = "Elliot/Dev-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Staging;
 		};
@@ -842,7 +1243,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -880,7 +1281,7 @@
 				INFOPLIST_FILE = Elliot/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.elliottech.elliot-debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.elliottech.elliotios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -920,6 +1321,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FB8C4FD61F06CD0800E14B3F /* Build configuration list for PBXNativeTarget "Elliot-Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB8C4FD71F06CD0800E14B3F /* Debug */,
+				FB8C4FD81F06CD0800E14B3F /* Release */,
+				FB8C4FD91F06CD0800E14B3F /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		FBB60E551E1E0F050035D841 /* Build configuration list for PBXProject "Elliot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
