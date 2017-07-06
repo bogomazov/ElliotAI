@@ -8,9 +8,6 @@ target 'Elliot' do
   pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON'
   pod 'KeychainAccess'
-  pod 'Nuke', '~> 4.0'
-  pod 'BRYXBanner'
-  pod 'Presentr'
   pod 'PhoneNumberKit', '~> 1.2'
   pod 'Google/SignIn'
   

@@ -148,6 +148,12 @@ export default class MainScene extends Component {
           break;
       }
     });
+
+    Linking.getInitialURL().then(url => {
+      if (url) {
+        this._handleUrl({url})
+      }
+    })
 	}
 
 	componentWillUnmount() {

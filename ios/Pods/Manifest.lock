@@ -6,7 +6,6 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - BRYXBanner (0.7.1)
   - CodePush (2.0.3):
     - CodePush/Core (= 2.0.3)
     - CodePush/SSZipArchive (= 2.0.3)
@@ -70,14 +69,12 @@ PODS:
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
   - KeychainAccess (3.0.1)
-  - Nuke (4.1.2)
   - PhoneNumberKit (1.2.3):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.2.3)
     - PhoneNumberKit/UIKit (= 1.2.3)
   - PhoneNumberKit/PhoneNumberKitCore (1.2.3)
   - PhoneNumberKit/UIKit (1.2.3):
     - PhoneNumberKit/PhoneNumberKitCore
-  - Presentr (1.2.3)
   - React (0.44.0):
     - React/Core (= 0.44.0)
   - react-native-calendar-events (1.3.6):
@@ -138,16 +135,13 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
-  - BRYXBanner
   - CodePush (from `../node_modules/react-native-code-push`)
   - FacebookCore
   - FacebookLogin
   - FacebookShare
   - Google/SignIn
   - KeychainAccess
-  - Nuke (~> 4.0)
   - PhoneNumberKit (~> 1.2)
-  - Presentr
   - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-contacts (from `../node_modules/react-native-contacts`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk/ios`)
@@ -196,7 +190,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  BRYXBanner: 34eabf9c6c009f187948ca78a4f3bba3767d0f04
   CodePush: 2e2ffb214ddd52d13ab67e134945811f8ba316f2
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -213,9 +206,7 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Nuke: 7cfd2acdf90c36f66e6ea40795bac0d851a9afe0
   PhoneNumberKit: 1e5cca669113fc361a8c82ec1ee559c62b8cd0f7
-  Presentr: a21c7bbb3532c8ff60320e235c0a4869e72f8885
   React: d2077cc20245ccdc8bfe1fdc002f2003318ae8d8
   react-native-calendar-events: 90d9f3da1f9d4b7d04faad9640275c085140f017
   react-native-contacts: dbc9bb4f09079acf1f0fa931ce59232008936856
@@ -229,6 +220,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   Yoga: a92a5d8e128905bf9f29c82f870192a6e873dd98
 
-PODFILE CHECKSUM: 573dddd8e8a667fbb29318d82d090d32e532e11c
+PODFILE CHECKSUM: 2e2f4012cf5e44f001280c5a6f7a8aa4a0c0b97e
 
 COCOAPODS: 1.2.1
