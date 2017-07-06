@@ -30,5 +30,9 @@ full_slack_url="$slack_url&channel=deploy&text=$git_name deploying '$PLATFORM' o
 converted_slack_url="${full_slack_url// /%20}"
 curl -s "$converted_slack_url"
 
-
-code-push release-react $APPNAME $PLATFORM --deploymentName $ENV --mandatory
+if [ "$PLATFORM" == "ios" ] && [ "$ENV" == "Staging" ]; then
+    # Use Info.plist file with Dev- prefix for iOS Staging
+    code-push release-react $APPNAME $PLATFORM --deploymentName $ENV --mandatory --pre "Dev-"
+else 
+    code-push release-react $APPNAME $PLATFORM --deploymentName $ENV --mandatory
+fi
