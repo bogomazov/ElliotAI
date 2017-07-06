@@ -170,7 +170,7 @@ export default class SettingsScene extends Component {
   _onLogoutPress = () => {
     this.actionSheet.showActionSheetWithOptions({
       title: 'Are you sure?',
-      options: ['Logout', 'Cancel'],
+      options: ['Log out', 'Cancel'],
       destructiveButtonIndex: 0,
       cancelButtonIndex: 1,
     }, (index) => {
@@ -255,7 +255,7 @@ export default class SettingsScene extends Component {
                 case LOGOUT:
                   return (
                     <SettingsRow onPress={this._onLogoutPress}>
-                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Logout</Text>
+                      <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Log out of Elliot</Text>
                       <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
                     </SettingsRow>
                   )
