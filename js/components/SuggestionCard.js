@@ -17,7 +17,7 @@ const borderWidth = 2
 
 const CALENDAR_TIME_RANGE = 3 // hours
 
-const KEYBOARD_OFFSET = 145 // keyboard offset for message input
+const KEYBOARD_BOTTOM_SPACING = 80 // spacing under the text-input and above the keyboard
 
 const mapStateToProps = (state) => {
 	return {appDeviceEvents: state.app.deviceEvents}
@@ -238,7 +238,7 @@ export default class SuggestionsCard extends Component {
               style={styles.messageInput}
               underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({message: text})}
-              onFocus={() => this.props.onInputFocus(KEYBOARD_OFFSET)}
+              onFocus={() => this.props.onInputFocus(KEYBOARD_BOTTOM_SPACING)}
               value={this.state.message}
               placeholder={"  Write a message..."}
             />
