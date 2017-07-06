@@ -220,7 +220,12 @@ const TEST_SUGGESTIONS  = { data: [
     meeting_time: "2017-05-19 17:00:00",
 		meeting_times: ["2017-07-03 18:00:00"],
     meeting_type: "Call",
-		is_invite: 1
+		is_invite: 1,
+    events: [{
+      begin: "2017-05-19 17:00:00",
+      end: "2017-05-19 18:00:00",
+      name: "Test event"
+    }]
   },
 ]
 }
