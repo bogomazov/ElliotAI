@@ -41,7 +41,7 @@ export default class CalendarPermissionScene extends Component {
           <Text style={styles.description}> Elliot needs access to your calendars</Text>
         </View>
         <View style={styles.middleWrapper}>
-          <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
+          <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>Log in to Google Calendar</Text>
           <GoogleLoginButton onLogin={this._onLogin} />
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
