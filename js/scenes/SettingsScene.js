@@ -237,8 +237,13 @@ export default class SettingsScene extends Component {
                       <View>
                         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
                         <View style={[s.col, {marginTop: 5}]}>
-                          <Text style={{fontSize: 14, color: 'gray'}}>
-                            {defaultCalendar ? defaultCalendar.name : ""}
+                          <Text>
+                            <Text style={{fontSize: 14, color: 'black'}}>
+                              {defaultAccount ? defaultAccount.name + ": " : ""}
+                            </Text>
+                            <Text style={{fontSize: 14, color: 'gray'}}>
+                              {defaultCalendar ? defaultCalendar.name : ""}
+                            </Text>
                           </Text>
                         </View>
                       </View>
