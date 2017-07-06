@@ -129,7 +129,6 @@ export default class PermissionsScene extends Component {
           />}
         </View>
         <View style={s.col}>
-          {IS_IOS &&
             <View style={[s.row, styles.skipWrapper]}>
               <CustomButton
                 onPress={this.onPressSkip}
@@ -138,7 +137,6 @@ export default class PermissionsScene extends Component {
                 isWhite={this.state.isCalendarGranted}
               />
             </View>
-          }
           <Text style={styles.description}>{strings.disclaimer}</Text>
         </View>
       </View>);
