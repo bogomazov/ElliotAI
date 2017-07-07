@@ -50,7 +50,6 @@ export default class LoginScene extends Component {
   }
 
   render() {
-		PhoneNumber.getKeyHash().then((keyHash) => console.log('keyJash: ' + keyHash))
 
     return (
       <View style={styles.container}>

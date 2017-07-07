@@ -29,6 +29,7 @@ const defaultState = {
   didMigrateIOSCalendar: false,
   shouldShowAcceptedBanner: false,
   deviceEvents: [],
+  didMigrateIOSData: false,
 }
 
 const app = (state = defaultState, action) => {
@@ -48,10 +49,7 @@ const app = (state = defaultState, action) => {
     case REHYDRATE:
       const incoming = action.payload.app
       console.log(incoming)
-      // don't persist accessToken on iOS
-      const auth = IS_IOS ? {accessToken: state.accessToken} : {};
       return {...state, ...incoming,
-          ...auth,
           isRehydrated: true,
           isLocationGiven: false,
           isSuggestionsLoaded: false,
@@ -177,6 +175,11 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         deviceEvents: action.events
+      }
+    case actionType.MIGRATED_IOS_DATA:
+      return {
+        ...state,
+        didMigrateIOSData: true,
       }
     default:
       return state
