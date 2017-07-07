@@ -2,9 +2,8 @@
 1. `git clone https://github.com/elliottech/elliot-mobile`
 2. Check that Android SDK is installed as well as `adb` mentioned within `$PATH`
 3. Install react native globally with: `npm install -g react-native-cli`
-4. Install requirements with: `npm install`
-5. Check `js/settings.js` for `IS_DEV=true` if you are in the development mode (points to `staging` server).<br/>
-6. Go to `node_modules/react-native-fbsdk/android/build.gradle` and change the last compile to `compile('com.facebook.android:facebook-android-sdk:4.22.1')` (will be removed once facebook resolves the issue)
+4. Install requirements with: `npm install`<br/>
+5. Go to `node_modules/react-native-fbsdk/android/build.gradle` and change the last compile to `compile('com.facebook.android:facebook-android-sdk:4.22.1')` (will be removed once facebook resolves the issue)
 
 # Run:
 1. Create the device with Play Store pre-installed
@@ -20,10 +19,13 @@
 5. `npm start`
 6. `react-native run-ios`
 
-## Running on a device (on dev-merge only)
+## Running on device
 1. Run `npm install` to make sure your local packages are up to date.
-2. Connect the device and run the app via Xcode in the same way.
-3. Codepush will automatically fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`).
+2. `npm run build-ios-dev` if you want console logs enabled, `npm run build-ios-prod` otherwise.
+2. Connect the device and run the `Elliot-Dev` target via Xcode. Make sure that build-configuration is set to `DEBUG` in scheme settings.
+3. Codepush will fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`), or will use `main.jsbundle` if there is nothing codepushed for that native version number yet.
+
+**Note**: Always build `Elliot-Dev` target with `DEBUG` config and `Elliot` with `RELEASE` to ensure that both code-push and app's own network requests point to the correct environment. 
 
 # Codepush Deployment
 1. Install code-push cli: `npm install -g code-push-cli`
@@ -53,9 +55,8 @@ defaultConfig {
 }
 ```
 
-3. Make sure `IS_DEV=true` for Staging Server and `IS_DEV=false` for Prod Server in `settings.js`
-4. cd `android`
-5. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` for Production vs Staging CodePush
+3. cd `android`
+4. `./gradlew assembleRelease` or `./gradlew assembleReleaseStaging` for Production vs Staging CodePush
 
 Find apk in: `android/app/build/outputs/apk/`
 
