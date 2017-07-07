@@ -104,11 +104,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
                     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                         return
                     }
-                    if SMSNotifManager.hasVerifiedNumber() {
-                        appDelegate.showViewController(identifier: "main-vc")
-                    } else {
-                        appDelegate.showViewController(identifier: "verify-phone-vc")
-                    }
+                    appDelegate.showViewController(identifier: "main-vc")
                 } else {
                     self.loginManager.logOut()
                     self.loginButton.isHidden = false

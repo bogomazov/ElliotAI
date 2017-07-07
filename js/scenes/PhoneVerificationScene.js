@@ -15,6 +15,7 @@ import CustomButton from '../components/CustomButton'
 import strings from '../res/values/strings'
 import s, {themeColor} from '../res/values/styles'
 import PhoneNumber from '../utils/PhoneNumberModule'
+import {IS_ANDROID} from '../settings'
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -38,8 +39,10 @@ export default class PhoneVerificationScene extends Component {
   }
 	componentWillMount = () => {
 		console.log(this.props)
-		PhoneNumber.getPhoneNumber().then((phoneNumber) => this.setState({phoneNumber}))
-	}
+    if (IS_ANDROID) {
+      PhoneNumber.getPhoneNumber().then((phoneNumber) => this.setState({phoneNumber}))
+    }
+  }
 
   _onVerifyPressed = () => {
     const token = getRandomArbitrary(1000, 9999)

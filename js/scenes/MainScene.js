@@ -221,11 +221,8 @@ export default class MainScene extends Component {
   render() {
     console.log(this.props)
     console.log(this.tabNavigator);
-		if (IS_ANDROID) {
-			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-			}
-
+		if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+			return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 		}
     return (
       <View style={styles.container}>
