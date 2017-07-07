@@ -26,8 +26,6 @@
 		0328E9121E2F9CF8003427C3 /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */; };
 		033375A51E256079000A5C21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A41E256079000A5C21 /* NetworkManager.swift */; };
-		03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
-		03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
 		034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
 		034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
 		034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
@@ -85,8 +83,6 @@
 		FB8C4FB61F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FB71F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
-		FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
-		FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
 		FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
 		FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -180,8 +176,6 @@
 		0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenSansSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHighlightedButton.swift; sourceTree = "<group>"; };
 		033375A41E256079000A5C21 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
-		03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSNotifManager.swift; sourceTree = "<group>"; };
 		034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Elliot.swift"; sourceTree = "<group>"; };
 		034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenSansSwift.framework; path = "../../../../Downloads/OpenSansSwift-master 2/build/Debug-iphoneos/OpenSansSwift.framework"; sourceTree = "<group>"; };
@@ -269,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */,
-				03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */,
 				030C881A1F0A7B9A009B25EA /* MainViewController.swift */,
 			);
 			name = ViewControllers;
@@ -396,7 +389,6 @@
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
 				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
 				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
-				03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */,
 				0322D5401E2115C500239A3A /* LocationManager.swift */,
 				03F909C41E39F4C9002D24CE /* NotificationNames.swift */,
 				033375A41E256079000A5C21 /* NetworkManager.swift */,
@@ -839,8 +831,6 @@
 				FB8C4FB61F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FB71F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */,
-				FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */,
-				FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */,
 				FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */,
 				FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */,
@@ -877,8 +867,6 @@
 				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
 				030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */,
 				0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */,
-				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
-				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
 				030C88501F0E4C2F009B25EA /* Config.swift in Sources */,
 				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
 				030C88541F0E4DF8009B25EA /* ConfigBridge.m in Sources */,

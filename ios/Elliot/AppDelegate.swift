@@ -72,11 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if shouldLogin() {
             doLogin()
         } else {
-            if !SMSNotifManager.hasVerifiedNumber() {
-                showViewController(identifier: "verify-phone-vc")
-            } else {
-                showViewController(identifier: "main-vc")
-            }
+            showViewController(identifier: "main-vc")
         }
         
         UIApplication.shared.registerForRemoteNotifications()
@@ -85,9 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if SMSNotifManager.handle(url: url) {
-            return true
-        }
         if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
@@ -116,12 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // FB token has expired. We need to refresh it by redirecting the user to login page.
             doLogin()
             return
-        }
-        if !SMSNotifManager.hasVerifiedNumber() {
-            // redirect to phone-verification screen if needed
-            showViewController(identifier: "verify-phone-vc")
-        } else {
-            NotificationCenter.default.post(name: NotificationNames.foregroundUpdate, object: self)
         }
     }
 
