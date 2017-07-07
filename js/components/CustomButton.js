@@ -11,7 +11,7 @@ const CustomButton = ({onPress, title, style, isWhite, isActive, isFilled, isFil
       return (
             <TouchableWithoutFeedback onPress={onPress} underlayColor={themeColor}>
               <View>
-                <Text style={[styles.text, style, isWhite && styles.white, isFilled && styles.filled, isFilledWhite && styles.filledWhite]}>{title.toUpperCase()}</Text>
+                <Text style={[styles.text, style, isWhite && styles.white, isFilled && styles.filled, isFilledWhite && styles.filledWhite]}>{title}</Text>
               </View>
             </TouchableWithoutFeedback>
       );

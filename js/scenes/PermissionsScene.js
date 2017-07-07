@@ -99,13 +99,13 @@ This will tell us who your friends are, which locations work for you.`}</Text>
         <View style={[styles.middleWrapper, {flex: 1}]}>
           <CustomButton
             onPress={this.requestLocationPermissions}
-            title={strings.enableLocation}
+            title={strings.enableLocation.toUpperCase()}
             style={styles.button}
             isWhite={this.state.isLocationGranted && !IS_TEST_PERMISSIONS_SCENE}
           />
           <CustomButton
             onPress={this.requestContactPermissions}
-            title={strings.enableContacts}
+            title={strings.enableContacts.toUpperCase()}
             style={styles.button}
             isWhite={this.state.isContactsGranted}
           />
