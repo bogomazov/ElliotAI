@@ -39,19 +39,10 @@ export default class LandingScene extends Component {
     this._checkPermissions();
   }
 
-  componentDidMount() {
-    AppState.addEventListener('change', this._onAppStateChange);
-  }
-
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._onAppStateChange);
-  }
-
-  _onAppStateChange = (nextAppState) => {
-    this._checkPermissions();
-  }
-
   _checkPermissions = () => {
+    if (!this.props.app.isPermissionsGranted) {
+      return
+    }
     Permissions.checkMultiplePermissions(['location', 'contacts', 'event']).then(
       (response) => {
         if (response.location != 'authorized' ||
