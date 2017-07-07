@@ -34,6 +34,7 @@ export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
 export const DID_FINISH_CALENDAR_INTRO = "DID_FINISH_CALENDAR_INTRO"
 export const STORE_DEVICE_EVENTS = "STORE_DEVICE_EVENTS"
 export const SOCIAL_MEDIA_FB = 'Facebook'
+export const MIGRATED_IOS_DATA = "MIGRATED_IOS_DATA"
 
 export const newAccessToken = (accessToken) => {
   return {
@@ -165,6 +166,11 @@ export const showAcceptedBanner = (shouldShow) => {
 export const finishCalendarIntro = () => {
   return {
     type: DID_FINISH_CALENDAR_INTRO,
+  }
+}
+export const migratedIOSData = () => {
+  return {
+    type: MIGRATED_IOS_DATA,
   }
 }
 

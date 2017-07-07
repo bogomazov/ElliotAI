@@ -31,7 +31,6 @@
 		034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
 		0370AF761EDD86B5000D376B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0370AF751EDD86B4000D376B /* main.jsbundle */; };
 		0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7A1EDDBE59000D376B /* ReactFactory.swift */; };
-		0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
 		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
 		03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
 		03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
@@ -48,7 +47,6 @@
 		FB8C4F931F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F941F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
-		FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
 		FB8C4F971F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
 		FB8C4F991F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -183,7 +181,6 @@
 		0370AF751EDD86B4000D376B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = SOURCE_ROOT; };
 		0370AF7A1EDDBE59000D376B /* ReactFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactFactory.swift; sourceTree = "<group>"; };
 		03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "OpenSansSwift-master 2/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
-		0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
 		03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccess.swift; sourceTree = "<group>"; };
 		03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccessBridge.m; sourceTree = "<group>"; };
@@ -262,7 +259,6 @@
 		0322D5471E223A6600239A3A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */,
 				030C881A1F0A7B9A009B25EA /* MainViewController.swift */,
 			);
 			name = ViewControllers;
@@ -793,7 +789,6 @@
 				FB8C4F941F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */,
 				030C883D1F0D064E009B25EA /* MainViewController.swift in Sources */,
-				FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */,
 				FB8C4F971F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */,
 				FB8C4F991F06CD0800E14B3F /* (null) in Sources */,
@@ -850,7 +845,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */,
-				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
 				03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */,
 				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,

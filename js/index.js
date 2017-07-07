@@ -90,31 +90,50 @@ let persistStateConfig = {
 }
 
 class App extends Component {
-  componentWillMount() {
-    if (IS_IOS) {
-      const accessToken = this.props.nativeIOS.accessToken
-      Store.dispatch(newAccessToken(accessToken))
-    }
-  }
-
   render() {
     console.log(this.props);
     return (
       <Provider store={Store}>
-        <Rehydrator/>
+        <Rehydrator nativeIOS={this.props.nativeIOS}/>
        </Provider>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+	return {
+    isRehydrated: state.app.isRehydrated,
+    didMigrateIOSData: state.app.didMigrateIOSData,
+  }
 }
-@connect(mapStateToProps)
+const mapDispatchToProps = (dispatch) => {
+  return {appActions: bindActionCreators(appActions, dispatch)}
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class Rehydrator extends Component {
+  componentDidUpdate() {
+    // Migrate native iOS data for users who updated their app.
+    if (!IS_IOS || !this.props.isRehydrated) {
+      return
+    }
+    if (!this.props.didMigrateIOSData) {
+      console.log(this.props.nativeIOS)
+      const {accessToken, hasVerifiedNumber} = this.props.nativeIOS
+      if (accessToken) {
+        this.props.appActions.newAccessToken(accessToken)
+      }
+      if (hasVerifiedNumber === true) {
+        this.props.appActions.phoneVerified()
+      }
+      this.props.appActions.migratedIOSData()
+    }
+  }
+
   render() {
     console.log(this.props);
-    if (!this.props.app.isRehydrated) {
+    if (!this.props.isRehydrated ||
+      (IS_IOS && !this.props.didMigrateIOSData)) {
       return (<SplashScene/>);
     }
     return (<LandingScene/>);

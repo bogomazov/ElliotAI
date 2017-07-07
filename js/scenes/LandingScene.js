@@ -51,10 +51,8 @@ export default class LandingScene extends Component {
   }
 
   render() {
-    if (IS_ANDROID) {
-      if (!this.props.app.isLoggedIn) {
-        return <LoginScene/>
-      }
+    if (!this.props.app.isLoggedIn) {
+      return <LoginScene/>
     }
 
 		if (!this.props.app.didFinishCalendarIntro) {
