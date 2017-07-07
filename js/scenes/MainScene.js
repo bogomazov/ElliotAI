@@ -193,13 +193,6 @@ export default class MainScene extends Component {
 
   _loadScheduledMeetings = () => {
     this.props.appActions.calendarLoading();
-    if (IS_IOS && !this.props.app.didMigrateIOSCalendar) {
-      NativeModules.CalendarMigration.getAllStored().then((dict) => {
-        this.props.appActions.migrateIOSCalendar(dict);
-        this.props.appActions.loadScheduledMeetings();
-      });
-      return;
-    }
     this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
   }
 
