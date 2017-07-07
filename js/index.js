@@ -112,11 +112,20 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Rehydrator extends Component {
-  componentDidUpdate() {
-    // Migrate native iOS data for users who updated their app.
-    if (!IS_IOS || !this.props.isRehydrated) {
-      return
+  // MARK Migrate native iOS data for users who updated their app.
+  componentDidMount() {
+    if (IS_IOS && this.props.isRehydrated) {
+      this.migrateIOSData()
     }
+  }
+
+  componentDidUpdate() {
+    if (IS_IOS && this.props.isRehydrated) {
+      this.migrateIOSData()
+    }
+  }
+
+  migrateIOSData = () => {
     if (!this.props.didMigrateIOSData) {
       console.log(this.props.nativeIOS)
       const {accessToken, hasVerifiedNumber} = this.props.nativeIOS
