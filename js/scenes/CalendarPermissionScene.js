@@ -13,6 +13,8 @@ import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
+import ProgressBar from '../components/ProgressBar';
+
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -24,9 +26,12 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarPermissionScene extends Component {
-
+  state = {
+    isGoogleSignInLoading: false
+  }
   _onLogin = (googleUser) => {
     console.log(googleUser);
+    this.setState({isGoogleSignInLoading: true})
     this.props.appActions.sendGoogleAuthToken(googleUser.serverAuthCode).then(() => {
       this.props.appActions.finishCalendarIntro()
     })
@@ -41,8 +46,12 @@ export default class CalendarPermissionScene extends Component {
           <Text style={styles.description}> Elliot needs access to your calendars</Text>
         </View>
         <View style={styles.middleWrapper}>
-          <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>Log in to Google Calendar</Text>
-          <GoogleLoginButton onLogin={this._onLogin} />
+          <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
+          {!this.state.isGoogleSignInLoading?
+            <GoogleLoginButton onLogin={this._onLogin} />
+            :
+            <ProgressBar />
+          }
         </View>
         <Text style={styles.description}>{strings.disclaimer}</Text>
       </View>
