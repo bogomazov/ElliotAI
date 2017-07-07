@@ -60,7 +60,7 @@ export default class PhoneVerificationScene extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.wrapper}>
-          <Text style={styles.elliotHeader}>Elliot</Text>
+          <Text style={s.nuxElliotHeader}>Elliot</Text>
           <Text style={[s.textAlignCenter, s.light, styles.introText]}>{strings.phoneIntro}</Text>
           <View style={styles.textInputWrapper}>
             <TextInput
@@ -131,14 +131,6 @@ const styles = StyleSheet.create({
   topBarIcon: {
     height: 40,
     width: 40
-  },
-
-  elliotHeader: {
-    textAlign: 'center',
-    color: themeColor,
-    fontSize: 32,
-    marginTop: 40,
-    fontFamily: 'OpenSans-ExtraBold'
   },
 
   introText: {

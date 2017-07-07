@@ -113,6 +113,18 @@ export default s = StyleSheet.create({
   },
   padding15: {
     padding: 15
-  }
+  },
 
+  nuxElliotHeader: {
+    textAlign: 'center',
+    color: themeColor,
+    fontSize: 32,
+    marginTop: 50,
+    fontFamily: 'OpenSans-ExtraBold'
+  },
+  nuxGrayText: {
+    color: 'rgb(97, 97, 97)',
+    fontSize: 15,
+    fontFamily: 'OpenSans-Light',
+  }
 });

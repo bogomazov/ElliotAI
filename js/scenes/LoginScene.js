@@ -9,6 +9,7 @@ import {saveState} from '../index'
 import IntroSwipe from '../containers/Intro'
 import { themeColor } from '../res/values/styles'
 import PhoneNumber from '../utils/PhoneNumberModule'
+import s from '../res/values/styles'
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -50,7 +51,7 @@ export default class LoginScene extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.logoTextWrapper}>
-          <Text style={styles.logoText}>Elliot</Text>
+          <Text style={s.nuxElliotHeader}>Elliot</Text>
         </View>
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
@@ -91,13 +92,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
   },
 
-	logoText: {
-    // flex: 1,
-		marginTop: 40,
-		fontSize: 44,
-    color: themeColor,
-  },
-
   introWrapper: {
 
   },
@@ -105,4 +99,9 @@ const styles = StyleSheet.create({
   loginButtonWrapper: {
     height: 200
   },
+
+  loginButton: {
+    width: 200,
+    height: 50,
+  }
 });
