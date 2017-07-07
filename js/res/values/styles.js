@@ -128,3 +128,36 @@ export default s = StyleSheet.create({
     fontFamily: 'OpenSans-Light',
   }
 });
+
+export const permissionStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding: 25
+  },
+  topWrapper: {
+    flexDirection: 'column',
+		justifyContent: 'center',
+  },
+  description: {
+    color: '#979797',
+		textAlign: 'center',
+  },
+  middleWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    margin: 10,
+    fontSize: 17,
+		paddingHorizontal: 30,
+		paddingVertical: 20,
+		borderRadius: 30,
+		borderColor: 'rgb(231, 231, 231)'
+  },
+  skipWrapper: {
+    justifyContent: 'flex-end',
+  }
+});

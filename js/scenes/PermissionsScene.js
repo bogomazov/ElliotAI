@@ -13,6 +13,7 @@ import s, {themeColor} from '../res/values/styles';
 import Permissions from 'react-native-permissions'
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import {IS_IOS, IS_TEST_PERMISSIONS_SCENE} from '../settings';
+import {permissionStyles as styles} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -91,9 +92,9 @@ export default class PermissionsScene extends Component {
 
 			return (<View style={styles.container}>
         <View style={styles.topWrapper}>
-          <Text style={styles.logoText}>Elliot</Text>
+          <Text style={[s.nuxElliotHeader, {marginTop: 25}]}>Elliot</Text>
           <Text style={[styles.description, s.light, {fontSize: 15, marginHorizontal: 30}]}>{`We need your permission.
-This will tell us who your friends are, times and location that work for you.`}</Text>
+This will tell us who your friends are, which locations work for you.`}</Text>
         </View>
         <View style={[styles.middleWrapper, {flex: 1}]}>
           <CustomButton
@@ -125,45 +126,3 @@ This will tell us who your friends are, times and location that work for you.`}<
       </View>);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    padding: 25
-  },
-  topWrapper: {
-    flexDirection: 'column',
-		justifyContent: 'center',
-  },
-  logoText: {
-    color: themeColor,
-    fontSize: 46,
-		marginTop: 15,
-		marginBottom: 10,
-		textAlign: 'center',
-		fontFamily: 'OpenSans-ExtraBold'
-    // flex: 1,
-  },
-  description: {
-    color: '#979797',
-		textAlign: 'center',
-  },
-  middleWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    margin: 10,
-    fontSize: 17,
-		paddingHorizontal: 30,
-		paddingVertical: 20,
-		borderRadius: 30,
-		borderColor: 'rgb(231, 231, 231)'
-  },
-  skipWrapper: {
-    justifyContent: 'flex-end',
-  }
-});

@@ -14,7 +14,7 @@ import strings from '../res/values/strings'
 import s from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ProgressBar from '../components/ProgressBar';
-
+import {permissionStyles as styles} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -42,11 +42,10 @@ export default class CalendarPermissionScene extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.topWrapper}>
-          <Text style={styles.logoText}>Elliot</Text>
-          <Text style={styles.description}> Elliot needs access to your calendars</Text>
+          <Text style={[s.nuxElliotHeader, {marginTop: 25}]}>Elliot</Text>
+          <Text style={styles.description}> We need access to your calendars. This will tell us what times work for you.</Text>
         </View>
-        <View style={styles.middleWrapper}>
-          <Text style={[s.margin10, s.bold, s.textColorWhite, {textAlign: 'center'}]}>We will need an access to your Google Calendar!</Text>
+        <View style={[styles.middleWrapper, {flex: 1}]}>
           {!this.state.isGoogleSignInLoading?
             <GoogleLoginButton onLogin={this._onLogin} />
             :
@@ -58,33 +57,3 @@ export default class CalendarPermissionScene extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: '#817550',
-    padding: 25
-  },
-  topWrapper: {
-    flexDirection: 'column',
-  },
-  logoText: {
-    color: '#fff',
-    fontSize: 46,
-    // flex: 1,
-  },
-  description: {
-    color: '#fff',
-  },
-  middleWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    margin: 10,
-    fontSize: 17,
-    padding: 10,
-  },
-});
