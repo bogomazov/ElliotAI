@@ -7,8 +7,7 @@ import LoginScene from './LoginScene';
 import UserSuggestionsScene from './UserSuggestionsScene';
 import FriendsScene from './FriendsScene';
 import PermissionsScene from './PermissionsScene';
-import CalendarPermissionScene from './CalendarPermissionScene';
-import {IS_ANDROID} from '../settings';
+import {IS_ANDROID, IS_TEST_PERMISSIONS_SCENE} from '../settings';
 import {StackNavigator} from 'react-navigation';
 import * as appActions from '../state/actions/app';
 import {AppState} from 'react-native';
@@ -39,14 +38,25 @@ export default class LandingScene extends Component {
     this._checkPermissions();
   }
 
+  componentDidMount() {
+    AppState.addEventListener('change', this._onAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._onAppStateChange);
+  }
+
+  _onAppStateChange = (nextAppState) => {
+    this._checkPermissions();
+  }
+
   _checkPermissions = () => {
-    if (!this.props.app.isPermissionsGranted) {
-      return
-    }
     Permissions.checkMultiplePermissions(['location', 'contacts', 'event']).then(
       (response) => {
         if (response.location != 'authorized' ||
-            response.contacts != 'authorized') {
+            response.contacts != 'authorized' ||
+            response.event != 'authorized') {
+          console.log(response);
           this.props.appActions.switchPermissionsOff();
         }
       }
@@ -59,10 +69,7 @@ export default class LandingScene extends Component {
         return <LoginScene/>
       }
     }
-    if (!this.props.app.didFinishCalendarIntro) {
-      return <CalendarPermissionScene/>
-    }
-    if (!this.props.app.isPermissionsGranted) {
+    if (!this.props.app.isPermissionsGranted || IS_TEST_PERMISSIONS_SCENE) {
       return <PermissionsScene/>
     }
     return <Navigation/>

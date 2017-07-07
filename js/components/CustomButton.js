@@ -6,12 +6,12 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { themeColor } from '../res/values/styles'
 
-const CustomButton = ({onPress, title, style, isWhite, isFilled}) => {
+const CustomButton = ({onPress, title, style, isWhite, isActive, isFilled, isFilledWhite}) => {
 
       return (
             <TouchableWithoutFeedback onPress={onPress} underlayColor={themeColor}>
               <View>
-                <Text style={[styles.text, style, isWhite && styles.white, isFilled && styles.filled]}>{title}</Text>
+                <Text style={[styles.text, style, isWhite && styles.white, isFilled && styles.filled, isFilledWhite && styles.filledWhite]}>{title.toUpperCase()}</Text>
               </View>
             </TouchableWithoutFeedback>
       );
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       padding: 5,
       overflow: 'hidden',
+      fontFamily: 'OpenSans-ExtraBold'
     },
 
     white: {
@@ -39,7 +40,10 @@ const styles = StyleSheet.create({
     filled: {
       color: 'white',
       backgroundColor: themeColor,
-    }
+    },
+    // filledWhite: {
+    //
+    // }
 });
 
 export default CustomButton;
