@@ -151,7 +151,7 @@ export const permissionStyles = StyleSheet.create({
   },
   button: {
     margin: 10,
-    fontSize: 17,
+    fontSize: 15,
 		paddingHorizontal: 30,
 		paddingVertical: 20,
 		borderRadius: 30,

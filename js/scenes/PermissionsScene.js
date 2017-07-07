@@ -94,20 +94,20 @@ export default class PermissionsScene extends Component {
         <View style={styles.topWrapper}>
           <Text style={[s.nuxElliotHeader, {marginTop: 25}]}>Elliot</Text>
           <Text style={[styles.description, s.light, {fontSize: 15, marginHorizontal: 30}]}>{`We need your permission.
-This will tell us who your friends are, which locations work for you.`}</Text>
+This will tell us who your friends are and which locations work for you.`}</Text>
         </View>
         <View style={[styles.middleWrapper, {flex: 1}]}>
           <CustomButton
             onPress={this.requestLocationPermissions}
             title={strings.enableLocation.toUpperCase()}
             style={styles.button}
-            isWhite={this.state.isLocationGranted && !IS_TEST_PERMISSIONS_SCENE}
+            isFilledGreen={this.state.isLocationGranted && !IS_TEST_PERMISSIONS_SCENE}
           />
           <CustomButton
             onPress={this.requestContactPermissions}
             title={strings.enableContacts.toUpperCase()}
             style={styles.button}
-            isWhite={this.state.isContactsGranted}
+            isFilledGreen={this.state.isContactsGranted}
           />
         </View>
         <View style={s.col}>
