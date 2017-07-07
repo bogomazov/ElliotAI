@@ -141,7 +141,7 @@ export default class MeetingDetailsScene extends Component {
     console.log(this.props)
     console.log(this.state)
       return (
-        <Card style={{flex: 1, marginBottom: 15, overflow: 'hidden'}}>
+        <Card style={{flex: 1, marginBottom: 15, marginTop: (IS_IOS ? 32 : 12), overflow: 'hidden'}}>
           <IconEvil.Button name="close" backgroundColor="#fff" size={40} color="#A0A0A0" onPress={() => this.props.navigation.goBack()} />
           <View style={[s.row, s.margin10]}>
              <View style={[s.column, s.flex]}>
