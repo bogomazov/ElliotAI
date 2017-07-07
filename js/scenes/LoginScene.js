@@ -45,10 +45,6 @@ export default class LoginScene extends Component {
     }
   }
 
-  _skipLogin = () => {
-    this.props.appActions.newAccessToken('skip')
-  }
-
   render() {
 
     return (
@@ -64,13 +60,6 @@ export default class LoginScene extends Component {
             onLoginFinished={this.onLoginFinished}
             onLogoutFinished={() => alert("User logged out")}/>}
 					{!this.state.toShowLoginButton && <Text>Loading...</Text>}
-            {/* <Button
-              onPress={this._skipLogin}
-              title="Skip Login"
-              color="#841584"
-              style={{flex: 3}}
-            /> */}
-            {/* <Text style={styles.logoText}>Elliot</Text> */}
         </View>
       </View>
     );
