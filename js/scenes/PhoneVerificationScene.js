@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { View, FlatList, Linking, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { KeyboardAvoidingView, View, FlatList, Linking, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
@@ -59,23 +59,31 @@ export default class PhoneVerificationScene extends Component {
 
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={require('../res/images/Icon-40@2x.png')}/>
-        <Text style={[s.textAlignCenter, s.light, s.textColorTheme]}>{strings.phoneIntro}</Text>
-        <TextInput
-          style={styles.textInput}
-          underlineColorAndroid='#000'
-          selectionColor='#000'
-          onChangeText={(phoneNumber) => this.setState({phoneNumber})}
-          value={this.state.phoneNumber}></TextInput>
-        {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>You will receive an SMS message that will have a link to continue so you can start using Elliot!</Text>}
-        {!this.state.isSent && <Button
-            onPress={this._onVerifyPressed}
-            title="VERIFY"
-            color={themeColor}
-          />}
-        <Text style={[s.light, s.textColorTheme, s.textAlignCenter]}>{strings.phoneDisclaimer}</Text>
+        <View style={styles.wrapper}>
+          <Text style={styles.elliotHeader}>Elliot</Text>
+          <Text style={[s.textAlignCenter, s.light, styles.introText]}>{strings.phoneIntro}</Text>
+          <View style={styles.textInputWrapper}>
+            <TextInput
+              style={styles.textInput}
+              selectionColor='rgb(97, 97, 97)'
+              onChangeText={(phoneNumber) => this.setState({phoneNumber})}
+              value={this.state.phoneNumber}></TextInput>
+          </View>
+          {this.state.isSent && <Text style={[s.textAlignCenter, s.bold, s.textColorTheme]}>You will receive an SMS message that will have a link to continue so you can start using Elliot!</Text>}
+        </View>
+        <KeyboardAvoidingView behavior="padding">
+          <View style={styles.wrapper}>
+            {!this.state.isSent &&
+              <CustomButton
+                style={styles.verifyButton}
+                onPress={this._onVerifyPressed}
+                title="VERIFY"
+                isFilled
+              />
+            }
+            <Text style={[s.textAlignCenter, styles.disclaimer]}>{strings.phoneDisclaimer}</Text>
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
@@ -86,9 +94,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: 'white',
-    padding: 25
+    paddingHorizontal: 40,
+  },
+
+  wrapper: {
+    justifyContent: 'flex-start',
   },
 
   image: {
@@ -96,12 +108,19 @@ const styles = StyleSheet.create({
     width: 100
   },
 
+  textInputWrapper: {
+    marginTop: 30,
+    borderBottomWidth: 2,
+    borderColor: '#f1f2f1',
+    borderStyle: 'solid',
+  },
+
   textInput: {
     height: 40,
     alignSelf: 'stretch',
     alignItems: 'center',
-    textAlign: 'center',
-    color: 'black',
+    fontSize: 20,
+    color: 'rgb(97, 97, 97)',
   },
 
   button: {
@@ -112,5 +131,36 @@ const styles = StyleSheet.create({
   topBarIcon: {
     height: 40,
     width: 40
+  },
+
+  elliotHeader: {
+    textAlign: 'center',
+    color: themeColor,
+    fontSize: 32,
+    marginTop: 40,
+    fontFamily: 'OpenSans-ExtraBold'
+  },
+
+  introText: {
+    textAlign: 'left',
+    marginTop: 15,
+    fontSize: 16,
+    color: 'rgb(97, 97, 97)'
+  },
+
+  verifyButton: {
+    color: 'white',
+    backgroundColor: themeColor,
+    alignSelf: 'stretch',
+    borderRadius: 5,
+    fontFamily: 'OpenSans-ExtraBold',
+    padding: 10,
+    marginTop: 30,
+  },
+
+  disclaimer: {
+    marginVertical: 20,
+    fontSize: 13,
+    color: 'rgb(97, 97, 97)',
   }
 });

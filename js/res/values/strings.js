@@ -28,8 +28,8 @@ export default strings = new LocalizedStrings({
    inviteMessenger: "Let's catch up soon! I am using this new app called Elliot to stay in touch with friends, check it out.",
    inviteFacebook: "Try out Elliot, a new app to meet with friends!",
    inviteTwitter: "Try out Elliot, a new app to meet with friends!",
-   phoneIntro: "Elliot will communicate with you about timing of meeting your friends, so it will need your phone number",
-   phoneDisclaimer: "We will text you a confirmation message to continue.  None of your information will be shared by Elliot."
+   phoneIntro: "We need your phone number to let you know of meetings with friends.",
+   phoneDisclaimer: "This information will not be shared with anyone."
  }
 });
 
