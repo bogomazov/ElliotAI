@@ -39,7 +39,28 @@ export default class LandingScene extends Component {
     this._checkPermissions();
   }
 
+  componentDidMount() {
+    AppState.addEventListener('change', this.onAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.onAppStateChange);
+  }
+
+  onAppStateChange = (nextState) => {
+    console.log(nextState);
+    if (nextState === 'active'
+        && this.props.app.isPhoneNumberVerified) {
+      console.log('checking permissions again');
+      this._checkPermissions();
+    }
+  }
+
+  // Switches permissions off if needed
   _checkPermissions = () => {
+    if (!this.props.app.isPermissionsGranted) {
+      return;
+    }
     Permissions.checkMultiplePermissions(['location', 'contacts', 'event']).then(
       (response) => {
         if (response.location != 'authorized' ||
@@ -54,7 +75,6 @@ export default class LandingScene extends Component {
     if (!this.props.app.isLoggedIn) {
       return <LoginScene/>
     }
-
 		if (!this.props.app.didFinishCalendarIntro) {
 			return <CalendarPermissionScene/>
 		}
