@@ -3,7 +3,7 @@
  @flow
  */
 import React, { Component } from 'react'
-import { AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { AppState, Alert, AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
@@ -70,7 +70,14 @@ export default class PermissionsScene extends Component {
   }
 
   onPressSkip = () => {
-    this.props.appActions.switchPermissionsOn();
+    Alert.alert('Are you sure?', 'Elliot needs these permissions to know who your friends are and which locations work for you.', [
+      {text: 'Cancel'},
+      {text: 'Yes', onPress: () => {
+        this.props.appActions.switchPermissionsOn()
+      }}
+    ], {
+      cancelable: true
+    });
   }
 
   componentDidUpdate = () => {
@@ -85,7 +92,18 @@ export default class PermissionsScene extends Component {
 
   componentDidMount = () => {
     this.checkPermissions()
+    AppState.addEventListener('change', this.onAppStateChange);
 	}
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.onAppStateChange);
+  }
+
+  onAppStateChange = (nextState) => {
+    if (nextState === 'active') {
+      this.checkPermissions()
+    }
+  }
 
   render() {
     console.log(this.state)
@@ -111,14 +129,13 @@ This will tell us who your friends are and which locations work for you.`}</Text
           />
         </View>
         <View style={s.col}>
-            <View style={[s.row, styles.skipWrapper]}>
-              <CustomButton
-                onPress={this.onPressSkip}
-                title={"Continue"}
-                style={styles.button}
-                isWhite={true}
-              />
-            </View>
+            {IS_IOS &&
+              <View style={[s.row, styles.skipWrapper]}>
+                <TouchableHighlight onPress={this.onPressSkip} underlayColor='white' activeOpacity={0.5}>
+                  <Text style={[s.bold, s.textColorTheme, {fontSize: 15, paddingVertical: 20}]}>CONTINUE</Text>
+                </TouchableHighlight>
+              </View>
+            }
           <Text style={styles.description}>{strings.disclaimer}</Text>
         </View>
       </View>);
