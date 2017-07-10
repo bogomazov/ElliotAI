@@ -50,9 +50,7 @@ export default class LoginScene extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.logoTextWrapper}>
-          <Text style={s.nuxElliotHeader}>Elliot</Text>
-        </View>
+        <Text style={s.nuxElliotHeader}>Elliot</Text>
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
           {this.state.toShowLoginButton && <LoginButton
@@ -71,35 +69,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#fff',
   },
-  swiper: {
-    // flex: 1,
-    color: 'red',
-    backgroundColor: 'red',
-  },
-
-
-  logoTextWrapper: {
-		position: 'absolute',
-		left: 0,
-    right: 0,
-		top: 0,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center',
-  },
-
-  introWrapper: {
-
-  },
-
   loginButtonWrapper: {
-    height: 200
+    paddingBottom: 30,
   },
-
   loginButton: {
     width: 200,
     height: 50,
