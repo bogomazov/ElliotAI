@@ -113,6 +113,51 @@ export default s = StyleSheet.create({
   },
   padding15: {
     padding: 15
-  }
+  },
 
+  nuxElliotHeader: {
+    textAlign: 'center',
+    color: themeColor,
+    fontSize: 32,
+    marginTop: 50,
+    fontFamily: 'OpenSans-ExtraBold'
+  },
+  nuxGrayText: {
+    color: 'rgb(97, 97, 97)',
+    fontSize: 15,
+    fontFamily: 'OpenSans-Light',
+  }
+});
+
+export const permissionStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    padding: 25
+  },
+  topWrapper: {
+    flexDirection: 'column',
+		justifyContent: 'center',
+  },
+  description: {
+    color: '#979797',
+		textAlign: 'center',
+  },
+  middleWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    margin: 10,
+    fontSize: 15,
+		paddingHorizontal: 30,
+		paddingVertical: 20,
+		borderRadius: 30,
+		borderColor: 'rgb(231, 231, 231)'
+  },
+  skipWrapper: {
+    justifyContent: 'flex-end',
+  }
 });

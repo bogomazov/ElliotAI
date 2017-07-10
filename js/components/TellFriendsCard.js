@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     button: {
       marginBottom: 15,
       fontSize: 17,
+      fontFamily: 'OpenSans-SemiBold',
     },
     moreFriends: {
       margin: 10,

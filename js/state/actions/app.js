@@ -31,8 +31,10 @@ export const SET_CALENDAR_BADGES = "SET_CALENDAR_BADGES"
 export const CALENDAR_LOADING = "CALENDAR_LOADING"
 export const MIGRATE_IOS_CALENDAR = "MIGRATE_IOS_CALENDAR"
 export const SHOW_ACCEPTED_BANNER = "SHOW_ACCEPTED_BANNER"
+export const DID_FINISH_CALENDAR_INTRO = "DID_FINISH_CALENDAR_INTRO"
 export const STORE_DEVICE_EVENTS = "STORE_DEVICE_EVENTS"
 export const SOCIAL_MEDIA_FB = 'Facebook'
+export const MIGRATED_IOS_DATA = "MIGRATED_IOS_DATA"
 
 export const newAccessToken = (accessToken) => {
   return {
@@ -161,6 +163,16 @@ export const showAcceptedBanner = (shouldShow) => {
     shouldShow
   }
 }
+export const finishCalendarIntro = () => {
+  return {
+    type: DID_FINISH_CALENDAR_INTRO,
+  }
+}
+export const migratedIOSData = () => {
+  return {
+    type: MIGRATED_IOS_DATA,
+  }
+}
 
 export const sendLocation = (lon, lat, timestamp) => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendLocation(lon, lat, timestamp)
@@ -203,7 +215,6 @@ export const loadScheduledMeetings = () => {
     pastMeetings.sort(function(a,b) {return (a.meeting_time < b.meeting_time)? 1 : ((a.meeting_time > b.meeting_time) ? -1 : 0);} );
     const upcomingMeetings = data.filter((meeting) => !meeting.isPast())
     upcomingMeetings.sort((a,b) => (a.meeting_time > b.meeting_time)? 1 : ((a.meeting_time < b.meeting_time) ? -1 : 0) );
-    _updateDeviceCalendar(dispatch, upcomingMeetings)
 
     // this.setState({upcomingMeetings, pastMeetings})
     console.log('loadScheduledMeetings3')
@@ -273,6 +284,19 @@ export const cancelMeeting = (meeting) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).cancel(meeting.suggestion_id)
   }
+
+export const sendGoogleAuthToken = (serverAuthToken) => {
+  return (dispatch, getState, getAPI) =>
+      getAPI(getState, dispatch).sendGoogleAccessToken(serverAuthToken)
+  }
+
+export const loadCalendarAccounts = () =>
+  (dispatch, getState, getAPI) => getAPI(getState, dispatch).getCalendarAccounts()
+
+export const editCalendar = (calendar_id, enabled, is_default) => {
+  console.log(enabled);
+  return (dispatch, getState, getAPI) => getAPI(getState, dispatch).editCalendar(calendar_id, enabled, is_default)
+}
 export const rejectSuggestion = (suggestion, responseType) => {
   return (dispatch, getState, getAPI) =>
       getAPI(getState, dispatch).reject(suggestion.id, responseType).then((data) => {
@@ -297,37 +321,6 @@ export const sendSocialMediaAccessToken = (accessToken, type) => {
       };
     }
 }
-
-// func determineMetroArea(location: CLLocation) {
-//         if (location.distance(from: CLLocation(latitude: 42.36, longitude: -71.05)) < 100000) {
-//             metroIdOpenTable = "7"
-//             metroName = "Boston Area"
-//         } else if (location.distance(from: CLLocation(latitude: 37.56, longitude: -122.32)) < 100000) {
-//             metroIdOpenTable = "4"
-//             metroName = "San Francisco Bay Area"
-//         } else if (location.distance(from: CLLocation(latitude: 40.71, longitude: -74.00)) < 100000) {
-//             metroIdOpenTable = "8"
-//             metroName = "New York Area"
-//         } else if (location.distance(from: CLLocation(latitude: 41.87, longitude: -87.62)) < 100000) {
-//             metroIdOpenTable = "3"
-//             metroName = "Chicago Area"
-//         } else if (location.distance(from: CLLocation(latitude: 47.60, longitude: -122.33)) < 100000) {
-//             metroIdOpenTable = "2"
-//             metroName = "Seattle Area"
-//         } else if (location.distance(from: CLLocation(latitude: 34.05, longitude: -118.24)) < 100000) {
-//             metroIdOpenTable = "6"
-//             metroName = "Los Angeles Area"
-//         } else if (location.distance(from: CLLocation(latitude: 26.12, longitude: -80.13)) < 100000) {
-//             metroIdOpenTable = "17"
-//             metroName = "Miami Area"
-//         } else if (location.distance(from: CLLocation(latitude: 43.65, longitude: -79.38)) < 100000) {
-//             metroIdOpenTable = "74"
-//             metroName = "Toronto Area"
-//         } else if (location.distance(from: CLLocation(latitude: 45.50, longitude: -73.56)) < 100000) {
-//             metroIdOpenTable = "75"
-//             metroName = "Montreal Area"
-//         }
-//     }
 
 const getPoint = (lat, lng) => {
   return {

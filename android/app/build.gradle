@@ -117,6 +117,7 @@ android {
     }
     buildTypes {
         debug {
+            signingConfig signingConfigs.release
             // Note: CodePush updates should not be tested in Debug mode as they are overriden by the RN packager. However, because CodePush checks for updates in all modes, we must supply a key.
             buildConfigField "String", "CODEPUSH_KEY", '""'
             buildConfigField("String", "BUILD_ENV", "\"DEBUG\"")
@@ -163,6 +164,10 @@ dependencies {
     compile project(':react-native-android-location-services-dialog-box')
     compile 'com.google.android.gms:play-services-location:11.0.1'
     compile 'com.google.android.gms:play-services-gcm:11.0.1'
+    compile(project(":react-native-google-signin")){         
+        exclude group: "com.google.android.gms" // very important
+    }
+    compile 'com.google.android.gms:play-services-auth:11.0.1' // should be at least 9.0.0
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:25.3.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
@@ -174,3 +179,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services' // <--- this should be the last line

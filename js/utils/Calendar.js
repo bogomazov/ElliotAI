@@ -18,6 +18,9 @@ export const saveEvent = (title, momentStart, momentEnd) =>
 
 export const removeEvent = (id) =>
   RNCalendarEvents.removeEvent(id.toString());
+
+export const getCalendars = () =>
+  RNCalendarEvents.findCalendars()
 //   RNCalendarEvents.findCalendars()
 //       .then(calendars => {
 //         console.log(calendars)

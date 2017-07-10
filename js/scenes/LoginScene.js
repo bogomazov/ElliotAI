@@ -9,6 +9,7 @@ import {saveState} from '../index'
 import IntroSwipe from '../containers/Intro'
 import { themeColor } from '../res/values/styles'
 import PhoneNumber from '../utils/PhoneNumberModule'
+import s from '../res/values/styles'
 
 const mapStateToProps = (state) => {
 	return {state}
@@ -45,17 +46,12 @@ export default class LoginScene extends Component {
     }
   }
 
-  _skipLogin = () => {
-    this.props.appActions.newAccessToken('skip')
-  }
-
   render() {
-		PhoneNumber.getKeyHash().then((keyHash) => console.log('keyJash: ' + keyHash))
 
     return (
       <View style={styles.container}>
         <View style={styles.logoTextWrapper}>
-          <Text style={styles.logoText}>Elliot</Text>
+          <Text style={s.nuxElliotHeader}>Elliot</Text>
         </View>
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
@@ -65,13 +61,6 @@ export default class LoginScene extends Component {
             onLoginFinished={this.onLoginFinished}
             onLogoutFinished={() => alert("User logged out")}/>}
 					{!this.state.toShowLoginButton && <Text>Loading...</Text>}
-            {/* <Button
-              onPress={this._skipLogin}
-              title="Skip Login"
-              color="#841584"
-              style={{flex: 3}}
-            /> */}
-            {/* <Text style={styles.logoText}>Elliot</Text> */}
         </View>
       </View>
     );
@@ -103,13 +92,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
   },
 
-	logoText: {
-    // flex: 1,
-		marginTop: 40,
-		fontSize: 44,
-    color: themeColor,
-  },
-
   introWrapper: {
 
   },
@@ -117,4 +99,9 @@ const styles = StyleSheet.create({
   loginButtonWrapper: {
     height: 200
   },
+
+  loginButton: {
+    width: 200,
+    height: 50,
+  }
 });

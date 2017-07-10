@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "245808737532",
+    "project_id": "elliot-tech"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245808737532:android:f610c87f4a49c3c8",
+        "android_client_info": {
+          "package_name": "com.elliot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245808737532-7ee8g1b08med80pe75890qgm1sqq0tb7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elliot",
+            "certificate_hash": "88ef1b40854c71ef6cfbc3bb0c5be4fb6a57126b"
+          }
+        },
+        {
+          "client_id": "245808737532-k2hpl4mmrov6257fc36rp74040r21hhc.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "245808737532-0hl28tp7jsfsqcgr4fvvlu0mmb08ecia.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "245808737532-ch1af9npbnnrova04gi752au3j74agia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfrLTKLhep_96ymrnkLWuEdjNlCveYIrI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,17 +15,8 @@ import React
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    let facebookLogoutNotifName = "facebookLogoutNotif"
-    
+
     var window: UIWindow?
-    
-    func shouldLogin() -> Bool {
-        if let fbToken = AccessToken.current {
-            return fbToken.expirationDate < Date()
-        } else {
-            return true
-        }
-    }
     
     func showViewController(identifier: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -34,24 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func doLogin() {
-        // log out manually first, just to make sure
-        let loginManager = LoginManager()
-        loginManager.logOut()
-        showViewController(identifier: "login-vc")
-    }
-    
-    func observeLogoutEvent() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.doLogin),
-                                               name: NSNotification.Name.init(facebookLogoutNotifName), object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        var googleError: NSError?
+        GGLContext.sharedInstance().configureWithError(&googleError)
+        if googleError != nil {
+            print("Google initialization failed with \(googleError)")
+        }
         
         UserProfile.updatesOnAccessTokenChange = true
         
@@ -61,25 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        observeLogoutEvent()
-        
-        if shouldLogin() {
-            doLogin()
-        } else {
-            if !SMSNotifManager.hasVerifiedNumber() {
-                showViewController(identifier: "verify-phone-vc")
-            } else {
-                showViewController(identifier: "main-vc")
-            }
-        }
-        
-        UIApplication.shared.registerForRemoteNotifications()
+        showViewController(identifier: "main-vc")
         
         return true
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if SMSNotifManager.handle(url: url) {
+        if GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation) {
             return true
         }
         if SDKApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation) {
@@ -99,26 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        guard let fbToken = AccessToken.current else {
-            // Never logged in yet. Don't need to redirect or post updates to back-end.
-            return
-        }
-        if fbToken.expirationDate < Date() {
-            // FB token has expired. We need to refresh it by redirecting the user to login page.
-            doLogin()
-            return
-        }
-        if !SMSNotifManager.hasVerifiedNumber() {
-            // redirect to phone-verification screen if needed
-            showViewController(identifier: "verify-phone-vc")
-        } else {
-            NotificationCenter.default.post(name: NotificationNames.foregroundUpdate, object: self)
-        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Reset the app-badge whenever app is opened
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

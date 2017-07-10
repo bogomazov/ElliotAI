@@ -9,9 +9,11 @@ import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
 import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
-import s from '../res/values/styles';
+import s, {themeColor} from '../res/values/styles';
 import Permissions from 'react-native-permissions'
-import {IS_IOS} from '../settings';
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import {IS_IOS, IS_TEST_PERMISSIONS_SCENE} from '../settings';
+import {permissionStyles as styles} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
 	return {app: state.app}
@@ -29,7 +31,6 @@ export default class PermissionsScene extends Component {
 
   state = {
     isLocationGranted: false,
-    isCalendarGranted: false,
     isContactsGranted: false
   }
   onPressNext = () => {
@@ -37,13 +38,12 @@ export default class PermissionsScene extends Component {
   }
 
   checkPermissions = () => {
-    Permissions.checkMultiplePermissions(['location', 'contacts', 'event'])
+    Permissions.checkMultiplePermissions(['location', 'contacts'])
       .then(response => {
         //response is an object mapping type to permission
         console.log(response)
         this.setState({
           isLocationGranted: response.location == 'authorized',
-          isCalendarGranted: response.event == 'authorized',
           isContactsGranted: response.contacts == 'authorized',
         })
       });
@@ -68,30 +68,17 @@ export default class PermissionsScene extends Component {
         this.setState({isContactsGranted: response == 'authorized'})
       })
   }
-  requestCalendarPermissions = () => {
-    Permissions.requestPermission('event')
-      .then(response => {
-        console.log(response)
-        if (response != 'authorized') {
-          Permissions.openSettings()
-        }
-        this.setState({isCalendarGranted: response == 'authorized'})
-      })
-  }
 
   onPressSkip = () => {
-    // On iOS, only calendar permission is obligatory.
-    if (this.state.isCalendarGranted) {
-      this.props.appActions.switchPermissionsOn();
-    }
+    this.props.appActions.switchPermissionsOn();
   }
 
   componentDidUpdate = () => {
     console.log('componentWillUpdate')
     console.log(this.state)
-    if (this.state.isCalendarGranted
-      && this.state.isContactsGranted
-      && this.state.isLocationGranted) {
+    if (this.state.isContactsGranted
+      && this.state.isLocationGranted
+			&& !this.props.app.isPermissionsGranted) {
       this.props.appActions.switchPermissionsOn()
     }
   }
@@ -105,28 +92,23 @@ export default class PermissionsScene extends Component {
 
 			return (<View style={styles.container}>
         <View style={styles.topWrapper}>
-          <Text style={styles.logoText}>Elliot</Text>
-          <Text style={styles.description}> Elliot needs permissions</Text>
+          <Text style={[s.nuxElliotHeader, {marginTop: 25}]}>Elliot</Text>
+          <Text style={[styles.description, s.light, {fontSize: 15, marginHorizontal: 30}]}>{`We need your permission.
+This will tell us who your friends are and which locations work for you.`}</Text>
         </View>
-        <View style={styles.middleWrapper}>
-          {!this.state.isLocationGranted && <CustomButton
+        <View style={[styles.middleWrapper, {flex: 1}]}>
+          <CustomButton
             onPress={this.requestLocationPermissions}
-            title={strings.enableLocation}
+            title={strings.enableLocation.toUpperCase()}
             style={styles.button}
-            isWhite
-          />}
-          {!this.state.isCalendarGranted && <CustomButton
-            onPress={this.requestCalendarPermissions}
-            title={strings.enableCalendar}
-            style={styles.button}
-            isWhite
-          />}
-          {!this.state.isContactsGranted && <CustomButton
+            isFilledGreen={this.state.isLocationGranted && !IS_TEST_PERMISSIONS_SCENE}
+          />
+          <CustomButton
             onPress={this.requestContactPermissions}
-            title={strings.enableContacts}
+            title={strings.enableContacts.toUpperCase()}
             style={styles.button}
-            isWhite
-          />}
+            isFilledGreen={this.state.isContactsGranted}
+          />
         </View>
         <View style={s.col}>
             <View style={[s.row, styles.skipWrapper]}>
@@ -134,7 +116,7 @@ export default class PermissionsScene extends Component {
                 onPress={this.onPressSkip}
                 title={"Continue"}
                 style={styles.button}
-                isWhite={this.state.isCalendarGranted}
+                isWhite={true}
               />
             </View>
           <Text style={styles.description}>{strings.disclaimer}</Text>
@@ -142,36 +124,3 @@ export default class PermissionsScene extends Component {
       </View>);
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: '#817550',
-    padding: 25
-  },
-  topWrapper: {
-    flexDirection: 'column',
-  },
-  logoText: {
-    color: '#fff',
-    fontSize: 46,
-    // flex: 1,
-  },
-  description: {
-    color: '#fff',
-  },
-  middleWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    margin: 10,
-    fontSize: 17,
-    padding: 10,
-  },
-  skipWrapper: {
-    justifyContent: 'flex-end',
-  }
-});

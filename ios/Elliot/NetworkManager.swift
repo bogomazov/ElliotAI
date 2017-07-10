@@ -29,13 +29,6 @@ class DeviceTokenRequest: Request {
     }
 }
 
-class SMSNumberRequest: Request {
-    init(phoneNumber: String, token: String) {
-        super.init(method: .post, path: "/sms_number")
-        self.data = ["sms_number": phoneNumber, "sms_token": token]
-    }
-}
-
 typealias Completion = ((JSON, Bool) -> ())
 
 class NetworkManager: NSObject {

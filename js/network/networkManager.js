@@ -37,6 +37,17 @@ class API {
       "suggestion_id" : suggestionId,
       "response_type" : responseType
     })
+  sendGoogleAccessToken = (google_auth_code) =>
+    this.post('/calendar_accounts', {
+      google_auth_code
+    })
+  editCalendar = (calendar_id, enabled, is_default) =>
+    this.post(`/calendar/${calendar_id}`, {
+      enabled,
+      "default": is_default
+    })
+  getCalendarAccounts = () => this.get('/calendar_accounts')
+
   accept = (suggestionId, times, message) =>
     this.post('/accept', {
       "suggestion_id" : suggestionId,

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
 		0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
+		0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */; };
+		0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */; };
 		030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C881A1F0A7B9A009B25EA /* MainViewController.swift */; };
 		030C88341F0CF087009B25EA /* Dev-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 030C88331F0CF087009B25EA /* Dev-Info.plist */; };
 		030C883D1F0D064E009B25EA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C881A1F0A7B9A009B25EA /* MainViewController.swift */; };
@@ -16,20 +18,19 @@
 		030C88541F0E4DF8009B25EA /* ConfigBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C88531F0E4DF8009B25EA /* ConfigBridge.m */; };
 		030C885D1F0E70CD009B25EA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030C884F1F0E4C2F009B25EA /* Config.swift */; };
 		030C88601F0E70D0009B25EA /* ConfigBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 030C88531F0E4DF8009B25EA /* ConfigBridge.m */; };
+		030C88651F0E752B009B25EA /* RNGoogleSignin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */; };
+		030C88681F0E7534009B25EA /* RNGoogleSigninButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */; };
 		0322D5411E2115C500239A3A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D5401E2115C500239A3A /* LocationManager.swift */; };
 		0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */; };
 		0328E9111E2F9CF8003427C3 /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; };
 		0328E9121E2F9CF8003427C3 /* OpenSansSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */; };
 		033375A51E256079000A5C21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033375A41E256079000A5C21 /* NetworkManager.swift */; };
-		03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
-		03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
 		034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
 		034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
 		034FD1701E2F97EB007E6E1E /* OpenSansSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */; };
 		0370AF761EDD86B5000D376B /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 0370AF751EDD86B4000D376B /* main.jsbundle */; };
 		0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0370AF7A1EDDBE59000D376B /* ReactFactory.swift */; };
-		0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
 		03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A393D61E2B9EE800661CEA /* AlertController+Util.swift */; };
 		03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */; };
 		03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */; };
@@ -46,7 +47,6 @@
 		FB8C4F931F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F941F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */; };
-		FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */; };
 		FB8C4F971F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */; };
 		FB8C4F991F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -81,8 +81,6 @@
 		FB8C4FB61F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FB71F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */; };
-		FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */; };
-		FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */; };
 		FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */; };
 		FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -163,6 +161,10 @@
 /* Begin PBXFileReference section */
 		0300FC8E1EF2B3B20043BD43 /* CalendarMigration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarMigration.swift; sourceTree = "<group>"; };
 		0300FC931EF2B8BE0043BD43 /* CalendarMigrationBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarMigrationBridge.m; sourceTree = "<group>"; };
+		0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNGoogleSignin.h; sourceTree = "<group>"; };
+		0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSignin.m; sourceTree = "<group>"; };
+		0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNGoogleSigninButtonManager.m; sourceTree = "<group>"; };
+		0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Elliot-Bridging-Header.h"; sourceTree = "<group>"; };
 		030C881A1F0A7B9A009B25EA /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		030C88331F0CF087009B25EA /* Dev-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Dev-Info.plist"; sourceTree = "<group>"; };
 		030C884F1F0E4C2F009B25EA /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
@@ -172,8 +174,6 @@
 		0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenSansSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0332A4141E3BF3C2006E8DCF /* BasicHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicHighlightedButton.swift; sourceTree = "<group>"; };
 		033375A41E256079000A5C21 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
-		03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSNotifManager.swift; sourceTree = "<group>"; };
 		034FD0F31E2E6CA1007E6E1E /* AuthorizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		034FD1001E2F8D7A007E6E1E /* UIColor+Elliot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Elliot.swift"; sourceTree = "<group>"; };
 		034FD16F1E2F97EB007E6E1E /* OpenSansSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenSansSwift.framework; path = "../../../../Downloads/OpenSansSwift-master 2/build/Debug-iphoneos/OpenSansSwift.framework"; sourceTree = "<group>"; };
@@ -181,7 +181,6 @@
 		0370AF751EDD86B4000D376B /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = SOURCE_ROOT; };
 		0370AF7A1EDDBE59000D376B /* ReactFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactFactory.swift; sourceTree = "<group>"; };
 		03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenSansSwift.xcodeproj; path = "OpenSansSwift-master 2/OpenSansSwift.xcodeproj"; sourceTree = "<group>"; };
-		0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		03A393D61E2B9EE800661CEA /* AlertController+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertController+Util.swift"; sourceTree = "<group>"; };
 		03C1BCDA1EEEBFAD003246F3 /* ShareAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareAccess.swift; sourceTree = "<group>"; };
 		03C1BCDE1EEEBFE6003246F3 /* ShareAccessBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareAccessBridge.m; sourceTree = "<group>"; };
@@ -260,8 +259,6 @@
 		0322D5471E223A6600239A3A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0395E9CC1E20E76900A7CFD2 /* LoginViewController.swift */,
-				03422D341ED2F171009BB3F0 /* VerifyPhoneViewController.swift */,
 				030C881A1F0A7B9A009B25EA /* MainViewController.swift */,
 			);
 			name = ViewControllers;
@@ -270,6 +267,9 @@
 		0370AF791EDDBC25000D376B /* ReactNative */ = {
 			isa = PBXGroup;
 			children = (
+				0300FE841EF82BFA0043BD43 /* RNGoogleSignin.h */,
+				0300FE851EF82BFA0043BD43 /* RNGoogleSignin.m */,
+				0300FE861EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m */,
 				0370AF7A1EDDBE59000D376B /* ReactFactory.swift */,
 				030C88551F0E4E6D009B25EA /* Config */,
 				0300FC921EF2B3BA0043BD43 /* CalendarMigration */,
@@ -356,6 +356,7 @@
 		FBB60E511E1E0F050035D841 = {
 			isa = PBXGroup;
 			children = (
+				0300FE931EF83E0A0043BD43 /* Elliot-Bridging-Header.h */,
 				03785F641E2FEC1300A452F3 /* OpenSansSwift.xcodeproj */,
 				0328E9101E2F9CF8003427C3 /* OpenSansSwift.framework */,
 				FBB60E5C1E1E0F050035D841 /* Elliot */,
@@ -384,7 +385,6 @@
 				0362AFCF1E315BA600AE0B8F /* Elliot.entitlements */,
 				FBB60E5D1E1E0F050035D841 /* AppDelegate.swift */,
 				0322D54A1E223B3500239A3A /* DefaultsKeysExtension.swift */,
-				03422D361ED2FA25009BB3F0 /* SMSNotifManager.swift */,
 				0322D5401E2115C500239A3A /* LocationManager.swift */,
 				03F909C41E39F4C9002D24CE /* NotificationNames.swift */,
 				033375A41E256079000A5C21 /* NetworkManager.swift */,
@@ -780,6 +780,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				030C88681F0E7534009B25EA /* RNGoogleSigninButtonManager.m in Sources */,
 				FB8C4F8F1F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F901F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F911F06CD0800E14B3F /* (null) in Sources */,
@@ -788,10 +789,10 @@
 				FB8C4F941F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F951F06CD0800E14B3F /* CalendarMigrationBridge.m in Sources */,
 				030C883D1F0D064E009B25EA /* MainViewController.swift in Sources */,
-				FB8C4F961F06CD0800E14B3F /* LoginViewController.swift in Sources */,
 				FB8C4F971F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F981F06CD0800E14B3F /* UIColor+Elliot.swift in Sources */,
 				FB8C4F991F06CD0800E14B3F /* (null) in Sources */,
+				030C88651F0E752B009B25EA /* RNGoogleSignin.m in Sources */,
 				FB8C4F9A1F06CD0800E14B3F /* ShareAccessBridge.m in Sources */,
 				FB8C4F9B1F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4F9C1F06CD0800E14B3F /* NSNotificationAccessBridge.m in Sources */,
@@ -825,8 +826,6 @@
 				FB8C4FB61F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FB71F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FB81F06CD0800E14B3F /* CalendarMigration.swift in Sources */,
-				FB8C4FB91F06CD0800E14B3F /* SMSNotifManager.swift in Sources */,
-				FB8C4FBA1F06CD0800E14B3F /* VerifyPhoneViewController.swift in Sources */,
 				FB8C4FBB1F06CD0800E14B3F /* AuthorizationManager.swift in Sources */,
 				FB8C4FBC1F06CD0800E14B3F /* (null) in Sources */,
 				FB8C4FBD1F06CD0800E14B3F /* (null) in Sources */,
@@ -846,23 +845,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				0300FC941EF2B8BE0043BD43 /* CalendarMigrationBridge.m in Sources */,
-				0395E9CD1E20E76900A7CFD2 /* LoginViewController.swift in Sources */,
 				034FD1011E2F8D7A007E6E1E /* UIColor+Elliot.swift in Sources */,
 				03C1BCDF1EEEBFE6003246F3 /* ShareAccessBridge.m in Sources */,
 				03F9E7B71EE9808000DC815C /* NSNotificationAccessBridge.m in Sources */,
 				033375A51E256079000A5C21 /* NetworkManager.swift in Sources */,
 				0332A4151E3BF3C2006E8DCF /* BasicHighlightedButton.swift in Sources */,
+				0300FE881EF82BFA0043BD43 /* RNGoogleSigninButtonManager.m in Sources */,
 				03F9E7AE1EE822E800DC815C /* LocationAccessBridge.m in Sources */,
 				03F909C51E39F4C9002D24CE /* NotificationNames.swift in Sources */,
 				0322D5411E2115C500239A3A /* LocationManager.swift in Sources */,
 				03A393D71E2B9EE800661CEA /* AlertController+Util.swift in Sources */,
 				0370AF7B1EDDBE59000D376B /* ReactFactory.swift in Sources */,
 				0322D54B1E223B3500239A3A /* DefaultsKeysExtension.swift in Sources */,
+				0300FE871EF82BFA0043BD43 /* RNGoogleSignin.m in Sources */,
 				03C1BCDB1EEEBFAD003246F3 /* ShareAccess.swift in Sources */,
 				030C881B1F0A7B9A009B25EA /* MainViewController.swift in Sources */,
 				0300FC8F1EF2B3B30043BD43 /* CalendarMigration.swift in Sources */,
-				03422D371ED2FA25009BB3F0 /* SMSNotifManager.swift in Sources */,
-				03422D351ED2F171009BB3F0 /* VerifyPhoneViewController.swift in Sources */,
 				030C88501F0E4C2F009B25EA /* Config.swift in Sources */,
 				034FD0F41E2E6CA1007E6E1E /* AuthorizationManager.swift in Sources */,
 				030C88541F0E4DF8009B25EA /* ConfigBridge.m in Sources */,
@@ -987,6 +985,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1038,6 +1037,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1076,6 +1076,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1113,6 +1114,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1247,6 +1249,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1285,6 +1288,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Elliot-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

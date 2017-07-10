@@ -9,7 +9,8 @@ target 'Elliot' do
   pod 'SwiftyJSON'
   pod 'KeychainAccess'
   pod 'PhoneNumberKit', '~> 1.2'
-
+  pod 'Google/SignIn'
+  
   # React Native Dependencies
 
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
@@ -20,6 +21,7 @@ target 'Elliot' do
     'RCTImage',
     'RCTLinkingIOS',
     'RCTActionSheet',
+    'RCTAnimation',
     'DevSupport',
   ]
   

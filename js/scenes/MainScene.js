@@ -33,6 +33,7 @@ import BottomNav from '../containers/BottomNavigation'
 import SuggestionsScene from '../scenes/SuggestionsScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
+import SettingsScene from '../scenes/SettingsScene'
 import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
 import DeepLinking from 'react-native-deep-linking'
@@ -92,6 +93,7 @@ const BottomTabNavigation = TabNavigator({
     }
   },
   InviteFriendsTab: {screen: InviteFriendsScene},
+  SettingsTab: {screen: SettingsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
   // lazy: true,
@@ -191,13 +193,6 @@ export default class MainScene extends Component {
 
   _loadScheduledMeetings = () => {
     this.props.appActions.calendarLoading();
-    if (IS_IOS && !this.props.app.didMigrateIOSCalendar) {
-      NativeModules.CalendarMigration.getAllStored().then((dict) => {
-        this.props.appActions.migrateIOSCalendar(dict);
-        this.props.appActions.loadScheduledMeetings();
-      });
-      return;
-    }
     this.props.appActions.loadScheduledMeetings().catch(error=>console.error(error))
   }
 
@@ -207,53 +202,23 @@ export default class MainScene extends Component {
         console.log(location);
         this.props.appActions.sendLocation(location.lng, location.lat, location.timestamp).then(data => {
           this.props.appActions.newLocation(location.lng, location.lat, location.timestamp)
-          this._updateCalendarEvents()
+          this.props.appActions.loadSuggestions();
         })
       })
     }).catch(error => {
       console.log(error);
-      this._updateCalendarEvents()
+      this.props.appActions.loadSuggestions();
     })
-  }
-
-	_updateCalendarEvents = () => {
-    console.log('getting events')
-    checkCalendarPermissions().then(status => {
-      console.log(status)
-      if (status != 'authorized') {
-        this.props.appActions.switchPermissionsOff()
-        return
-      }
-      getEvents(moment(), moment().add(1, 'months')).then(events => {
-        console.log(events)
-        this.props.appActions.storeDeviceEvents(events);
-        this.props.appActions.sendEvents(events).then(data=> {
-          this.props.appActions.loadSuggestions()
-        })
-      }).catch(error => {
-        console.log(error)
-      });
-    }).catch(error => {
-      console.log(error);
-    });
   }
 
   render() {
     console.log(this.props)
     console.log(this.tabNavigator);
-		if (IS_ANDROID) {
-			if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-				return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-			}
+		if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+			return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
 		}
-
     return (
       <View style={styles.container}>
-        {IS_ANDROID && IS_DEV && <Button
-          onPress={this.props.appActions.logOut}
-          title="Log out"
-          color="#841584"
-        />}
         <BottomTabNavigation
           ref={(ref) => this.tabNavigator = ref}
           screenProps={{mainNav: this.props.navigation}}

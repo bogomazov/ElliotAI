@@ -14,6 +14,13 @@ import {themeColor} from '../res/values/styles'
 import Search from 'react-native-search-box';
 import PropTypes from 'prop-types';
 
+
+
+const TAB_MESSENGER = 2
+const TAB_FACEBOOK = 3
+const TAB_TWITTER = 4
+
+
 const mapStateToProps = (state) => {
 	return {state}
 }
@@ -23,13 +30,6 @@ const mapDispatchToProps = (dispatch) => {
 		appActions: bindActionCreators(appActions, dispatch),
 	}
 }
-
-const TAB_MESSENGER = 2
-const TAB_FACEBOOK = 3
-const TAB_TWITTER = 4
-
-
-
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SearchContainer extends Component {
