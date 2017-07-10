@@ -3,7 +3,7 @@
  @flow
  */
 import React, { Component } from 'react'
-import { Alert, AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
+import { AppState, Alert, AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
@@ -92,7 +92,18 @@ export default class PermissionsScene extends Component {
 
   componentDidMount = () => {
     this.checkPermissions()
+    AppState.addEventListener('change', this.onAppStateChange);
 	}
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.onAppStateChange);
+  }
+
+  onAppStateChange = (nextState) => {
+    if (nextState === 'active') {
+      this.checkPermissions()
+    }
+  }
 
   render() {
     console.log(this.state)
