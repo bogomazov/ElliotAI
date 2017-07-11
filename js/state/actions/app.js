@@ -2,6 +2,7 @@
 import {persistor} from '../../index'
 import {Store} from '../../index'
 import Meeting from '../models/meeting'
+import User from '../models/user'
 import { LoginManager } from 'react-native-fbsdk'
 import {prepareDateForRequest} from '../../utils/DateTime'
 import Suggestion from '../models/suggestion'
@@ -35,6 +36,7 @@ export const DID_FINISH_CALENDAR_INTRO = "DID_FINISH_CALENDAR_INTRO"
 export const STORE_DEVICE_EVENTS = "STORE_DEVICE_EVENTS"
 export const SOCIAL_MEDIA_FB = 'Facebook'
 export const MIGRATED_IOS_DATA = "MIGRATED_IOS_DATA"
+export const LOAD_FRIENDS = "LOAD_FRIENDS"
 
 export const newAccessToken = (accessToken) => {
   return {
@@ -50,6 +52,12 @@ export const finishIntro = () => {
 export const switchPermissionsOn = () => {
   return {
     type: PERMISSIONS_SWITCH_ON,
+  }
+}
+export const setFriends = (friends) => {
+  return {
+    type: LOAD_FRIENDS,
+    friends
   }
 }
 
@@ -189,8 +197,13 @@ export const loadUserSuggestions = (userId) => {
 
   }
 
+
+
 export const loadFriends = () =>
-  (dispatch, getState, getAPI) => getAPI(getState, dispatch).getFriends()
+  (dispatch, getState, getAPI) => getAPI(getState, dispatch).getFriends().then((data) => {
+    console.log(data)
+    dispatch(setFriends(data.map((item) => new User(item))))
+  })
 
 export const sendPhoneNumber = (phoneNumber, token) =>
   (dispatch, getState, getAPI) => getAPI(getState, dispatch).sendPhoneNumber(phoneNumber, token)

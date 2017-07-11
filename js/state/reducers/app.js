@@ -17,6 +17,7 @@ const defaultState = {
   pastMeetings: [],
   emails: [],
   numbers: [],
+  friends: [],
   calendarMap: {},
   calendarBadges: 0,
   isSuggestionsLoaded: false,
@@ -90,6 +91,11 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         calendarMap: {...state.calendarMap, ...action.meetingIdEventIdMap}
+      }
+    case actionType.LOAD_FRIENDS:
+      return {
+        ...state,
+        friends: action.friends
       }
     case actionType.REMOVE_EVENT_CALENDAR:
         delete state.calendarMap[action.meetingId]

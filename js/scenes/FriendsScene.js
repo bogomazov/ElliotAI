@@ -23,7 +23,7 @@ import Arrow from '../components/Arrow';
 import RemoteImage from '../components/RemoteImage';
 
 const mapStateToProps = (state) => {
-	return {state}
+	return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -34,16 +34,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class FriendsScene extends Component {
-  state = {
-    friends: []
-  }
-	componentWillMount = () => {
-		// loadFriends
-    this.props.appActions.loadFriends().then((data) => {
-      console.log(data)
-			this.setState({friends: data.map((item) => new User(item))})
-    })
-	}
 
 	_onFriendPress = (friend) => {
 		this.props.navigation.navigate('UserSuggestionsScene', {
@@ -67,12 +57,12 @@ export default class FriendsScene extends Component {
 	}
 
   render() {
-		console.log(this.state)
+		console.log(this.props)
     return (
       <View style={styles.container}>
         <NavigationTopBar navigation={this.props.navigation} title={'I want to catch up with'} />
 				<Search
-          data={this.state.friends}
+          data={this.props.app.friends}
 					keyExtractorByField={'fb_id'}
 					filterByFields={['first_name', 'last_name']}
 					renderItem={this._renderItem}

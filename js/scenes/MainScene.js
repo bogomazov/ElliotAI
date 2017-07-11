@@ -188,6 +188,7 @@ export default class MainScene extends Component {
   _onResume = () => {
     this._refreshFeed();
     this._loadScheduledMeetings();
+    this.props.appActions.loadFriends()
     loadContacts();
   }
 

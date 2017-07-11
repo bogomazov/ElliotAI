@@ -160,7 +160,7 @@ export default class SuggestionsScene extends Component {
           keyExtractor={this._keyExtractor}
           renderItem={({item, onInputFocus}) => {
 						if (item.isCatchUp) {
-							if (this.props.app.suggestions.length >= SHOW_CATCH_UP_CARD) {
+							if (this.props.app.friends.length >= SHOW_CATCH_UP_CARD) {
 								return <CatchUpCard onPress={this._onCatchUpPress} />
 							}
 							return
