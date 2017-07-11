@@ -15,6 +15,8 @@ import MeetingCard from '../components/MeetingCard'
 import Meeting from '../state/models/meeting'
 import moment from 'moment'
 import {saveEvent, removeEvent} from '../utils/Calendar';
+import CalendarTopNavigator from './CalendarTopNavigator';
+import {NavigationActions} from 'react-navigation';
 
 const mapStateToProps = (state) => {
     return {app: state.app}
@@ -36,12 +38,7 @@ const TABS = ["Upcoming", "Past"]
 export default class CalendarScene extends Component {
 	state = {
 		activeTab: 0,
-    upcomingMeetings: [],
-    pastMeetings: [],
-    selectedMeeting: null,
-		isRefreshing: false,
-    appState: AppState.currentState,
-	}
+  }
 
   componentWillMount = () => {
     console.log('Calendar Will Mount');
@@ -58,40 +55,26 @@ export default class CalendarScene extends Component {
 
   _onAppStateChange = (nextAppState) => {
     // show upcoming tab when app is resumed
-    this.setState({activeTab: UPCOMING});
+    this.setActiveTab(UPCOMING);
   }
 
-	_onTabPress = (i) => {
-
-	}
+	setActiveTab = (index) => {
+    this.setState({activeTab: index}, () => {
+      this.topNavigator.dispatch(NavigationActions.navigate({
+        routeName: index === UPCOMING ? 'UpcomingTab' : 'PastTab',
+      }));
+    });
+  }
 
   _onMeetingPress = (selectedMeeting) => {
     console.log(selectedMeeting)
     console.log(this.props)
     this.props.navigation.navigate('MeetingDetailsScene', {
       meeting: selectedMeeting,
-      onMeetingCancel: this._onMeetingCancel})
-	}
-
-    _onMeetingClose = () => {
-      this.setState({selectedMeeting: null})
-    }
-
-    _onMeetingCancel = (cancelledMeeting) => {
-      this.setState({upcomingMeetings: this.state.upcomingMeetings.filter((meeting) => meeting.suggestion_id != cancelledMeeting.suggestion_id)})
-      // Refresh suggestions to let user reschedule the cancelled event.
-      this.props.appActions.loadSuggestions();
-    }
-
-  _refresh = () => {
-    this.props.appActions.calendarLoading()
-		this.props.appActions.loadScheduledMeetings()
+    })
 	}
 
   render() {
-    let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
-    // let meetings = this.state.activeTab == UPCOMING? this.props.app.upcomingMeetings: this.props.app.pastMeetings
-    // meetings = TEST_MEETINGS.data.map((item) => new Meeting(item));
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
@@ -101,7 +84,7 @@ export default class CalendarScene extends Component {
               style.push(styles.selectedTab)
             }
             console.log(style)
-            return <TouchableWithoutFeedback key={i} onPress={() => this.setState({activeTab: i})}>
+            return <TouchableWithoutFeedback key={i} onPress={() => this.setActiveTab(i)}>
               <View>
                 <Text
                   style={style}>
@@ -114,20 +97,10 @@ export default class CalendarScene extends Component {
         {!this.props.app.isIntroCalendarSeen && <IntroLabel
                                                     text={strings.introCalendar}
                                                     onClosePress={() => this.props.appActions.introCalendarSeen()}/>}
-
-        <FlatList
-          removeClippedSubviews={false}
-          onRefresh={this._refresh}
-					refreshing={this.props.app.isCalendarLoading}
-          data={meetings}
-          keyExtractor={(item, index) => item.suggestion_id}
-          renderItem={({item}, i) => {
-            console.log(i)
-            return <View key={i}>
-                      <MeetingCard
-                            meeting={item}
-                            onPress={this._onMeetingPress}/>
-                    </View>}} />
+        <CalendarTopNavigator
+          ref={ref => this.topNavigator = ref}
+          screenProps={{onMeetingPress: this._onMeetingPress}}
+        />
       </View>
     );
   }
@@ -138,21 +111,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-//     alignItems: 'center',
-    // backgroundColor: 'grey',
   },
-
   tab: {
-//     fontFamily: 'OpenSans-Bold',
     margin: 20,
     color: themeColor,
     fontSize: 16,
   },
-
   selectedTab: {
       fontFamily: 'OpenSans-Bold',
   },
-
 });
 
 export const TEST_MEETINGS = { data: [
