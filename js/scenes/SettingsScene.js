@@ -33,13 +33,13 @@ const ADD_ACCOUNT = 2
 const LOGOUT = 3
 
 const mapStateToProps = (state) => {
-	return {state}
+  return {state}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)

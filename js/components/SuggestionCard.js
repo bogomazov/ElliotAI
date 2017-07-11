@@ -388,8 +388,8 @@ const styles = StyleSheet.create({
     },
     activityIndicator: {
       flex: 1,
-  		justifyContent: 'center',
-  		alignItems: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
       marginRight: 10,
       padding: 9,
     },

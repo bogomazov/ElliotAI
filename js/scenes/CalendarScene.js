@@ -23,9 +23,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 const UPCOMING = 0
@@ -36,8 +36,8 @@ const TABS = ["Upcoming", "Past"]
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class CalendarScene extends Component {
-	state = {
-		activeTab: 0,
+  state = {
+    activeTab: 0,
   }
 
   componentWillMount = () => {
@@ -58,7 +58,7 @@ export default class CalendarScene extends Component {
     this.setActiveTab(UPCOMING);
   }
 
-	setActiveTab = (index) => {
+  setActiveTab = (index) => {
     this.setState({activeTab: index}, () => {
       this.topNavigator.dispatch(NavigationActions.navigate({
         routeName: index === UPCOMING ? 'UpcomingTab' : 'PastTab',
@@ -72,7 +72,7 @@ export default class CalendarScene extends Component {
     this.props.navigation.navigate('MeetingDetailsScene', {
       meeting: selectedMeeting,
     })
-	}
+  }
 
   render() {
     return (

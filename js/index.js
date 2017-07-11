@@ -101,7 +101,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
+  return {
     isRehydrated: state.app.isRehydrated,
     didMigrateIOSData: state.app.didMigrateIOSData,
   }

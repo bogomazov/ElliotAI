@@ -17,11 +17,11 @@ import ProgressBar from '../components/ProgressBar';
 import {permissionStyles as styles} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {appActions: bindActionCreators(appActions, dispatch)}
+  return {appActions: bindActionCreators(appActions, dispatch)}
 }
 
 @connect(mapStateToProps, mapDispatchToProps)

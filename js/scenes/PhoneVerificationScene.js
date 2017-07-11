@@ -22,13 +22,13 @@ import {loadContacts} from '../utils/Contacts'
 import {GraphRequest, GraphRequestManager, AccessToken} from 'react-native-fbsdk'
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 const getRandomArbitrary = (min, max) => {
@@ -42,8 +42,8 @@ export default class PhoneVerificationScene extends Component {
     isSent: false,
     didGuessPhoneNumber: false,
   }
-	componentWillMount = () => {
-		console.log(this.props)
+  componentWillMount = () => {
+    console.log(this.props)
     const country = DeviceInfo.getDeviceCountry();
     const countryCode = getPhoneCode(country);
     this.formatter = new asYouType();
@@ -119,7 +119,7 @@ export default class PhoneVerificationScene extends Component {
   }
 
   render() {
-		console.log(this.props)
+    console.log(this.props)
     console.log(this.state);
     this.formatter.reset();
     const formattedNumber = this.formatter.input(this.state.phoneNumber);

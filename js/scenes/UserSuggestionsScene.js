@@ -18,13 +18,13 @@ import Suggestion from '../state/models/suggestion';
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -36,7 +36,7 @@ export default class UserSuggestionsScene extends Component {
     }
 
   // TODO: Refactor this part to prevent code duplication.
-	_onSuggestionPress = (suggestion, times, message) => {
+  _onSuggestionPress = (suggestion, times, message) => {
     console.log(this.props);
     console.log(suggestion);
     console.log(times);
@@ -71,7 +71,7 @@ export default class UserSuggestionsScene extends Component {
     }).catch((err) => {
       this.setState({isAcceptLoading: false})
     })
-	}
+  }
 
   _navigateHome = () => {
     console.log(this.props);
@@ -81,13 +81,13 @@ export default class UserSuggestionsScene extends Component {
     }))
   }
 
-	componentWillMount = () => {
+  componentWillMount = () => {
         this.props = {...this.props, ...this.props.navigation.state.params}
         this.props.appActions.loadUserSuggestions(this.props.user.fb_id).then((data) => {
         data = data.map((item) => {return new Suggestion(item)})
           this.setState({userSuggestions: data, isUserSuggestionsLoaded: true})
         }).catch((err) => console.log(err))
-	}
+  }
 
     _keyExtractor = (item, index) => item.id;
 

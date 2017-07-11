@@ -16,14 +16,14 @@ import {IS_IOS, IS_TEST_PERMISSIONS_SCENE} from '../settings';
 import {permissionStyles as styles} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-		// projectActions: bindActionCreators(projectActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+    // projectActions: bindActionCreators(projectActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -85,7 +85,7 @@ export default class PermissionsScene extends Component {
     console.log(this.state)
     if (this.state.isContactsGranted
       && this.state.isLocationGranted
-			&& !this.props.app.isPermissionsGranted) {
+      && !this.props.app.isPermissionsGranted) {
       this.props.appActions.switchPermissionsOn()
     }
   }
@@ -93,7 +93,7 @@ export default class PermissionsScene extends Component {
   componentDidMount = () => {
     this.checkPermissions()
     AppState.addEventListener('change', this.onAppStateChange);
-	}
+  }
 
   componentWillUnmount() {
     AppState.removeEventListener('change', this.onAppStateChange);
@@ -108,7 +108,7 @@ export default class PermissionsScene extends Component {
   render() {
     console.log(this.state)
 
-			return (<View style={styles.container}>
+      return (<View style={styles.container}>
         <View style={styles.topWrapper}>
           <Text style={[s.nuxElliotHeader, {marginTop: 25}]}>Elliot</Text>
           <Text style={[styles.description, s.light, {fontSize: 15, marginHorizontal: 30}]}>{`We need your permission.

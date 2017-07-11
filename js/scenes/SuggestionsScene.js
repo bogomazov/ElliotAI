@@ -22,13 +22,13 @@ import Notification from 'react-native-in-app-notification'
 import InAppNotification from '../components/InAppNotification';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 
@@ -43,14 +43,14 @@ export default class SuggestionsScene extends Component {
         : <Image style={s.tabIcon} source={require('../res/images/home_gray-66px.png')}/>,
   };
 
-	state = {
-	  isAcceptLoading: false,
-		isLocationSent: false,
-		isEventsSent: false,
-		rejectingIds: [],
-	}
+  state = {
+    isAcceptLoading: false,
+    isLocationSent: false,
+    isEventsSent: false,
+    rejectingIds: [],
+  }
 
-	_onSuggestionPress = (suggestion, times, message) => {
+  _onSuggestionPress = (suggestion, times, message) => {
     console.log(this.props);
     console.log(suggestion);
     console.log(times);
@@ -81,32 +81,32 @@ export default class SuggestionsScene extends Component {
     }).catch((err) => {
       this.setState({isAcceptLoading: false})
     })
-	}
+  }
 
-	_onMoreOptionsPress = (suggestion) => {
+  _onMoreOptionsPress = (suggestion) => {
     this.props.screenProps.mainNav.navigate('UserSuggestionsScene', {
-			user: suggestion.friend,
-			rootSuggestion: suggestion,
-		})
-	}
+      user: suggestion.friend,
+      rootSuggestion: suggestion,
+    })
+  }
 
-	_onCatchUpPress = () => {
-		console.log('_onCatchUpPress')
-		this.props.screenProps.mainNav.navigate('FriendsScene')
-	}
+  _onCatchUpPress = () => {
+    console.log('_onCatchUpPress')
+    this.props.screenProps.mainNav.navigate('FriendsScene')
+  }
 
-	_onShowLessPress = (suggestion) => {
-		this.setState({rejectingIds: [...this.state.rejectingIds, suggestion.id]});
-		this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
-			this.setState({rejectingIds: this.state.rejectingIds.filter((id) => id !== suggestion.id)});
-			this.props.appActions.loadSuggestions();
-		})
-	}
+  _onShowLessPress = (suggestion) => {
+    this.setState({rejectingIds: [...this.state.rejectingIds, suggestion.id]});
+    this.props.appActions.rejectSuggestion(suggestion, 'neither').then((data) => {
+      this.setState({rejectingIds: this.state.rejectingIds.filter((id) => id !== suggestion.id)});
+      this.props.appActions.loadSuggestions();
+    })
+  }
 
-	componentWillMount = () => {
-		console.log(this.props)
+  componentWillMount = () => {
+    console.log(this.props)
     console.log(this.props.appActions.newSuggestions);
-	}
+  }
 
   componentDidUpdate() {
     this._showBannerIfNeeded();
@@ -114,31 +114,31 @@ export default class SuggestionsScene extends Component {
 
   _keyExtractor = (item, index) => item.id;
 
-	_refresh = () => {
-		if (IS_TEST_SUGGESTIONS) {
-			suggestions = TEST_SUGGESTIONS.data.map((item) => {return new Suggestion(item)})
-			this.props.appActions.newSuggestions(suggestions)
-			return
-		}
-		this.props.appActions.loadSuggestions()
-	}
+  _refresh = () => {
+    if (IS_TEST_SUGGESTIONS) {
+      suggestions = TEST_SUGGESTIONS.data.map((item) => {return new Suggestion(item)})
+      this.props.appActions.newSuggestions(suggestions)
+      return
+    }
+    this.props.appActions.loadSuggestions()
+  }
 
   _showBannerIfNeeded = () => {
     if (!this.props.app.shouldShowAcceptedBanner) {
       return;
     }
     this.props.appActions.showAcceptedBanner(false);
-		console.log(this.notification)
-		this.notification.show(
-			'Great! You accepted a suggestion',
-			'Meeting will be scheduled once Elliot finds a time that works for both of you',
-			() => console.log('notification clicked'),
-		)
-	}
+    console.log(this.notification)
+    this.notification.show(
+      'Great! You accepted a suggestion',
+      'Meeting will be scheduled once Elliot finds a time that works for both of you',
+      () => console.log('notification clicked'),
+    )
+  }
 
   render() {
 
-		console.log(this.props)
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <TopBar isMainScene>
@@ -149,27 +149,27 @@ export default class SuggestionsScene extends Component {
         {!this.props.app.isIntroSuggestionsSeen && <IntroLabel
                                                     text={strings.introSuggestions}
                                                     onClosePress={() => this.props.appActions.introSuggestionsSeen()}/>}
-				{!this.props.app.isSuggestionsLoaded &&
-					<ActivityIndicator animating={true} color={themeColor} size="large" style={styles.activityIndicator}/>
-				}
-				{this.props.app.isSuggestionsLoaded &&
-				<CustomListView
-					onRefresh={this._refresh}
-					refreshing={this.props.app.isSuggestionsLoading}
+        {!this.props.app.isSuggestionsLoaded &&
+          <ActivityIndicator animating={true} color={themeColor} size="large" style={styles.activityIndicator}/>
+        }
+        {this.props.app.isSuggestionsLoaded &&
+        <CustomListView
+          onRefresh={this._refresh}
+          refreshing={this.props.app.isSuggestionsLoading}
           data={[{isCatchUp: true, id: -2}, ...this.props.app.suggestions, {isTellFriends: true, id: -1}]}
           keyExtractor={this._keyExtractor}
           renderItem={({item, onInputFocus}) => {
-						if (item.isCatchUp) {
-							if (this.props.app.friends.length >= SHOW_CATCH_UP_CARD) {
-								return <CatchUpCard onPress={this._onCatchUpPress} />
-							}
-							return
-						}
+            if (item.isCatchUp) {
+              if (this.props.app.friends.length >= SHOW_CATCH_UP_CARD) {
+                return <CatchUpCard onPress={this._onCatchUpPress} />
+              }
+              return
+            }
 
             if (item.isTellFriends) {
               return <TellFriendsCard isMoreFriends={this.props.app.suggestions.length !== 0} onPress={() => {
-								this.props.navigation.navigate('InviteFriendsTab');
-							}} />
+                this.props.navigation.navigate('InviteFriendsTab');
+              }} />
             }
             return <SuggestionCard
                       suggestion={item}
@@ -177,11 +177,11 @@ export default class SuggestionsScene extends Component {
                       onMoreOptionsPress={this._onMoreOptionsPress}
                       onShowLessPress={this._onShowLessPress}
                       onInputFocus={onInputFocus}
-											animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
-						}}
+                      animateShowLess={this.state.rejectingIds.indexOf(item.id) !== -1} withOptions/>
+            }}
             />}
 
-						<InAppNotification ref={(ref) => { this.notification = ref; }} />
+            <InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
   }
@@ -198,11 +198,11 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40
   },
-	activityIndicator: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-	}
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 // id: undefined,
 // meeting_time: undefined,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 // meeting_type: undefined
 const TEST_SUGGESTIONS  = { data: [
   {
-		id:15295,
+    id:15295,
     friend: {
       fb_id: "211646206019277",
       first_name: "Danil5",
@@ -218,9 +218,9 @@ const TEST_SUGGESTIONS  = { data: [
       last_name: "andrey"
     },
     meeting_time: "2017-05-19 17:00:00",
-		meeting_times: ["2017-07-03 18:00:00"],
+    meeting_times: ["2017-07-03 18:00:00"],
     meeting_type: "Call",
-		is_invite: 1,
+    is_invite: 1,
     events: [{
       begin: "2017-05-19 17:00:00",
       end: "2017-05-19 18:00:00",

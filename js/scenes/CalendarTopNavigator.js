@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
 class CalendarTab extends Component {
   _refresh = () => {
     this.props.appActions.calendarLoading()
-		this.props.appActions.loadScheduledMeetings()
-	}
+    this.props.appActions.loadScheduledMeetings()
+  }
 
   render() {
     const {routeName} = this.props.navigation.state;

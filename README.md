@@ -1,3 +1,5 @@
+First, set up an editor and install an Editorconfig plugin: http://editorconfig.org/
+
 # Elliot | React Native
 1. `git clone https://github.com/elliottech/elliot-mobile`
 2. Check that Android SDK is installed as well as `adb` mentioned within `$PATH`

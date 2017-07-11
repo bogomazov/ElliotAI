@@ -58,13 +58,13 @@ const update = 4
 const openInvite = 5
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 const CalendarNavigation = StackNavigator({
@@ -108,28 +108,28 @@ const BottomTabNavigation = TabNavigator({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MainScene extends Component {
 
-	state = {
-		phoneVerificationCode: null,
+  state = {
+    phoneVerificationCode: null,
     appState: AppState.currentState
-	}
+  }
 
   componentWillMount() {
     this._onResume();
   }
 
-	componentDidMount() {
-		console.log('componentDidMount')
+  componentDidMount() {
+    console.log('componentDidMount')
     AppState.addEventListener('change', this._onAppStateChange)
 
     DeepLinking.addScheme('https://');
     DeepLinking.addScheme('http://');
     DeepLinking.addScheme('elliot://');
     Linking.addEventListener('url', this._handleUrl);
-		DeepLinking.addRoute('/phone-verification/:code', (response) => {
-			console.log(response)
-			if (this.state.phoneVerificationCode == response.code) {
-				this.props.appActions.phoneVerified()
-			}
+    DeepLinking.addRoute('/phone-verification/:code', (response) => {
+      console.log(response)
+      if (this.state.phoneVerificationCode == response.code) {
+        this.props.appActions.phoneVerified()
+      }
     });
     DeepLinking.addRoute('/open-tab/:code', (response) => {
       console.log(response)
@@ -154,9 +154,9 @@ export default class MainScene extends Component {
         this._handleUrl({url})
       }
     })
-	}
+  }
 
-	componentWillUnmount() {
+  componentWillUnmount() {
     Linking.removeEventListener('url', this._handleUrl);
     AppState.removeEventListener('change', this._onAppStateChange);
   }
@@ -167,17 +167,17 @@ export default class MainScene extends Component {
   }
 
   _onAppStateChange = (nextAppState) => {
-  	const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
-  	if (wasOnBackground && nextAppState === 'active') {
+    const wasOnBackground = (this.state.appState === 'inactive' || this.state.appState === 'background');
+    if (wasOnBackground && nextAppState === 'active') {
       this._onResume();
     }
-  	this.setState({appState: nextAppState});
+    this.setState({appState: nextAppState});
   }
 
-	_setPhoneVerificationCode = (code) => this.setState({phoneVerificationCode: code})
+  _setPhoneVerificationCode = (code) => this.setState({phoneVerificationCode: code})
 
-	_handleUrl = ({ url }) => {
-		console.log(url)
+  _handleUrl = ({ url }) => {
+    console.log(url)
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         DeepLinking.evaluateUrl(url);
@@ -215,9 +215,9 @@ export default class MainScene extends Component {
   render() {
     console.log(this.props)
     console.log(this.tabNavigator);
-		if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
-			return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
-		}
+    if (!IS_DEV && !this.props.app.isPhoneNumberVerified) {
+      return <PhoneVerificationScene setPhoneVerificationCode={this._setPhoneVerificationCode}/>
+    }
     return (
       <View style={styles.container}>
         <BottomTabNavigation
@@ -246,17 +246,17 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: mainBackgroundColor
   },
-	badge: {
+  badge: {
     position: 'absolute',
-		width: 20,
-		height: 20,
+    width: 20,
+    height: 20,
     top: -5,
     right: -5,
-		justifyContent: 'center',
-		textAlign: 'center',
-		borderRadius: 10,
+    justifyContent: 'center',
+    textAlign: 'center',
+    borderRadius: 10,
     overflow: 'hidden',
-		color: 'white',
-		backgroundColor: themeColorThird,
-	}
+    color: 'white',
+    backgroundColor: themeColorThird,
+  }
 });

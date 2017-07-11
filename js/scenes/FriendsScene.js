@@ -23,49 +23,49 @@ import Arrow from '../components/Arrow';
 import RemoteImage from '../components/RemoteImage';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class FriendsScene extends Component {
 
-	_onFriendPress = (friend) => {
-		this.props.navigation.navigate('UserSuggestionsScene', {
-			user: friend,
-			skipBack: this.props.navigation.state.key
-		})
-	}
+  _onFriendPress = (friend) => {
+    this.props.navigation.navigate('UserSuggestionsScene', {
+      user: friend,
+      skipBack: this.props.navigation.state.key
+    })
+  }
 
-	_renderItem = ({item, index}) => {
-		console.log(item)
-		const friend = item
-		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onFriendPress(friend)}>
-			<View style={[...[s.row, s.stretch, s.alignItemsCenter, s.padding10], index? s.borderTopGrey: null]}>
-				<RemoteImage
-					style={s.avatar30}
-					source={{ uri: friend.image}}/>
-				<Text style={[s.marginLeft10, {fontSize: 17}]}>{friend.first_name} {friend.last_name}</Text>
-				<Arrow styleIcon={{height: 15, width: 15, marginRight: 5}} />
-			</View>
-		</TouchableHighlight>)
-	}
+  _renderItem = ({item, index}) => {
+    console.log(item)
+    const friend = item
+    return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onFriendPress(friend)}>
+      <View style={[...[s.row, s.stretch, s.alignItemsCenter, s.padding10], index? s.borderTopGrey: null]}>
+        <RemoteImage
+          style={s.avatar30}
+          source={{ uri: friend.image}}/>
+        <Text style={[s.marginLeft10, {fontSize: 17}]}>{friend.first_name} {friend.last_name}</Text>
+        <Arrow styleIcon={{height: 15, width: 15, marginRight: 5}} />
+      </View>
+    </TouchableHighlight>)
+  }
 
   render() {
-		console.log(this.props)
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <NavigationTopBar navigation={this.props.navigation} title={'I want to catch up with'} />
-				<Search
+        <Search
           data={this.props.app.friends}
-					keyExtractorByField={'fb_id'}
-					filterByFields={['first_name', 'last_name']}
-					renderItem={this._renderItem}
+          keyExtractorByField={'fb_id'}
+          filterByFields={['first_name', 'last_name']}
+          renderItem={this._renderItem}
         />
       </View>
     );
@@ -77,6 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-		backgroundColor: 'white'
+    backgroundColor: 'white'
   },
 });

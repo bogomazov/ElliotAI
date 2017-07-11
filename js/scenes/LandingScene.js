@@ -14,13 +14,13 @@ import * as appActions from '../state/actions/app';
 import {AppState} from 'react-native';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 const Navigation = StackNavigator({
@@ -75,9 +75,9 @@ export default class LandingScene extends Component {
     if (!this.props.app.isLoggedIn) {
       return <LoginScene/>
     }
-		if (!this.props.app.didFinishCalendarIntro) {
-			return <CalendarPermissionScene/>
-		}
+    if (!this.props.app.didFinishCalendarIntro) {
+      return <CalendarPermissionScene/>
+    }
     if (!this.props.app.isPermissionsGranted || IS_TEST_PERMISSIONS_SCENE) {
       return <PermissionsScene/>
     }

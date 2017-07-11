@@ -139,11 +139,11 @@ export const permissionStyles = StyleSheet.create({
   },
   topWrapper: {
     flexDirection: 'column',
-		justifyContent: 'center',
+    justifyContent: 'center',
   },
   description: {
     color: '#979797',
-		textAlign: 'center',
+    textAlign: 'center',
   },
   middleWrapper: {
     justifyContent: 'center',
@@ -152,10 +152,10 @@ export const permissionStyles = StyleSheet.create({
   button: {
     margin: 10,
     fontSize: 15,
-		paddingHorizontal: 30,
-		paddingVertical: 20,
-		borderRadius: 30,
-		borderColor: 'rgb(231, 231, 231)'
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+    borderRadius: 30,
+    borderColor: 'rgb(231, 231, 231)'
   },
   skipWrapper: {
     justifyContent: 'flex-end',

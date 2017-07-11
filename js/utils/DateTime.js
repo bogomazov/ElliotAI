@@ -7,7 +7,7 @@ export const fromDateToIsoStr = (date) => {
 }
 
 export const prepareDateForRequest = (dateStr) => {
-	return moment(dateStr).local().format("YYYY-MM-DD HH:mm:ss")
+  return moment(dateStr).local().format("YYYY-MM-DD HH:mm:ss")
 }
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

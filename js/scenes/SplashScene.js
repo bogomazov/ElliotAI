@@ -17,25 +17,25 @@ import {IS_DEV, IS_IOS, IS_ANDROID} from '../settings'
 import {mainBackgroundColor} from '../res/values/styles';
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
   render() {
-			if (IS_DEV && IS_ANDROID) {
-				alert('Staging server!')
-			}
+      if (IS_DEV && IS_ANDROID) {
+        alert('Staging server!')
+      }
       if (IS_IOS) {
         return (<View style={styles.iosContainer}></View>);
       }
-			return (<View style={styles.container}>
+      return (<View style={styles.container}>
         <Image
           style={styles.image}
           source={require('../res/images/launch_logo.png')}/>
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   button: {
     height: 200
   },
-	image: {
-		width: 200,
-		height: 300
-	}
+  image: {
+    width: 200,
+    height: 300
+  }
 });

@@ -37,13 +37,13 @@ import InAppNotification from '../components/InAppNotification';
 // Share the link using the share dialog.
 
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 ELLIOT_LINK = "http://elliot.ai"
@@ -62,11 +62,11 @@ const ICON_MESSAGE = require('../res/images/messageicon.png')
 const ICON_EMAIL = require('../res/images/message_black-66px.png')
 
 const icons = [
-	ICON_MESSAGE,
-	ICON_EMAIL,
-	require('../res/images/download.png'),
-	require('../res/images/fb-icon-66px.png'),
-	require('../res/images/Twitter_Logo_Blue.png'),
+  ICON_MESSAGE,
+  ICON_EMAIL,
+  require('../res/images/download.png'),
+  require('../res/images/fb-icon-66px.png'),
+  require('../res/images/Twitter_Logo_Blue.png'),
 ]
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -77,62 +77,62 @@ export default class InviteFriendsScene extends Component {
         : <Image style={s.tabIcon} source={require('../res/images/invite_grey.png')}/>,
   };
 
-	state = {
-		activeTab: 0,
-		emails: [],
-		numbers: [],
-		isAlertOpen: false,
-		alertContact: null
-	}
+  state = {
+    activeTab: 0,
+    emails: [],
+    numbers: [],
+    isAlertOpen: false,
+    alertContact: null
+  }
 
-	componentWillMount = () => {
+  componentWillMount = () => {
 
-	}
+  }
 
-	_inviteFacebook = (dailog) => {
-		const shareLinkContent = {
-		  contentType: 'link',
-		  contentUrl: ELLIOT_LINK,
-		  contentDescription: strings.inviteFacebook,
-		};
-	  var tmp = this;
-	  dailog.canShow(shareLinkContent).then((canShow) => {
-			console.log(canShow)
-	      if (canShow) {
-	        return dailog.show(shareLinkContent);
-	      }
-	    }
-	  ).then((result) => {
-	      if (result.isCancelled) {
-	        consle.log('Share cancelled');
-	      } else {
-					// this.appActions.
-	        console.log('Share success with postId: '
-	          + result);
+  _inviteFacebook = (dailog) => {
+    const shareLinkContent = {
+      contentType: 'link',
+      contentUrl: ELLIOT_LINK,
+      contentDescription: strings.inviteFacebook,
+    };
+    var tmp = this;
+    dailog.canShow(shareLinkContent).then((canShow) => {
+      console.log(canShow)
+        if (canShow) {
+          return dailog.show(shareLinkContent);
+        }
+      }
+    ).then((result) => {
+        if (result.isCancelled) {
+          consle.log('Share cancelled');
+        } else {
+          // this.appActions.
+          console.log('Share success with postId: '
+            + result);
 
-	      }
-	    },
-	    (error) => {
-	      console.log('Share fail with error: ' + error);
-	    }
-	  );
-	}
+        }
+      },
+      (error) => {
+        console.log('Share fail with error: ' + error);
+      }
+    );
+  }
 
-	_inviteTwitter = () => {
+  _inviteTwitter = () => {
 
     if (IS_IOS) {
       ShareAccess.shareOnTwitter(ELLIOT_LINK, strings.inviteTwitter);
       return;
     }
-		let shareOptions = {
-			title: "Try out Elliot!",
-			message: strings.inviteTwitter,
-			url: ELLIOT_LINK
-		};
-		Share.shareSingle(Object.assign(shareOptions, {
-					"social": "twitter"
-				}));
-	}
+    let shareOptions = {
+      title: "Try out Elliot!",
+      message: strings.inviteTwitter,
+      url: ELLIOT_LINK
+    };
+    Share.shareSingle(Object.assign(shareOptions, {
+          "social": "twitter"
+        }));
+  }
 
   _inviteMessenger = () => {
 
@@ -143,33 +143,33 @@ export default class InviteFriendsScene extends Component {
     }
   }
 
-	_onTabPress = (i) => {
-		if (i >= 0 && i <= 1) {
-			this.setState({activeTab: i})
-		} else {
-			switch(i) {
-				case TAB_MESSENGER:
-					this.props.appActions.logShare("fb-messenger", ``)
-					this._inviteMessenger()
-					break;
-				case TAB_FACEBOOK:
-					this.props.appActions.logShare("fb-share", ``)
-					this._inviteFacebook(ShareDialog)
+  _onTabPress = (i) => {
+    if (i >= 0 && i <= 1) {
+      this.setState({activeTab: i})
+    } else {
+      switch(i) {
+        case TAB_MESSENGER:
+          this.props.appActions.logShare("fb-messenger", ``)
+          this._inviteMessenger()
           break;
-				case TAB_TWITTER:
-					this.props.appActions.logShare("twitter", ``)
-					this._inviteTwitter()
+        case TAB_FACEBOOK:
+          this.props.appActions.logShare("fb-share", ``)
+          this._inviteFacebook(ShareDialog)
           break;
-			}
-		}
-	}
+        case TAB_TWITTER:
+          this.props.appActions.logShare("twitter", ``)
+          this._inviteTwitter()
+          break;
+      }
+    }
+  }
 
-	_onContactPress = (contact) => {
-		console.log(this.state.activeTab)
-		this.props.appActions.logShare(this.state.activeTab? "email": "sms", `${contact.firstName} ${contact.lastName}`)
+  _onContactPress = (contact) => {
+    console.log(this.state.activeTab)
+    this.props.appActions.logShare(this.state.activeTab? "email": "sms", `${contact.firstName} ${contact.lastName}`)
 
-		if (this.state.activeTab) {
-			console.log('email')
+    if (this.state.activeTab) {
+      console.log('email')
       if (IS_IOS) {
         ShareAccess.sendMail([contact.contact], "Try out Elliot!", format(strings.inviteDirected, contact.firstName)).then((res) => {
           console.log(res);
@@ -178,23 +178,23 @@ export default class InviteFriendsScene extends Component {
           console.log(err);
         });
       } else {
-			  email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
+        email([contact.contact], null, null, "Try out Elliot!", format(strings.inviteDirected, contact.firstName))
       }
-		} else {
-			console.log('text')
+    } else {
+      console.log('text')
       if (IS_IOS) {
         this._sendSMSIOS(contact);
       } else {
         this.setState({alertContact: contact, isConfirmationOpen: true})
       }
     }
-	}
+  }
 
-	_sendSMS = () => {
-		PhoneAccess.sendSMS(this.state.alertContact.contact, strings.inviteDirectedSMS).then(() => {
-			this.setState({isAlertOpen: true})
-		})
-	}
+  _sendSMS = () => {
+    PhoneAccess.sendSMS(this.state.alertContact.contact, strings.inviteDirectedSMS).then(() => {
+      this.setState({isAlertOpen: true})
+    })
+  }
 
   _showInAppNotif = (contact) => {
     this.notification.show(
@@ -216,26 +216,26 @@ export default class InviteFriendsScene extends Component {
     });
   }
 
-	_renderItem = ({item, index}) => {
-		return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
-			<View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
+  _renderItem = ({item, index}) => {
+    return (<TouchableHighlight underlayColor={themeColorLight} onPress={() => this._onContactPress(item)}>
+      <View style={[s.row, s.stretch, s.alignItemsCenter, index != 0? s.borderTopGrey: null]}>
         {item.hasThumbnail &&
           <Image style={styles.contactAvatar} source={{uri: item.thumbnailPath}}/>
         }
         {!item.hasThumbnail &&
           <Text style={[styles.contactAvatar, styles.contactInitials]}>{item.firstName && item.firstName[0].toUpperCase()}{item.lastName && item.lastName[0].toUpperCase()}</Text>
         }
-				<Text style={[s.flex, styles.nameText]}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
-				<Image
-					style={[s.icon40, s.marginRight10]}
-					source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
-			</View>
-		</TouchableHighlight>)
-	}
+        <Text style={[s.flex, styles.nameText]}>{item.firstName} {item.middleName? item.middleName + ' ': ''}{item.lastName}</Text>
+        <Image
+          style={[s.icon40, s.marginRight10]}
+          source={this.state.activeTab? ICON_EMAIL: ICON_MESSAGE}/>
+      </View>
+    </TouchableHighlight>)
+  }
 
   render() {
-		const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
-		return (
+    const data = this.state.activeTab? this.props.app.emails: this.props.app.numbers
+    return (
       <View style={styles.container}>
         <TopBar isMainScene>
           <Text
@@ -244,30 +244,30 @@ export default class InviteFriendsScene extends Component {
             </Text>
         </TopBar>
         <InviteTabs
-					activeTab={this.state.activeTab}
-					onTabPress={this._onTabPress}
-					icons={icons}/>
-				<Search
+          activeTab={this.state.activeTab}
+          onTabPress={this._onTabPress}
+          icons={icons}/>
+        <Search
           data={data}
-					keyExtractorByField={'id'}
-					filterByFields={['firstName', 'middleName', 'lastName']}
-					renderItem={this._renderItem}
+          keyExtractorByField={'id'}
+          filterByFields={['firstName', 'middleName', 'lastName']}
+          renderItem={this._renderItem}
         />
-				<AlertDialog isOpen={this.state.isConfirmationOpen}
-										 onClosed={() => this.setState({isConfirmationOpen: false})}
-									 		title="Are you sure?"
-											description={`You are about to send a SMS invitation to ${this.state.isConfirmationOpen && this.state.alertContact.firstName}`}
-											onSuccessTitle='Invite'
-											onCancelTitle='Cancel'
-											onSuccess={() => {
-												this.setState({isConfirmationOpen: false})
-												this._sendSMS()
-											}}/>
-				<AlertDialog isOpen={this.state.isAlertOpen}
-										 onClosed={() => this.setState({isAlertOpen: false})}
-									 		title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
-											description='Tell more friends about Elliot to stay in touch!'
-											onCancelTitle='Ok'/>
+        <AlertDialog isOpen={this.state.isConfirmationOpen}
+                     onClosed={() => this.setState({isConfirmationOpen: false})}
+                       title="Are you sure?"
+                      description={`You are about to send a SMS invitation to ${this.state.isConfirmationOpen && this.state.alertContact.firstName}`}
+                      onSuccessTitle='Invite'
+                      onCancelTitle='Cancel'
+                      onSuccess={() => {
+                        this.setState({isConfirmationOpen: false})
+                        this._sendSMS()
+                      }}/>
+        <AlertDialog isOpen={this.state.isAlertOpen}
+                     onClosed={() => this.setState({isAlertOpen: false})}
+                       title={`${this.state.isAlertOpen && this.state.alertContact.firstName} was successfuly invited.`}
+                      description='Tell more friends about Elliot to stay in touch!'
+                      onCancelTitle='Ok'/>
         <InAppNotification ref={(ref) => { this.notification = ref; }} />
       </View>
     );
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-		backgroundColor: 'white'
+    backgroundColor: 'white'
   },
 
   topBarText: {
@@ -294,17 +294,17 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     margin: 10,
   },
-	contactInitials: {
-		justifyContent: 'center',
-		textAlign: 'center',
-		color: 'white',
-		backgroundColor: '#B4BBBE',
-		padding: 5,
+  contactInitials: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    color: 'white',
+    backgroundColor: '#B4BBBE',
+    padding: 5,
     fontSize: 19,
-	},
-	invitedModalButton: {
-		width: 200
-	},
+  },
+  invitedModalButton: {
+    width: 200
+  },
   nameText: {
     fontSize: 17,
   }

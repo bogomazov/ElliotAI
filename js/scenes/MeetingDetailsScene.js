@@ -26,86 +26,86 @@ import RemoteImage from '../components/RemoteImage';
 // close
 // close-o
 const mapStateToProps = (state) => {
-	return {app: state.app}
+  return {app: state.app}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MeetingDetailsScene extends Component {
     state = {
-			url: null,
-			number: null
+      url: null,
+      number: null
     }
 
-		_onReschedulePress = () => {
-			Alert.alert(
-				'Are you sure?',
-				'This will cancel the meeting and notify ' + this.props.meeting.friend.first_name + '.',
-				[
-					{text: 'Never mind', onPress: () => console.log('Never mind')},
-					{text: 'Reschedule', onPress: () => {
-						this.props.appActions.cancelMeeting(this.props.meeting).then((response) => {
+    _onReschedulePress = () => {
+      Alert.alert(
+        'Are you sure?',
+        'This will cancel the meeting and notify ' + this.props.meeting.friend.first_name + '.',
+        [
+          {text: 'Never mind', onPress: () => console.log('Never mind')},
+          {text: 'Reschedule', onPress: () => {
+            this.props.appActions.cancelMeeting(this.props.meeting).then((response) => {
                             this.props.navigation.goBack();
                             this.props.appActions.loadScheduledMeetings()
                             this.props.appActions.loadSuggestions();
-						})
-					}},
-				],
-				{ cancelable: true }
-				)
-		}
+            })
+          }},
+        ],
+        { cancelable: true }
+        )
+    }
 
-	componentWillMount = () => {
-		this.props = {...this.props, ...this.props.navigation.state.params}
+  componentWillMount = () => {
+    this.props = {...this.props, ...this.props.navigation.state.params}
 
-		const friend = this.props.meeting.friend
-		const numbers = this._getContactNumbersByStr(friend.first_name + ' ' + friend.last_name)
+    const friend = this.props.meeting.friend
+    const numbers = this._getContactNumbersByStr(friend.first_name + ' ' + friend.last_name)
 
-		console.log(numbers)
-		if (numbers.length > 0) {
+    console.log(numbers)
+    if (numbers.length > 0) {
       console.log(numbers[0]);
-			this.setState({
-				number: numbers[0]
-			})
-		}
-	}
+      this.setState({
+        number: numbers[0]
+      })
+    }
+  }
 
-	_getContactNumbersByStr = (str) => {
-		return this.props.app.numbers.filter(number => {
-			const fullName = `${number.firstName? number.firstName: ''}${number.middleName? ' ' + number.middleName: ''} ${number.lastName? number.lastName: ''}`
+  _getContactNumbersByStr = (str) => {
+    return this.props.app.numbers.filter(number => {
+      const fullName = `${number.firstName? number.firstName: ''}${number.middleName? ' ' + number.middleName: ''} ${number.lastName? number.lastName: ''}`
       const trimmedName = fullName.trim();
       // ignore empty names
       return trimmedName.length !== 0 && str.toLowerCase().includes(trimmedName.toLowerCase())
     })
-	}
+  }
 
     _keyExtractor = (item, index) => item.id;
 
-	_onYelpPress = () => {
-		Linking.canOpenURL("yelp4:").then(supported => {
-			if (supported) {
-				Linking.openURL("yelp4:///search?find_desc=" + this.props.meeting.meeting_type)
-			} else {
-				Linking.openURL("https://www.yelp.com/search?find_desc=" + this.props.meeting.meeting_type)
-			}
-		})
-	}
+  _onYelpPress = () => {
+    Linking.canOpenURL("yelp4:").then(supported => {
+      if (supported) {
+        Linking.openURL("yelp4:///search?find_desc=" + this.props.meeting.meeting_type)
+      } else {
+        Linking.openURL("https://www.yelp.com/search?find_desc=" + this.props.meeting.meeting_type)
+      }
+    })
+  }
 
-	_onMessengerPress = () => {
-		Linking.openURL("fb-messenger-public://");
-	}
+  _onMessengerPress = () => {
+    Linking.openURL("fb-messenger-public://");
+  }
 
-	_onOpenTablePress = () => {
-		const time = this.props.meeting.meeting_time
-		Linking.openURL(`https://www.opentable.com/s/?covers=2&dateTime=${time.format("YYYY-MM-DD")}%20${time.format("HH")}%3A${time.format("mm")}&metroId=${this.props.app.metroId}`);
-	}
+  _onOpenTablePress = () => {
+    const time = this.props.meeting.meeting_time
+    Linking.openURL(`https://www.opentable.com/s/?covers=2&dateTime=${time.format("YYYY-MM-DD")}%20${time.format("HH")}%3A${time.format("mm")}&metroId=${this.props.app.metroId}`);
+  }
 
-	_sendSMS = () => {
+  _sendSMS = () => {
     if (IS_IOS) {
       ShareAccess.sendSMS([this.state.number.contact], "").then((res) => {
         console.log(res);
@@ -114,17 +114,17 @@ export default class MeetingDetailsScene extends Component {
       });
       return;
     }
-		const url = `sms:${this.state.number.contact}`
-		Linking.canOpenURL(url).then(supported => {
-		  if (!supported) {
-		    console.log('Unsupported url: ' + url)
-		  } else {
-		    return Linking.openURL(url)
-		  }
-		}).catch(err => console.error('An error occurred', err))
-	}
+    const url = `sms:${this.state.number.contact}`
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('Unsupported url: ' + url)
+      } else {
+        return Linking.openURL(url)
+      }
+    }).catch(err => console.error('An error occurred', err))
+  }
 
-	_call = () => {
+  _call = () => {
     const number = this.state.number.contact;
     Alert.alert('Calling', number, [
       {text: 'Cancel', onPress: () => console.log('Cancelled the call')},
@@ -132,7 +132,7 @@ export default class MeetingDetailsScene extends Component {
     ], {
       cancelable: true
     });
-	}
+  }
 
   render() {
     // TODO: Avoid combining navigation params to prevent bugs like this.
@@ -154,7 +154,7 @@ export default class MeetingDetailsScene extends Component {
           </View>
 
           <View style={[s.column, s.borderTop, s.flex]}>
-						<ScrollView>
+            <ScrollView>
             <View style={[s.row, s.alignItemsCenter]}>
               <Text style={[s.flex, styles.optionText]}>{meeting.meeting_time.format("h:mm A")}</Text>
               <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
@@ -163,59 +163,59 @@ export default class MeetingDetailsScene extends Component {
               <Text style={[s.flex, styles.optionText]}>Home</Text>
               <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
             </View>
-						<TouchableHighlight onPress={this._onMessengerPress} underlayColor={themeColorLight}>
-	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex, styles.optionText]}>Message on Facebook</Text>
-	              <Image
-	                style={[styles.icon, s.margin10]}
-	                source={require('../res/images/fb-icon-66px.png')}/>
-	            </View>
-						</TouchableHighlight>
-						{!meeting.isCall() && !meeting.isPast() &&
+            <TouchableHighlight onPress={this._onMessengerPress} underlayColor={themeColorLight}>
+              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+                <Text style={[s.flex, styles.optionText]}>Message on Facebook</Text>
+                <Image
+                  style={[styles.icon, s.margin10]}
+                  source={require('../res/images/fb-icon-66px.png')}/>
+              </View>
+            </TouchableHighlight>
+            {!meeting.isCall() && !meeting.isPast() &&
               <TouchableHighlight onPress={this._onYelpPress} underlayColor={themeColorLight}>
-  	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-  	              <Text style={[s.flex, styles.optionText]}>Find a place on Yelp</Text>
-  	              <Image
-  	                style={[styles.icon, s.margin10]}
-  	                source={require('../res/images/yelp-icon-66px.png')}/>
-  	            </View>
+                <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+                  <Text style={[s.flex, styles.optionText]}>Find a place on Yelp</Text>
+                  <Image
+                    style={[styles.icon, s.margin10]}
+                    source={require('../res/images/yelp-icon-66px.png')}/>
+                </View>
               </TouchableHighlight>}
-						{this.props.app.metroId && !meeting.isCall() && !meeting.isPast() &&
+            {this.props.app.metroId && !meeting.isCall() && !meeting.isPast() &&
               <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={themeColorLight}>
-  	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-  	              <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
-  	              <Image
-  	                style={[styles.icon, s.margin10]}
-  	                source={require('../res/images/opentable-icon-66px.png')}/>
-  	            </View>
-						  </TouchableHighlight>}
-						{this.state.number &&
-						<TouchableHighlight onPress={this._call} underlayColor={themeColorLight}>
-	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex, styles.optionText]}>Call {meeting.friend.first_name}</Text>
-	              <Image
-	                style={[styles.icon, s.margin10]}
-	                source={require('../res/images/call-66px.png')}/>
-	            </View>
-						</TouchableHighlight>}
-						{this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={themeColorLight}>
-	            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-	              <Text style={[s.flex, styles.optionText]}>Send {meeting.friend.first_name} SMS</Text>
-	              <Image
-	                style={[styles.icon, s.margin10]}
-	                source={require('../res/images/messageicon.png')}/>
-	            </View>
-						</TouchableHighlight>}
-						<View style={[s.row, s.borderTopGrey, styles.bottomLine]}></View>
-						</ScrollView>
+                <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+                  <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
+                  <Image
+                    style={[styles.icon, s.margin10]}
+                    source={require('../res/images/opentable-icon-66px.png')}/>
+                </View>
+              </TouchableHighlight>}
+            {this.state.number &&
+            <TouchableHighlight onPress={this._call} underlayColor={themeColorLight}>
+              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+                <Text style={[s.flex, styles.optionText]}>Call {meeting.friend.first_name}</Text>
+                <Image
+                  style={[styles.icon, s.margin10]}
+                  source={require('../res/images/call-66px.png')}/>
+              </View>
+            </TouchableHighlight>}
+            {this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={themeColorLight}>
+              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+                <Text style={[s.flex, styles.optionText]}>Send {meeting.friend.first_name} SMS</Text>
+                <Image
+                  style={[styles.icon, s.margin10]}
+                  source={require('../res/images/messageicon.png')}/>
+              </View>
+            </TouchableHighlight>}
+            <View style={[s.row, s.borderTopGrey, styles.bottomLine]}></View>
+            </ScrollView>
           </View>
-					{!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
-	          <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
-	            <Text style={[s.flex, styles.bottomText, styles.optionText]}>Reschedule</Text>
-							<IconEvil.Button name="close-o" style={[styles.bottomIcon]} size={40} backgroundColor="#fff" color="#535353" />
-	          </View>
-					</TouchableWithoutFeedback>}
-					{/* {this.state.url && <View style={{height: 0, width: 0}}><WebViewNavigator url={this.state.url} /></View>} */}
+          {!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>
+            <View style={[styles.bottom, s.row, s.alignItemsCenter, s.borderTop]}>
+              <Text style={[s.flex, styles.bottomText, styles.optionText]}>Reschedule</Text>
+              <IconEvil.Button name="close-o" style={[styles.bottomIcon]} size={40} backgroundColor="#fff" color="#535353" />
+            </View>
+          </TouchableWithoutFeedback>}
+          {/* {this.state.url && <View style={{height: 0, width: 0}}><WebViewNavigator url={this.state.url} /></View>} */}
 
         </Card>
       );
@@ -234,9 +234,9 @@ const styles = StyleSheet.create({
   bottom: {
     height: 60,
   },
-	bottomIcon: {
-		padding: 0
-	},
+  bottomIcon: {
+    padding: 0
+  },
   bottomLine: {
     height: 1,
   },
@@ -255,11 +255,11 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginLeft: 5,
   },
-	bottomText: {
-		color: '#49ADAF'
-	},
-	marginLocation: {
-		margin: 10,
-		marginRight: 7,
-	}
+  bottomText: {
+    color: '#49ADAF'
+  },
+  marginLocation: {
+    margin: 10,
+    marginRight: 7,
+  }
 });

@@ -13,7 +13,7 @@ export default class GoogleLoginButton extends Component {
     }).catch(err => {
       console.log(err)
     })
-	}
+  }
 
   render() {
     console.log(this.props)

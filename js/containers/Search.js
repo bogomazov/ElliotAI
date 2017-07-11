@@ -22,13 +22,13 @@ const TAB_TWITTER = 4
 
 
 const mapStateToProps = (state) => {
-	return {state}
+  return {state}
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		appActions: bindActionCreators(appActions, dispatch),
-	}
+  return {
+    appActions: bindActionCreators(appActions, dispatch),
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -53,7 +53,7 @@ export default class SearchContainer extends Component {
   _keyExtractor = (item, index) => item[this.props.keyExtractorByField];
 
 
-	_onChangeText = (text) => {
+  _onChangeText = (text) => {
         return new Promise((resolve, reject) => {
             console.log('_onChangeText', text);
             this.setState({currentText: text})
@@ -74,14 +74,14 @@ export default class SearchContainer extends Component {
 
     return (
       <View style={styles.container}>
-					<Search
-	          ref="search_bar"
-						backgroundColor="#fff"
-						titleCancelColor={themeColor}
-						onChangeText={this._onChangeText}
+          <Search
+            ref="search_bar"
+            backgroundColor="#fff"
+            titleCancelColor={themeColor}
+            onChangeText={this._onChangeText}
             onDelete={() => this._onChangeText("")}
             onCancel={() => this._onChangeText("")}
-	        />
+          />
           <FlatList
             removeClippedSubviews={false}
             data={this._getFilteredData()}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-		backgroundColor: 'white'
+    backgroundColor: 'white'
   },
 
   topBarText: {
