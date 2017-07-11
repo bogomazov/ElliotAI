@@ -17,6 +17,7 @@
     "dateformat": "^2.0.0",
     "immutable": "^3.8.1",
     "install": "^0.9.6",
+    "libphonenumber-js": "^0.4.19",
     "moment": "^2.18.1",
     "npm": "^4.5.0",
     "react": "16.0.0-alpha.6",
