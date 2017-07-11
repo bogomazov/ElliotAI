@@ -90,8 +90,9 @@ export default class SettingsScene extends Component {
     const enabled = calendars.reduce((res, cal) => {
       return {...res, [cal.calendar_id]: cal.enabled}
     }, {});
-    const defaultCalendar = calendars.filter(cal => cal.default)[0]
-    const defaultAccount = defaultCalendar.account
+    const defaultCals = calendars.filter(cal => cal.default);
+    const defaultCalendar = defaultCals.length > 0 ? defaultCals[0] : null;
+    const defaultAccount = defaultCalendar ? defaultCalendar.account : null;
     this.setState({
       accounts,
       enabled,
@@ -236,16 +237,18 @@ export default class SettingsScene extends Component {
                     <SettingsRow onPress={this._onAddEventsPress}>
                       <View>
                         <Text style={[s.bold, s.textColorTheme, {fontSize: 16}]}>Adding meetings to:</Text>
-                        <View style={[s.col, {marginTop: 5}]}>
-                          <Text>
-                            <Text style={{fontSize: 14, color: 'black'}}>
-                              {defaultAccount ? defaultAccount.name + ": " : ""}
+                        {defaultAccount && defaultCalendar &&
+                          <View style={[s.col, {marginTop: 5}]}>
+                            <Text>
+                              <Text style={{fontSize: 14, color: 'black'}}>
+                                {defaultAccount.name + ": "}
+                              </Text>
+                              <Text style={{fontSize: 14, color: 'gray'}}>
+                                {defaultCalendar.name}
+                              </Text>
                             </Text>
-                            <Text style={{fontSize: 14, color: 'gray'}}>
-                              {defaultCalendar ? defaultCalendar.name : ""}
-                            </Text>
-                          </Text>
-                        </View>
+                          </View>
+                        }
                       </View>
                       <IconIon name="ios-arrow-forward" size={20} color="black" style={{marginLeft: 5, marginTop: 5, marginRight: 3}}/>
                     </SettingsRow>
