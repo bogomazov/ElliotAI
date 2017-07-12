@@ -116,8 +116,8 @@ export default class SuggestionsScene extends Component {
     this.props.appActions.showAcceptedBanner(false);
     console.log(this.notification)
     this.notification.show(
-      'Great! You accepted a suggestion',
-      'Meeting will be scheduled once Elliot finds a time that works for both of you',
+      'Sent your invite!',
+      'You\'ll get a confirmation for a time that works.',
       () => console.log('notification clicked'),
     )
   }

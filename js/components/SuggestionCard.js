@@ -57,6 +57,7 @@ export default class SuggestionsCard extends Component {
     render () {
       var suggestion = this.props.suggestion
       const isInvite = (suggestion.is_invite == true)
+      const isCall = (suggestion.meeting_type == "Call")
       var onMoreOptionsPress = this.props.onMoreOptionsPress
       var onShowLessPress = this.props.onShowLessPress
       var onConfirmPress = this.props.onConfirmPress
@@ -135,20 +136,16 @@ export default class SuggestionsCard extends Component {
                   </View>
                 }
               </View>
-              <View style={[styles.header, s.row, {marginBottom: 10, marginLeft: 15, marginTop: 5, alignItems: 'baseline'}]}>
-                <Text style={styles.smallTitle}>For</Text>
-                <Image
-                  style={styles.type}
-                  source={suggestion.getIcon()}
-                />
-                <Text style={styles.typeTitle}>{suggestion.meeting_type}</Text>
+              <View style={[styles.header, {marginBottom: 10, marginLeft: 15, marginTop: 0, alignItems: 'baseline'}]}>
+                <Text style={styles.smallTitle}>{isCall ? "For a" : "For"}</Text>
+                <Text style={styles.nameTitle}>{suggestion.meeting_type}</Text>
               </View>
             </View>
           </View>
           <View style={[styles.row, s.flex, s.border]}>
             <View style={[styles.scheduleWrapper]}>
               <Text style={[styles.smallTitle, {marginLeft: 15, alignSelf: 'flex-start'}]}>
-                On {suggestion.getDateStr()} at
+                {suggestion.getDateStr()}
               </Text>
               <View style={[s.row, s.margin10, {marginRight: 5}]}>
                 {timeButtonsCols.map((col, i) =>
@@ -219,7 +216,7 @@ export default class SuggestionsCard extends Component {
               </View>
             </TouchableHighlight>
             }
-            { withOptions && < View style={styles.verticalBorder} ></View> }
+            { withOptions && <View style={styles.verticalBorder}></View> }
             <TouchableHighlight
               style={styles.buttonWrapper}
               underlayColor={themeColorLight}
@@ -227,7 +224,7 @@ export default class SuggestionsCard extends Component {
               onPress={() => this._onConfirmPress()}>
               <View>
                 <Text style={[styles.optionButton,  {color: this._isAllowed()? themeColorThird: '#C0C0C0'} ]}>
-                  {isInvite ? "YES" : "SEND"}
+                  {isInvite ? "Yes" : "Send"}
                 </Text>
               </View>
             </TouchableHighlight>
@@ -337,7 +334,6 @@ const styles = StyleSheet.create({
       borderRadius: 8,
       margin: 10,
       padding: 10
-      // fontSize: 14,
     },
     column: {
       flexDirection: 'column',
@@ -358,8 +354,6 @@ const styles = StyleSheet.create({
       borderColor: 'grey',
       borderWidth: 1,
       paddingLeft: 2,
-      // paddingRight: 0,
-      // padding: 0
     },
 
     buttonWrapper: {
@@ -369,7 +363,6 @@ const styles = StyleSheet.create({
       height: 58,
     },
     optionButton: {
-//       flexDirection: 'row',
       color: themeColor,
       textAlign: 'center',
       padding: 10,
@@ -407,7 +400,6 @@ const styles = StyleSheet.create({
     },
     showLessWrapper: {
       alignSelf: 'flex-start',
-      //marginTop: -30,
       marginRight: -10,
     },
     avatarWithOptions: {

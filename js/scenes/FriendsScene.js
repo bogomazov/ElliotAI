@@ -47,7 +47,7 @@ export default class FriendsScene extends Component {
     console.log(this.props)
     return (
       <View style={styles.container}>
-        <NavigationTopBar navigation={this.props.navigation} title={'I want to catch up with'} />
+        <NavigationTopBar navigation={this.props.navigation} title={'Who do you want to see?'} />
         <Search
           data={this.props.app.friends}
           keyExtractorByField={'fb_id'}

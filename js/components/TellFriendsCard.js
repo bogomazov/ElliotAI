@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     },
     button: {
       marginBottom: 15,
-      fontSize: 17,
-      fontFamily: 'OpenSans-SemiBold',
+      fontSize: 16,
+      fontFamily: 'OpenSans-ExtraBold',
     },
     moreFriends: {
       margin: 10,
       marginTop: 15,
       textAlign: 'center',
-      fontFamily: 'OpenSans-SemiBold',
-      fontSize: 17,
+      fontFamily: 'OpenSans-ExtraBold',
+      fontSize: 16,
     }
 });
