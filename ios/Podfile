@@ -1,14 +1,11 @@
 use_frameworks!
 
-target 'Elliot' do
+def elliot_pods
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
   pod 'SwiftyUserDefaults'
-  pod 'Alamofire', '~> 4.0'
-  pod 'SwiftyJSON'
   pod 'KeychainAccess'
-  pod 'PhoneNumberKit', '~> 1.2'
   pod 'Google/SignIn'
   
   # React Native Dependencies
@@ -36,6 +33,14 @@ target 'Elliot' do
   pod 'ReactNativePermissions', :path => '../node_modules/react-native-permissions'
   pod 'RNShare', :path => '../node_modules/react-native-share'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+end
+
+target 'Elliot' do 
+  elliot_pods
+end
+
+target 'Elliot-Dev' do
+  elliot_pods
 end
 
 # Explicitly set the Swift version for Swift pods 

@@ -20,9 +20,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager?
     
-    var metroIdOpenTable: String = "0"
-    var metroName: String = "Local"
-    
     static func getAccessStatus() -> AccessStatus {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways, .authorizedWhenInUse:
@@ -61,9 +58,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if LocationManager.getAccessStatus() != .granted {
-            return
-        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -81,9 +81,6 @@ export const removeEventCalendar = (meetingId) => {
 }
 export const logOut = () => {
   LoginManager.logOut()
-  if (IS_IOS) {
-    NativeModules.NSNotificationAccess.post("facebookLogoutNotif", null);
-  }
   return {
     type: LOG_OUT,
   }

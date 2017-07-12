@@ -1,6 +1,0 @@
-framework module react_native_calendar_events {
-  umbrella header "react-native-calendar-events-umbrella.h"
-
-  export *
-  module * { export * }
-}

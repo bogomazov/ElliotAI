@@ -23,6 +23,7 @@ DerivedData
 project.xcworkspace
 *.jsbundle
 *.jsbundle.meta
+Pods/
 
 # Android/IntelliJ
 #

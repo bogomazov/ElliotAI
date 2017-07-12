@@ -56,8 +56,6 @@
 	<string>1</string>
 	<key>CodePushDeploymentKey</key>
 	<string>$(CODE_PUSH_KEY)</string>
-	<key>ElliotAPIURL</key>
-	<string>https://staging.elliot.ai/control</string>
 	<key>FacebookAppID</key>
 	<string>1591073697851633</string>
 	<key>FacebookDisplayName</key>
