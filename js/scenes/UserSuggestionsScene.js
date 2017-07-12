@@ -1,9 +1,6 @@
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -16,18 +13,9 @@ import strings from '../res/values/strings'
 import NavigationTopBar from '../components/NavigationTopBar';
 import Suggestion from '../state/models/suggestion';
 import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class UserSuggestionsScene extends Component {
     state = {
       isAcceptLoading: false,

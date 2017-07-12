@@ -1,8 +1,5 @@
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import Suggestion from '../state/models/suggestion';
 import {saveState} from '../index'
@@ -20,22 +17,11 @@ import moment from 'moment'
 import {themeColor, themeColorThird} from '../res/values/styles.js'
 import Notification from 'react-native-in-app-notification'
 import InAppNotification from '../components/InAppNotification';
-
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
+import {connectToApp} from '../utils/ReduxConnect';
 
 const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class SuggestionsScene extends Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor, focused}) =>

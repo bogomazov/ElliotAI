@@ -6,25 +6,15 @@ import {
   ScrollView,
   TouchableWithoutFeedback
 } from 'react-native';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
-import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s from '../res/values/styles';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ProgressBar from '../components/ProgressBar';
 import {permissionStyles as styles} from '../res/values/styles';
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {appActions: bindActionCreators(appActions, dispatch)}
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class CalendarPermissionScene extends Component {
   state = {
     isGoogleSignInLoading: false

@@ -14,15 +14,13 @@ import {
 import TopBar from '../components/TopBar';
 import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
 import ModalDropdown from 'react-native-modal-dropdown';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import * as appActions from '../state/actions/app';
 import DropdownPicker from '../containers/DropdownPicker';
 import IconIon from 'react-native-vector-icons/Ionicons';
 import SettingsRow from '../components/SettingsRow';
 import SettingsAccountRow from '../components/SettingsAccountRow';
 import {loginToGoogle} from '../utils/GoogleLogin';
 import ActionSheet from '@expo/react-native-action-sheet';
+import {connectToApp} from '../utils/ReduxConnect';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;
@@ -32,17 +30,7 @@ const ADD_EVENTS = 1
 const ADD_ACCOUNT = 2
 const LOGOUT = 3
 
-const mapStateToProps = (state) => {
-  return {state}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class SettingsScene extends Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor, focused}) =>

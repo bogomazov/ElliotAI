@@ -4,29 +4,16 @@
  */
 import React, { Component } from 'react'
 import { AppState, Alert, AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import CustomButton from '../components/CustomButton'
-import * as appActions from '../state/actions/app';
 import strings from '../res/values/strings'
 import s, {themeColor} from '../res/values/styles';
 import Permissions from 'react-native-permissions'
 import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import {IS_IOS, IS_TEST_PERMISSIONS_SCENE} from '../settings';
 import {permissionStyles as styles} from '../res/values/styles';
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-    // projectActions: bindActionCreators(projectActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class PermissionsScene extends Component {
 
   state = {

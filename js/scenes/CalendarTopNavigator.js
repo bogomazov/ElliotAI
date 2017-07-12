@@ -1,22 +1,10 @@
 import {TabNavigator} from 'react-navigation';
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as appActions from '../state/actions/app';
 import {FlatList, View} from 'react-native';
 import MeetingCard from '../components/MeetingCard';
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 class CalendarTab extends Component {
   _refresh = () => {
     this.props.appActions.calendarLoading()

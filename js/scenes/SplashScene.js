@@ -4,10 +4,7 @@
  */
 import React, { Component } from 'react'
 import { AppRegistry, Image, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import IntroSwipe from '../containers/Intro'
-import * as appActions from '../state/actions/app';
 import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
 import RNCalendarEvents from 'react-native-calendar-events';
 import { fromDateToIsoStr } from '../utils/DateTime'
@@ -16,17 +13,6 @@ import moment from 'moment'
 import {IS_DEV, IS_IOS, IS_ANDROID} from '../settings'
 import {mainBackgroundColor} from '../res/values/styles';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
 export default class SplashScene extends Component {
   render() {
       if (IS_DEV && IS_ANDROID) {

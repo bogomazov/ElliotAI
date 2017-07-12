@@ -1,8 +1,5 @@
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, FlatList, ScrollView, Linking, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
@@ -19,23 +16,16 @@ import {phonecall} from 'react-native-communications'
 import {IS_ANDROID, IS_IOS} from '../settings'
 import ShareAccess from '../utils/ShareModule';
 import RemoteImage from '../components/RemoteImage';
+import {connectToApp} from '../utils/ReduxConnect';
+
 // Ionicons
 // ios-time-outline
 // EvilIcons
 // location
 // close
 // close-o
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class MeetingDetailsScene extends Component {
     state = {
       url: null,

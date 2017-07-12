@@ -1,28 +1,15 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import IntroSwipe from '../containers/Intro'
 import { themeColor } from '../res/values/styles'
 import PhoneNumber from '../utils/PhoneNumberModule'
 import s from '../res/values/styles'
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {state}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class LoginScene extends Component {
 
   state = {

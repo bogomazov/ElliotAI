@@ -20,9 +20,7 @@ import {
   Image,
 } from 'react-native';
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import LoginScene from './LoginScene'
-import * as appActions from '../state/actions/app';
 import PermissionsScene from './PermissionsScene'
 import SplashScene from './SplashScene'
 import RNCalendarEvents from 'react-native-calendar-events';
@@ -44,6 +42,7 @@ import moment from 'moment'
 import {StackNavigator, TabNavigator} from 'react-navigation';
 import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
 import {Store} from '../index'
+import {connectToApp} from '../utils/ReduxConnect';
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1
@@ -59,12 +58,6 @@ const openInvite = 5
 
 const mapStateToProps = (state) => {
   return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
 }
 
 const CalendarNavigation = StackNavigator({
@@ -105,7 +98,7 @@ const BottomTabNavigation = TabNavigator({
   }
 })
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class MainScene extends Component {
 
   state = {

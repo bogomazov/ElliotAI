@@ -1,9 +1,6 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, Image, FlatList, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import TellFriendsCard from '../components/TellFriendsCard'
@@ -20,18 +17,6 @@ const TAB_MESSENGER = 2
 const TAB_FACEBOOK = 3
 const TAB_TWITTER = 4
 
-
-const mapStateToProps = (state) => {
-  return {state}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
 export default class SearchContainer extends Component {
   propTypes: {
     renderItem: any,

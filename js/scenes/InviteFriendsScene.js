@@ -1,9 +1,6 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, Image, Alert, Button, StyleSheet, Text, TouchableWithoutFeedback, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -26,6 +23,7 @@ import PhoneAccess from '../utils/PhoneNumberModule';
 import ShareAccess from '../utils/ShareModule';
 import {IS_IOS} from '../settings.js';
 import InAppNotification from '../components/InAppNotification';
+import {connectToApp} from '../utils/ReduxConnect';
 
 // ...
 
@@ -35,16 +33,6 @@ import InAppNotification from '../components/InAppNotification';
 // ...
 
 // Share the link using the share dialog.
-
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
 
 ELLIOT_LINK = "http://elliot.ai"
 
@@ -69,7 +57,7 @@ const icons = [
   require('../res/images/Twitter_Logo_Blue.png'),
 ]
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class InviteFriendsScene extends Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor, focused}) =>

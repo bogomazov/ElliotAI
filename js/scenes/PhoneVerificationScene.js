@@ -1,8 +1,5 @@
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { Keyboard, Alert, KeyboardAvoidingView, View, FlatList, Linking, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -20,22 +17,13 @@ import {asYouType, getPhoneCode, parse, format} from 'libphonenumber-js'
 import DeviceInfo from 'react-native-device-info'
 import {loadContacts} from '../utils/Contacts'
 import {GraphRequest, GraphRequestManager, AccessToken} from 'react-native-fbsdk'
-
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
+import {connectToApp} from '../utils/ReduxConnect';
 
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class PhoneVerificationScene extends Component {
   state = {
     phoneNumber: '',

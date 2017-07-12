@@ -1,9 +1,6 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import TellFriendsCard from '../components/TellFriendsCard'
 import TopBar from '../components/TopBar'
@@ -17,16 +14,7 @@ import moment from 'moment'
 import {saveEvent, removeEvent} from '../utils/Calendar';
 import CalendarTopNavigator from './CalendarTopNavigator';
 import {NavigationActions} from 'react-navigation';
-
-const mapStateToProps = (state) => {
-    return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
+import {connectToApp} from '../utils/ReduxConnect';
 
 const UPCOMING = 0
 const PAST = 1
@@ -34,7 +22,7 @@ const TABS = ["Upcoming", "Past"]
 
 
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class CalendarScene extends Component {
   state = {
     activeTab: 0,

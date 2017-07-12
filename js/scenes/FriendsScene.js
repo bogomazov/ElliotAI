@@ -1,9 +1,6 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { View, Image, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import * as appActions from '../state/actions/app';
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {saveState} from '../index'
 import {INVITE_FRIENDS_TAB} from './MainScene'
@@ -21,18 +18,9 @@ import NavigationTopBar from '../components/NavigationTopBar';
 import User from '../state/models/user';
 import Arrow from '../components/Arrow';
 import RemoteImage from '../components/RemoteImage';
+import {connectToApp} from '../utils/ReduxConnect';
 
-const mapStateToProps = (state) => {
-  return {app: state.app}
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    appActions: bindActionCreators(appActions, dispatch),
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connectToApp
 export default class FriendsScene extends Component {
 
   _onFriendPress = (friend) => {
