@@ -14,9 +14,9 @@ First, set up an editor and install an Editorconfig plugin: http://editorconfig.
 # Elliot-iOS | React Native
 
 ## Running on simulator
-1. Clone the repository.
-2. `open ios/Elliot.xcworkspace`, don't convert Swift syntax, choose "later" and "no". This step lets Xcode register a scheme for react-native-cli to use, automatically. You can now close Xcode.
-3. Run `npm install` inside the directory where `package.json` exists.
+1. Run `npm install` inside the directory where `package.json` exists.
+2. Run `pod install` inside `ios/`.
+3. `open ios/Elliot.xcworkspace`, don't convert Swift syntax, choose "later" and "no". This step lets Xcode register a scheme for react-native-cli to use, automatically. You can now close Xcode.
 4. `npm run build-ios-dev`
 5. `npm start`
 6. `react-native run-ios`
@@ -24,10 +24,11 @@ First, set up an editor and install an Editorconfig plugin: http://editorconfig.
 ## Running on device
 1. Run `npm install` to make sure your local packages are up to date.
 2. `npm run build-ios-dev` if you want console logs enabled, `npm run build-ios-prod` otherwise.
-2. Connect the device and run the `Elliot-Dev` target via Xcode. Make sure that build-configuration is set to `DEBUG` in scheme settings.
-3. Codepush will fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`), or will use `main.jsbundle` if there is nothing codepushed for that native version number yet.
+3. Run `pod install` inside `ios/`.
+4. Connect the device and run the `Elliot-Dev` target via Xcode. Make sure that build-configuration is set to `DEBUG` in scheme settings.
+5. Codepush will fetch the latest JS code (staging for builds with `DEBUG` scheme and prod for `RELEASE`), or will use `main.jsbundle` if there is nothing codepushed for that native version number yet.
 
-**Note**: Always build `Elliot-Dev` target with `DEBUG` config and `Elliot` with `RELEASE` to ensure that both code-push and app's own network requests point to the correct environment. 
+**Note**: Always build `Elliot-Dev` target with `DEBUG` config and `Elliot` with `RELEASE` to ensure that code-push points to the correct environment. 
 
 # Codepush Deployment
 1. Install code-push cli: `npm install -g code-push-cli`
