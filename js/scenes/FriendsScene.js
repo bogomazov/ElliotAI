@@ -11,7 +11,6 @@ import strings from '../res/values/strings'
 import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
-// import SendSMS from 'react-native-send-sms'
 import {email, text} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import NavigationTopBar from '../components/NavigationTopBar';

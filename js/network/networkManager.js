@@ -9,8 +9,6 @@ const subdomain = (!IS_DEV) ? 'prod' : 'staging'
 const rootURL = `https://${subdomain}.elliot.ai/control`
 
 const USER_AGENT = DeviceInfo.getUserAgent()
-// console.log(userAgent)
-
 
 class API {
   constructor(accessToken, dispatch) {
@@ -26,9 +24,6 @@ class API {
       'time_zone': (new Date().getTimezoneOffset())*(-60),
   })
 
-
-  // "begin": "2010-01-15 17:25:49", // Date and times in this format:
-  // "end": "2010-01-15 19:30:00"    // "yyyy-MM-dd HH:mm:ss"
   sendEvents = (events) =>
     this.post('/calendar_events', {'data': events})
 

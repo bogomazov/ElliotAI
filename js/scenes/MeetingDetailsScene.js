@@ -18,13 +18,6 @@ import ShareAccess from '../utils/ShareModule';
 import RemoteImage from '../components/RemoteImage';
 import {connectToApp} from '../utils/ReduxConnect';
 
-// Ionicons
-// ios-time-outline
-// EvilIcons
-// location
-// close
-// close-o
-
 @connectToApp
 export default class MeetingDetailsScene extends Component {
     state = {
@@ -142,7 +135,6 @@ export default class MeetingDetailsScene extends Component {
                 style={[s.avatar]}
                 source={{ uri: meeting.friend.image }}/>
           </View>
-
           <View style={[s.column, s.borderTop, s.flex]}>
             <ScrollView>
             <View style={[s.row, s.alignItemsCenter]}>
@@ -205,8 +197,6 @@ export default class MeetingDetailsScene extends Component {
               <IconEvil.Button name="close-o" style={[styles.bottomIcon]} size={40} backgroundColor="#fff" color="#535353" />
             </View>
           </TouchableWithoutFeedback>}
-          {/* {this.state.url && <View style={{height: 0, width: 0}}><WebViewNavigator url={this.state.url} /></View>} */}
-
         </Card>
       );
   }
@@ -219,7 +209,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-//     alignItems: 'stretched',
   },
   bottom: {
     height: 60,

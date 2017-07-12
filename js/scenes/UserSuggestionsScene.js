@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-start',
-//     alignItems: 'stretched',
   },
   topBarIcon: {
     height: 40,

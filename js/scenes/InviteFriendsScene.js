@@ -15,7 +15,6 @@ import {themeColor, themeColorLight} from '../res/values/styles'
 import Search from '../containers/Search'
 import Contacts from 'react-native-contacts'
 
-// import SendSMS from 'react-native-send-sms'
 import {email, text, textWithoutEncoding} from 'react-native-communications'
 import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
@@ -24,15 +23,6 @@ import ShareAccess from '../utils/ShareModule';
 import {IS_IOS} from '../settings.js';
 import InAppNotification from '../components/InAppNotification';
 import {connectToApp} from '../utils/ReduxConnect';
-
-// ...
-
-// Build up a shareable link.
-
-
-// ...
-
-// Share the link using the share dialog.
 
 ELLIOT_LINK = "http://elliot.ai"
 

@@ -89,7 +89,6 @@ const BottomTabNavigation = TabNavigator({
   SettingsTab: {screen: SettingsScene},
 }, {
   ...TabNavigator.Presets.iOSBottomTabs,
-  // lazy: true,
   tabBarOptions: {
     showLabel: false,
     style: {
@@ -229,10 +228,6 @@ export default class MainScene extends Component {
     );
   }
 }
-
-
-
-
 
 export const styles = StyleSheet.create({
   container: {
