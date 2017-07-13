@@ -34,7 +34,7 @@ const LOGOUT = 3
 export default class SettingsScene extends Component {
   static navigationOptions = {
     tabBarIcon: ({tintColor, focused}) =>
-       <IconIon name="ios-settings-outline" color={focused? themeColor: 'grey'} size={focused? 42: 38} />
+       <IconIon name="ios-settings-outline" color={focused? themeColor: 'grey'} size={38} />
   };
 
   state = {
