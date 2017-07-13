@@ -10,7 +10,6 @@ import UIKit
 import FacebookLogin
 import FacebookCore
 import OpenSansSwift
-import SwiftyJSON
 import React
 
 @UIApplicationMain

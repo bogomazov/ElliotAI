@@ -196,10 +196,10 @@ SPEC CHECKSUMS:
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   React: d2077cc20245ccdc8bfe1fdc002f2003318ae8d8
   react-native-calendar-events: 26b9a7b2271727cf52334744e09a9bd15af4f1cb
-  react-native-contacts: edec584a74f0ab19bd3698c49ac379684b7a3d4f
+  react-native-contacts: 75373e25214936b8a7e4b7da87fc6671c7230435
   react-native-fbsdk: b4fa61b104152f635c86974f8d467bef42365773
-  ReactNativeLocalization: 69591a73e54a41e61fcf1cb2dc4b52c6a8e1e012
-  ReactNativePermissions: b1347baacb2ac4a93581fe5f4d80ce7c0d581089
+  ReactNativeLocalization: 0bce233cc2bec1f731d71a4f5b838ca1c5548d49
+  ReactNativePermissions: 76a6c5210c24a2668dddd332597a0b578feb9ef4
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
   RNShare: f58d823417bcdf71859c9afd7bb0cbcbb2b98e90
   RNVectorIcons: 6d98d83e944d15014d8071dd9819beb094c61133
