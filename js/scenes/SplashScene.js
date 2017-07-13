@@ -2,14 +2,8 @@
  * Created by andrey on 10/18/16.
  @flow
  */
+import { Image, View, StyleSheet } from 'react-native';
 import React, { Component } from 'react'
-import { AppRegistry, Image, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import IntroSwipe from '../containers/Intro'
-import LocationServicesDialogBox from "react-native-android-location-services-dialog-box";
-import RNCalendarEvents from 'react-native-calendar-events';
-import { fromDateToIsoStr } from '../utils/DateTime'
-import { getEvents } from '../utils/Calendar'
-import moment from 'moment'
 import {IS_DEV, IS_IOS, IS_ANDROID} from '../settings'
 import {mainBackgroundColor} from '../res/values/styles';
 

@@ -1,7 +1,6 @@
-import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { themeColor, mainBackgroundColor } from '../res/values/styles'
+import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { themeColor } from '../res/values/styles'
 
 import Icon from 'react-native-vector-icons/Ionicons';
 

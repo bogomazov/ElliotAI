@@ -1,28 +1,25 @@
-import { LoginButton, AccessToken } from 'react-native-fbsdk'
+import { MessageDialog, ShareDialog } from 'react-native-fbsdk';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
+import { email } from 'react-native-communications';
 import React, { Component } from 'react'
-import { View, Image, Alert, Button, StyleSheet, Text, TouchableWithoutFeedback, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import CustomButton from '../components/CustomButton'
-import CustomModal from '../components/CustomModal'
-import AlertDialog from '../components/AlertDialog'
-import InviteTabs from '../containers/InviteTabs'
-import strings, {format} from '../res/values/strings'
-import {themeColor, themeColorLight} from '../res/values/styles'
-import Search from '../containers/Search'
-import Contacts from 'react-native-contacts'
-
-import {email, text, textWithoutEncoding} from 'react-native-communications'
-import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
 import Share from 'react-native-share';
-import PhoneAccess from '../utils/PhoneNumberModule';
-import ShareAccess from '../utils/ShareModule';
 import {IS_IOS} from '../settings.js';
-import InAppNotification from '../components/InAppNotification';
 import {connectToApp} from '../utils/ReduxConnect';
+import {themeColor, themeColorLight} from '../res/values/styles'
+import AlertDialog from '../components/AlertDialog'
+import InAppNotification from '../components/InAppNotification';
+import InviteTabs from '../containers/InviteTabs'
+import PhoneAccess from '../utils/PhoneNumberModule';
+import Search from '../containers/Search'
+import ShareAccess from '../utils/ShareModule';
+import TopBar from '../components/TopBar'
+import strings, {format} from '../res/values/strings'
 
 ELLIOT_LINK = "http://elliot.ai"
 

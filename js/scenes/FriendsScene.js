@@ -1,23 +1,11 @@
-import { LoginButton, AccessToken } from 'react-native-fbsdk'
+import { View, StyleSheet, Text, TouchableHighlight } from 'react-native';
 import React, { Component } from 'react'
-import { View, Image, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import InviteTabs from '../containers/InviteTabs'
-import strings from '../res/values/strings'
-import {themeColor, themeColorLight} from '../res/values/styles'
-import Search from '../containers/Search'
-import Contacts from 'react-native-contacts'
-import {email, text} from 'react-native-communications'
-import {ShareDialog, MessageDialog} from 'react-native-fbsdk'
-import NavigationTopBar from '../components/NavigationTopBar';
-import User from '../state/models/user';
-import Arrow from '../components/Arrow';
-import RemoteImage from '../components/RemoteImage';
 import {connectToApp} from '../utils/ReduxConnect';
+import { themeColorLight } from '../res/values/styles';
+import Arrow from '../components/Arrow';
+import NavigationTopBar from '../components/NavigationTopBar';
+import RemoteImage from '../components/RemoteImage';
+import Search from '../containers/Search'
 
 @connectToApp
 export default class FriendsScene extends Component {

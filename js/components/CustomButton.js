@@ -1,9 +1,8 @@
 //
 // Copyright (c) 2016 by Elliot Team. All Rights Reserved. @flow
 //
-import { StyleSheet, TouchableWithoutFeedback, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
+import React, { Component } from 'react';
 import { themeColor, themeColorThird } from '../res/values/styles'
 
 const CustomButton = ({onPress, title, style, isWhite, isActive, isFilled, isFilledGreen}) => {

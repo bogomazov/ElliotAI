@@ -1,23 +1,18 @@
+import { View, Image, StyleSheet, ActivityIndicator } from 'react-native';
 import React, { Component } from 'react'
-import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import Suggestion from '../state/models/suggestion';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import SuggestionCard from '../components/SuggestionCard'
-import IntroLabel from '../components/IntroLabel'
+import { IS_TEST_SUGGESTIONS } from '../settings';
+import {connectToApp} from '../utils/ReduxConnect';
+import { themeColor } from '../res/values/styles.js';
 import CatchUpCard from '../components/CatchUpCard'
 import CustomListView from '../containers/CustomListView'
-import strings from '../res/values/strings'
-import s from '../res/values/styles'
-import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
-import moment from 'moment'
-import {themeColor, themeColorThird} from '../res/values/styles.js'
-import Notification from 'react-native-in-app-notification'
 import InAppNotification from '../components/InAppNotification';
-import {connectToApp} from '../utils/ReduxConnect';
+import IntroLabel from '../components/IntroLabel'
+import Suggestion from '../state/models/suggestion';
+import SuggestionCard from '../components/SuggestionCard'
+import TellFriendsCard from '../components/TellFriendsCard'
+import TopBar from '../components/TopBar'
+import s from '../res/values/styles'
+import strings from '../res/values/strings'
 
 const SHOW_CATCH_UP_CARD = 1 // if certain number of suggestions loaded
 

@@ -9,7 +9,7 @@ import Suggestion from '../models/suggestion'
 import {saveEvent, removeEvent} from '../../utils/Calendar';
 import turf from 'turf'
 import {TEST_MEETINGS} from '../../scenes/CalendarScene'
-import {IS_IOS} from '../../settings';
+import {IS_IOS, IS_TEST_MEETINGS} from '../../settings';
 import {NativeModules} from 'react-native';
 
 export const NEW_ACCESS_TOKEN = "NEW_ACCESS_TOKEN"
@@ -208,7 +208,9 @@ export const sendPhoneNumber = (phoneNumber, token) =>
 
 export const loadScheduledMeetings = () => {
   return (dispatch, getState, getAPI) => getAPI(getState, dispatch).getConfirmedMeetings().then((data) => {
-    // data = TEST_MEETINGS
+    if (IS_TEST_MEETINGS) {
+      data = TEST_MEETINGS
+    }
     console.log(data)
     console.log('loadScheduledMeetings0')
     if (data.error) {

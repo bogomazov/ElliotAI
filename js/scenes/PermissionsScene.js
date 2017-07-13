@@ -2,16 +2,14 @@
  * Created by andrey on 10/18/16.
  @flow
  */
-import React, { Component } from 'react'
-import { AppState, Alert, AppRegistry, Button, View, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import CustomButton from '../components/CustomButton'
-import strings from '../res/values/strings'
-import s, {themeColor} from '../res/values/styles';
+import { AppState, Alert, View, Text, TouchableHighlight } from 'react-native';
 import Permissions from 'react-native-permissions'
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import React, { Component } from 'react'
 import {IS_IOS, IS_TEST_PERMISSIONS_SCENE} from '../settings';
-import {permissionStyles as styles} from '../res/values/styles';
 import {connectToApp} from '../utils/ReduxConnect';
+import CustomButton from '../components/CustomButton'
+import s, { permissionStyles as styles } from '../res/values/styles';
+import strings from '../res/values/strings'
 
 @connectToApp
 export default class PermissionsScene extends Component {

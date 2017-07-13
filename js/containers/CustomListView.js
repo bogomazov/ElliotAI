@@ -1,8 +1,6 @@
-import {IS_IOS, IS_ANDROID} from '../settings.js';
-import s, {themeColorThird} from '../res/values/styles.js';
 import React, {Component} from 'react';
-import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, NativeModules, NativeEventEmitter, ActivityIndicator} from 'react-native'
-import Notification from 'react-native-in-app-notification'
+import ReactNative, { TextInput, FlatList } from 'react-native';
+import { IS_ANDROID } from '../settings.js';
 
 const EXTRA_SPACING = IS_ANDROID? -20: 0
 

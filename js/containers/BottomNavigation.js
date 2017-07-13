@@ -1,6 +1,13 @@
+import {
+  TouchableWithoutFeedback,
+  View,
+  Image,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import React, { Component } from 'react'
-import { AppRegistry, TouchableWithoutFeedback, View, Image, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, TextInput, Button } from 'react-native'
 import s, {themeColorThird} from '../res/values/styles'
+
 export const ICON_UNACTIVE = 0
 export const ICON_ACTIVE = 1
 const CALENDAR_TAB = 1

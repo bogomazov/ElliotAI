@@ -1,6 +1,5 @@
-import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { StyleSheet, View } from 'react-native';
+import React, { Component } from 'react';
 
 export default Card = ({children, style}) => {
       return (

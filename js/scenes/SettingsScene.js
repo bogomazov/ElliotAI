@@ -1,26 +1,13 @@
-import React, {Component} from 'react';
-import {
-  ActionSheetIOS,
-  FlatList,
-  SectionList,
-  Text,
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  TouchableHighlight,
-  Alert,
-  Switch
-} from 'react-native';
-import TopBar from '../components/TopBar';
-import s, {themeColor, themeColorLight, mainBackgroundColor} from '../res/values/styles';
-import ModalDropdown from 'react-native-modal-dropdown';
-import DropdownPicker from '../containers/DropdownPicker';
-import IconIon from 'react-native-vector-icons/Ionicons';
-import SettingsRow from '../components/SettingsRow';
-import SettingsAccountRow from '../components/SettingsAccountRow';
-import {loginToGoogle} from '../utils/GoogleLogin';
+import { SectionList, Text, View, StyleSheet, Alert } from 'react-native';
 import ActionSheet from '@expo/react-native-action-sheet';
+import IconIon from 'react-native-vector-icons/Ionicons';
+import React, {Component} from 'react';
 import {connectToApp} from '../utils/ReduxConnect';
+import {loginToGoogle} from '../utils/GoogleLogin';
+import SettingsAccountRow from '../components/SettingsAccountRow';
+import SettingsRow from '../components/SettingsRow';
+import TopBar from '../components/TopBar';
+import s, { themeColor, mainBackgroundColor } from '../res/values/styles';
 
 const ACCOUNT = 0;
 const CALENDAR = 1;

@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
-import { View, FlatList, ScrollView, Linking, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import SuggestionCard from '../components/SuggestionCard'
-import IntroLabel from '../components/IntroLabel'
-import strings from '../res/values/strings'
-import NavigationTopBar from '../components/NavigationTopBar';
-import Card from '../components/Card';
-import Suggestion from '../state/models/suggestion';
-import s, {themeColorLight} from '../res/values/styles'
-import IconIon from 'react-native-vector-icons/Ionicons';
-import IconEvil from 'react-native-vector-icons/EvilIcons';
+import {
+  View,
+  ScrollView,
+  Linking,
+  Alert,
+  TouchableWithoutFeedback,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 import {phonecall} from 'react-native-communications'
-import {IS_ANDROID, IS_IOS} from '../settings'
-import ShareAccess from '../utils/ShareModule';
-import RemoteImage from '../components/RemoteImage';
+import IconEvil from 'react-native-vector-icons/EvilIcons';
+import IconIon from 'react-native-vector-icons/Ionicons';
+import React, { Component } from 'react'
+import { IS_IOS } from '../settings';
 import {connectToApp} from '../utils/ReduxConnect';
+import Card from '../components/Card';
+import RemoteImage from '../components/RemoteImage';
+import ShareAccess from '../utils/ShareModule';
+import s, {themeColorLight} from '../res/values/styles'
 
 @connectToApp
 export default class MeetingDetailsScene extends Component {
@@ -117,12 +119,90 @@ export default class MeetingDetailsScene extends Component {
     });
   }
 
+  _getRow = ({isShown = true, title, iconComponent, iconName, style, source, onPress}) => {
+    return isShown && <TouchableHighlight onPress={onPress} underlayColor={themeColorLight}>
+    <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
+      <Text style={[s.flex, styles.optionText]}>{title}</Text>
+      {iconComponent?
+        React.createElement(iconComponent, {name: iconName, style, size: ICON_SIZE, backgroundColor: "#fff", color: "#535353"})
+        :
+        <Image
+          style={[styles.icon, s.margin10, style]}
+          source={source}/>
+      }
+    </View>
+  </TouchableHighlight>}
+
   render() {
     // TODO: Avoid combining navigation params to prevent bugs like this.
     this.props = {...this.props, ...this.props.navigation.state.params}
     const meeting = this.props.meeting
     console.log(this.props)
     console.log(this.state)
+
+    const ROWS = [{
+        title: meeting.meeting_time.format("h:mm A"),
+        iconComponent: IconIon,
+        iconName: "ios-time-outline",
+        style: s.margin10,
+        source: null,
+        onPress: () => {},
+      },
+      {
+        title: "Home",
+        iconComponent: IconEvil,
+        iconName: "location",
+        style: styles.marginLocation,
+        source: null,
+        onPress: () => {},
+      },
+      {
+        title: "Message on Facebook",
+        iconComponent: null,
+        iconName: null,
+        style: null,
+        source: require('../res/images/fb-icon-66px.png'),
+        onPress: this._onMessengerPress,
+      },
+      {
+        title: "Find a place on Yelp",
+        iconComponent: null,
+        iconName: null,
+        style: null,
+        source: require('../res/images/yelp-icon-66px.png'),
+        onPress: this._onYelpPress,
+        isShown: !meeting.isCall() && !meeting.isPast()
+      },
+      {
+        title: "Reserve a table",
+        iconComponent: null,
+        iconName: null,
+        style: null,
+        source: require('../res/images/opentable-icon-66px.png'),
+        onPress: this._onOpenTablePress,
+        isShown: this.props.app.metroId && !meeting.isCall() && !meeting.isPast()
+      },
+      {
+        title: `Call ${meeting.friend.first_name}`,
+        iconComponent: null,
+        iconName: null,
+        style: null,
+        source: require('../res/images/call-66px.png'),
+        onPress: this._call,
+        isShown: this.state.number
+      },
+      {
+        title: `Send ${meeting.friend.first_name} SMS`,
+        iconComponent: null,
+        iconName: null,
+        style: null,
+        source: require('../res/images/messageicon.png'),
+        onPress: this._sendSMS,
+        isShown: this.state.number
+      }
+    ].map((item) => this._getRow(item))
+    console.log(ROWS)
+
       return (
         <Card style={{flex: 1, marginBottom: 15, marginTop: (IS_IOS ? 32 : 12), overflow: 'hidden'}}>
           <IconEvil.Button name="close" backgroundColor="#fff" size={40} color="#A0A0A0" onPress={() => this.props.navigation.goBack()} />
@@ -137,58 +217,7 @@ export default class MeetingDetailsScene extends Component {
           </View>
           <View style={[s.column, s.borderTop, s.flex]}>
             <ScrollView>
-            <View style={[s.row, s.alignItemsCenter]}>
-              <Text style={[s.flex, styles.optionText]}>{meeting.meeting_time.format("h:mm A")}</Text>
-              <IconIon name="ios-time-outline" style={[s.margin10]} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
-            </View>
-            <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-              <Text style={[s.flex, styles.optionText]}>Home</Text>
-              <IconEvil name="location" style={styles.marginLocation} size={ICON_SIZE} backgroundColor="#fff" color="#535353" />
-            </View>
-            <TouchableHighlight onPress={this._onMessengerPress} underlayColor={themeColorLight}>
-              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-                <Text style={[s.flex, styles.optionText]}>Message on Facebook</Text>
-                <Image
-                  style={[styles.icon, s.margin10]}
-                  source={require('../res/images/fb-icon-66px.png')}/>
-              </View>
-            </TouchableHighlight>
-            {!meeting.isCall() && !meeting.isPast() &&
-              <TouchableHighlight onPress={this._onYelpPress} underlayColor={themeColorLight}>
-                <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-                  <Text style={[s.flex, styles.optionText]}>Find a place on Yelp</Text>
-                  <Image
-                    style={[styles.icon, s.margin10]}
-                    source={require('../res/images/yelp-icon-66px.png')}/>
-                </View>
-              </TouchableHighlight>}
-            {this.props.app.metroId && !meeting.isCall() && !meeting.isPast() &&
-              <TouchableHighlight onPress={this._onOpenTablePress} underlayColor={themeColorLight}>
-                <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-                  <Text style={[s.flex, styles.optionText]}>Reserve a table</Text>
-                  <Image
-                    style={[styles.icon, s.margin10]}
-                    source={require('../res/images/opentable-icon-66px.png')}/>
-                </View>
-              </TouchableHighlight>}
-            {this.state.number &&
-            <TouchableHighlight onPress={this._call} underlayColor={themeColorLight}>
-              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-                <Text style={[s.flex, styles.optionText]}>Call {meeting.friend.first_name}</Text>
-                <Image
-                  style={[styles.icon, s.margin10]}
-                  source={require('../res/images/call-66px.png')}/>
-              </View>
-            </TouchableHighlight>}
-            {this.state.number && <TouchableHighlight onPress={this._sendSMS} underlayColor={themeColorLight}>
-              <View style={[s.row, s.alignItemsCenter, s.borderTopGrey]}>
-                <Text style={[s.flex, styles.optionText]}>Send {meeting.friend.first_name} SMS</Text>
-                <Image
-                  style={[styles.icon, s.margin10]}
-                  source={require('../res/images/messageicon.png')}/>
-              </View>
-            </TouchableHighlight>}
-            <View style={[s.row, s.borderTopGrey, styles.bottomLine]}></View>
+              {ROWS}
             </ScrollView>
           </View>
           {!meeting.isPast() && <TouchableWithoutFeedback onPress={this._onReschedulePress}>

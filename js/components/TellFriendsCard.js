@@ -1,6 +1,5 @@
-import { StyleSheet, Image, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { StyleSheet, Image, Text, View } from 'react-native';
+import React, { Component } from 'react';
 import Card from './Card'
 import CustomButton from './CustomButton'
 import strings from '../res/values/strings'

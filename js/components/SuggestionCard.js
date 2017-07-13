@@ -1,15 +1,18 @@
-import { StyleSheet, ScrollView, TouchableWithoutFeedback, Image, Button, Text, View, TextInput, TouchableHighlight, ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import IconEntypo from 'react-native-vector-icons/Entypo';
-import React, { Component, PropTypes } from 'react';
-import moment from 'moment'
-import Card from './Card'
-import CustomButton from './CustomButton'
-import {getEvents} from '../utils/Calendar'
-import strings from '../res/values/strings'
-import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight, greyColorLight, greyColor } from '../res/values/styles'
-import RemoteImage from './RemoteImage';
+import {
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Image,
+  Text,
+  View,
+  TextInput,
+  TouchableHighlight,
+  ActivityIndicator,
+} from 'react-native';
 import IconEvil from 'react-native-vector-icons/EvilIcons';
+import React, { Component } from 'react';
+import Card from './Card'
+import RemoteImage from './RemoteImage';
+import s, { themeColorThird, themeColor, mainBackgroundColor, themeColorLight, greyColorLight, greyColor } from '../res/values/styles'
 
 const borderWidth = 2
 

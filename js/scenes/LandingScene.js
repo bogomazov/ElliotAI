@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import Permissions from 'react-native-permissions';
-import MainScene from './MainScene';
-import LoginScene from './LoginScene';
-import UserSuggestionsScene from './UserSuggestionsScene';
-import FriendsScene from './FriendsScene';
-import PermissionsScene from './PermissionsScene';
-import CalendarPermissionScene from './CalendarPermissionScene';
-import {IS_ANDROID, IS_TEST_PERMISSIONS_SCENE} from '../settings';
-import {StackNavigator} from 'react-navigation';
 import {AppState} from 'react-native';
+import {StackNavigator} from 'react-navigation';
+import Permissions from 'react-native-permissions';
+import React, {Component} from 'react';
+import { IS_TEST_PERMISSIONS_SCENE } from '../settings';
 import {connectToApp} from '../utils/ReduxConnect';
+import CalendarPermissionScene from './CalendarPermissionScene';
+import FriendsScene from './FriendsScene';
+import LoginScene from './LoginScene';
+import MainScene from './MainScene';
+import PermissionsScene from './PermissionsScene';
+import UserSuggestionsScene from './UserSuggestionsScene';
 
 const Navigation = StackNavigator({
   MainScene: {screen: MainScene},

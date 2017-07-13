@@ -1,19 +1,12 @@
-import React, { Component } from 'react'
-import ReactNative, { TextInput, View, FlatList, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import { NavigationActions } from 'react-navigation'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
-import TellFriendsCard from '../components/TellFriendsCard'
+import { View, StyleSheet } from 'react-native';
+import React, { Component } from 'react'
+import { IS_TEST_SUGGESTIONS } from '../settings';
+import {connectToApp} from '../utils/ReduxConnect';
 import CustomListView from '../containers/CustomListView'
-import TopBar from '../components/TopBar'
-import SuggestionCard from '../components/SuggestionCard'
-import IntroLabel from '../components/IntroLabel'
-import strings from '../res/values/strings'
 import NavigationTopBar from '../components/NavigationTopBar';
 import Suggestion from '../state/models/suggestion';
-import {IS_DEV, IS_ANDROID, IS_IOS, IS_TEST_SUGGESTIONS} from '../settings'
-import {connectToApp} from '../utils/ReduxConnect';
+import SuggestionCard from '../components/SuggestionCard'
 
 @connectToApp
 export default class UserSuggestionsScene extends Component {

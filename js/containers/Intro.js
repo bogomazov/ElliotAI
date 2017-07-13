@@ -44,10 +44,10 @@ var styles = {
   text: {
     flex: 1,
     textAlign: 'center',
-    paddingBottom: 20,
-    paddingHorizontal: 50,
+    marginBottom: 25,
+    paddingHorizontal: 50
   },
   image: {
-    flex: 10,
+    flex: 7,
   },
 }
