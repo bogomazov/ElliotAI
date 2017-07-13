@@ -119,7 +119,7 @@ export default s = StyleSheet.create({
     textAlign: 'center',
     color: themeColor,
     fontSize: 32,
-    marginTop: 50,
+    marginTop: '5%',
     fontFamily: 'OpenSans-ExtraBold'
   },
   nuxGrayText: {

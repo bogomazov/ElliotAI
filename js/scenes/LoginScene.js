@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import React, { Component } from 'react'
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
 import {connectToApp} from '../utils/ReduxConnect';
+import {IS_IOS} from '../settings'
 import IntroSwipe from '../containers/Intro'
 import s from '../res/values/styles';
 
@@ -38,7 +39,7 @@ export default class LoginScene extends Component {
         <IntroSwipe/>
         <View style={styles.loginButtonWrapper}>
           {this.state.toShowLoginButton && <LoginButton
-            style={styles.loginButton}
+            style={IS_IOS? styles.loginButton: undefined}
             readPermissions={["email","public_profile","user_friends"]}
             onLoginFinished={this.onLoginFinished}
             onLogoutFinished={() => alert("User logged out")}/>}
