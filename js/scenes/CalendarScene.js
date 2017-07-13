@@ -118,7 +118,7 @@ export const TEST_MEETINGS = { data: [
       last_name: "andreysd"
     },
     meeting_time: "2017-03-19 16:00:00",
-    meeting_type: "Call",
+    meeting_type: "Lunch",
     suggestion_id: 15295
   },
   {
@@ -178,7 +178,7 @@ export const TEST_MEETINGS = { data: [
       last_name: "andrey"
     },
     meeting_time: "2017-07-19 17:00:00",
-    meeting_type: "Call",
+    meeting_type: "Lunch",
     suggestion_id: 15290
   }
 ]}

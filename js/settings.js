@@ -10,5 +10,6 @@ export const APP_VERSION = DeviceInfo.getVersion();
 export const IS_IOS = Platform.OS == 'ios'
 export const IS_ANDROID = Platform.OS == 'android'
 export const IS_TEST_SUGGESTIONS = false
+export const IS_TEST_MEETINGS = false
 export const IS_TEST_PERMISSIONS_SCENE = false
 export const IS_REDUX_LOGGER_ENABLED = true
