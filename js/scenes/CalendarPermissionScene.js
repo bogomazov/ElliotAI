@@ -1,18 +1,10 @@
+import { View, Text } from 'react-native';
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  ScrollView,
-  TouchableWithoutFeedback
-} from 'react-native';
-import CustomButton from '../components/CustomButton'
-import strings from '../res/values/strings'
-import s from '../res/values/styles';
+import {connectToApp} from '../utils/ReduxConnect';
 import GoogleLoginButton from '../containers/GoogleLoginButton';
 import ProgressBar from '../components/ProgressBar';
-import {permissionStyles as styles} from '../res/values/styles';
-import {connectToApp} from '../utils/ReduxConnect';
+import s, { permissionStyles as styles } from '../res/values/styles';
+import strings from '../res/values/strings'
 
 @connectToApp
 export default class CalendarPermissionScene extends Component {

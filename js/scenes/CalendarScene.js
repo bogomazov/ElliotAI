@@ -1,20 +1,18 @@
-import { LoginButton, AccessToken } from 'react-native-fbsdk'
-import React, { Component } from 'react'
-import { View, Image, FlatList, Button, TouchableWithoutFeedback, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, AppState } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import InviteTabs from '../containers/InviteTabs'
-import strings from '../res/values/strings'
-import {themeColor} from '../res/values/styles'
-import IntroLabel from '../components/IntroLabel'
-import MeetingCard from '../components/MeetingCard'
-import Meeting from '../state/models/meeting'
-import moment from 'moment'
-import {saveEvent, removeEvent} from '../utils/Calendar';
-import CalendarTopNavigator from './CalendarTopNavigator';
 import {NavigationActions} from 'react-navigation';
+import {
+  View,
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Text,
+  AppState,
+} from 'react-native';
+import React, { Component } from 'react'
 import {connectToApp} from '../utils/ReduxConnect';
+import {themeColor} from '../res/values/styles'
+import CalendarTopNavigator from './CalendarTopNavigator';
+import IntroLabel from '../components/IntroLabel'
+import TopBar from '../components/TopBar'
+import strings from '../res/values/strings'
 
 const UPCOMING = 0
 const PAST = 1

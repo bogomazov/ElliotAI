@@ -1,10 +1,7 @@
-import { StyleSheet, Button, Text, Image, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { themeColor, mainBackgroundColor } from '../res/values/styles'
+import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
 import CustomButton from './CustomButton'
-
-import Icon from 'react-native-vector-icons/Ionicons';
+import CustomModal from './CustomModal';
 
 export default AlertDialog = ({title, description, isOpen, onClosed, onSuccess, onSuccessTitle, onCancelTitle}) => {
       console.log(onSuccess)

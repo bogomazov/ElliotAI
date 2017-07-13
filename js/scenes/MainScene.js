@@ -2,47 +2,22 @@
  * Created by andrey on 10/18/16.
  @flow
  */
-import React, { Component } from 'react'
-import {
-  AppRegistry,
-  Linking,
-  Button,
-  View,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  Navigator,
-  ListView,
-  Modal,
-  Platform,
-  NativeModules,
-  AppState,
-  Image,
-} from 'react-native';
+import { Linking, View, StyleSheet, Text, AppState, Image } from 'react-native';
+import {StackNavigator, TabNavigator} from 'react-navigation';
 import { connect } from 'react-redux'
-import LoginScene from './LoginScene'
-import PermissionsScene from './PermissionsScene'
-import SplashScene from './SplashScene'
-import RNCalendarEvents from 'react-native-calendar-events';
-import Contacts from 'react-native-contacts'
-import { LoginManager } from 'react-native-fbsdk'
+import DeepLinking from 'react-native-deep-linking'
+import React, { Component } from 'react'
+import { IS_DEV } from '../settings';
+import {connectToApp} from '../utils/ReduxConnect';
+import {getLocation, checkLocationAccess} from '../utils/Location'
+import {loadContacts} from '../utils/Contacts'
 import { mainBackgroundColor, themeColorThird } from '../res/values/styles'
-import BottomNav from '../containers/BottomNavigation'
-import SuggestionsScene from '../scenes/SuggestionsScene'
+import CalendarScene from '../scenes/CalendarScene'
 import InviteFriendsScene from '../scenes/InviteFriendsScene'
 import MeetingDetailsScene from '../scenes/MeetingDetailsScene'
-import SettingsScene from '../scenes/SettingsScene'
-import CalendarScene from '../scenes/CalendarScene'
 import PhoneVerificationScene from '../scenes/PhoneVerificationScene'
-import DeepLinking from 'react-native-deep-linking'
-import {loadContacts} from '../utils/Contacts'
-import {getEvents, checkCalendarPermissions} from '../utils/Calendar'
-import {getLocation, checkLocationAccess} from '../utils/Location'
-import moment from 'moment'
-import {StackNavigator, TabNavigator} from 'react-navigation';
-import {IS_DEV, IS_ANDROID, IS_IOS} from '../settings'
-import {Store} from '../index'
-import {connectToApp} from '../utils/ReduxConnect';
+import SettingsScene from '../scenes/SettingsScene'
+import SuggestionsScene from '../scenes/SuggestionsScene'
 
 export const MAIN_TAB = 0
 export const CALENDAR_TAB = 1

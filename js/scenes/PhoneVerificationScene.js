@@ -1,23 +1,22 @@
-import React, { Component } from 'react'
-import { Keyboard, Alert, KeyboardAvoidingView, View, FlatList, Linking, TextInput, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import {INVITE_FRIENDS_TAB} from './MainScene'
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import SuggestionCard from '../components/SuggestionCard'
-import IntroLabel from '../components/IntroLabel'
-import CatchUpCard from '../components/CatchUpCard'
-import CustomButton from '../components/CustomButton'
-import strings from '../res/values/strings'
-import s, {themeColor} from '../res/values/styles'
-import PhoneNumber from '../utils/PhoneNumberModule'
-import {IS_ANDROID, IS_IOS} from '../settings'
+import {
+  Keyboard,
+  Alert,
+  KeyboardAvoidingView,
+  View,
+  TextInput,
+  StyleSheet,
+  Text,
+} from 'react-native';
 import {asYouType, getPhoneCode, parse, format} from 'libphonenumber-js'
 import DeviceInfo from 'react-native-device-info'
-import {loadContacts} from '../utils/Contacts'
-import {GraphRequest, GraphRequestManager, AccessToken} from 'react-native-fbsdk'
+import React, { Component } from 'react'
+import {IS_ANDROID, IS_IOS} from '../settings'
 import {connectToApp} from '../utils/ReduxConnect';
+import {loadContacts} from '../utils/Contacts'
+import CustomButton from '../components/CustomButton'
+import PhoneNumber from '../utils/PhoneNumberModule'
+import s, {themeColor} from '../res/values/styles'
+import strings from '../res/values/strings'
 
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;

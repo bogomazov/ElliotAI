@@ -1,17 +1,7 @@
-import { LoginButton, AccessToken } from 'react-native-fbsdk'
+import { View, FlatList, StyleSheet } from 'react-native';
 import React, { Component } from 'react'
-import { View, Image, FlatList, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import InviteTabs from '../containers/InviteTabs'
-import strings from '../res/values/strings'
-import {themeColor} from '../res/values/styles'
 import Search from 'react-native-search-box';
-import PropTypes from 'prop-types';
-
-
+import {themeColor} from '../res/values/styles'
 
 const TAB_MESSENGER = 2
 const TAB_FACEBOOK = 3

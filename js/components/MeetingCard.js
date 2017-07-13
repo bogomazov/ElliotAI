@@ -1,13 +1,9 @@
-import { StyleSheet, TouchableWithoutFeedback, Image, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import Card from './Card'
-import CustomButton from './CustomButton'
+import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
+import React, { Component } from 'react';
 import Arrow from './Arrow'
-import strings from '../res/values/strings'
-import Meeting from '../state/models/meeting'
-import s, { themeColor, mainBackgroundColor } from '../res/values/styles'
+import Card from './Card'
 import RemoteImage from './RemoteImage';
+import s from '../res/values/styles';
 
 const borderWidth = 1
 

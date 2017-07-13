@@ -1,7 +1,6 @@
 import Modal from 'react-native-simple-modal';
-import { StyleSheet, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { StyleSheet } from 'react-native';
+import React, { Component } from 'react';
 
 export default CustomModal = ({children, isOpen}) => <Modal
           open={isOpen}

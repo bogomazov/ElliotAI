@@ -1,9 +1,8 @@
-import { StyleSheet,TouchableWithoutFeedback, Button, Text, View, Image, TextInput, TouchableHighlight } from 'react-native';
-import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
+import { StyleSheet, Text, View } from 'react-native';
+import IconIon from 'react-native-vector-icons/Ionicons';
+import React, { Component } from 'react';
 import TopBar from '../components/TopBar'
 import s from '../res/values/styles'
-import IconIon from 'react-native-vector-icons/Ionicons';
 
 // ios-arrow-back
 

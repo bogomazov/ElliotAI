@@ -1,6 +1,5 @@
-import { StyleSheet, TouchableWithoutFeedback, Button, Text, View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Text, View } from 'react-native';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import s from '../res/values/styles'
 import Arrow from './Arrow'
 import Card from './Card'

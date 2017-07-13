@@ -1,9 +1,6 @@
+import { GoogleSigninButton } from 'react-native-google-signin';
 import React, {Component} from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-import * as appActions from '../state/actions/app';
 import {loginToGoogle} from '../utils/GoogleLogin';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 export default class GoogleLoginButton extends Component {
 

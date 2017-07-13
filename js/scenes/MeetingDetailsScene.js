@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
-import { View, FlatList, ScrollView, Linking, Alert, TouchableWithoutFeedback, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
-import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import TellFriendsCard from '../components/TellFriendsCard'
-import TopBar from '../components/TopBar'
-import SuggestionCard from '../components/SuggestionCard'
-import IntroLabel from '../components/IntroLabel'
-import strings from '../res/values/strings'
-import NavigationTopBar from '../components/NavigationTopBar';
-import Card from '../components/Card';
-import Suggestion from '../state/models/suggestion';
-import s, {themeColorLight} from '../res/values/styles'
-import IconIon from 'react-native-vector-icons/Ionicons';
-import IconEvil from 'react-native-vector-icons/EvilIcons';
+import {
+  View,
+  ScrollView,
+  Linking,
+  Alert,
+  TouchableWithoutFeedback,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 import {phonecall} from 'react-native-communications'
-import {IS_ANDROID, IS_IOS} from '../settings'
-import ShareAccess from '../utils/ShareModule';
-import RemoteImage from '../components/RemoteImage';
+import IconEvil from 'react-native-vector-icons/EvilIcons';
+import IconIon from 'react-native-vector-icons/Ionicons';
+import React, { Component } from 'react'
+import { IS_IOS } from '../settings';
 import {connectToApp} from '../utils/ReduxConnect';
+import Card from '../components/Card';
+import RemoteImage from '../components/RemoteImage';
+import ShareAccess from '../utils/ShareModule';
+import s, {themeColorLight} from '../res/values/styles'
 
 @connectToApp
 export default class MeetingDetailsScene extends Component {

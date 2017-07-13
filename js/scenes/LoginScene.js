@@ -1,13 +1,10 @@
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
+import { View, StyleSheet, Text } from 'react-native';
 import React, { Component } from 'react'
-import { View, Image, Button, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal } from 'react-native'
 import {SOCIAL_MEDIA_FB} from '../state/actions/app';
-import {saveState} from '../index'
-import IntroSwipe from '../containers/Intro'
-import { themeColor } from '../res/values/styles'
-import PhoneNumber from '../utils/PhoneNumberModule'
-import s from '../res/values/styles'
 import {connectToApp} from '../utils/ReduxConnect';
+import IntroSwipe from '../containers/Intro'
+import s from '../res/values/styles';
 
 @connectToApp
 export default class LoginScene extends Component {

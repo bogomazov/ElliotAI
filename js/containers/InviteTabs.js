@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
-import { AppRegistry, TouchableWithoutFeedback, View, Image, StyleSheet, Text, TouchableHighlight, Navigator, ListView, Modal, TextInput, Button } from 'react-native'
-import s, {themeColor} from '../res/values/styles'
+import {
+  TouchableWithoutFeedback,
+  View,
+  Image,
+  StyleSheet,
+} from 'react-native';
+import React, { Component } from 'react';
+import s from '../res/values/styles';
 
 export const ICON_UNACTIVE = 0
 export const ICON_ACTIVE = 1

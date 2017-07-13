@@ -4,37 +4,25 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AsyncStorage,
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Platform,
-  NativeModules,
-} from 'react-native';
-
-import { connect, Provider } from 'react-redux'
-// import { connect, Provider } from 'react-redux'
+import { AsyncStorage, AppRegistry, Text } from 'react-native';
 import { applyMiddleware, compose, createStore, bindActionCreators } from 'redux'
+import { connect, Provider } from 'react-redux'
 import {createLogger}  from 'redux-logger'
-import thunk  from 'redux-thunk'
-import rootReducer  from './state/reducers/index'
-// import * as storage from 'redux-storage'
 import {persistStore, autoRehydrate} from 'redux-persist'
-import codePush, {InstallMode} from "react-native-code-push";
-import {getAPI} from './network/networkManager'
 import DeepLinking from 'react-native-deep-linking';
-import {IS_IOS, IS_REDUX_LOGGER_ENABLED, IS_DEV} from './settings'
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-
-import {newAccessToken} from './state/actions/app';
-import * as appActions from './state/actions/app';
-import SplashScene from './scenes/SplashScene';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, { Component } from 'react';
+import codePush from 'react-native-code-push';
+import moment from 'moment';
+import thunk  from 'redux-thunk'
+import {IS_IOS, IS_REDUX_LOGGER_ENABLED, IS_DEV} from './settings'
+import {getAPI} from './network/networkManager'
 import LandingScene from './scenes/LandingScene';
+import SplashScene from './scenes/SplashScene';
+import * as appActions from './state/actions/app';
+import rootReducer  from './state/reducers/index'
 
 // Override console logs to improve performance on prod.
 if (!IS_DEV || !__DEV__) {
